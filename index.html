@@ -10,6 +10,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-zoom/0.7.7/chartjs-plugin-zoom.min.js"></script>
 
+<script src="js/utils.js"></script>
 <script src="js/impressions_charts.js"></script>
 <script src="js/spending_charts.js"></script>
 <script src="js/active_ads_charts.js"></script>
@@ -22,6 +23,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <span class="navbar-brand mb-0 h1">Dutch Political Facebook Ad Comparison</span>
+
     <ul class="nav">
         <li class="nav-item">
             <a class="nav-link" href="#spending">Spending</a>
@@ -31,6 +33,9 @@
         </li>
     </ul>
     <ul class="nav ml-auto">
+        <li class="nav-item">
+            <span class="nav-link">Last Updated: <span id="last-updated"></span></span>
+        </li>
         <li class="nav-item">
             <a class="nav-link" href="https://github.com/joren485/DutchPoliticalFacebookAdComparision">GitHub</a>
         </li>
