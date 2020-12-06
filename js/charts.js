@@ -22,7 +22,19 @@ $(document).ready(function () {
                         type: "time",
                     }],
                 },
-            }
+                plugins: {
+                    zoom: {
+                        pan: {
+                            enabled: true,
+                        },
+                        zoom: {
+                            enabled: true,
+                            drag: false,
+                        }
+                    }
+                },
+            },
+
         };
         let totalActiveAdsChartConfig = {
             type: 'doughnut',
@@ -82,7 +94,18 @@ $(document).ready(function () {
                             return "€" + tooltipItems.yLabel.toFixed(2).toString();
                         }
                     }
-                }
+                },
+                plugins: {
+                    zoom: {
+                        pan: {
+                            enabled: true,
+                        },
+                        zoom: {
+                            enabled: true,
+                            drag: false,
+                        }
+                    }
+                },
             }
         };
         let totalSpendChartConfig = {
@@ -143,7 +166,18 @@ $(document).ready(function () {
                             return Math.round(tooltipItems.yLabel);
                         }
                     }
-                }
+                },
+                plugins: {
+                    zoom: {
+                        pan: {
+                            enabled: true,
+                        },
+                        zoom: {
+                            enabled: true,
+                            drag: false,
+                        }
+                    }
+                },
             }
         };
         let totalImpressionsChartConfig = {
@@ -166,7 +200,7 @@ $(document).ready(function () {
                 legend: {
                     position: 'bottom',
                 },
-            }
+            },
         };
 
         for (let party in party_ad_data.parties) {
@@ -235,4 +269,5 @@ $(document).ready(function () {
         let total_impressions_chart_context = $("#total_impressions_chart");
         new Chart(total_impressions_chart_context, totalImpressionsChartConfig);
     });
+
 });
