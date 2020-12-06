@@ -34,6 +34,7 @@ $(document).ready(function () {
                 }]
             },
             options: {
+                maintainAspectRatio: false,
                 responsive: true,
                 title: {
                     display: true,
@@ -94,6 +95,7 @@ $(document).ready(function () {
                 }]
             },
             options: {
+                maintainAspectRatio: false,
                 responsive: true,
                 title: {
                     display: true,
@@ -154,6 +156,7 @@ $(document).ready(function () {
                 }]
             },
             options: {
+                maintainAspectRatio: false,
                 responsive: true,
                 title: {
                     display: true,
@@ -167,7 +170,6 @@ $(document).ready(function () {
         };
 
         for (let party in party_ad_data.parties) {
-            console.log(party_ad_data.parties[party].active_ads);
             activeAdsChartConfig.data.datasets.push(
                 {
                     label: party,
