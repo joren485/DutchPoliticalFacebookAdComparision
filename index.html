@@ -11,9 +11,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-zoom/0.7.7/chartjs-plugin-zoom.min.js"></script>
 
 <script src="js/utils.js"></script>
-<script src="js/impressions_charts.js"></script>
-<script src="js/spending_charts.js"></script>
 <script src="js/active_ads_charts.js"></script>
+<script src="js/spending_charts.js"></script>
+<script src="js/impressions_charts.js"></script>
+<script src="js/potential_reach_charts.js"></script>
 
 <head>
     <meta charset="UTF-8">
@@ -92,6 +93,20 @@
                 <canvas id="total_impressions_chart"></canvas>
             </div>
         </div>
+    </div>
+
+    <hr>
+
+    <div id="potential-reach">
+        <div class="text-center">
+            <h3>Potential Reach</h3>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <canvas id="potential_reach_per_day_chart"></canvas>
+            </div>
+        </div>
+        <p>Please note that <span id="missing-potential-reach"></span> ads (out of <span id="total-ads"></span> total ads) did not have potential reach data. This has not been compensated in any way.</p>
     </div>
 </div>
 </body>
