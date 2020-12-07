@@ -1,6 +1,7 @@
 $(document).ready(function () {
     $.getJSON("data.json", function (adData) {
         $("#last-updated").text(adData["last_updated"]);
+        addPartiesNavBar(adData["party-specific-data"]);
 
         // Add active ads line chart
         let activeAdsLineChartConfig = generateLineGraphConfig(adData, "Ads Active per Day", "active-ads-per-date");
@@ -32,7 +33,7 @@ $(document).ready(function () {
 
         // Add total ads doughnut chart
         let spendingDoughnutChartConfig = generateDoughnutChart(adData, "Total (Estimated) Spending per Party", "spending-per-party");
-        spendingDoughnutChartConfig.options.tooltips.callbacks.label = function (tooltipItem, data){
+        spendingDoughnutChartConfig.options.tooltips.callbacks.label = function (tooltipItem, data) {
             return "€" + addPercentageToDoughnutLabel(tooltipItem, data);
         };
 
