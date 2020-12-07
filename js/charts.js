@@ -49,6 +49,9 @@ $(document).ready(function () {
 
         // Add potential reach line chart
         let potentialReachLineChartConfig = generateLineGraphConfig(adData, "Average Potential Reach per Day", "potential_reach");
+
+        potentialReachLineChartConfig.options.scales.xAxes[0].time = {min: new Date("2020-03-31")};
+
         new Chart($("#potential-reach-chart"), potentialReachLineChartConfig);
         $("#missing-potential-reach").text(adData["missing_potential_reach"]);
         $("#total-ads").text(adData["total_ads"]);
