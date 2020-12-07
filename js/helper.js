@@ -1,16 +1,17 @@
 function addPercentageToDoughnutLabel(tooltipItem, data) {
+    // https://stackoverflow.com/questions/37257034/chart-js-2-0-doughnut-tooltip-percentages/49717859#49717859
     let dataset = data.datasets[tooltipItem.datasetIndex];
     let total = dataset._meta[Object.keys(dataset._meta)[0]].total;
-    let current_value = dataset.data[tooltipItem.index];
-    let percentage = (current_value / total * 100).toFixed(2);
-    return current_value.toFixed(2) + " (" + percentage + "%)";
+    let value = dataset.data[tooltipItem.index];
+    let percentage = (value / total * 100).toFixed(2);
+    return value.toFixed(2) + " (" + percentage + "%)";
 }
 
-function generateLineGraphConfig(party_ad_data, title, data_key) {
+function generateLineGraphConfig(adData, title, dataKey) {
     let graphConfig = {
         type: "line",
         data: {
-            labels: party_ad_data.dates,
+            labels: adData["dates"],
             datasets: []
         },
         options: {
@@ -21,7 +22,7 @@ function generateLineGraphConfig(party_ad_data, title, data_key) {
                 fontSize: 18,
             },
             legend: {
-                position: 'bottom',
+                position: "bottom",
             },
             scales: {
                 xAxes: [{
@@ -42,14 +43,14 @@ function generateLineGraphConfig(party_ad_data, title, data_key) {
         },
     };
 
-    for (let party in party_ad_data.parties) {
+    for (let party in adData.parties) {
         graphConfig.data.datasets.push(
             {
                 label: party,
-                data: party_ad_data.parties[party][data_key],
+                data: adData.parties[party][dataKey],
                 fill: false,
-                backgroundColor: party_ad_data.parties[party].color,
-                borderColor: party_ad_data.parties[party].color,
+                backgroundColor: adData.parties[party]["color"],
+                borderColor: adData.parties[party]["color"],
                 pointRadius: 0,
                 borderWidth: 2,
             });
@@ -58,9 +59,9 @@ function generateLineGraphConfig(party_ad_data, title, data_key) {
     return graphConfig;
 }
 
-function generateDoughnutChart(party_ad_data, title, data_key) {
+function generateDoughnutChart(adData, title, dataKey) {
     let chartConfig = {
-        type: 'doughnut',
+        type: "doughnut",
         data: {
             labels: [],
             datasets: [{
@@ -77,7 +78,7 @@ function generateDoughnutChart(party_ad_data, title, data_key) {
                 fontSize: 18,
             },
             legend: {
-                position: 'bottom',
+                position: "bottom",
             },
             tooltips: {
                 callbacks: {
@@ -90,10 +91,10 @@ function generateDoughnutChart(party_ad_data, title, data_key) {
         }
     };
 
-    for (let party in party_ad_data.parties) {
+    for (let party in adData.parties) {
         chartConfig.data.labels.push(party);
-        chartConfig.data.datasets[0].data.push(party_ad_data.parties[party][data_key])
-        chartConfig.data.datasets[0].backgroundColor.push(party_ad_data.parties[party].color)
+        chartConfig.data.datasets[0].data.push(adData.parties[party][dataKey])
+        chartConfig.data.datasets[0].backgroundColor.push(adData.parties[party]["color"])
     }
 
     return chartConfig;

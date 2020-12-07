@@ -26,13 +26,13 @@
             <a class="nav-link" href="#active-ads">Active Ads</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#spending">Spending</a>
+            <a class="nav-link" href="#spending-charts">Spending</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#impressions">Impressions</a>
+            <a class="nav-link" href="#impressions-charts">Impressions</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#potential-reach">Potential Reach</a>
+            <a class="nav-link" href="#potential-reach-charts">Potential Reach</a>
         </li>
     </ul>
     <ul class="nav ml-auto">
@@ -53,57 +53,57 @@
         </div>
         <div class="row">
             <div class="col-8">
-                <canvas id="active_ads_per_day_chart"></canvas>
+                <canvas id="active-ads-over-time"></canvas>
             </div>
             <div class="col-4">
-                <canvas id="total_active_ads_chart"></canvas>
+                <canvas id="ads-per-party"></canvas>
             </div>
         </div>
     </div>
 
     <hr>
 
-    <div id="spending">
+    <div id="spending-charts">
         <div class="text-center">
             <h3>Spending</h3>
         </div>
         <div class="row">
             <div class="col-8">
-                <canvas id="spend_per_day_chart"></canvas>
+                <canvas id="spending-over-time-chart"></canvas>
             </div>
             <div class="col-4">
-                <canvas id="total_spend_chart"></canvas>
+                <canvas id="spending-per-party"></canvas>
             </div>
         </div>
-        <p>An estimated <span id="total-spending" class="font-weight-bold"></span> has been spent on ads in total.</p>
+        <p>An estimated <span id="spending-total" class="font-weight-bold"></span> has been spent on ads in total.</p>
     </div>
 
     <hr>
 
-    <div id="impressions">
+    <div id="impressions-charts">
         <div class="text-center">
             <h3>Impressions</h3>
         </div>
 
         <div class="row">
             <div class="col-8">
-                <canvas id="impressions_per_day_chart"></canvas>
+                <canvas id="impressions-over-time-chart"></canvas>
             </div>
             <div class="col-4">
-                <canvas id="total_impressions_chart"></canvas>
+                <canvas id="impressions-per-party"></canvas>
             </div>
         </div>
     </div>
 
     <hr>
 
-    <div id="potential-reach">
+    <div id="potential-reach-charts">
         <div class="text-center">
             <h3>Potential Reach</h3>
         </div>
         <div class="row">
             <div class="col-12">
-                <canvas id="potential_reach_per_day_chart"></canvas>
+                <canvas id="potential-reach-chart"></canvas>
             </div>
         </div>
         <p>Please note that <span id="missing-potential-reach"></span> ads (out of <span id="total-ads"></span> total ads) did not have potential reach data. This has not been compensated in any way.</p>
