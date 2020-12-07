@@ -20,19 +20,29 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <span class="navbar-brand mb-0 h1">Dutch Political Facebook Ad Comparison</span>
+    <a class="navbar-brand" href="https://joren485.github.io/DutchPoliticalFacebookAdComparision/">
+        Dutch Political Facebook Ad Comparison
+    </a>
+
     <ul class="nav">
-        <li class="nav-item">
-            <a class="nav-link" href="#active-ads">Active Ads</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#spending-charts">Spending</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#impressions-charts">Impressions</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#potential-reach-charts">Potential Reach</a>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="general-charts-navbar-dropdown-button" role="button"
+               data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">
+                General Charts
+            </a>
+            <div class="dropdown-menu" aria-labelledby="general-charts-navbar-dropdown-button">
+                <a class="dropdown-item" href="#active-ads">Active Ads</a>
+                <a class="dropdown-item" href="#spending-charts">Spending</a>
+                <a class="dropdown-item" href="#impressions-charts">Impressions</a>
+                <a class="dropdown-item" href="#potential-reach-charts">Potential Reach</a>
+            </div>
+
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="party-specific-charts-navbar-dropdown-button" role="button"
+               data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">Party Specific Charts</a>
+            <div class="dropdown-menu" aria-labelledby="party-specific-charts-navbar-dropdown-button"></div>
         </li>
     </ul>
     <ul class="nav ml-auto">
@@ -106,7 +116,9 @@
                 <canvas id="potential-reach-chart"></canvas>
             </div>
         </div>
-        <p>Please note that <span id="missing-potential-reach"></span> ads (out of <span id="total-ads"></span> total ads) did not have potential reach data. Almost all of those ads are from before April 2020 This has not been compensated in any way.</p>
+        <p>Please note that <span id="missing-potential-reach"></span> ads (out of <span id="total-ads"></span> total
+            ads) did not have potential reach data. Almost all of those ads are from before April 2020 This has not been
+            compensated in any way.</p>
     </div>
 </div>
 </body>
