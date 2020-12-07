@@ -52,14 +52,14 @@ function generateLineGraphConfig(adData, title, dataKey) {
         },
     };
 
-    for (let party in adData.parties) {
+    for (let party in adData["party-specific-data"]) {
         graphConfig.data.datasets.push(
             {
                 label: party,
-                data: adData.parties[party][dataKey],
+                data: adData["party-specific-data"][party][dataKey],
                 fill: false,
-                backgroundColor: adData.parties[party]["color"],
-                borderColor: adData.parties[party]["color"],
+                backgroundColor: adData["party-specific-data"][party]["color"],
+                borderColor: adData["party-specific-data"][party]["color"],
                 pointRadius: 0,
                 borderWidth: 2,
             });
@@ -100,12 +100,11 @@ function generateDoughnutChart(adData, title, dataKey) {
         }
     };
 
-    for (let party in adData.parties) {
+    for (let party in adData["party-specific-data"]) {
         chartConfig.data.labels.push(party);
-        chartConfig.data.datasets[0].data.push(adData.parties[party][dataKey])
-        chartConfig.data.datasets[0].backgroundColor.push(adData.parties[party]["color"])
+        chartConfig.data.datasets[0].data.push(adData["party-specific-data"][party][dataKey])
+        chartConfig.data.datasets[0].backgroundColor.push(adData["party-specific-data"][party]["color"])
     }
 
     return chartConfig;
-
 }
