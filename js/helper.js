@@ -7,11 +7,20 @@ function addPercentageToDoughnutLabel(tooltipItem, data) {
     return value.toFixed(2) + " (" + percentage + "%)";
 }
 
+function getDaysArray(startDate) {
+    let dates=[];
+    let now=new Date();
+    for(let dt=new Date(startDate); dt<=now; dt.setDate(dt.getDate()+1)){
+        dates.push(new Date(dt).toISOString().split('T')[0]);
+    }
+    return dates;
+}
+
 function generateLineGraphConfig(adData, title, dataKey) {
     let graphConfig = {
         type: "line",
         data: {
-            labels: adData["dates"],
+            labels: getDaysArray(new Date("2020-01-01")),
             datasets: []
         },
         options: {
