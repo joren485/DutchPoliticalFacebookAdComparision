@@ -1,7 +1,6 @@
 $(document).ready(function () {
     $.getJSON("data.json", function (party_ad_data) {
 
-
         let activeAdsChartConfig = {
             type: "line",
             data: {
@@ -51,11 +50,26 @@ $(document).ready(function () {
                 responsive: true,
                 title: {
                     display: true,
-                    text: "Total Ads (" + party_ad_data.total_ads + " total)",
+                    text: "Total Ads per Party (" + party_ad_data.total_ads + " total)",
                     fontSize: 18,
                 },
                 legend: {
                     position: 'bottom',
+                },
+                tooltips: {
+                    callbacks: {
+                        label: function (tooltipItem, data) {
+
+                            let dataset = data.datasets[tooltipItem.datasetIndex];
+                            let total = dataset._meta[Object.keys(dataset._meta)[0]].total;
+                            let current_value = dataset.data[tooltipItem.index];
+                            let percentage = (current_value / total * 100).toFixed(2);
+                            return current_value.toFixed(2) + " (" + percentage + "%)";
+                        },
+                        title: function (tooltipItem, data) {
+                            return data.labels[tooltipItem[0].index];
+                        }
+                    }
                 },
             }
         };

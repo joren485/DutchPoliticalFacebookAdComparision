@@ -72,7 +72,15 @@ $(document).ready(function () {
                 tooltips: {
                     callbacks: {
                         label: function (tooltipItem, data) {
-                            return "€" + data.datasets[0].data[tooltipItem.datasetIndex].toFixed(2).toString();
+
+                            let dataset = data.datasets[tooltipItem.datasetIndex];
+                            let total = dataset._meta[Object.keys(dataset._meta)[0]].total;
+                            let current_value = dataset.data[tooltipItem.index];
+                            let percentage = (current_value / total * 100).toFixed(2);
+                            return "€" + current_value.toFixed(2) + " (" + percentage + "%)";
+                        },
+                        title: function (tooltipItem, data) {
+                            return data.labels[tooltipItem[0].index];
                         }
                     }
                 },
