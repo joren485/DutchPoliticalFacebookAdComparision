@@ -22,10 +22,11 @@ $(document).ready(function () {
         }];
 
         spendingLineChartConfig.options.tooltips = {
+            mode: 'x',
             intersect: false,
             callbacks: {
                 label: function (tooltipItems, data) {
-                    return "€" + tooltipItems.yLabel.toFixed(2).toString();
+                    return data.datasets[tooltipItems.datasetIndex].label + ": €" + tooltipItems.yLabel.toFixed(2).toString();
                 }
             }
         };
@@ -51,9 +52,7 @@ $(document).ready(function () {
 
         // Add potential reach line chart
         let potentialReachLineChartConfig = generateLineGraphConfig(adData, "Average Potential Reach per Day", "potential-reach-per-date");
-
         potentialReachLineChartConfig.options.scales.xAxes[0].ticks = {min: new Date("2020-03-31")};
-
         new Chart($("#potential-reach-chart"), potentialReachLineChartConfig);
         $("#missing-potential-reach").text(adData["ads-without-potential-reach"]);
         $("#total-ads").text(adData["ads-total"]);

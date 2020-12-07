@@ -99,6 +99,10 @@ function generateLineGraphConfig(adData, title, dataKey, specificParty = "") {
                     type: "time",
                 }],
             },
+            tooltips: {
+                mode: 'x',
+                intersect: false,
+            },
             plugins: {
                 zoom: {
                     pan: {

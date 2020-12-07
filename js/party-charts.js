@@ -109,11 +109,13 @@ $(document).ready(function () {
             }
         }];
         let tooltipsPercentage = {
+            mode: 'x',
             intersect: false,
             callbacks: {
                 label: function (tooltipItems, data) {
-                    return tooltipItems.yLabel + "%";
-                }
+                    return data.datasets[tooltipItems.datasetIndex].label + ": " + tooltipItems.yLabel + "%";
+                },
+
             }
         };
 
