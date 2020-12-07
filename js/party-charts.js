@@ -64,28 +64,52 @@ $(document).ready(function () {
 
         $('#party-specific-charts').append(partyChartsHTML);
 
+        let yAxesPercentage = [{
+            ticks: {
+                callback: function (value, index, values) {
+                    return value + "%";
+                }
+            }
+        }];
+        let tooltipsPercentage = {
+            intersect: false,
+            callbacks: {
+                label: function (tooltipItems, data) {
+                    return tooltipItems.yLabel + "%";
+                }
+            }
+        };
+
         let partyRegionLineChart = generateLineGraphConfig(adData,
             "Impressions per Region per Day (" + party + ")",
             "impressions-per-region-per-date",
             party);
+        partyRegionLineChart.options.scales.yAxes = yAxesPercentage;
+        partyRegionLineChart.options.tooltips = tooltipsPercentage;
         new Chart($("#" + regionChartCanvasId), partyRegionLineChart);
 
         let partyGenderLineChart = generateLineGraphConfig(adData,
             "Impressions per Gender per Day (" + party + ")",
             "impressions-per-gender-per-date",
             party);
+        partyGenderLineChart.options.scales.yAxes = yAxesPercentage;
+        partyRegionLineChart.options.tooltips = tooltipsPercentage;
         new Chart($("#" + genderChartCanvasId), partyGenderLineChart);
 
         let partyAgeLineChart = generateLineGraphConfig(adData,
             "Impressions per Age per Day (" + party + ")",
             "impressions-per-age-per-date",
             party);
+        partyAgeLineChart.options.scales.yAxes = yAxesPercentage;
+        partyAgeLineChart.options.tooltips = tooltipsPercentage;
         new Chart($("#" + ageChartCanvasId), partyAgeLineChart);
 
         let partyGenderAgeLineChart = generateLineGraphConfig(adData,
             "Impressions per Gender and Age per Day (" + party + ")",
             "impressions-per-gender-and-age-per-date",
             party);
+        partyGenderAgeLineChart.options.scales.yAxes = yAxesPercentage;
+        partyGenderAgeLineChart.options.tooltips = tooltipsPercentage;
         new Chart($("#" + genderAgeChartCanvasId), partyGenderAgeLineChart);
     });
 });
