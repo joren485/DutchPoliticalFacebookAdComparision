@@ -4,18 +4,19 @@ $(document).ready(function () {
 
         let searchParams = new URLSearchParams(window.location.search)
 
-        if (!searchParams.has("party")){
+        if (!searchParams.has("party")) {
             $('#party-specific-charts').append("<p>No Party Provided.</p>");
             return;
         }
 
         let party = searchParams.get("party");
 
-        if(!Object.keys(adData["party-specific-data"]).includes(party)){
+        if (!Object.keys(adData["party-specific-data"]).includes(party)) {
             $('#party-specific-charts').append("<p>Party Not Found.</p>");
             return;
         }
 
+        let regionChartCanvasId = party.toLowerCase() + "-region-chart";
         let genderChartCanvasId = party.toLowerCase() + "-gender-chart";
         let ageChartCanvasId = party.toLowerCase() + "-age-chart";
         let genderAgeChartCanvasId = party.toLowerCase() + "-gender-age-chart";
@@ -25,6 +26,14 @@ $(document).ready(function () {
                 <h2>${party} Charts</h2>
             </div>
             <div>
+                 <div>
+                    <div class="text-center">
+                        <h3>Impressions per Region (${party})</h3>
+                    </div>
+                    <canvas id="${regionChartCanvasId}"></canvas>
+                </div>
+
+                <hr>
                 <div>
                     <div class="text-center">
                         <h3>Impressions per Gender (${party})</h3>
@@ -54,6 +63,12 @@ $(document).ready(function () {
         </div>`;
 
         $('#party-specific-charts').append(partyChartsHTML);
+
+        let partyRegionLineChart = generateLineGraphConfig(adData,
+            "Impressions per Region per Day (" + party + ")",
+            "impressions-per-region-per-date",
+            party);
+        new Chart($("#" + regionChartCanvasId), partyRegionLineChart);
 
         let partyGenderLineChart = generateLineGraphConfig(adData,
             "Impressions per Gender per Day (" + party + ")",
