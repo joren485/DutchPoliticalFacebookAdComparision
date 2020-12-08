@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+    <meta charset="UTF-8">
+    <title>Dutch Political Facebook Ad Comparison</title>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="index.html">
+        Dutch Political Facebook Ad Comparison
+    </a>
+
+    <ul class="nav">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="general-charts-navbar-dropdown-button" role="button"
+               data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">
+                General Charts
+            </a>
+            <div class="dropdown-menu" aria-labelledby="general-charts-navbar-dropdown-button">
+                <a class="dropdown-item" href="index.html#active-ads">Active Ads</a>
+                <a class="dropdown-item" href="index.html#spending-charts">Spending</a>
+                <a class="dropdown-item" href="index.html#impressions-charts">Impressions</a>
+                <a class="dropdown-item" href="index.html#potential-reach-charts">Potential Reach</a>
+            </div>
+
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="party-specific-charts-navbar-dropdown-button" role="button"
+               data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">Party Specific Charts</a>
+            <div id="party-specific-charts-navbar-dropdown" class="dropdown-menu"
+                 aria-labelledby="party-specific-charts-navbar-dropdown-button"></div>
+        </li>
+        <li>
+            <a class="nav-link" href="about.html">About</a>
+        </li>
+    </ul>
+    <ul class="nav ml-auto">
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="https://github.com/joren485/DutchPoliticalFacebookAdComparision">
+                <i class="fab fa-github"></i>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<div class="container pt-4">
+
+    <p class="lead">
+        As part of an effort by Facebook to be more transparent about the political ads they were showing,
+        they created
+        <a href="https://www.facebook.com/ads/library/">the Facebook Ad Library</a>,
+        a website where you can view information about all political ads Facebook shows in certain countries
+        (e.g. which organisation is and how much an organisation spend on ads).
+
+        Their website is great for finding information about a single organisation or ad. However it lacks (in my
+        opinion) the ability to compare different organisations.
+        That is why I created this website, to compare statistics about political Facebook ads that are bought and
+        created by Dutch political parties.
+    </p>
+
+    <h4>What specific data did you use?</h4>
+    <p>The data-processing consists of two steps:</p>
+    <ol>
+        <li>Retrieving the data from Facebook.</li>
+        <li>Analyzing the data into a format that can be used in the charts on this website.</li>
+    </ol>
+
+    <p>For step 1, I use the <a href="https://www.facebook.com/ads/library/api/">the Facebook Ad Library API</a>,
+        which allows anyone to programmatically request data from the the Facebook Ad Library.
+
+        For each party, I request the data of specific Facebook pages (Facebook ads are always connected to Facebook
+        page). The Facebook pages I used can be found <a
+                href="https://github.com/joren485/DutchPoliticalFacebookAdComparision/blob/master/facebook_page_ids.csv">here</a>.
+    </p>
+
+    <p>In step 2, all ads from before 2020 are removed and the data is added up for each date and in total.
+
+        All data is estimated based on averages, because Facebook does not return exact numbers.
+        For example, Facebook does not say how much is spent on a single ad, instead they provide a range of a lower and
+        an upper bound (e.g. €1000 to €1999). I use the average of the lower and upper bound.
+        This means that single data points are not that interesting (e.g. it is quite a difference if you spend a €1000
+        or €1999 on a single ad and taking the average does not tell you much).
+        However, when compared over time or compared to other parties, it does become interesting because trends present
+        themselves.
+
+        Averaging also removes any potential spikes in the data (e.g. 90% of the views of an ad where on a single day) and spreads it evenly over the runtime of the ad.
+    </p>
+
+
+    <h4>Is publishing this legal?</h4>
+    <p>
+        <a href="https://www.facebook.com/ads/library/api/">Facebook says</a>:
+        "Processed data or data that is analyzed as part of your research can be published and shared publicly."
+    </p>
+
+    <h4>Why is party X missing?</h4>
+    <p>If there is a (new) party with a significant Facebook ad presence, please let me know by
+        <a href="https://github.com/joren485/DutchPoliticalFacebookAdComparision/issues/new">opening an issue on
+            GitHub</a></p>
+
+
+    <h4>I found an issue in the website and/or the data!</h4>
+    <p>Please describe the problem in
+        <a href="https://github.com/joren485/DutchPoliticalFacebookAdComparision/issues/new">
+            an issue on GitHub</a>.</p>
+</div>
+</body>
+</html>

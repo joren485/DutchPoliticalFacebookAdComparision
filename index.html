@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.bundle.min.js"></script>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-zoom/0.7.7/chartjs-plugin-zoom.min.js"></script>
-
-<script src="js/helper.js"></script>
-<script src="js/charts.js"></script>
-
 <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-zoom/0.7.7/chartjs-plugin-zoom.min.js"></script>
+
+    <script src="js/helper.js"></script>
+    <script src="js/charts.js"></script>
+
     <meta charset="UTF-8">
     <title>Dutch Political Facebook Ad Comparison</title>
 </head>
@@ -43,7 +43,11 @@
             <a class="nav-link dropdown-toggle" href="#" id="party-specific-charts-navbar-dropdown-button" role="button"
                data-toggle="dropdown"
                aria-haspopup="true" aria-expanded="false">Party Specific Charts</a>
-            <div id="party-specific-charts-navbar-dropdown" class="dropdown-menu" aria-labelledby="party-specific-charts-navbar-dropdown-button"></div>
+            <div id="party-specific-charts-navbar-dropdown" class="dropdown-menu"
+                 aria-labelledby="party-specific-charts-navbar-dropdown-button"></div>
+        </li>
+        <li>
+            <a class="nav-link" href="about.html">About</a>
         </li>
     </ul>
     <ul class="nav ml-auto">
@@ -51,18 +55,20 @@
             <span class="nav-link">Last Updated: <span id="last-updated"></span></span>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="https://github.com/joren485/DutchPoliticalFacebookAdComparision"><i class="fab fa-github"></i></a>
+            <a class="nav-link text-dark" href="https://github.com/joren485/DutchPoliticalFacebookAdComparision">
+                <i class="fab fa-github"></i>
+            </a>
         </li>
     </ul>
 </nav>
 
 <div class="container pt-4">
 
-    <div id="general-charts">
-        <div class="text-center">
-            <h1>General Charts</h1>
-        </div>
+    <p class="lead">This website allows you to compare statistics about Facebook advertisements by Dutch political
+        parties. It is based on data from the <a href="https://www.facebook.com/ads/library/">Facebook Ad Library</a>.
+        For more information visit the <a href="about.html">about page</a>.</p>
 
+    <div id="general-charts">
         <div id="active-ads">
             <div class="text-center">
                 <h3>Active Ads</h3>
@@ -126,11 +132,11 @@
                     <canvas id="potential-reach-chart"></canvas>
                 </div>
             </div>
-            <p>Please note that <span id="missing-potential-reach"></span> ads (out of <span id="total-ads"></span>
-                total
-                ads) did not have potential reach data. Almost all of those ads are from before April 2020 This has not
-                been
-                compensated in any way.</p>
+            <p>Please note that
+                <span id="missing-potential-reach"></span> ads (out of <span id="total-ads"></span>
+                total ads) did not have potential reach data.
+                Almost all of those ads are from before April 2020 This has not been compensated in any way.
+            </p>
         </div>
     </div>
 </div>
