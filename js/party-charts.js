@@ -1,8 +1,5 @@
 $(document).ready(function () {
     $.getJSON("data.json", function (adData) {
-        $("#last-updated").text(adData["last_updated"]);
-        addPartiesNavBar(adData["party-specific-data"]);
-
         let searchParams = new URLSearchParams(window.location.search)
 
         if (!searchParams.has("party")) {

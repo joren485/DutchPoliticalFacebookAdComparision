@@ -1,7 +1,5 @@
 $(document).ready(function () {
     $.getJSON("data.json", function (adData) {
-        $("#last-updated").text(adData["last_updated"]);
-        addPartiesNavBar(adData["party-specific-data"]);
 
         // Add active ads line chart
         let activeAdsLineChartConfig = generateLineGraphConfig(adData, "Ads Active per Day", "active-ads-per-date");
