@@ -6,11 +6,12 @@ const COLORS = {
     'D66': '#01af40',
     'CDA': '#007b5f',
     '50P': '#92278f',
-    'PvdA': '#0060aa',
+    'PvdA': '#C0392B',
     'SGP': '#024a90',
     'CU': '#012466',
     'SP': '#fe0000',
     'PvdD': '#006c2e',
+    'PVV': '#212F3D',
 
     'male': '#0000ff',
     'female': '#ffc0cb',
