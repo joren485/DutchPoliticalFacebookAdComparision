@@ -14,6 +14,14 @@ $(document).ready(function () {
             return;
         }
 
+        console.log(adData['party-specific-data'][party]['ads-per-party']);
+
+        $("#party-specific-charts").append(
+            `<div class="text-center">
+                <h3>${party} Graphs</h3>
+                <p class="lead">${party} ran ${adData['party-specific-data'][party]['ads-per-party']} ads and spent an estimated €${adData['party-specific-data'][party]['spending-per-party'].toFixed(2)}.</p>
+            </div>`);
+
         let partySpecificCharts = [
             {"labelType": "Region", "dataType": "Spending"},
             {"labelType": "Gender", "dataType": "Spending"},

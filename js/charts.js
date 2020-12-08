@@ -40,7 +40,7 @@ $(document).ready(function () {
         $("#spending-total-lower").text("€" + adData["spending-total"]["lower"]);
         $("#spending-total-upper").text("€" + adData["spending-total"]["upper"]);
 
-        $("#most-expensive-ad-cost").text("€" + adData["most-expensive-ad"]["cost"]);
+        $("#most-expensive-ad-cost").text("€" + adData["most-expensive-ad"]["cost"].toFixed(2));
         $("#most-expensive-ad-party").text(adData["most-expensive-ad"]["party"]);
         $("#most-expensive-ad-days").text(adData["most-expensive-ad"]["days"]);
 
