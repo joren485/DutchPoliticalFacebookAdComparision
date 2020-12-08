@@ -20,7 +20,8 @@ $(document).ready(function () {
             `<div class="text-center">
                 <h3>${party} Graphs</h3>
                 <p class="lead">${party} ran ${adData['party-specific-data'][party]['ads-per-party']} ads and spent an estimated €${adData['party-specific-data'][party]['spending-per-party'].toFixed(2)}.</p>
-            </div>`);
+            </div>
+            <hr>`);
 
         let partySpecificCharts = [
             {"labelType": "Region", "dataType": "Spending"},
