@@ -76,6 +76,7 @@
             <div class="row">
                 <div class="col-8">
                     <canvas id="active-ads-over-time"></canvas>
+                    <p>This graph shows the (precise) amount of ads that each party had running over time.</p>
                 </div>
                 <div class="col-4">
                     <canvas id="ads-per-party"></canvas>
@@ -92,15 +93,16 @@
             <div class="row">
                 <div class="col-8">
                     <canvas id="spending-over-time-chart"></canvas>
+                    <p>This graph shows how much each party spent on ads over time. Facebook provides a spending range (e.g. €1000 - €1999 has been spent on an ad) for each ad, this graph is based on the average of the range of each ad.</p>
+                    <p>In total an estimated <strong><span id="spending-total-lower"></span> - <span id="spending-total-upper"></span></strong> has been spent.</p>
+                    <p><a id="most-expensive-ad-link" href="https://www.facebook.com/ads/library/?id=">The most expensive ad</a> cost an estimated <strong><span id="most-expensive-ad-cost"></span></strong> per day, ran for <strong><span id="most-expensive-ad-days"></span></strong> day(s) and was from <strong><span id="most-expensive-ad-party"></span></strong>.</p>
                 </div>
                 <div class="col-4">
                     <canvas id="spending-per-party"></canvas>
                 </div>
             </div>
             <p>
-                In total an estimated
-                <strong><span id="spending-total-lower"></span> - <span id="spending-total-upper"></span></strong>
-                has been spent.
+
             </p>
         </div>
 
@@ -114,6 +116,8 @@
             <div class="row">
                 <div class="col-8">
                     <canvas id="impressions-over-time-chart"></canvas>
+                    <p>This graph show the <a href="https://www.facebook.com/business/help/675615482516035">impressions</a> (i.e. how many times an ad was show) over time.
+                        Facebook provides a impressions range (e.g. 1000 - 1999 impressions) for each ad, this graph is based on the average of the range of each ad.</p>
                 </div>
                 <div class="col-4">
                     <canvas id="impressions-per-party"></canvas>
@@ -130,13 +134,16 @@
             <div class="row">
                 <div class="col-12">
                     <canvas id="potential-reach-chart"></canvas>
+                    <p>This graph shows the <a href="https://www.facebook.com/business/help/1665333080167380?id=176276233019487">potential reach</a> (i.e. the maximum amount of people that could have seen an ad) over time.
+                        Facebook provides a potential reach range (e.g. 1000 - 1999 potential people reached) for each ad, this graph is based on the average of the range of each ad.
+                        Please note that <span id="missing-potential-reach"></span> ads (out of <span id="total-ads"></span>
+                        total ads) did not have potential reach data.
+                        Almost all of those ads are from before April 2020.
+                    </p>
+
                 </div>
             </div>
-            <p>Please note that
-                <span id="missing-potential-reach"></span> ads (out of <span id="total-ads"></span>
-                total ads) did not have potential reach data.
-                Almost all of those ads are from before April 2020 This has not been compensated in any way.
-            </p>
+
         </div>
     </div>
 </div>

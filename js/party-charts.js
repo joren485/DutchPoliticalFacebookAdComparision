@@ -40,6 +40,7 @@ $(document).ready(function () {
                     <div class="row">
                         <div class="col-8">
                             <canvas id="${LineChartCanvasId}"></canvas>
+                            <p>This graph shows how much each party spent per ${labelType.toLowerCase()} on ads over time. Facebook provides a range (e.g. €1000 - €1999 has been spent on an ad) for each ad, this graph is based on the average of the range of each ad.</p>
                         </div>
                         <div class="col-4">
                             <canvas id="${DoughnutChartCanvasId}"></canvas>
