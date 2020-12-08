@@ -43,7 +43,7 @@ $(document).ready(function () {
         $("#spending-total-upper").text("€" + adData["spending-total"]["upper"]);
 
         // Add impressions line chart
-        let impressionsLineChartConfig = generateLineGraphConfig(adData, "Average Estimated Impressions per Day", "impressions-data-per-date");
+        let impressionsLineChartConfig = generateLineGraphConfig(adData, "Average (Estimated) Impressions per Day", "impressions-data-per-date");
         new Chart($("#impressions-over-time-chart"), impressionsLineChartConfig);
 
         // Add impressions doughnut chart
