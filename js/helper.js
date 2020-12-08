@@ -85,6 +85,13 @@ function generateLineGraphConfig(adData, title, dataKey, specificParty = "") {
             datasets: []
         },
         options: {
+            animation: {
+                duration: 0
+            },
+            hover: {
+                animationDuration: 0
+            },
+            responsiveAnimationDuration: 0,
             responsive: true,
             title: {
                 display: true,
@@ -161,6 +168,13 @@ function generateDoughnutChart(adData, title, dataKey, specificParty = "") {
             }]
         },
         options: {
+            animation: {
+                duration: 0
+            },
+            hover: {
+                animationDuration: 0
+            },
+            responsiveAnimationDuration: 0,
             maintainAspectRatio: false,
             responsive: true,
             title: {
