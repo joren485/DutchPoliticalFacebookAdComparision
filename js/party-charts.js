@@ -1,5 +1,7 @@
 $(document).ready(function () {
     $.getJSON("data/data.json", function (adData) {
+        $("#last-updated").text(adData["last_updated"]);
+
         let searchParams = new URLSearchParams(window.location.search)
 
         if (!searchParams.has("party")) {

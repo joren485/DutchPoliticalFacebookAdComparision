@@ -38,6 +38,7 @@ const COLORS = {
     'Flevoland': '#EB984E',
 }
 
+const PARTIES = ["50P", "CDA", "CU", "D66", "DENK", "FvD", "GL", "PVV", "PvdA", "PvdD", "SGP", "SP", "VVD"]
 
 function addPercentageToDoughnutLabel(tooltipItem, data) {
     // https://stackoverflow.com/questions/37257034/chart-js-2-0-doughnut-tooltip-percentages/49717859#49717859
@@ -55,12 +56,6 @@ function getDaysArray(startDate) {
         dates.push(new Date(dt).toISOString().split('T')[0]);
     }
     return dates;
-}
-
-function addPartiesNavBar(parties) {
-    for (let party in parties) {
-        $("#party-specific-charts-navbar-dropdown").append(`<a class="dropdown-item" href="party.html?party=${party}">${party}</a>`);
-    }
 }
 
 function generateLineGraphConfig(adData, title, dataKey, specificParty = "") {
@@ -206,8 +201,7 @@ function generateDoughnutChart(adData, title, dataKey, specificParty = "") {
 }
 
 $(document).ready(function () {
-    $.getJSON("data/data.json", function (adData) {
-        $("#last-updated").text(adData["last_updated"]);
-        addPartiesNavBar(adData["party-specific-data"]);
+    PARTIES.forEach(function (party){
+        $("#party-specific-charts-navbar-dropdown").append(`<a class="dropdown-item" href="party.html?party=${party}">${party}</a>`);
     });
 });

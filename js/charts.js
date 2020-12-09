@@ -1,5 +1,6 @@
 $(document).ready(function () {
     $.getJSON("data/data.json", function (adData) {
+        $("#last-updated").text(adData["last_updated"]);
 
         // Add active ads line chart
         let activeAdsLineChartConfig = generateLineGraphConfig(adData, "Ads Active over time", "active-ads-per-date");
