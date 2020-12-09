@@ -7,9 +7,9 @@ $(document).ready(function () {
         new Chart($("#active-ads-over-time"), activeAdsLineChartConfig);
         $(".total-ads").text(adData["ads-total"]);
 
-        // Add total ads doughnut chart
-        let totalAdsDoughnutChartConfig = generateDoughnutChart(adData, "Total Ads", "ads-per-party");
-        new Chart($("#ads-per-party"), totalAdsDoughnutChartConfig);
+        // Add total ads bar chart
+        let totalAdsBarChartConfig = generateBarChart(adData, "Total Ads", "ads-per-party");
+        new Chart($("#ads-per-party"), totalAdsBarChartConfig);
 
         // Add spending line chart
         let spendingLineChartConfig = generateLineGraphConfig(adData, "Average (Estimated) Spending over time", "spending-per-date");
@@ -32,13 +32,13 @@ $(document).ready(function () {
         };
         new Chart($("#spending-over-time-chart"), spendingLineChartConfig);
 
-        // Add total ads doughnut chart
-        let spendingDoughnutChartConfig = generateDoughnutChart(adData, "Total (Estimated) Spending", "spending-per-party");
-        spendingDoughnutChartConfig.options.tooltips.callbacks.label = function (tooltipItem, data) {
-            return "€" + addPercentageToDoughnutLabel(tooltipItem, data);
+        // Add total ads bar chart
+        let spendingBarChartConfig = generateBarChart(adData, "Total (Estimated) Spending", "spending-per-party");
+        spendingBarChartConfig.options.tooltips.callbacks.label = function (tooltipItem, data) {
+            return "€" + addPercentageToBarLabel(tooltipItem, data);
         };
 
-        new Chart($("#spending-per-party"), spendingDoughnutChartConfig);
+        new Chart($("#spending-per-party"), spendingBarChartConfig);
         $("#spending-total-lower").text("€" + adData["spending-total"]["lower"]);
         $("#spending-total-upper").text("€" + adData["spending-total"]["upper"]);
 
@@ -52,9 +52,9 @@ $(document).ready(function () {
         let impressionsLineChartConfig = generateLineGraphConfig(adData, "Average (Estimated) Impressions over time", "impressions-data-per-date");
         new Chart($("#impressions-over-time-chart"), impressionsLineChartConfig);
 
-        // Add impressions doughnut chart
-        let impressionsDoughnutChartConfig = generateDoughnutChart(adData, "Total (Estimated) Impressions", "impressions-per-party");
-        new Chart($("#impressions-per-party"), impressionsDoughnutChartConfig);
+        // Add impressions bar chart
+        let impressionsBarChartConfig = generateBarChart(adData, "Total (Estimated) Impressions", "impressions-per-party");
+        new Chart($("#impressions-per-party"), impressionsBarChartConfig);
 
         // Add potential reach line chart
         let potentialReachLineChartConfig = generateLineGraphConfig(adData, "Average Potential Reach over time", "potential-reach-per-date");

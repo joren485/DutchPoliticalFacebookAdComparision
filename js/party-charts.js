@@ -19,10 +19,9 @@ $(document).ready(function () {
         $("#party-specific-charts").append(
             `<div class="text-center">
                 <h1>${party} Graphs</h1>
-                <p class="lead">${party} ran <strong>${adData['ads-per-party'][party]}</strong> ads and spent an estimated <strong>€${adData['spending-per-party'][party].toFixed(2)}</strong>.</p>
+                <p class="lead">${party} ran <strong>${adData['ads-per-party']['map'][party]}</strong> ads and spent an estimated <strong>€${adData['spending-per-party']['map'][party].toFixed(2)}</strong>.</p>
             </div>
             <hr>`);
-
 
         ["Spending", "Impressions"].forEach( function(dataType) {
 
@@ -45,7 +44,7 @@ $(document).ready(function () {
                 let lineLabelTypeLowerCase = lineLabelType.toLowerCase();
 
                 let LineChartCanvasId = party.toLowerCase() + "-" + lineLabelTypeLowerCase + "-" + dataTypeLowerCase + "-line-chart";
-                let DoughnutChartCanvasId = party.toLowerCase() + "-" + lineLabelTypeLowerCase + "-" + dataTypeLowerCase + "-doughnut-chart";
+                let BarChartCanvasId = party.toLowerCase() + "-" + lineLabelTypeLowerCase + "-" + dataTypeLowerCase + "-bar-chart";
 
                 $("#" + datatypeDivChartsId).append(
                     `<div>
@@ -59,7 +58,7 @@ $(document).ready(function () {
                             <p>This graph shows ${dataTypeLowerCase} per ${lineLabelTypeLowerCase} over time. Facebook provides a range (e.g. €1000 - €1999 has been spent on an ad) for each ad, this graph is based on the average of the range of each ad.</p>
                         </div>
                         <div class="col-4">
-                            <canvas id="${DoughnutChartCanvasId}"></canvas>
+                            <canvas id="${BarChartCanvasId}"></canvas>
                         </div>
                     </div>
                 </div>
@@ -95,11 +94,11 @@ $(document).ready(function () {
 
                 new Chart($("#" + LineChartCanvasId), lineChart);
 
-                let doughnutChart = generateDoughnutChart(adData,
+                let barChart = generateBarChart(adData,
                     "Total (Estimated) " + dataType + " per " + lineLabelType + " (" + party + ")",
                     dataTypeLowerCase + "-per-" + lineLabelTypeLowerCase,
                     party)
-                new Chart($("#" + DoughnutChartCanvasId), doughnutChart);
+                new Chart($("#" + BarChartCanvasId), barChart);
             })
         });
     });

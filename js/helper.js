@@ -40,10 +40,14 @@ const COLORS = {
 
 const PARTIES = ["50P", "CDA", "CU", "D66", "DENK", "FvD", "GL", "PVV", "PvdA", "PvdD", "SGP", "SP", "VVD"]
 
-function addPercentageToDoughnutLabel(tooltipItem, data) {
-    // https://stackoverflow.com/questions/37257034/chart-js-2-0-doughnut-tooltip-percentages/49717859#49717859
+function addPercentageToBarLabel(tooltipItem, data) {
     let dataset = data.datasets[tooltipItem.datasetIndex];
-    let total = dataset._meta[Object.keys(dataset._meta)[0]].total;
+
+    let total = 0;
+    dataset.data.forEach(function (element){
+        total += element;
+    });
+
     let value = dataset.data[tooltipItem.index];
     let percentage = (value / total * 100).toFixed(2);
     return value.toFixed(2) + " (" + percentage + "%)";
@@ -139,14 +143,15 @@ function generateLineGraphConfig(adData, title, dataKey, specificParty = "") {
     return graphConfig;
 }
 
-function generateDoughnutChart(adData, title, dataKey, specificParty = "") {
+function generateBarChart(adData, title, dataKey, specificParty = "") {
     let chartConfig = {
-        type: "doughnut",
+        type: "horizontalBar",
         data: {
             labels: [],
             datasets: [{
                 data: [],
                 backgroundColor: [],
+                maxBarThickness: 30,
             }]
         },
         options: {
@@ -165,36 +170,32 @@ function generateDoughnutChart(adData, title, dataKey, specificParty = "") {
                 fontSize: 18,
             },
             legend: {
-                position: "bottom",
-                labels: {
-                    padding: 5,
-                },
+                display: false,
             },
             tooltips: {
+                intersect: false,
                 callbacks: {
-                    label: addPercentageToDoughnutLabel,
-                    title: function (tooltipItem, data) {
-                        return data.labels[tooltipItem[0].index];
-                    }
+                    label: addPercentageToBarLabel,
                 }
             },
         }
     };
 
     if (specificParty) {
-        for (let key in adData["party-specific-data"][specificParty][dataKey]) {
+
+        adData["party-specific-data"][specificParty][dataKey]['order'].forEach( function (key) {
             chartConfig.data.labels.push(key);
-            chartConfig.data.datasets[0].data.push(adData["party-specific-data"][specificParty][dataKey][key])
+            chartConfig.data.datasets[0].data.push(adData["party-specific-data"][specificParty][dataKey]['map'][key])
             chartConfig.data.datasets[0].backgroundColor.push(COLORS[key])
-        }
+        });
+
 
     } else {
-
-        for (let party in adData[dataKey]) {
+        adData[dataKey]['order'].forEach( function (party) {
             chartConfig.data.labels.push(party);
-            chartConfig.data.datasets[0].data.push(adData[dataKey][party])
+            chartConfig.data.datasets[0].data.push(adData[dataKey]['map'][party])
             chartConfig.data.datasets[0].backgroundColor.push(COLORS[party])
-        }
+        });
     }
 
     return chartConfig;
