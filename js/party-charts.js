@@ -23,7 +23,7 @@ $(document).ready(function () {
             </div>
             <hr>`);
 
-        ["Spending", "Impressions"].forEach( function(dataType) {
+        ["Spending", "Impressions"].forEach(function (dataType) {
 
             let dataTypeLowerCase = dataType.toLowerCase();
             let datatypeDivId = party + "-" + dataTypeLowerCase
@@ -39,7 +39,7 @@ $(document).ready(function () {
                  </div>`
             );
 
-            ["Region", "Gender", "Age"].forEach( function(lineLabelType) {
+            ["Region", "Gender", "Age"].forEach(function (lineLabelType) {
 
                 let lineLabelTypeLowerCase = lineLabelType.toLowerCase();
 
@@ -97,7 +97,19 @@ $(document).ready(function () {
                 let barChart = generateBarChart(adData,
                     "Total (Estimated) " + dataType + " per " + lineLabelType + " (" + party + ")",
                     dataTypeLowerCase + "-per-" + lineLabelTypeLowerCase,
-                    party)
+                    party);
+                if (dataType === "Spending") {
+                    barChart.options.scales = {
+                        xAxes: [{
+                            ticks: {
+                                callback: function (value, index, values) {
+                                    return "€" + value.toFixed(2).toString();
+                                }
+                            }
+                        }]
+                    };
+                }
+
                 new Chart($("#" + BarChartCanvasId), barChart);
             })
         });

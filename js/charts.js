@@ -34,8 +34,14 @@ $(document).ready(function () {
 
         // Add total ads bar chart
         let spendingBarChartConfig = generateBarChart(adData, "Total (Estimated) Spending", "spending-per-party");
-        spendingBarChartConfig.options.tooltips.callbacks.label = function (tooltipItem, data) {
-            return "€" + addPercentageToBarLabel(tooltipItem, data);
+        spendingBarChartConfig.options.scales = {
+            xAxes: [{
+                ticks: {
+                    callback: function (value, index, values) {
+                        return "€" + value.toFixed(2).toString();
+                    }
+                }
+            }]
         };
 
         new Chart($("#spending-per-party"), spendingBarChartConfig);
