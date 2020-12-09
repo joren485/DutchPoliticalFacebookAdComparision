@@ -86,6 +86,7 @@ function generateLineGraphConfig(adData, title, dataKey, specificParty = "") {
             },
             legend: {
                 position: "bottom",
+                                labels: {padding: 7,},
             },
             scales: {
                 xAxes: [{
@@ -170,6 +171,9 @@ function generateDoughnutChart(adData, title, dataKey, specificParty = "") {
             },
             legend: {
                 position: "bottom",
+                labels: {
+                    padding: 5,
+                },
             },
             tooltips: {
                 callbacks: {
