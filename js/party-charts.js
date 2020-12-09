@@ -17,7 +17,7 @@ $(document).ready(function () {
         $("#party-specific-charts").append(
             `<div class="text-center">
                 <h1>${party} Graphs</h1>
-                <p class="lead">${party} ran <strong>${adData['party-specific-data'][party]['ads-per-party']}</strong> ads and spent an estimated <strong>€${adData['party-specific-data'][party]['spending-per-party'].toFixed(2)}</strong>.</p>
+                <p class="lead">${party} ran <strong>${adData['ads-per-party'][party]}</strong> ads and spent an estimated <strong>€${adData['spending-per-party'][party].toFixed(2)}</strong>.</p>
             </div>
             <hr>`);
 

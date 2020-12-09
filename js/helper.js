@@ -191,9 +191,9 @@ function generateDoughnutChart(adData, title, dataKey, specificParty = "") {
 
     } else {
 
-        for (let party in adData["party-specific-data"]) {
+        for (let party in adData[dataKey]) {
             chartConfig.data.labels.push(party);
-            chartConfig.data.datasets[0].data.push(adData["party-specific-data"][party][dataKey])
+            chartConfig.data.datasets[0].data.push(adData[dataKey][party])
             chartConfig.data.datasets[0].backgroundColor.push(COLORS[party])
         }
     }
