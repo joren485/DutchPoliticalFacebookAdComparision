@@ -4,9 +4,10 @@ $(document).ready(function () {
         // Add active ads line chart
         let activeAdsLineChartConfig = generateLineGraphConfig(adData, "Ads Active over time", "active-ads-per-date");
         new Chart($("#active-ads-over-time"), activeAdsLineChartConfig);
+        $(".total-ads").text(adData["ads-total"]);
 
         // Add total ads doughnut chart
-        let totalAdsDoughnutChartConfig = generateDoughnutChart(adData, "Total Ads (" + adData["ads-total"] + " total)", "ads-per-party");
+        let totalAdsDoughnutChartConfig = generateDoughnutChart(adData, "Total Ads", "ads-per-party");
         new Chart($("#ads-per-party"), totalAdsDoughnutChartConfig);
 
         // Add spending line chart
@@ -59,6 +60,5 @@ $(document).ready(function () {
         potentialReachLineChartConfig.options.scales.xAxes[0].ticks = {min: new Date("2020-03-31")};
         new Chart($("#potential-reach-chart"), potentialReachLineChartConfig);
         $("#missing-potential-reach").text(adData["ads-without-potential-reach"]);
-        $("#total-ads").text(adData["ads-total"]);
     });
 });
