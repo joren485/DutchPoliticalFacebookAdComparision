@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $.getJSON("data.json", function (adData) {
+    $.getJSON("data/data.json", function (adData) {
         let searchParams = new URLSearchParams(window.location.search)
 
         if (!searchParams.has("party")) {

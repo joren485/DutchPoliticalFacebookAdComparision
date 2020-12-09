@@ -206,7 +206,7 @@ function generateDoughnutChart(adData, title, dataKey, specificParty = "") {
 }
 
 $(document).ready(function () {
-    $.getJSON("data.json", function (adData) {
+    $.getJSON("data/data.json", function (adData) {
         $("#last-updated").text(adData["last_updated"]);
         addPartiesNavBar(adData["party-specific-data"]);
     });
