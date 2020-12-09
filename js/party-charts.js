@@ -48,7 +48,7 @@ $(document).ready(function () {
                 $("#" + datatypeDivChartsId).append(
                     `<div>
                     <div class="text-center">
-                        <h4>Estimated ${dataType} per ${lineLabelType} (${party})</h4>
+                        <h4>(Estimated) ${dataType} per ${lineLabelType} (${party})</h4>
                     </div>
                     
                     <div class="row">
@@ -65,7 +65,7 @@ $(document).ready(function () {
 
 
                 let lineChart = generateLineGraphConfig(adData,
-                    "Estimated " + dataType + " per " + lineLabelType + " over time (" + party + ")",
+                    "Average (Estimated) " + dataType + " per " + lineLabelType + " over time (" + party + ")",
                     dataTypeLowerCase + "-per-" + lineLabelTypeLowerCase + "-per-date",
                     party);
 
@@ -94,7 +94,7 @@ $(document).ready(function () {
                 new Chart($("#" + LineChartCanvasId), lineChart);
 
                 let doughnutChart = generateDoughnutChart(adData,
-                    "Estimated " + dataType + " per " + lineLabelType + " (" + party + ")",
+                    "Total (Estimated) " + dataType + " per " + lineLabelType + " (" + party + ")",
                     dataTypeLowerCase + "-per-" + lineLabelTypeLowerCase,
                     party)
                 new Chart($("#" + DoughnutChartCanvasId), doughnutChart);
