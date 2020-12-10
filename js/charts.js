@@ -55,7 +55,7 @@ $(document).ready(function () {
         $("#most-expensive-ad-link").attr("href", $("#most-expensive-ad-link").attr("href") + adData["most-expensive-ad"]["id"]);
 
         // Add impressions line chart
-        let impressionsLineChartConfig = generateLineGraphConfig(adData, "Average (Estimated) Impressions over time", "impressions-data-per-date");
+        let impressionsLineChartConfig = generateLineGraphConfig(adData, "Average (Estimated) Impressions over time", "impressions-per-date");
         new Chart($("#impressions-over-time-chart"), impressionsLineChartConfig);
 
         // Add impressions bar chart
