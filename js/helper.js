@@ -98,13 +98,9 @@ function generateLineGraphConfig(adData, title, dataKey, specificParty = "") {
             },
             plugins: {
                 zoom: {
-                    pan: {
-                        enabled: true,
-                        mode: 'x',
-                    },
                     zoom: {
                         enabled: true,
-                        drag: false,
+                        drag: true,
                         mode: "x",
                     }
                 }
