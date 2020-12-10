@@ -100,10 +100,12 @@ function generateLineGraphConfig(adData, title, dataKey, specificParty = "") {
                 zoom: {
                     pan: {
                         enabled: true,
+                        mode: 'x',
                     },
                     zoom: {
                         enabled: true,
                         drag: false,
+                        mode: "x",
                     }
                 }
             },
