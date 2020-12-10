@@ -116,7 +116,7 @@ function generateLineGraphConfig(adData, title, dataKey, specificParty = "") {
                 {
                     label: key,
                     data: adData["party-specific-data"][specificParty][dataKey][key],
-                    fill: false,
+                    fill: true,
                     backgroundColor: COLORS[key],
                     borderColor: COLORS[key],
                     pointRadius: 0,

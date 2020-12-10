@@ -70,15 +70,16 @@ $(document).ready(function () {
                     dataTypeLowerCase + "-per-" + lineLabelTypeLowerCase + "-per-date",
                     party);
 
+                lineChart.options.scales.yAxes = [{
+                    stacked: true,
+                }];
 
                 if (dataType === "Spending") {
-                    lineChart.options.scales.yAxes = [{
-                        ticks: {
-                            callback: function (value, index, values) {
-                                return "€" + value;
-                            }
+                    lineChart.options.scales.yAxes[0].ticks = {
+                        callback: function (value, index, values) {
+                            return "€" + value;
                         }
-                    }];
+                    };
                     lineChart.options.tooltips = {
                         mode: "x",
                         intersect: false,
@@ -89,7 +90,6 @@ $(document).ready(function () {
 
                         }
                     };
-
                 }
 
                 new Chart($("#" + LineChartCanvasId), lineChart);
