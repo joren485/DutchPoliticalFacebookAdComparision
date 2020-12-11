@@ -69,47 +69,12 @@ $(document).ready(function () {
                     "Average (Estimated) " + dataType + " per " + lineLabelType + " over time (" + party + ")",
                     dataTypeLowerCase + "-per-" + lineLabelTypeLowerCase + "-per-date",
                     party);
-
-                lineChart.options.scales.yAxes = [{
-                    stacked: true,
-                }];
-
-                if (dataType === "Spending") {
-                    lineChart.options.scales.yAxes[0].ticks = {
-                        callback: function (value, index, values) {
-                            return "€" + value;
-                        }
-                    };
-                    lineChart.options.tooltips = {
-                        mode: "x",
-                        intersect: false,
-                        callbacks: {
-                            label: function (tooltipItems, data) {
-                                return data.datasets[tooltipItems.datasetIndex].label + ": €" + tooltipItems.yLabel;
-                            },
-
-                        }
-                    };
-                }
-
                 new Chart($("#" + LineChartCanvasId), lineChart);
 
                 let barChart = generateBarChart(adData,
                     "Total (Estimated) " + dataType + " per " + lineLabelType + " (" + party + ")",
                     dataTypeLowerCase + "-per-" + lineLabelTypeLowerCase,
                     party);
-                if (dataType === "Spending") {
-                    barChart.options.scales = {
-                        xAxes: [{
-                            ticks: {
-                                callback: function (value, index, values) {
-                                    return "€" + value.toFixed(2).toString();
-                                }
-                            }
-                        }]
-                    };
-                }
-
                 new Chart($("#" + BarChartCanvasId), barChart);
             })
         });

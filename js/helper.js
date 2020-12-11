@@ -63,6 +63,36 @@ function getDaysArray(startDate) {
 }
 
 function generateLineGraphConfig(adData, title, dataKey, specificParty = "") {
+
+    let scales = {
+        xAxes: [{
+            type: "time",
+        }],
+        yAxes: [{}]
+    };
+
+    let tooltips = {
+        mode: 'x',
+        intersect: false,
+    };
+    if (dataKey.toLowerCase().includes("spending")){
+
+        scales.yAxes[0].ticks = {
+            callback: function (value, index, values) {
+                return "€" + value.toFixed(2).toString();
+            }
+        };
+        tooltips.callbacks = {
+            label: function (tooltipItems, data) {
+                return data.datasets[tooltipItems.datasetIndex].label + ": €" + tooltipItems.yLabel.toFixed(2).toString();
+            }
+        };
+    }
+
+    if (specificParty){
+        scales.yAxes[0].stacked = true;
+    }
+
     let graphConfig = {
         type: "line",
         data: {
@@ -87,15 +117,8 @@ function generateLineGraphConfig(adData, title, dataKey, specificParty = "") {
                 position: "bottom",
                                 labels: {padding: 7,},
             },
-            scales: {
-                xAxes: [{
-                    type: "time",
-                }],
-            },
-            tooltips: {
-                mode: 'x',
-                intersect: false,
-            },
+            scales: scales,
+            tooltips: tooltips,
             plugins: {
                 zoom: {
                     zoom: {
@@ -142,6 +165,30 @@ function generateLineGraphConfig(adData, title, dataKey, specificParty = "") {
 }
 
 function generateBarChart(adData, title, dataKey, specificParty = "") {
+
+    let scales = {
+        xAxes: [{}],
+        yAxes: [{}],
+    }
+
+    let tooltips = {
+        intersect: false,
+        callbacks: {
+            label: addPercentageToBarLabel,
+        }
+    };
+
+    if (dataKey.toLowerCase().includes("spending")) {
+        scales.xAxes[0].ticks = {
+            callback: function (value, index, values) {
+                return "€" + value.toFixed(2).toString();
+            }
+        };
+
+        tooltips.callbacks.label = function (tooltipItem, data) {
+            return "€" + addPercentageToBarLabel(tooltipItem, data);
+        };
+    }
     let chartConfig = {
         type: "horizontalBar",
         data: {
@@ -170,12 +217,8 @@ function generateBarChart(adData, title, dataKey, specificParty = "") {
             legend: {
                 display: false,
             },
-            tooltips: {
-                intersect: false,
-                callbacks: {
-                    label: addPercentageToBarLabel,
-                }
-            },
+            tooltips: tooltips,
+            scales: scales,
         }
     };
 
