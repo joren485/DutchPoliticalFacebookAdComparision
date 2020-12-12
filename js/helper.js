@@ -40,17 +40,27 @@ const COLORS = {
 
 const PARTIES = ["50P", "CDA", "CU", "D66", "DENK", "FvD", "GL", "PVV", "PvdA", "PvdD", "SGP", "SP", "VVD"]
 
-function addPercentageToBarLabel(tooltipItem, data) {
-    let dataset = data.datasets[tooltipItem.datasetIndex];
+function percentageBarGraph(tooltipItems, data) {
+    let dataset = data.datasets[tooltipItems.datasetIndex];
+    let value = dataset.data[tooltipItems.index];
 
     let total = 0;
-    dataset.data.forEach(function (element){
+    dataset.data.forEach(function (element) {
         total += element;
     });
 
-    let value = dataset.data[tooltipItem.index];
-    let percentage = (value / total * 100).toFixed(2);
-    return value.toFixed(2) + " (" + percentage + "%)";
+    return (value / total * 100).toFixed(2);
+}
+
+function percentageLineGraph(tooltipItems, data) {
+
+    let total = 0;
+    data.datasets.forEach(function (dataset) {
+        total += dataset.data[tooltipItems.index]
+    });
+
+    return (tooltipItems.yLabel / total * 100).toFixed(2);
+
 }
 
 function getDaysArray(startDate) {
@@ -74,22 +84,27 @@ function generateLineGraphConfig(adData, title, dataKey, specificParty = "") {
     let tooltips = {
         mode: 'x',
         intersect: false,
+        callbacks: {
+            label: function (tooltipItems, data) {
+                let percentage = percentageLineGraph(tooltipItems, data);
+                return data.datasets[tooltipItems.datasetIndex].label + ": " + tooltipItems.yLabel.toFixed(2) + " (" + percentage + "%)";
+            },
+        },
     };
-    if (dataKey.toLowerCase().includes("spending")){
+    if (dataKey.toLowerCase().includes("spending")) {
 
         scales.yAxes[0].ticks = {
             callback: function (value, index, values) {
                 return "€" + value.toFixed(2).toString();
             }
         };
-        tooltips.callbacks = {
-            label: function (tooltipItems, data) {
-                return data.datasets[tooltipItems.datasetIndex].label + ": €" + tooltipItems.yLabel.toFixed(2).toString();
-            }
-        };
+        tooltips.callbacks.label = function (tooltipItems, data) {
+            let percentage = percentageLineGraph(tooltipItems, data);
+            return data.datasets[tooltipItems.datasetIndex].label + ": €" + tooltipItems.yLabel.toFixed(2) + " (" + percentage + "%)";
+        }
     }
 
-    if (specificParty){
+    if (specificParty) {
         scales.yAxes[0].stacked = true;
     }
 
@@ -115,7 +130,7 @@ function generateLineGraphConfig(adData, title, dataKey, specificParty = "") {
             },
             legend: {
                 position: "bottom",
-                                labels: {padding: 7,},
+                labels: {padding: 7,},
             },
             scales: scales,
             tooltips: tooltips,
@@ -174,8 +189,15 @@ function generateBarChart(adData, title, dataKey, specificParty = "") {
     let tooltips = {
         intersect: false,
         callbacks: {
-            label: addPercentageToBarLabel,
-        }
+            label: function (tooltipItems, data) {
+
+                let dataset = data.datasets[tooltipItems.datasetIndex];
+                let value = dataset.data[tooltipItems.index];
+
+                let percentage = percentageBarGraph(tooltipItems, data);
+                return value.toFixed(2) + " (" + percentage + "%)";
+            },
+        },
     };
 
     if (dataKey.toLowerCase().includes("spending")) {
@@ -185,8 +207,13 @@ function generateBarChart(adData, title, dataKey, specificParty = "") {
             }
         };
 
-        tooltips.callbacks.label = function (tooltipItem, data) {
-            return "€" + addPercentageToBarLabel(tooltipItem, data);
+        tooltips.callbacks.label = function (tooltipItems, data) {
+
+            let dataset = data.datasets[tooltipItems.datasetIndex];
+            let value = dataset.data[tooltipItems.index];
+
+            let percentage = percentageBarGraph(tooltipItems, data);
+            return "€" + value.toFixed(2) + " (" + percentage + "%)";
         };
     }
     let chartConfig = {
@@ -224,7 +251,7 @@ function generateBarChart(adData, title, dataKey, specificParty = "") {
 
     if (specificParty) {
 
-        adData["party-specific-data"][specificParty][dataKey]['order'].forEach( function (key) {
+        adData["party-specific-data"][specificParty][dataKey]['order'].forEach(function (key) {
             chartConfig.data.labels.push(key);
             chartConfig.data.datasets[0].data.push(adData["party-specific-data"][specificParty][dataKey]['map'][key])
             chartConfig.data.datasets[0].backgroundColor.push(COLORS[key])
@@ -232,7 +259,7 @@ function generateBarChart(adData, title, dataKey, specificParty = "") {
 
 
     } else {
-        adData[dataKey]['order'].forEach( function (party) {
+        adData[dataKey]['order'].forEach(function (party) {
             chartConfig.data.labels.push(party);
             chartConfig.data.datasets[0].data.push(adData[dataKey]['map'][party])
             chartConfig.data.datasets[0].backgroundColor.push(COLORS[party])
@@ -243,7 +270,7 @@ function generateBarChart(adData, title, dataKey, specificParty = "") {
 }
 
 $(document).ready(function () {
-    PARTIES.forEach(function (party){
+    PARTIES.forEach(function (party) {
         $("#party-specific-charts-navbar-dropdown").append(`<a class="dropdown-item" href="party.html?party=${party}">${party}</a>`);
     });
 });
