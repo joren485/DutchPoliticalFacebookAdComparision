@@ -82,7 +82,7 @@ function generateLineGraphConfig(adData, title, dataKey, specificParty = "") {
     };
 
     let tooltips = {
-        mode: 'x',
+        mode: 'index',
         intersect: false,
         callbacks: {
             label: function (tooltipItems, data) {
