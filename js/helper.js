@@ -49,6 +49,10 @@ function percentageBarGraph(tooltipItems, data) {
         total += element;
     });
 
+    if (total === 0) {
+        return 0;
+    }
+
     return (value / total * 100).toFixed(2);
 }
 
@@ -59,8 +63,10 @@ function percentageLineGraph(tooltipItems, data) {
         total += dataset.data[tooltipItems.index]
     });
 
+    if (total === 0){
+        return 0;
+    }
     return (tooltipItems.yLabel / total * 100).toFixed(2);
-
 }
 
 function getDaysArray(startDate) {
