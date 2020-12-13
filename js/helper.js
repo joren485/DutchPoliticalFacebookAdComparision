@@ -83,6 +83,10 @@ function generateLineGraphConfig(adData, title, dataKey, specificParty = "") {
     let scales = {
         xAxes: [{
             type: "time",
+            time: {
+                unit: "day",
+                stepSize: 1,
+            }
         }],
         yAxes: [{}]
     };
