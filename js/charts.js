@@ -19,8 +19,8 @@ $(document).ready(function () {
         let spendingBarChartConfig = generateBarChart(adData, "Total (Estimated) Spending", "spending-per-party");
         new Chart($("#spending-per-party"), spendingBarChartConfig);
 
-        $("#spending-total-lower").text("€" + adData["spending-total"]["lower"]);
-        $("#spending-total-upper").text("€" + adData["spending-total"]["upper"]);
+        $("#spending-total-lower").text("€" + adData["spending-range"]["lower"]);
+        $("#spending-total-upper").text("€" + adData["spending-range"]["upper"]);
         $("#most-expensive-ad-cost").text("€" + adData["most-expensive-ad"]["cost"].toFixed(2));
         $("#most-expensive-ad-party").text(adData["most-expensive-ad"]["party"]);
         $("#most-expensive-ad-days").text(adData["most-expensive-ad"]["days"]);

@@ -36,9 +36,9 @@ const COLORS = {
     'Zuid-Holland': '#EB984E',
     'Overijssel': '#B7950B',
     'Flevoland': '#EB984E',
-}
+};
 
-const PARTIES = ["50P", "CDA", "CU", "D66", "DENK", "FvD", "GL", "PVV", "PvdA", "PvdD", "SGP", "SP", "VVD"]
+const PARTIES = ["50P", "CDA", "CU", "D66", "DENK", "FvD", "GL", "PVV", "PvdA", "PvdD", "SGP", "SP", "VVD"];
 
 function percentageBarGraph(tooltipItems, data) {
     let dataset = data.datasets[tooltipItems.datasetIndex];
@@ -136,7 +136,7 @@ function generateLineGraphConfig(adData, title, dataKey, specificParty = "") {
             title: {
                 display: true,
                 text: title,
-                fontSize: 18,
+                fontSize: 14,
             },
             legend: {
                 position: "bottom",
@@ -249,7 +249,7 @@ function generateBarChart(adData, title, dataKey, specificParty = "") {
             title: {
                 display: true,
                 text: title,
-                fontSize: 18,
+                fontSize: 14,
             },
             legend: {
                 display: false,
