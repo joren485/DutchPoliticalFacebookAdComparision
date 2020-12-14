@@ -103,7 +103,7 @@ class Ad:
                 pass
             else:
                 statistics.ads_total += 1
-                statistics.ads_without_potential_reach += 1 if ad.has_potential_reach else 0
+                statistics.ads_without_potential_reach += 0 if ad.has_potential_reach else 1
 
                 statistics.spending_total += ad.spending_average
                 statistics.spending_total_lower += ad.spending_lower
