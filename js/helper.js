@@ -193,7 +193,12 @@ function generateLineGraphConfig(adData, title, dataKey, specificParty = "") {
 function generateBarChart(adData, title, dataKey, specificParty = "") {
 
     let scales = {
-        xAxes: [{}],
+        xAxes: [
+            {
+                ticks: {
+                    beginAtZero: true,
+                },
+            }],
         yAxes: [{}],
     }
 
