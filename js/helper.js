@@ -13,8 +13,8 @@ const COLORS = {
     'PvdD': '#006c2e',
     'PVV': '#212F3D',
 
-    'male': '#0000ff',
-    'female': '#ffc0cb',
+    'Male': '#0000ff',
+    'Female': '#ffc0cb',
 
     '13-17': '#641E16',
     '18-24': '#512E5F',
@@ -28,14 +28,14 @@ const COLORS = {
     'Friesland': '#AF7AC5',
     'Gelderland': '#E74C3C',
     'Groningen': '#ABEBC6',
-    'Limburg': '#E74C3C',
-    'North Brabant': '#E74C3C',
+    'Limburg': '#1A5276',
+    'Noord-Brabant': '#F2D7D5',
     'Noord-Holland': '#239B56',
     'Utrecht': '#F4D03F',
     'Zeeland': '#D7BDE2',
     'Zuid-Holland': '#EB984E',
     'Overijssel': '#B7950B',
-    'Flevoland': '#EB984E',
+    'Flevoland': '#E59866',
 };
 
 const PARTIES = ["50P", "CDA", "CU", "D66", "DENK", "FvD", "GL", "PVV", "PvdA", "PvdD", "SGP", "SP", "VVD"];
