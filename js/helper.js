@@ -82,13 +82,16 @@ function generateLineGraphConfig(adData, title, dataKey, specificParty = "") {
 
     let scales = {
         xAxes: [{
+            ticks: {},
             type: "time",
             time: {
                 unit: "day",
                 stepSize: 1,
             }
         }],
-        yAxes: [{}]
+        yAxes: [{
+            ticks: {},
+        }]
     };
 
     let tooltips = {
@@ -103,10 +106,8 @@ function generateLineGraphConfig(adData, title, dataKey, specificParty = "") {
     };
     if (dataKey.toLowerCase().includes("spending")) {
 
-        scales.yAxes[0].ticks = {
-            callback: function (value, index, values) {
+        scales.yAxes[0].ticks.callback = function (value, index, values) {
                 return "€" + value.toFixed(2).toString();
-            }
         };
         tooltips.callbacks.label = function (tooltipItems, data) {
             let percentage = percentageLineGraph(tooltipItems, data);
@@ -211,10 +212,8 @@ function generateBarChart(adData, title, dataKey, specificParty = "") {
     };
 
     if (dataKey.toLowerCase().includes("spending")) {
-        scales.xAxes[0].ticks = {
-            callback: function (value, index, values) {
+        scales.xAxes[0].ticks.callback = function (value, index, values) {
                 return "€" + value.toFixed(2).toString();
-            }
         };
 
         tooltips.callbacks.label = function (tooltipItems, data) {

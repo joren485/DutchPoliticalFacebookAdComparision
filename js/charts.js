@@ -36,7 +36,7 @@ $(document).ready(function () {
 
         // Add potential reach line chart
         let potentialReachLineChartConfig = generateLineGraphConfig(adData, "Average Potential Reach over time", "potential-reach-per-date");
-        potentialReachLineChartConfig.options.scales.xAxes[0].ticks = {min: new Date("2020-03-31")};
+        potentialReachLineChartConfig.options.scales.xAxes[0].ticks.min = new Date("2020-03-31");
         new Chart($("#potential-reach-chart"), potentialReachLineChartConfig);
         $("#missing-potential-reach").text(adData["ads-without-potential-reach"]);
     });
