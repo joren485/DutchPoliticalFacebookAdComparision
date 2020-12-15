@@ -81,7 +81,7 @@ if __name__ == "__main__":
             "upper": round(statistics.spending_total_upper, 2),
         },
         "most-expensive-ad": {
-            "cost": statistics.most_expensive_ad.spending_average / statistics.most_expensive_ad.active_days,
+            "cost": statistics.most_expensive_ad.spending_average_per_day,
             "party": statistics.most_expensive_ad.party,
             "id": statistics.most_expensive_ad.id,
             "days": statistics.most_expensive_ad.active_days,

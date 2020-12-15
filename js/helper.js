@@ -121,7 +121,7 @@ function generateLineGraphConfig(adData, title, dataKey, specificParty = "") {
     let graphConfig = {
         type: "line",
         data: {
-            labels: getDaysArray(new Date("2020-01-01")),
+            labels: getDaysArray(new Date(adData["start-date"])),
             datasets: []
         },
         options: {
