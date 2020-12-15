@@ -1,6 +1,16 @@
 from datetime import datetime
 
-from constants import DATETIME_FORMAT, FIRST_DATE, CURRENCY_TO_EUR_MAP, GENDERS, AGE_GROUPS, REGIONS
+from constants import (
+    DATETIME_FORMAT,
+    FIRST_DATE,
+    CURRENCY_TO_EUR_MAP,
+    GENDERS,
+    AGES,
+    REGIONS,
+    FACEBOOK_REGION_TO_REGION_MAP,
+    FACEBOOK_GENDER_TO_GENDER_MAP,
+    FACEBOOK_AGE_TO_AGE_MAP,
+)
 
 
 class Ad:
@@ -68,18 +78,22 @@ class Ad:
     def _parse_demographic_distribution(demographic_distribution_data):
 
         gender_distribution = {g: 0 for g in GENDERS}
-        age_distribution = {a: 0 for a in AGE_GROUPS}
+        age_distribution = {a: 0 for a in AGES}
 
         for demographic_group in demographic_distribution_data:
             percentage = float(demographic_group["percentage"])
-            gender = demographic_group["gender"]
-            age_group = demographic_group["age"]
+            facebook_gender = demographic_group["gender"]
+            facebook_age = demographic_group["age"]
 
-            if gender in GENDERS:
-                gender_distribution[gender] += percentage
+            if facebook_gender in FACEBOOK_GENDER_TO_GENDER_MAP:
+                gender_distribution[FACEBOOK_GENDER_TO_GENDER_MAP[facebook_gender]] += percentage
+            elif facebook_gender.lower() != "unknown":
+                print(f"Unknown gender: {facebook_gender} by ({100 * percentage}%)")
 
-            if age_group in AGE_GROUPS:
-                age_distribution[age_group] += percentage
+            if facebook_age in FACEBOOK_AGE_TO_AGE_MAP:
+                age_distribution[FACEBOOK_AGE_TO_AGE_MAP[facebook_age]] += percentage
+            elif facebook_age.lower() != "unknown":
+                print(f"Unknown age: {facebook_age} ({percentage})")
 
         return gender_distribution, age_distribution
 
@@ -88,10 +102,14 @@ class Ad:
         region_distribution = {r: 0 for r in REGIONS}
 
         for region_group in region_distribution_data:
-            region = region_group["region"]
+            region_facebook = region_group["region"]
+            percentage = float(region_group["percentage"])
 
-            if region in REGIONS:
-                region_distribution[region] += float(region_group["percentage"])
+            if region_facebook in FACEBOOK_REGION_TO_REGION_MAP:
+                region = FACEBOOK_REGION_TO_REGION_MAP[region_facebook]
+                region_distribution[region] += percentage
+            elif region_facebook.lower() != "unknown":
+                print(f"Unknown region: {region_facebook} ({percentage})")
 
         return region_distribution
 
@@ -131,12 +149,12 @@ class Ad:
                         ad.gender_distribution[gender] * ad.impressions_average
                     )
 
-                for age_group in AGE_GROUPS:
-                    statistics.spending_per_party_per_age[ad.party][age_group] += (
-                        ad.age_distribution[age_group] * ad.spending_average
+                for age in AGES:
+                    statistics.spending_per_party_per_age[ad.party][age] += (
+                        ad.age_distribution[age] * ad.spending_average
                     )
-                    statistics.impressions_per_party_per_age[ad.party][age_group] += (
-                        ad.age_distribution[age_group] * ad.impressions_average
+                    statistics.impressions_per_party_per_age[ad.party][age] += (
+                        ad.age_distribution[age] * ad.impressions_average
                     )
 
                 date_index_first_day = (ad.start_date - FIRST_DATE).days
@@ -145,9 +163,7 @@ class Ad:
 
                     statistics.ads_per_party_per_date[ad.party][date_index] += 1
                     statistics.spending_per_party_per_date[ad.party][date_index] += ad.spending_average_per_day
-                    statistics.impressions_per_party_per_date[ad.party][date_index] += (
-                        ad.impressions_average_per_day
-                    )
+                    statistics.impressions_per_party_per_date[ad.party][date_index] += ad.impressions_average_per_day
 
                     if ad.has_potential_reach:
                         statistics.potential_reach_per_party_per_date[ad.party][date_index] += (
@@ -170,10 +186,10 @@ class Ad:
                             ad.gender_distribution[gender] * ad.impressions_average_per_day
                         )
 
-                    for age_group in AGE_GROUPS:
-                        statistics.spending_per_party_per_age_per_date[ad.party][age_group][date_index] += (
-                            ad.age_distribution[age_group] * ad.spending_average_per_day
+                    for age in AGES:
+                        statistics.spending_per_party_per_age_per_date[ad.party][age][date_index] += (
+                            ad.age_distribution[age] * ad.spending_average_per_day
                         )
-                        statistics.impressions_per_party_per_age_per_date[ad.party][age_group][date_index] += (
-                            ad.age_distribution[age_group] * ad.impressions_average_per_day
+                        statistics.impressions_per_party_per_age_per_date[ad.party][age][date_index] += (
+                            ad.age_distribution[age] * ad.impressions_average_per_day
                         )

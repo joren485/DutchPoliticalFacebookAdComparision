@@ -7,7 +7,7 @@ from datetime import datetime
 from types import SimpleNamespace
 
 from ad import Ad
-from constants import DATETIME_FORMAT, FACEBOOK_API_URL, PARTIES, GENDERS, AGE_GROUPS, REGIONS, DATES
+from constants import DATETIME_FORMAT, FACEBOOK_API_URL, PARTIES, GENDERS, AGES, REGIONS, DATES
 
 
 statistics = SimpleNamespace(
@@ -25,8 +25,8 @@ statistics = SimpleNamespace(
     spending_per_party_per_region_per_date={p: {r: [0] * len(DATES) for r in REGIONS} for p in PARTIES},
     spending_per_party_per_gender={p: {r: 0 for r in GENDERS} for p in PARTIES},
     spending_per_party_per_gender_per_date={p: {r: [0] * len(DATES) for r in GENDERS} for p in PARTIES},
-    spending_per_party_per_age={p: {r: 0 for r in AGE_GROUPS} for p in PARTIES},
-    spending_per_party_per_age_per_date={p: {r: [0] * len(DATES) for r in AGE_GROUPS} for p in PARTIES},
+    spending_per_party_per_age={p: {r: 0 for r in AGES} for p in PARTIES},
+    spending_per_party_per_age_per_date={p: {r: [0] * len(DATES) for r in AGES} for p in PARTIES},
     most_expensive_ad=None,
     # Impressions statistics
     impressions_per_party={p: 0 for p in PARTIES},
@@ -35,8 +35,8 @@ statistics = SimpleNamespace(
     impressions_per_party_per_region_per_date={p: {r: [0] * len(DATES) for r in REGIONS} for p in PARTIES},
     impressions_per_party_per_gender={p: {r: 0 for r in GENDERS} for p in PARTIES},
     impressions_per_party_per_gender_per_date={p: {r: [0] * len(DATES) for r in GENDERS} for p in PARTIES},
-    impressions_per_party_per_age={p: {r: 0 for r in AGE_GROUPS} for p in PARTIES},
-    impressions_per_party_per_age_per_date={p: {r: [0] * len(DATES) for r in AGE_GROUPS} for p in PARTIES},
+    impressions_per_party_per_age={p: {r: 0 for r in AGES} for p in PARTIES},
+    impressions_per_party_per_age_per_date={p: {r: [0] * len(DATES) for r in AGES} for p in PARTIES},
     # Potential reach statistics
     potential_reach_per_party_per_date={p: [0] * len(DATES) for p in PARTIES},
 )
@@ -159,7 +159,7 @@ if __name__ == "__main__":
                     g: statistics.impressions_per_party_per_gender_per_date[p][g] for g in GENDERS
                 },
                 "impressions-per-age-per-date": {
-                    a: statistics.impressions_per_party_per_age_per_date[p][a] for a in AGE_GROUPS
+                    a: statistics.impressions_per_party_per_age_per_date[p][a] for a in AGES
                 },
                 "impressions-per-region-per-date": {
                     r: statistics.impressions_per_party_per_region_per_date[p][r] for r in REGIONS
@@ -200,9 +200,7 @@ if __name__ == "__main__":
                 "spending-per-gender-per-date": {
                     g: statistics.spending_per_party_per_gender_per_date[p][g] for g in GENDERS
                 },
-                "spending-per-age-per-date": {
-                    a: statistics.spending_per_party_per_age_per_date[p][a] for a in AGE_GROUPS
-                },
+                "spending-per-age-per-date": {a: statistics.spending_per_party_per_age_per_date[p][a] for a in AGES},
                 "spending-per-region-per-date": {
                     r: statistics.spending_per_party_per_region_per_date[p][r] for r in REGIONS
                 },

@@ -50,19 +50,34 @@ PARTIES = [
     "SP",
     "VVD",
 ]
-REGIONS = [
-    "Drenthe",
-    "Friesland",
-    "Gelderland",
-    "Groningen",
-    "Limburg",
-    "North Brabant",
-    "Noord-Holland",
-    "Utrecht",
-    "Zeeland",
-    "Zuid-Holland",
-    "Overijssel",
-    "Flevoland",
-]
-GENDERS = ["male", "female"]
-AGE_GROUPS = ["13-17", "18-24", "25-34", "35-44", "45-54", "55-64", "65+"]
+
+FACEBOOK_REGION_TO_REGION_MAP = {
+    "Drenthe": "Drenthe",
+    "Friesland": "Friesland",
+    "Gelderland": "Gelderland",
+    "Groningen": "Groningen",
+    "Limburg": "Limburg",
+    "North Brabant": "Noord-Brabant",
+    "Noord-Brabant": "Noord-Brabant",
+    "Noord-Holland": "Noord-Holland",
+    "Utrecht": "Utrecht",
+    "Zeeland": "Zeeland",
+    "Zuid-Holland": "Zuid-Holland",
+    "Overijssel": "Overijssel",
+    "Flevoland": "Flevoland",
+}
+REGIONS = list(set(FACEBOOK_REGION_TO_REGION_MAP.values()))
+
+FACEBOOK_GENDER_TO_GENDER_MAP = {"male": "Male", "female": "Female"}
+GENDERS = list(set(FACEBOOK_GENDER_TO_GENDER_MAP.values()))
+
+FACEBOOK_AGE_TO_AGE_MAP = {
+    "13-17": "13-17",
+    "18-24": "18-24",
+    "25-34": "25-34",
+    "35-44": "35-44",
+    "45-54": "45-54",
+    "55-64": "55-64",
+    "65+": "65+",
+}
+AGES = list(set(FACEBOOK_AGE_TO_AGE_MAP.values()))
