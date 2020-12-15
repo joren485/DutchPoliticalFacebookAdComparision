@@ -209,5 +209,7 @@ if __name__ == "__main__":
         },
     }
 
+    json_output = json.loads(json.dumps(json_output), parse_float=lambda f: round(float(f), 2))
+
     with open("../data/data.json", "w") as h_file:
         json.dump(json_output, h_file, sort_keys=True)
