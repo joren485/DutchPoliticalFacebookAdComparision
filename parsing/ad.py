@@ -60,18 +60,6 @@ class Ad:
         return f"{self.party} on {self.start_date.strftime(DATETIME_FORMAT)}"
 
     @staticmethod
-    def max_expensive(ad1, ad2):
-        if ad1 is None and ad2 is None:
-            return None
-        elif ad1 is None:
-            return ad2
-        elif ad2 is None:
-            return ad1
-        elif ad1.spending_average / ad1.active_days >= ad2.spending_average / ad2.active_days:
-            return ad1
-        return ad2
-
-    @staticmethod
     def _parse_estimated_value(data, f=lambda x: x):
         lower = f(int(data["lower_bound"]))
         upper = f(int(data["upper_bound"])) if "upper_bound" in data else lower
@@ -131,7 +119,9 @@ class Ad:
                 statistics.spending_total += ad.spending_average
                 statistics.spending_total_lower += ad.spending_lower
                 statistics.spending_total_upper += ad.spending_upper
-                statistics.most_expensive_ad = Ad.max_expensive(statistics.most_expensive_ad, ad)
+                statistics.most_expensive_ad = max(
+                    statistics.most_expensive_ad, ad, key=lambda a: a.spending_average_per_day if a is not None else -1
+                )
 
                 statistics.ads_per_party[ad.party] += 1
                 statistics.spending_per_party[ad.party] += ad.spending_average
