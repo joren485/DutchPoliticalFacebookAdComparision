@@ -46,11 +46,15 @@ class Ad:
                 self.potential_reach_upper,
             ) = Ad._parse_estimated_value(ad_data["potential_reach"])
 
-        self.gender_distribution, self.age_distribution = self._parse_demographic_distribution(
-            ad_data["demographic_distribution"]
-        )
+        self.has_demographic_distribution = "demographic_distribution" in ad_data.keys()
+        if self.has_demographic_distribution:
+            self.gender_distribution, self.age_distribution = self._parse_demographic_distribution(
+                ad_data["demographic_distribution"]
+            )
 
-        self.region_distribution = self._parse_region_distribution(ad_data["region_distribution"])
+        self.has_region_distribution = "region_distribution" in ad_data.keys()
+        if self.has_region_distribution:
+            self.region_distribution = self._parse_region_distribution(ad_data["region_distribution"])
 
     def __str__(self):
         return f"{self.party} on {self.start_date.strftime(DATETIME_FORMAT)}"
@@ -133,29 +137,31 @@ class Ad:
                 statistics.spending_per_party[ad.party] += ad.spending_average
                 statistics.impressions_per_party[ad.party] += ad.impressions_average
 
-                for region in REGIONS:
-                    statistics.spending_per_party_per_region[ad.party][region] += (
-                        ad.region_distribution[region] * ad.spending_average
-                    )
-                    statistics.impressions_per_party_per_region[ad.party][region] += (
-                        ad.region_distribution[region] * ad.impressions_average
-                    )
+                if ad.has_region_distribution:
+                    for region in REGIONS:
+                        statistics.spending_per_party_per_region[ad.party][region] += (
+                            ad.region_distribution[region] * ad.spending_average
+                        )
+                        statistics.impressions_per_party_per_region[ad.party][region] += (
+                            ad.region_distribution[region] * ad.impressions_average
+                        )
 
-                for gender in GENDERS:
-                    statistics.spending_per_party_per_gender[ad.party][gender] += (
-                        ad.gender_distribution[gender] * ad.spending_average
-                    )
-                    statistics.impressions_per_party_per_gender[ad.party][gender] += (
-                        ad.gender_distribution[gender] * ad.impressions_average
-                    )
+                if ad.has_demographic_distribution:
+                    for gender in GENDERS:
+                        statistics.spending_per_party_per_gender[ad.party][gender] += (
+                            ad.gender_distribution[gender] * ad.spending_average
+                        )
+                        statistics.impressions_per_party_per_gender[ad.party][gender] += (
+                            ad.gender_distribution[gender] * ad.impressions_average
+                        )
 
-                for age in AGES:
-                    statistics.spending_per_party_per_age[ad.party][age] += (
-                        ad.age_distribution[age] * ad.spending_average
-                    )
-                    statistics.impressions_per_party_per_age[ad.party][age] += (
-                        ad.age_distribution[age] * ad.impressions_average
-                    )
+                    for age in AGES:
+                        statistics.spending_per_party_per_age[ad.party][age] += (
+                            ad.age_distribution[age] * ad.spending_average
+                        )
+                        statistics.impressions_per_party_per_age[ad.party][age] += (
+                            ad.age_distribution[age] * ad.impressions_average
+                        )
 
                 date_index_first_day = (ad.start_date - FIRST_DATE).days
                 for date_index_offset in range(ad.active_days):
@@ -170,26 +176,28 @@ class Ad:
                             ad.potential_reach_average / ad.active_days
                         )
 
-                    for region in REGIONS:
-                        statistics.spending_per_party_per_region_per_date[ad.party][region][date_index] += (
-                            ad.region_distribution[region] * ad.spending_average_per_day
-                        )
-                        statistics.impressions_per_party_per_region_per_date[ad.party][region][date_index] += (
-                            ad.region_distribution[region] * ad.impressions_average_per_day
-                        )
+                    if ad.has_region_distribution:
+                        for region in REGIONS:
+                            statistics.spending_per_party_per_region_per_date[ad.party][region][date_index] += (
+                                ad.region_distribution[region] * ad.spending_average_per_day
+                            )
+                            statistics.impressions_per_party_per_region_per_date[ad.party][region][date_index] += (
+                                ad.region_distribution[region] * ad.impressions_average_per_day
+                            )
 
-                    for gender in GENDERS:
-                        statistics.spending_per_party_per_gender_per_date[ad.party][gender][date_index] += (
-                            ad.gender_distribution[gender] * ad.spending_average_per_day
-                        )
-                        statistics.impressions_per_party_per_gender_per_date[ad.party][gender][date_index] += (
-                            ad.gender_distribution[gender] * ad.impressions_average_per_day
-                        )
+                    if ad.has_demographic_distribution:
+                        for gender in GENDERS:
+                            statistics.spending_per_party_per_gender_per_date[ad.party][gender][date_index] += (
+                                ad.gender_distribution[gender] * ad.spending_average_per_day
+                            )
+                            statistics.impressions_per_party_per_gender_per_date[ad.party][gender][date_index] += (
+                                ad.gender_distribution[gender] * ad.impressions_average_per_day
+                            )
 
-                    for age in AGES:
-                        statistics.spending_per_party_per_age_per_date[ad.party][age][date_index] += (
-                            ad.age_distribution[age] * ad.spending_average_per_day
-                        )
-                        statistics.impressions_per_party_per_age_per_date[ad.party][age][date_index] += (
-                            ad.age_distribution[age] * ad.impressions_average_per_day
-                        )
+                        for age in AGES:
+                            statistics.spending_per_party_per_age_per_date[ad.party][age][date_index] += (
+                                ad.age_distribution[age] * ad.spending_average_per_day
+                            )
+                            statistics.impressions_per_party_per_age_per_date[ad.party][age][date_index] += (
+                                ad.age_distribution[age] * ad.impressions_average_per_day
+                            )
