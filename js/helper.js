@@ -97,6 +97,7 @@ function generateLineGraphConfig(adData, title, dataKey, specificParty = "") {
     let tooltips = {
         mode: 'index',
         intersect: false,
+        position: "nearest",
         callbacks: {
             label: function (tooltipItems, data) {
                 let percentage = percentageLineGraph(tooltipItems, data);
