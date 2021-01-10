@@ -37,12 +37,16 @@ CURRENCY_TO_EUR_MAP = {
 
 PARTIES = [
     "50P",
+    "BIJ1",
     "CDA",
     "CU",
+    "CO",
     "D66",
     "DENK",
     "FvD",
     "GL",
+    "GO",
+    "JA21",
     "PVV",
     "PvdA",
     "PvdD",
