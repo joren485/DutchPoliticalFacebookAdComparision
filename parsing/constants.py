@@ -52,6 +52,7 @@ PARTIES = [
     "PvdD",
     "SGP",
     "SP",
+    "VOLT",
     "VVD",
 ]
 
