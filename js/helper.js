@@ -144,7 +144,7 @@ function generateLineGraphConfig(adData, title, dataKey, specificParty = "") {
             title: {
                 display: true,
                 text: title,
-                fontSize: 14,
+                fontSize: 16,
             },
             legend: {
                 position: "bottom",
@@ -260,7 +260,7 @@ function generateBarChart(adData, title, dataKey, specificParty = "") {
             title: {
                 display: true,
                 text: title,
-                fontSize: 14,
+                fontSize: 16,
             },
             legend: {
                 display: false,
