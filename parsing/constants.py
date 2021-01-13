@@ -40,7 +40,6 @@ PARTIES = [
     "BIJ1",
     "CDA",
     "CU",
-    "CO",
     "D66",
     "DENK",
     "FvD",
@@ -52,7 +51,6 @@ PARTIES = [
     "PvdD",
     "SGP",
     "SP",
-    "VOLT",
     "VVD",
 ]
 
