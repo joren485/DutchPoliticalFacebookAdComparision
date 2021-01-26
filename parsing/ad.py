@@ -15,7 +15,16 @@ from constants import (
 
 class Ad:
     def __init__(self, party, ad_data):
-        self.start_date = datetime.strptime(ad_data["ad_delivery_start_time"], DATETIME_FORMAT)
+
+        self.id = ad_data["id"]
+        self.party = party
+
+        try:
+            self.start_date = datetime.strptime(ad_data["ad_delivery_start_time"], DATETIME_FORMAT)
+        except KeyError:
+            print(f"Ad {self.id} is missing 'ad_delivery_start_time'")
+            raise ValueError
+
         if self.start_date < FIRST_DATE:
             raise ValueError
 
@@ -24,9 +33,6 @@ class Ad:
         else:
             self.end_date = datetime.today()
         self.active_days = (self.end_date - self.start_date).days + 1
-
-        self.id = ad_data["id"]
-        self.party = party
 
         self.impressions_lower, self.impressions_average, self.impressions_upper = Ad._parse_estimated_value(
             ad_data["impressions"]
