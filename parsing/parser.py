@@ -10,6 +10,14 @@ from ad import Ad
 from constants import DATETIME_FORMAT, FACEBOOK_API_URL, PARTIES, GENDERS, AGES, REGIONS, DATES
 
 
+def shorten_float(f):
+    """Takes a float and removes trailing zeros."""
+    f = float(f)
+    if f.is_integer():
+        return int(f)
+    return round(f, 2)
+
+
 statistics = SimpleNamespace(
     ads_total=0,
     ads_without_potential_reach=0,
@@ -209,7 +217,7 @@ if __name__ == "__main__":
         },
     }
 
-    json_output = json.loads(json.dumps(json_output), parse_float=lambda f: round(float(f), 2))
+    json_output = json.loads(json.dumps(json_output), parse_float=shorten_float)
 
     with open("../data/data.json", "w") as h_file:
         json.dump(json_output, h_file, sort_keys=True)
