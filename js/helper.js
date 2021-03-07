@@ -4,17 +4,18 @@ const COLORS = {
     'BIJ1': '#ee047e',
     'CDA': '#007b5f',
     'CU': '#012466',
+    'CO': '#eb984e',
     'DENK': '#41bac2',
     'D66': '#01af40',
     'FvD': '#841818',
     'GL': '#50c401',
-    'GO': '#f9e709',
     'JA21': '#242B57',
     'PVV': '#212F3D',
     'PvdA': '#C0392B',
     'PvdD': '#006c2e',
     'SGP': '#024a90',
     'SP': '#fe0000',
+    'VOLT': '#512e5f',
     'VVD': '#ff7709',
 
     'Male': '#0000ff',
@@ -42,7 +43,7 @@ const COLORS = {
     'Flevoland': '#E59866',
 };
 
-const PARTIES = ["50P", "BIJ1", "CDA", "CU", "D66", "DENK", "FvD", "GL", "GO", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VVD"];
+const PARTIES = ["50P", "BIJ1", "CDA", "CU", "CO", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"];
 
 function percentageBarGraph(tooltipItems, data) {
     let dataset = data.datasets[tooltipItems.datasetIndex];
