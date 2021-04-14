@@ -16,7 +16,7 @@ FACEBOOK_API_FIELDS = [
 
 FACEBOOK_API_ACCESS_TOKEN = os.getenv("FACEBOOK_ACCESS_TOKEN")
 FACEBOOK_API_URL = (
-    f"https://graph.facebook.com/v4.0/ads_archive?"
+    f"https://graph.facebook.com/v10.0/ads_archive?"
     f"access_token={FACEBOOK_API_ACCESS_TOKEN}&"
     f"limit=1000&"
     f"fields={','.join(FACEBOOK_API_FIELDS)}&"
