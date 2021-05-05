@@ -65,7 +65,7 @@ if __name__ == "__main__":
 
         while url is not None:
             response = requests.get(url)
-            response_data = json.loads(response.text)
+            response_data = response.json()
 
             if "error" in response_data:
                 print(response_data["error"])

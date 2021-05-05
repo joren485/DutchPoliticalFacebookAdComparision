@@ -20,7 +20,6 @@ FACEBOOK_API_URL = (
     f"access_token={FACEBOOK_API_ACCESS_TOKEN}&"
     f"limit=1000&"
     f"fields={','.join(FACEBOOK_API_FIELDS)}&"
-    f"search_terms=.&"
     f"ad_reached_countries=NL&"
     f"ad_active_status=all&"
     f"search_page_ids={{page_ids}}"
