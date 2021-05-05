@@ -1,13 +1,11 @@
-import csv
 import json
-import requests
 
 from datetime import datetime
 
 from types import SimpleNamespace
 
 from ad import Ad
-from constants import DATETIME_FORMAT, FACEBOOK_API_URL, PARTIES, GENDERS, AGES, REGIONS, DATES
+from constants import DATETIME_FORMAT, PARTIES, GENDERS, AGES, REGIONS, DATES
 
 
 def shorten_float(f):
@@ -50,34 +48,13 @@ statistics = SimpleNamespace(
 )
 if __name__ == "__main__":
 
-    facebook_page_id_to_party_map = {}
-    with open("../data/facebook_page_ids.csv") as h_file:
-        reader = csv.reader(h_file)
-        next(reader)
-        for row in reader:
-            party = row[0]
-            page_id = row[2]
-            facebook_page_id_to_party_map[page_id] = party
+    for party in PARTIES:
+        party_data_path = f"../data/local_ad_archive/{party}.json"
 
-    page_ids = list(facebook_page_id_to_party_map.keys())
-    for i in range(0, len(page_ids), 10):
-        url = FACEBOOK_API_URL.format(page_ids=",".join(page_ids[i : i + 10]))
+        with open(party_data_path) as h_party:
+            ads_data = [json.loads(ad_data) for ad_data in h_party.readlines()]
 
-        while url is not None:
-            response = requests.get(url)
-            response_data = response.json()
-
-            if "error" in response_data:
-                print(response_data["error"])
-
-            if "paging" in response_data:
-                url = response_data["paging"]["next"]
-            else:
-                url = None
-
-            if len(response_data["data"]) > 0:
-                print(f"Parsing {len(response_data['data'])} ads")
-                Ad.parse_ads(response_data["data"], facebook_page_id_to_party_map, statistics)
+        Ad.parse_ads(ads_data, party, statistics)
 
     json_output = {
         "last_updated": datetime.now().strftime("%H:%M %d-%m-%Y"),

@@ -15,7 +15,6 @@ from constants import (
 
 class Ad:
     def __init__(self, party, ad_data):
-
         self.id = ad_data["id"]
         self.party = party
 
@@ -112,10 +111,10 @@ class Ad:
         return region_distribution
 
     @staticmethod
-    def parse_ads(ads_data, id_to_party_map, statistics):
+    def parse_ads(ads_data, party, statistics):
         for ad_data in ads_data:
             try:
-                ad = Ad(id_to_party_map[ad_data["page_id"]], ad_data)
+                ad = Ad(party, ad_data)
             except ValueError:
                 pass
             else:

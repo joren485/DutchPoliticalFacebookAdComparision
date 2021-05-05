@@ -1,27 +1,42 @@
 import os
 from datetime import datetime, timedelta
 
+AD_LIMIT_PER_REQUEST = 1000
+MAX_PAGE_IDS_PER_REQUEST = 10
+
+FACEBOOK_API_VERSION = "v10.0"
+
 FACEBOOK_API_FIELDS = [
-    "currency",
+    "id",
+    "ad_creation_time",
+    "ad_creative_body",
+    "ad_creative_link_caption",
+    "ad_creative_link_description",
+    "ad_creative_link_title",
     "ad_delivery_start_time",
     "ad_delivery_stop_time",
+    "ad_snapshot_url",
+    "currency",
+    "demographic_distribution",
+    "funding_entity",
     "impressions",
     "page_id",
     "page_name",
-    "demographic_distribution",
+    "potential_reach",
+    "publisher_platforms",
     "region_distribution",
     "spend",
-    "potential_reach",
 ]
 
 FACEBOOK_API_ACCESS_TOKEN = os.getenv("FACEBOOK_ACCESS_TOKEN")
 FACEBOOK_API_URL = (
-    f"https://graph.facebook.com/v10.0/ads_archive?"
+    f"https://graph.facebook.com/{FACEBOOK_API_VERSION}/ads_archive?"
     f"access_token={FACEBOOK_API_ACCESS_TOKEN}&"
-    f"limit=1000&"
+    f"limit={AD_LIMIT_PER_REQUEST}&"
     f"fields={','.join(FACEBOOK_API_FIELDS)}&"
     f"ad_reached_countries=NL&"
     f"ad_active_status=all&"
+    f"ad_delivery_date_min={{min_date}}&"
     f"search_page_ids={{page_ids}}"
 )
 
