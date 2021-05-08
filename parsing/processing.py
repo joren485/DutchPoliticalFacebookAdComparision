@@ -29,9 +29,7 @@ general_output_data = {
     "last-updated": datetime.now().strftime("%H:%M %d-%m-%Y"),
     "start-date": FIRST_DATE.strftime(DATETIME_FORMAT),
     "ads-total": len(ads),
-    "ads-without-potential-reach": len(
-        [a for a in ads if a.potential_reach_upper is None]
-    ),
+    "ads-without-potential-reach": sum(1 for a in ads if a.has_potential_reach),
     "ads-per-party": [len(ads_per_party[p]) for p in PARTIES],
     "spending-total-range": (
         sum(ad.spending_lower for ad in ads),

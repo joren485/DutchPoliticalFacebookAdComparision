@@ -49,6 +49,10 @@ class Ad(Model):
         return 1 + (end_date - self.start_date).days
 
     @property
+    def has_potential_reach(self):
+        return self.potential_reach_lower is not None
+
+    @property
     def spending_average(self):
         return (self.spending_lower + self.spending_upper) / 2
 
