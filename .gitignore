@@ -1,4 +1,5 @@
 .idea
 .env
 __pycache__
-data/local_ad_archive/
+*.db
+*.sqlite

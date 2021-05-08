@@ -45,6 +45,9 @@ const COLORS = {
 };
 
 const PARTIES = ["50P", "BIJ1", "BBB", "CDA", "CU", "CO", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"];
+const REGIONS = ["Drenthe", "Friesland", "Gelderland", "Groningen", "Limburg", "Noord-Brabant", "Noord-Holland", "Utrecht", "Zeeland", "Zuid-Holland", "Overijssel", "Flevoland"];
+const GENDERS = ["Male", "Female"];
+const AGE_RANGES = ["13-17", "18-24", "25-34", "35-44", "45-54", "55-64", "65+"];
 
 function percentageBarGraph(tooltipItems, data) {
     let dataset = data.datasets[tooltipItems.datasetIndex];
@@ -84,7 +87,11 @@ function getDaysArray(startDate) {
     return dates;
 }
 
-function generateLineGraphConfig(adData, title, dataKey, specificParty = "") {
+function generateLineGraphConfig(title, data, key, labels=PARTIES) {
+
+    //If the first element of labels is not equal to the first element of PARTIES,
+    //the chart is not a chart with general data, but a party specific chart.
+    let is_general_chart = labels.indexOf(PARTIES[0]) === 0
 
     let scales = {
         xAxes: [{
@@ -111,7 +118,7 @@ function generateLineGraphConfig(adData, title, dataKey, specificParty = "") {
             },
         },
     };
-    if (dataKey.toLowerCase().includes("spending")) {
+    if (key.toLowerCase().includes("spending")) {
 
         scales.yAxes[0].ticks.callback = function (value, index, values) {
                 return "€" + value.toFixed(2).toString();
@@ -122,14 +129,12 @@ function generateLineGraphConfig(adData, title, dataKey, specificParty = "") {
         }
     }
 
-    if (specificParty) {
-        scales.yAxes[0].stacked = true;
-    }
+    scales.yAxes[0].stacked = !is_general_chart;
 
     let graphConfig = {
         type: "line",
         data: {
-            labels: getDaysArray(new Date(adData["start-date"])),
+            labels: getDaysArray(new Date(data["start-date"])),
             datasets: []
         },
         options: {
@@ -163,41 +168,23 @@ function generateLineGraphConfig(adData, title, dataKey, specificParty = "") {
             },
         },
     };
-
-    if (specificParty) {
-        for (let key in adData["party-specific-data"][specificParty][dataKey]) {
-            graphConfig.data.datasets.push(
-                {
-                    label: key,
-                    data: adData["party-specific-data"][specificParty][dataKey][key],
-                    fill: true,
-                    backgroundColor: COLORS[key],
-                    borderColor: COLORS[key],
-                    pointRadius: 0,
-                    borderWidth: 2,
-                });
-        }
-
-
-    } else {
-        for (let party in adData["party-specific-data"]) {
-            graphConfig.data.datasets.push(
-                {
-                    label: party,
-                    data: adData["party-specific-data"][party][dataKey],
-                    fill: false,
-                    backgroundColor: COLORS[party],
-                    borderColor: COLORS[party],
-                    pointRadius: 0,
-                    borderWidth: 2,
-                });
-        }
-    }
+    labels.forEach(function (item, index) {
+        graphConfig.data.datasets.push(
+            {
+                label: item,
+                data: data[key][index],
+                fill: !is_general_chart,
+                backgroundColor: COLORS[item],
+                borderColor: COLORS[item],
+                pointRadius: 0,
+                borderWidth: 2,
+            });
+    });
 
     return graphConfig;
 }
 
-function generateBarChart(adData, title, dataKey, specificParty = "") {
+function generateBarChart(title, data, key, labels= PARTIES) {
 
     let scales = {
         xAxes: [
@@ -223,7 +210,7 @@ function generateBarChart(adData, title, dataKey, specificParty = "") {
         },
     };
 
-    if (dataKey.toLowerCase().includes("spending")) {
+    if (key.toLowerCase().includes("spending")) {
         scales.xAxes[0].ticks.callback = function (value, index, values) {
                 return "€" + value.toFixed(2).toString();
         };
@@ -270,22 +257,11 @@ function generateBarChart(adData, title, dataKey, specificParty = "") {
         }
     };
 
-    if (specificParty) {
-
-        adData["party-specific-data"][specificParty][dataKey]['order'].forEach(function (key) {
-            chartConfig.data.labels.push(key);
-            chartConfig.data.datasets[0].data.push(adData["party-specific-data"][specificParty][dataKey]['map'][key])
-            chartConfig.data.datasets[0].backgroundColor.push(COLORS[key])
-        });
-
-
-    } else {
-        adData[dataKey]['order'].forEach(function (party) {
-            chartConfig.data.labels.push(party);
-            chartConfig.data.datasets[0].data.push(adData[dataKey]['map'][party])
-            chartConfig.data.datasets[0].backgroundColor.push(COLORS[party])
-        });
-    }
+    labels.forEach(function (item, index) {
+        chartConfig.data.labels.push(item);
+        chartConfig.data.datasets[0].data.push(data[key][index])
+        chartConfig.data.datasets[0].backgroundColor.push(COLORS[item])
+    });
 
     return chartConfig;
 }

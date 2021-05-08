@@ -5,7 +5,7 @@ import json
 
 import requests
 
-from datetime import datetime, timedelta
+from datetime import date, timedelta
 
 from constants import (
     PARTIES,
@@ -13,6 +13,10 @@ from constants import (
     FACEBOOK_API_URL,
     DATETIME_FORMAT,
 )
+
+from models import Ad
+
+from parsing import json_to_ad_dict
 
 LOGGER = logging.getLogger(__name__)
 
@@ -23,7 +27,7 @@ logging.basicConfig(
 )
 
 
-def download_ads(api_url: str, ad_ids_filter):
+def download_ads(api_url, party):
     response = requests.get(api_url)
     response_data = response.json()
 
@@ -32,18 +36,13 @@ def download_ads(api_url: str, ad_ids_filter):
         return
 
     if len(response_data["data"]) > 0:
-        LOGGER.debug(f"Got {len(response_data['data'])} ads ({party})")
-        with open(party_data_path, "a") as h_file:
-            ads_to_write = [
-                json.dumps(ad) + "\n"
-                for ad in response_data["data"]
-                if ad["id"] not in ad_ids_filter
-            ]
-            h_file.writelines(ads_to_write)
-            LOGGER.debug(f"Wrote {len(ads_to_write)} new ads ({party})")
+        LOGGER.info(f"Got {len(response_data['data'])} ads ({party})")
+        Ad.insert_many(
+            json_to_ad_dict(ad, party) for ad in response_data["data"]
+        ).on_conflict_replace().execute()
 
     if "paging" in response_data:
-        download_ads(response_data["paging"]["next"], ad_ids_filter)
+        download_ads(response_data["paging"]["next"], party)
 
 
 def parse_facebook_page_ids(parties):
@@ -89,10 +88,6 @@ if __name__ == "__main__":
         page_ids_per_party = parse_facebook_page_ids(PARTIES)
 
     for party, page_ids in page_ids_per_party.items():
-        party_data_path = f"../data/local_ad_archive/{party}.json"
-
-        existing_ad_ids = parse_existing_ad_ids(party_data_path)
-        LOGGER.info(f"Found {len(existing_ad_ids)} existing ids ({party})")
 
         for i in range(0, len(page_ids), MAX_PAGE_IDS_PER_REQUEST):
             page_ids_subset = page_ids[i : i + MAX_PAGE_IDS_PER_REQUEST]
@@ -104,11 +99,11 @@ if __name__ == "__main__":
             download_ads(
                 FACEBOOK_API_URL.format(
                     page_ids=",".join(page_ids_subset),
-                    min_date=(datetime.now() - timedelta(weeks=1)).strftime(
+                    min_date=(date.today() - timedelta(weeks=1)).strftime(
                         DATETIME_FORMAT
                     )
                     if not args.all
                     else "2018-05-07",  # This is the first allowed day.
                 ),
-                existing_ad_ids,
+                party,
             )

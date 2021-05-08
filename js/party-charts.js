@@ -1,25 +1,26 @@
 $(document).ready(function () {
-    $.getJSON("data/data.json", function (adData) {
-        $("#last-updated").text(adData["last_updated"]);
 
-        let searchParams = new URLSearchParams(window.location.search)
+    let searchParams = new URLSearchParams(window.location.search)
 
-        if (!searchParams.has("party")) {
-            $("#party-specific-charts").append("<p>No Party Provided.</p>");
-            return;
-        }
+    if (!searchParams.has("party")) {
+        $("#party-specific-charts").append("<p>No Party Provided.</p>");
+        return;
+    }
 
-        let party = searchParams.get("party");
+    let party = searchParams.get("party");
 
-        if (!Object.keys(adData["party-specific-data"]).includes(party)) {
-            $("#party-specific-charts").append("<p>Party Not Found.</p>");
-            return;
-        }
+    if (!PARTIES.includes(party)) {
+        $("#party-specific-charts").append("<p>Party Not Found.</p>");
+        return;
+    }
+
+    $.getJSON("data/parsed_data/" + party + ".json", function (partyAdData) {
+        $("#last-updated").text(partyAdData["last-updated"]);
 
         $("#party-specific-charts").append(
             `<div class="text-center">
                 <h1>${party} Graphs</h1>
-                <p class="lead">${party} ran <strong>${adData['ads-per-party']['map'][party]}</strong> ads and spent an estimated <strong>€${adData['spending-per-party']['map'][party].toFixed(2)}</strong>.</p>
+                <p class="lead">${party} ran <strong>${partyAdData['total-ads']}</strong> ads and spent between <strong>€${partyAdData['spending-total-range'][0]}</strong> and <strong>€${partyAdData['spending-total-range'][1]}</strong>.</p>
             </div>
             <hr>`);
 
@@ -39,23 +40,23 @@ $(document).ready(function () {
                  </div>`
             );
 
-            ["Region", "Gender", "Age"].forEach(function (lineLabelType) {
+            ["Region", "Gender", "Age"].forEach(function (labelType) {
 
-                let lineLabelTypeLowerCase = lineLabelType.toLowerCase();
+                let labelTypeLowerCase = labelType.toLowerCase();
 
-                let LineChartCanvasId = party.toLowerCase() + "-" + lineLabelTypeLowerCase + "-" + dataTypeLowerCase + "-line-chart";
-                let BarChartCanvasId = party.toLowerCase() + "-" + lineLabelTypeLowerCase + "-" + dataTypeLowerCase + "-bar-chart";
+                let LineChartCanvasId = party.toLowerCase() + "-" + labelTypeLowerCase + "-" + dataTypeLowerCase + "-line-chart";
+                let BarChartCanvasId = party.toLowerCase() + "-" + labelTypeLowerCase + "-" + dataTypeLowerCase + "-bar-chart";
 
                 $("#" + datatypeDivChartsId).append(
                     `<div>
                     <div class="text-center">
-                        <h4>(Estimated) ${dataType} per ${lineLabelType} (${party})</h4>
+                        <h4>(Estimated) ${dataType} per ${labelType} (${party})</h4>
                     </div>
                     
                     <div class="row">
                         <div class="col-8">
                             <canvas id="${LineChartCanvasId}"></canvas>
-                            <p>This graph shows ${dataTypeLowerCase} per ${lineLabelTypeLowerCase} over time. Facebook provides a range (e.g. €1000 - €1999 has been spent on an ad) for each ad, this graph is based on the average of the range of each ad.</p>
+                            <p>This graph shows ${dataTypeLowerCase} per ${labelTypeLowerCase} over time. Facebook provides a range (e.g. €1000 - €1999 has been spent on an ad) for each ad, this graph is based on the average of the range of each ad.</p>
                         </div>
                         <div class="col-4">
                             <canvas id="${BarChartCanvasId}"></canvas>
@@ -64,17 +65,27 @@ $(document).ready(function () {
                 </div>
                 <hr>`);
 
+                let labels;
+                if (labelType === "Region") {
+                    labels = REGIONS;
+                } else if (labelType === "Gender"){
+                    labels = GENDERS;
+                }else if (labelType === "Age"){
+                    labels = AGE_RANGES;
+                }
 
-                let lineChart = generateLineGraphConfig(adData,
-                    "Average (Estimated) " + dataType + " per " + lineLabelType + " over time (" + party + ")",
-                    dataTypeLowerCase + "-per-" + lineLabelTypeLowerCase + "-per-date",
-                    party);
+                let lineChart = generateLineGraphConfig(
+                    "Average (Estimated) " + dataType + " per " + labelType + " over time (" + party + ")",
+                    partyAdData,
+                    dataTypeLowerCase + "-per-" + labelTypeLowerCase + "-per-date",
+                    labels);
                 new Chart($("#" + LineChartCanvasId), lineChart);
 
-                let barChart = generateBarChart(adData,
-                    "Total (Estimated) " + dataType + " per " + lineLabelType + " (" + party + ")",
-                    dataTypeLowerCase + "-per-" + lineLabelTypeLowerCase,
-                    party);
+                let barChart = generateBarChart(
+                    "Total (Estimated) " + dataType + " per " + labelType + " (" + party + ")",
+                    partyAdData,
+                    dataTypeLowerCase + "-per-" + labelTypeLowerCase,
+                    labels);
                 new Chart($("#" + BarChartCanvasId), barChart);
             })
         });

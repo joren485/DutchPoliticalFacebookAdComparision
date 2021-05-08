@@ -1,43 +1,43 @@
 $(document).ready(function () {
-    $.getJSON("data/data.json", function (adData) {
-        $("#last-updated").text(adData["last_updated"]);
+    $.getJSON("data/parsed_data/general-data.json", function (generalAdData) {
+        $("#last-updated").text(generalAdData["last-updated"]);
 
         // Add active ads line chart
-        let activeAdsLineChartConfig = generateLineGraphConfig(adData, "Ads Active over time", "active-ads-per-date");
+        let activeAdsLineChartConfig = generateLineGraphConfig("Ads Active over time", generalAdData, "active-ads-per-party-per-date");
         new Chart($("#active-ads-over-time"), activeAdsLineChartConfig);
-        $(".total-ads").text(adData["ads-total"]);
+        $(".total-ads").text(generalAdData["ads-total"]);
 
         // Add total ads bar chart
-        let totalAdsBarChartConfig = generateBarChart(adData, "Total Ads", "ads-per-party");
+        let totalAdsBarChartConfig = generateBarChart("Total Ads", generalAdData,"ads-per-party");
         new Chart($("#ads-per-party"), totalAdsBarChartConfig);
 
         // Add spending line chart
-        let spendingLineChartConfig = generateLineGraphConfig(adData, "Average (Estimated) Spending over time", "spending-per-date");
+        let spendingLineChartConfig = generateLineGraphConfig("Average (Estimated) Spending over time", generalAdData, "spending-per-party-per-date");
         new Chart($("#spending-over-time-chart"), spendingLineChartConfig);
 
         // Add total ads bar chart
-        let spendingBarChartConfig = generateBarChart(adData, "Total (Estimated) Spending", "spending-per-party");
+        let spendingBarChartConfig = generateBarChart("Total (Estimated) Spending", generalAdData, "spending-per-party");
         new Chart($("#spending-per-party"), spendingBarChartConfig);
 
-        $("#spending-total-lower").text("€" + adData["spending-range"]["lower"]);
-        $("#spending-total-upper").text("€" + adData["spending-range"]["upper"]);
-        $("#most-expensive-ad-cost").text("€" + adData["most-expensive-ad"]["cost"].toFixed(2));
-        $("#most-expensive-ad-party").text(adData["most-expensive-ad"]["party"]);
-        $("#most-expensive-ad-days").text(adData["most-expensive-ad"]["days"]);
-        $("#most-expensive-ad-link").attr("href", $("#most-expensive-ad-link").attr("href") + adData["most-expensive-ad"]["id"]);
+        $("#spending-total-lower").text("€" + generalAdData["spending-total-range"][0]);
+        $("#spending-total-upper").text("€" + generalAdData["spending-total-range"][1]);
+        $("#most-expensive-ad-cost").text("€" + generalAdData["most-expensive-ad"]["cost"]);
+        $("#most-expensive-ad-party").text(generalAdData["most-expensive-ad"]["party"]);
+        $("#most-expensive-ad-days").text(generalAdData["most-expensive-ad"]["days"]);
+        $("#most-expensive-ad-link").attr("href", $("#most-expensive-ad-link").attr("href") + generalAdData["most-expensive-ad"]["id"]);
 
         // Add impressions line chart
-        let impressionsLineChartConfig = generateLineGraphConfig(adData, "Average (Estimated) Impressions over time", "impressions-per-date");
+        let impressionsLineChartConfig = generateLineGraphConfig("Average (Estimated) Impressions over time", generalAdData,"impressions-per-party-per-date");
         new Chart($("#impressions-over-time-chart"), impressionsLineChartConfig);
 
         // Add impressions bar chart
-        let impressionsBarChartConfig = generateBarChart(adData, "Total (Estimated) Impressions", "impressions-per-party");
+        let impressionsBarChartConfig = generateBarChart("Total (Estimated) Impressions", generalAdData, "impressions-per-party");
         new Chart($("#impressions-per-party"), impressionsBarChartConfig);
 
         // Add potential reach line chart
-        let potentialReachLineChartConfig = generateLineGraphConfig(adData, "Average Potential Reach over time", "potential-reach-per-date");
+        let potentialReachLineChartConfig = generateLineGraphConfig("Average Potential Reach over time", generalAdData,"potential-reach-per-party-per-date");
         potentialReachLineChartConfig.options.scales.xAxes[0].ticks.min = new Date("2020-03-31");
         new Chart($("#potential-reach-chart"), potentialReachLineChartConfig);
-        $("#missing-potential-reach").text(adData["ads-without-potential-reach"]);
+        $("#missing-potential-reach").text(generalAdData["ads-without-potential-reach"]);
     });
 });

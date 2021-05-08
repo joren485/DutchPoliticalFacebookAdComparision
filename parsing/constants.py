@@ -1,5 +1,8 @@
 import os
-from datetime import datetime, timedelta
+
+from datetime import date
+
+LOCAL_AD_ARCHIVE_PATH = "../data/local_ad_archive.sqlite"
 
 AD_LIMIT_PER_REQUEST = 1000
 MAX_PAGE_IDS_PER_REQUEST = 10
@@ -15,15 +18,12 @@ FACEBOOK_API_FIELDS = [
     "ad_creative_link_title",
     "ad_delivery_start_time",
     "ad_delivery_stop_time",
-    "ad_snapshot_url",
     "currency",
     "demographic_distribution",
     "funding_entity",
     "impressions",
     "page_id",
-    "page_name",
     "potential_reach",
-    "publisher_platforms",
     "region_distribution",
     "spend",
 ]
@@ -41,8 +41,8 @@ FACEBOOK_API_URL = (
 )
 
 DATETIME_FORMAT = "%Y-%m-%d"
-FIRST_DATE = datetime(year=2020, month=1, day=1)
-DATES = [date for date in (FIRST_DATE + timedelta(days=n) for n in range((datetime.today() - FIRST_DATE).days + 1))]
+FIRST_DATE = date(year=2020, month=1, day=1)
+NUMBER_OF_DATES = (date.today() - FIRST_DATE).days + 1
 
 CURRENCY_TO_EUR_MAP = {
     "EUR": 1,
@@ -70,33 +70,29 @@ PARTIES = [
     "VVD",
 ]
 
-FACEBOOK_REGION_TO_REGION_MAP = {
-    "Drenthe": "Drenthe",
-    "Friesland": "Friesland",
-    "Gelderland": "Gelderland",
-    "Groningen": "Groningen",
-    "Limburg": "Limburg",
-    "North Brabant": "Noord-Brabant",
-    "Noord-Brabant": "Noord-Brabant",
-    "Noord-Holland": "Noord-Holland",
-    "Utrecht": "Utrecht",
-    "Zeeland": "Zeeland",
-    "Zuid-Holland": "Zuid-Holland",
-    "Overijssel": "Overijssel",
-    "Flevoland": "Flevoland",
-}
-REGIONS = list(set(FACEBOOK_REGION_TO_REGION_MAP.values()))
+REGIONS = [
+    "Drenthe",
+    "Friesland",
+    "Gelderland",
+    "Groningen",
+    "Limburg",
+    "Noord-Brabant",
+    "Noord-Holland",
+    "Utrecht",
+    "Zeeland",
+    "Zuid-Holland",
+    "Overijssel",
+    "Flevoland",
+]
 
-FACEBOOK_GENDER_TO_GENDER_MAP = {"male": "Male", "female": "Female"}
-GENDERS = list(set(FACEBOOK_GENDER_TO_GENDER_MAP.values()))
+GENDERS = ["male", "female"]
 
-FACEBOOK_AGE_TO_AGE_MAP = {
-    "13-17": "13-17",
-    "18-24": "18-24",
-    "25-34": "25-34",
-    "35-44": "35-44",
-    "45-54": "45-54",
-    "55-64": "55-64",
-    "65+": "65+",
-}
-AGES = list(set(FACEBOOK_AGE_TO_AGE_MAP.values()))
+AGE_RANGES = [
+    "13-17",
+    "18-24",
+    "25-34",
+    "35-44",
+    "45-54",
+    "55-64",
+    "65+",
+]
