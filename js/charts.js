@@ -3,7 +3,7 @@ $(document).ready(function () {
         $("#last-updated").text(generalAdData["last-updated"]);
 
         // Add active ads line chart
-        let activeAdsLineChartConfig = generateLineGraphConfig("Ads Active over time", generalAdData, "active-ads-per-party-per-date");
+        let activeAdsLineChartConfig = generateLineGraphConfig("Ads Active over Time", generalAdData, "active-ads-per-party-per-date");
         new Chart($("#active-ads-over-time"), activeAdsLineChartConfig);
         $(".total-ads").text(generalAdData["ads-total"]);
 
@@ -12,7 +12,7 @@ $(document).ready(function () {
         new Chart($("#ads-per-party"), totalAdsBarChartConfig);
 
         // Add spending line chart
-        let spendingLineChartConfig = generateLineGraphConfig("Average (Estimated) Spending over time", generalAdData, "spending-per-party-per-date");
+        let spendingLineChartConfig = generateLineGraphConfig("Average (Estimated) Spending over Time", generalAdData, "spending-per-party-per-date");
         new Chart($("#spending-over-time-chart"), spendingLineChartConfig);
 
         // Add total ads bar chart
@@ -27,7 +27,7 @@ $(document).ready(function () {
         $("#most-expensive-ad-link").attr("href", $("#most-expensive-ad-link").attr("href") + generalAdData["most-expensive-ad"]["id"]);
 
         // Add impressions line chart
-        let impressionsLineChartConfig = generateLineGraphConfig("Average (Estimated) Impressions over time", generalAdData,"impressions-per-party-per-date");
+        let impressionsLineChartConfig = generateLineGraphConfig("Average (Estimated) Impressions over Time", generalAdData,"impressions-per-party-per-date");
         new Chart($("#impressions-over-time-chart"), impressionsLineChartConfig);
 
         // Add impressions bar chart
@@ -35,7 +35,7 @@ $(document).ready(function () {
         new Chart($("#impressions-per-party"), impressionsBarChartConfig);
 
         // Add potential reach line chart
-        let potentialReachLineChartConfig = generateLineGraphConfig("Average Potential Reach over time", generalAdData,"potential-reach-per-party-per-date");
+        let potentialReachLineChartConfig = generateLineGraphConfig("Average Potential Reach over Time", generalAdData,"potential-reach-per-party-per-date");
         potentialReachLineChartConfig.options.scales.xAxes[0].ticks.min = new Date("2020-03-31");
         new Chart($("#potential-reach-chart"), potentialReachLineChartConfig);
         $("#missing-potential-reach").text(generalAdData["ads-without-potential-reach"]);

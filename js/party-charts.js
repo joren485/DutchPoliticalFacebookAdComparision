@@ -50,7 +50,7 @@ $(document).ready(function () {
                 $("#" + datatypeDivChartsId).append(
                     `<div>
                     <div class="text-center">
-                        <h4>(Estimated) ${dataType} per ${labelType} (${party})</h4>
+                        <h4>(Estimated) ${dataType} per ${labelType}</h4>
                     </div>
                     
                     <div class="row">
@@ -75,14 +75,14 @@ $(document).ready(function () {
                 }
 
                 let lineChart = generateLineGraphConfig(
-                    "Average (Estimated) " + dataType + " per " + labelType + " over time (" + party + ")",
+                    "Average (Estimated) " + dataType + " per " + labelType + " over Time",
                     partyAdData,
                     dataTypeLowerCase + "-per-" + labelTypeLowerCase + "-per-date",
                     labels);
                 new Chart($("#" + LineChartCanvasId), lineChart);
 
                 let barChart = generateBarChart(
-                    "Total (Estimated) " + dataType + " per " + labelType + " (" + party + ")",
+                    "Total (Estimated) " + dataType + " per " + labelType + "",
                     partyAdData,
                     dataTypeLowerCase + "-per-" + labelTypeLowerCase,
                     labels);
