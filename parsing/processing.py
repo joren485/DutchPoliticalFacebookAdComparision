@@ -1,9 +1,18 @@
 import json
+import logging
 
 from datetime import datetime
 
 from models import Ad
 from constants import FIRST_DATE, PARTIES, DATETIME_FORMAT, REGIONS, GENDERS, AGE_RANGES, NUMBER_OF_DATES
+
+LOGGER = logging.getLogger(__name__)
+
+logging.basicConfig(
+    format="[%(asctime)s] %(levelname)s: %(message)s",
+    level=logging.INFO,
+    datefmt="%Y-%m-%d %H:%M:%S",
+)
 
 
 def round_list(l, precision=2):
@@ -72,6 +81,7 @@ party_specific_output_data = {
 }
 
 for party_index, party in enumerate(PARTIES):
+    LOGGER.info(f"Processing {len(ads_per_party[party])} ads for {party}.")
     for ad in ads_per_party[party]:
 
         for gender_index, gender in enumerate(GENDERS):
