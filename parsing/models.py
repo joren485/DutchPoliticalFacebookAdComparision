@@ -1,6 +1,15 @@
-from peewee import *
-
 from datetime import date, timedelta
+
+from peewee import (
+    Model,
+    SqliteDatabase,
+    CharField,
+    TextField,
+    DateField,
+    FixedCharField,
+    IntegerField,
+    FloatField,
+)
 
 from constants import LOCAL_AD_ARCHIVE_PATH, FIRST_DATE, GENDERS, REGIONS, AGE_RANGES
 
