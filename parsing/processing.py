@@ -123,27 +123,27 @@ for party_index, party in enumerate(PARTIES):
                 party_specific_output_data[party]["impressions-per-region-per-date"][region_index][date_index] += ad.average_impressions_per_day * percentage
 
     round_list(general_output_data["spending-per-party-per-date"][party_index])
-    round_list(general_output_data["impressions-per-party-per-date"][party_index])
-    round_list(general_output_data["spending-per-party-per-date"][party_index])
+    round_list(general_output_data["impressions-per-party-per-date"][party_index], 0)
+    round_list(general_output_data["potential-reach-per-party-per-date"][party_index], 0)
 
     round_list(party_specific_output_data[party]["spending-per-gender"])
     round_list(party_specific_output_data[party]["spending-per-age"])
     round_list(party_specific_output_data[party]["spending-per-region"])
-    round_list(party_specific_output_data[party]["impressions-per-gender"])
-    round_list(party_specific_output_data[party]["impressions-per-age"])
-    round_list(party_specific_output_data[party]["impressions-per-region"])
+    round_list(party_specific_output_data[party]["impressions-per-gender"], 0)
+    round_list(party_specific_output_data[party]["impressions-per-age"], 0)
+    round_list(party_specific_output_data[party]["impressions-per-region"], 0)
 
     for i in range(len(GENDERS)):
         round_list(party_specific_output_data[party]["spending-per-gender-per-date"][i])
-        round_list(party_specific_output_data[party]["impressions-per-gender-per-date"][i])
+        round_list(party_specific_output_data[party]["impressions-per-gender-per-date"][i], 0)
 
     for i in range(len(AGE_RANGES)):
         round_list(party_specific_output_data[party]["spending-per-age-per-date"][i])
-        round_list(party_specific_output_data[party]["impressions-per-age-per-date"][i])
+        round_list(party_specific_output_data[party]["impressions-per-age-per-date"][i], 0)
 
     for i in range(len(REGIONS)):
         round_list(party_specific_output_data[party]["spending-per-region-per-date"][i])
-        round_list(party_specific_output_data[party]["impressions-per-region-per-date"][i])
+        round_list(party_specific_output_data[party]["impressions-per-region-per-date"][i], 0)
 
 
 with open("../data/parsed_data/general-data.json", "w") as h_general_data:
