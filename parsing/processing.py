@@ -15,9 +15,16 @@ logging.basicConfig(
 )
 
 
-def round_list(l, precision=2):
-    for i, e in enumerate(l):
-        l[i] = round(e, precision)
+def recursive_round(o, precision=0):
+    if isinstance(o, dict):
+        for key in o:
+            recursive_round(o[key], 2 if "spend" in key else precision)
+    elif isinstance(o, list) and isinstance(o[0], (list, dict)):
+        for object_element in o:
+            recursive_round(object_element, precision)
+    elif isinstance(o, list) and isinstance(o[0], (int, float)):
+        for object_index, object_element in enumerate(o):
+            o[object_index] = round(object_element, precision)
 
 
 ads = list(Ad.select().where(Ad.start_date >= FIRST_DATE))
@@ -44,7 +51,7 @@ general_output_data = {
     "most-expensive-ad": {
         "id": most_expensive_ad.ad_id,
         "party": most_expensive_ad.party,
-        "cost": most_expensive_ad.average_spending_per_day,
+        "spend-per-day": most_expensive_ad.average_spending_per_day,
         "days": most_expensive_ad.days_active,
     },
     "active-ads-per-party-per-date": [[0 for _ in range(NUMBER_OF_DATES)] for p in PARTIES],
@@ -108,29 +115,8 @@ for party_index, party in enumerate(PARTIES):
                     party_specific_output_data[party][f"spending-per-{distribution}-per-date"][distribution_type_index][date_index] += ad.average_spending_per_day * percentage
                     party_specific_output_data[party][f"impressions-per-{distribution}-per-date"][distribution_type_index][date_index] += ad.average_impressions_per_day * percentage
 
-    round_list(general_output_data["spending-per-party-per-date"][party_index])
-    round_list(general_output_data["impressions-per-party-per-date"][party_index], 0)
-    round_list(general_output_data["potential-reach-per-party-per-date"][party_index], 0)
-
-    round_list(party_specific_output_data[party]["spending-per-gender"])
-    round_list(party_specific_output_data[party]["spending-per-age"])
-    round_list(party_specific_output_data[party]["spending-per-region"])
-    round_list(party_specific_output_data[party]["impressions-per-gender"], 0)
-    round_list(party_specific_output_data[party]["impressions-per-age"], 0)
-    round_list(party_specific_output_data[party]["impressions-per-region"], 0)
-
-    for i in range(len(GENDERS)):
-        round_list(party_specific_output_data[party]["spending-per-gender-per-date"][i])
-        round_list(party_specific_output_data[party]["impressions-per-gender-per-date"][i], 0)
-
-    for i in range(len(AGE_RANGES)):
-        round_list(party_specific_output_data[party]["spending-per-age-per-date"][i])
-        round_list(party_specific_output_data[party]["impressions-per-age-per-date"][i], 0)
-
-    for i in range(len(REGIONS)):
-        round_list(party_specific_output_data[party]["spending-per-region-per-date"][i])
-        round_list(party_specific_output_data[party]["impressions-per-region-per-date"][i], 0)
-
+recursive_round(general_output_data)
+recursive_round(party_specific_output_data)
 
 with open("../data/parsed_data/general-data.json", "w") as h_general_data:
     json.dump(general_output_data, h_general_data)
