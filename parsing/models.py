@@ -80,10 +80,6 @@ class Ad(Model):
                 self.start_date + timedelta(days=date_offset),
             )
 
-    def active_on_date(self, date):
-        end_date = self.end_date or date.today()
-        return self.start_date <= date <= end_date
-
     @staticmethod
     def distribution_type_to_field_name(distribution_type: str):
         slug = distribution_type.lower().replace("-", "_").replace("+", "")
