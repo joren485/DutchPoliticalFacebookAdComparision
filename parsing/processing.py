@@ -84,26 +84,15 @@ for party_index, party in enumerate(PARTIES):
     LOGGER.info(f"Processing {len(ads_per_party[party])} ads for {party}.")
     for ad in ads_per_party[party]:
 
-        for gender_index, gender in enumerate(GENDERS):
-            field_name = Ad.distribution_type_to_field_name(gender)
-            percentage = getattr(ad, field_name)
+        for distribution, distribution_list in (("gender", GENDERS),
+                                                ("age", AGE_RANGES),
+                                                ("region", REGIONS),):
+            for distribution_type_index, distribution_type in enumerate(distribution_list):
+                field_name = Ad.distribution_type_to_field_name(distribution_type)
+                percentage = getattr(ad, field_name)
 
-            party_specific_output_data[party]["spending-per-gender"][gender_index] += ad.spending_average * percentage
-            party_specific_output_data[party]["impressions-per-gender"][gender_index] += ad.impressions_average * percentage
-
-        for age_range_index, age_range in enumerate(AGE_RANGES):
-            field_name = Ad.distribution_type_to_field_name(age_range)
-            percentage = getattr(ad, field_name)
-
-            party_specific_output_data[party]["spending-per-age"][age_range_index] += ad.spending_average * percentage
-            party_specific_output_data[party]["impressions-per-age"][age_range_index] += ad.impressions_average * percentage
-
-        for region_index, region in enumerate(REGIONS):
-            field_name = Ad.distribution_type_to_field_name(region)
-            percentage = getattr(ad, field_name)
-
-            party_specific_output_data[party]["spending-per-region"][region_index] += ad.spending_average * percentage
-            party_specific_output_data[party]["impressions-per-region"][region_index] += ad.impressions_average * percentage
+                party_specific_output_data[party][f"spending-per-{distribution}"][distribution_type_index] += ad.spending_average * percentage
+                party_specific_output_data[party][f"impressions-per-{distribution}"][distribution_type_index] += ad.impressions_average * percentage
 
         for date_index, date in ad.dates_active():
             general_output_data["active-ads-per-party-per-date"][party_index][date_index] += 1
@@ -111,26 +100,15 @@ for party_index, party in enumerate(PARTIES):
             general_output_data["impressions-per-party-per-date"][party_index][date_index] += ad.average_impressions_per_day
             general_output_data["potential-reach-per-party-per-date"][party_index][date_index] += ad.average_potential_reach_per_day
 
-            for gender_index, gender in enumerate(GENDERS):
-                field_name = Ad.distribution_type_to_field_name(gender)
-                percentage = getattr(ad, field_name)
+            for distribution, distribution_list in (("gender", GENDERS),
+                                                    ("age", AGE_RANGES),
+                                                    ("region", REGIONS),):
+                for distribution_type_index, distribution_type in enumerate(distribution_list):
+                    field_name = Ad.distribution_type_to_field_name(distribution_type)
+                    percentage = getattr(ad, field_name)
 
-                party_specific_output_data[party]["spending-per-gender-per-date"][gender_index][date_index] += ad.average_spending_per_day * percentage
-                party_specific_output_data[party]["impressions-per-gender-per-date"][gender_index][date_index] += ad.average_impressions_per_day * percentage
-
-            for age_range_index, age_range in enumerate(AGE_RANGES):
-                field_name = Ad.distribution_type_to_field_name(age_range)
-                percentage = getattr(ad, field_name)
-
-                party_specific_output_data[party]["spending-per-age-per-date"][age_range_index][date_index] += ad.average_spending_per_day * percentage
-                party_specific_output_data[party]["impressions-per-age-per-date"][age_range_index][date_index] += ad.average_impressions_per_day * percentage
-
-            for region_index, region in enumerate(REGIONS):
-                field_name = Ad.distribution_type_to_field_name(region)
-                percentage = getattr(ad, field_name)
-
-                party_specific_output_data[party]["spending-per-region-per-date"][region_index][date_index] += ad.average_spending_per_day * percentage
-                party_specific_output_data[party]["impressions-per-region-per-date"][region_index][date_index] += ad.average_impressions_per_day * percentage
+                    party_specific_output_data[party][f"spending-per-{distribution}-per-date"][distribution_type_index][date_index] += ad.average_spending_per_day * percentage
+                    party_specific_output_data[party][f"impressions-per-{distribution}-per-date"][distribution_type_index][date_index] += ad.average_impressions_per_day * percentage
 
     round_list(general_output_data["spending-per-party-per-date"][party_index])
     round_list(general_output_data["impressions-per-party-per-date"][party_index], 0)
