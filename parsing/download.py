@@ -27,7 +27,7 @@ logging.basicConfig(
 )
 
 
-def download_ads(api_url, party):
+def download_ads(api_url, current_party):
     response = requests.get(api_url)
     response_data = response.json()
 
@@ -36,14 +36,14 @@ def download_ads(api_url, party):
         return
 
     if len(response_data["data"]) > 0:
-        LOGGER.info(f"Got {len(response_data['data'])} ads ({party})")
+        LOGGER.info(f"Got {len(response_data['data'])} ads ({current_party})")
         Ad.insert_many(
-            json_to_ad_dict(ad, party) for ad in response_data["data"]
+            json_to_ad_dict(ad, current_party) for ad in response_data["data"]
         ).on_conflict_replace().execute()
 
     if "paging" in response_data:
         LOGGER.info("Got paged ads")
-        download_ads(response_data["paging"]["next"], party)
+        download_ads(response_data["paging"]["next"], current_party)
 
 
 def parse_facebook_page_ids(parties):
