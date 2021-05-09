@@ -42,6 +42,7 @@ def download_ads(api_url, party):
         ).on_conflict_replace().execute()
 
     if "paging" in response_data:
+        LOGGER.info("Got paged ads")
         download_ads(response_data["paging"]["next"], party)
 
 
