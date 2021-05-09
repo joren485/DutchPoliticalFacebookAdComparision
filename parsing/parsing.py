@@ -1,10 +1,9 @@
 import logging
-
 from datetime import datetime
-
 from decimal import Decimal
 
-from constants import DATETIME_FORMAT, REGIONS, AGE_RANGES, GENDERS
+from constants import AGE_RANGES, DATETIME_FORMAT, GENDERS, REGIONS
+
 from models import Ad
 
 LOGGER = logging.getLogger(__name__)

@@ -1,17 +1,17 @@
 from datetime import date, timedelta
 
 from peewee import (
-    Model,
-    SqliteDatabase,
     CharField,
-    TextField,
     DateField,
     FixedCharField,
-    IntegerField,
     FloatField,
+    IntegerField,
+    Model,
+    SqliteDatabase,
+    TextField,
 )
 
-from constants import LOCAL_AD_ARCHIVE_PATH, FIRST_DATE, GENDERS, REGIONS, AGE_RANGES
+from constants import AGE_RANGES, FIRST_DATE, GENDERS, LOCAL_AD_ARCHIVE_PATH, REGIONS
 
 database_handler = SqliteDatabase(LOCAL_AD_ARCHIVE_PATH)
 

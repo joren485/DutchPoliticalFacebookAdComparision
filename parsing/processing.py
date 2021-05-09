@@ -1,10 +1,10 @@
 import json
 import logging
-
 from datetime import datetime
 
+from constants import AGE_RANGES, DATETIME_FORMAT, FIRST_DATE, GENDERS, NUMBER_OF_DATES, PARTIES, REGIONS
+
 from models import Ad
-from constants import FIRST_DATE, PARTIES, DATETIME_FORMAT, REGIONS, GENDERS, AGE_RANGES, NUMBER_OF_DATES
 
 LOGGER = logging.getLogger(__name__)
 

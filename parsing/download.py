@@ -1,17 +1,16 @@
-import csv
 import argparse
-import logging
+import csv
 import json
+import logging
+from datetime import date, timedelta
 
 import requests
 
-from datetime import date, timedelta
-
 from constants import (
-    PARTIES,
-    MAX_PAGE_IDS_PER_REQUEST,
-    FACEBOOK_API_URL,
     DATETIME_FORMAT,
+    FACEBOOK_API_URL,
+    MAX_PAGE_IDS_PER_REQUEST,
+    PARTIES,
 )
 
 from models import Ad

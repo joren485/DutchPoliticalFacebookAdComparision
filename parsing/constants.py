@@ -1,5 +1,4 @@
 import os
-
 from datetime import date
 
 LOCAL_AD_ARCHIVE_PATH = "../data/local_ad_archive.sqlite"
