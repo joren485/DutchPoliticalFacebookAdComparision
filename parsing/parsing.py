@@ -1,6 +1,7 @@
 import logging
 from datetime import datetime
 from decimal import Decimal
+from typing import Tuple, Optional
 
 from constants import AGE_RANGES, DATETIME_FORMAT, GENDERS, REGIONS
 
@@ -9,11 +10,11 @@ from models import Ad
 LOGGER = logging.getLogger(__name__)
 
 
-def _parse_date(data, key):
+def _parse_date(data: dict, key: str) -> Optional[datetime]:
     return datetime.strptime(data[key], DATETIME_FORMAT) if key in data else None
 
 
-def _parse_estimated_value(data, key):
+def _parse_estimated_value(data: dict, key: str) -> Tuple[int, int]:
     if key not in data:
         return 0, 0
 
@@ -22,7 +23,14 @@ def _parse_estimated_value(data, key):
     return lower, upper
 
 
-def json_to_ad_dict(ad_json_data, party):
+def json_to_ad_dict(ad_json_data: dict, party: str) -> dict:
+    """
+    Transform a json object into an dictionary that corresponds with the Ad model.
+
+    :param ad_json_data: Json object representing an ad from the Facebook API.
+    :param party: Current party to parse.
+    :return: A dict corresponds with the Ad model.
+    """
     spending_lower, spending_upper = _parse_estimated_value(ad_json_data, "spend")
     impressions_lower, impressions_upper = _parse_estimated_value(
         ad_json_data, "impressions"

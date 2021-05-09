@@ -1,6 +1,7 @@
 import json
 import logging
 from datetime import datetime
+from typing import Union
 
 from constants import AGE_RANGES, DATETIME_FORMAT, FIRST_DATE, GENDERS, NUMBER_OF_DATES, PARTIES, REGIONS
 
@@ -15,7 +16,13 @@ logging.basicConfig(
 )
 
 
-def recursive_round(o, precision=0):
+def recursive_round(o: Union[dict, list], precision: int = 0):
+    """
+    Traverses an object recursively and rounds numbers found in lists.
+
+    :param o: Object to round recursively.
+    :param precision: Precision to use when rounding
+    """
     if isinstance(o, dict):
         for key in o:
             recursive_round(o[key], 2 if "spend" in key else precision)

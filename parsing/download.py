@@ -3,6 +3,7 @@ import csv
 import json
 import logging
 from datetime import date, timedelta
+from typing import List
 
 import requests
 
@@ -26,7 +27,16 @@ logging.basicConfig(
 )
 
 
-def download_ads(api_url, current_party):
+def download_ads(api_url: str, current_party: str) -> None:
+    """
+    Request ads from the Facebook Ad Library API.
+
+    Parse and write all found ads.
+    If the request returns a paging url, a recursive call is made to follow that url.
+
+    :param api_url: The url to request.
+    :param current_party: The party we are requesting ads for.
+    """
     response = requests.get(api_url)
     response_data = response.json()
 
@@ -45,7 +55,13 @@ def download_ads(api_url, current_party):
         download_ads(response_data["paging"]["next"], current_party)
 
 
-def parse_facebook_page_ids(parties):
+def parse_facebook_page_ids(parties: List[str]) -> dict[str, List[str]]:
+    """
+    Create a map from parties to Facebook page ids from facebook_page_ids.csv.
+
+    :param parties: The parties to put in the map
+    :return: A dict that maps a party to a list of their Facebook page ids.
+    """
     page_ids_dict = {p: [] for p in parties}
     with open("../data/facebook_page_ids.csv") as h_page_ids:
         reader = csv.DictReader(h_page_ids)
@@ -59,14 +75,6 @@ def parse_facebook_page_ids(parties):
             page_ids_dict[row["Party"]].append(row["Page ID"])
 
     return page_ids_dict
-
-
-def parse_existing_ad_ids(path):
-    try:
-        with open(path) as h_ids_file:
-            return [json.loads(line)["id"] for line in h_ids_file.readlines()]
-    except FileNotFoundError:
-        return []
 
 
 if __name__ == "__main__":
