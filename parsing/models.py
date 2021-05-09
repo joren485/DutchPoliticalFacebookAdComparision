@@ -25,7 +25,7 @@ class Ad(Model):
 
         database = database_handler
 
-    ad_id = CharField()
+    ad_id = CharField(unique=True)
     page_id = CharField()
     party = CharField()
 
