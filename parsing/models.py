@@ -1,5 +1,4 @@
-from datetime import date, timedelta
-from typing import Tuple
+from datetime import date
 
 from peewee import (
     CharField,
@@ -89,14 +88,11 @@ class Ad(Model):
         """Return the average potential reach for every day this ad is/was active."""
         return self.average_potential_reach / self.days_active
 
-    def dates_active(self) -> Tuple[int, date]:
+    def active_date_indices(self) -> int:
         """Yield dates and indexes that this ad is/was active."""
         start_date_index = (self.start_date - FIRST_DATE).days
         for date_offset in range(self.days_active):
-            yield (
-                start_date_index + date_offset,
-                self.start_date + timedelta(days=date_offset),
-            )
+            yield start_date_index + date_offset
 
     @staticmethod
     def distribution_type_to_field_name(distribution_type: str) -> str:

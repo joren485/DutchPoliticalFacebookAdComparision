@@ -106,7 +106,7 @@ for party_index, party in enumerate(PARTIES):
                 party_specific_output_data[party][f"spending-per-{distribution}"][distribution_type_index] += ad.spending_average * percentage
                 party_specific_output_data[party][f"impressions-per-{distribution}"][distribution_type_index] += ad.impressions_average * percentage
 
-        for date_index, date in ad.dates_active():
+        for date_index in ad.active_date_indices():
             general_output_data["active-ads-per-party-per-date"][party_index][date_index] += 1
             general_output_data["spending-per-party-per-date"][party_index][date_index] += ad.average_spending_per_day
             general_output_data["impressions-per-party-per-date"][party_index][date_index] += ad.average_impressions_per_day
