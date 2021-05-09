@@ -57,7 +57,7 @@ class Ad(Model):
     @property
     def has_potential_reach(self) -> bool:
         """Return whether potential reach data is available for this ad."""
-        return self.potential_reach_lower is not None
+        return self.potential_reach_lower > 0
 
     @property
     def spending_average(self) -> float:
