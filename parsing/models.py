@@ -34,10 +34,10 @@ class Ad(Model):
     start_date = DateField()
     end_date = DateField(null=True)
 
-    creative_body = TextField(null=True)
-    creative_link_caption = CharField(null=True)
-    creative_link_description = TextField(null=True)
-    creative_link_title = CharField(null=True)
+    creative_body = TextField()
+    creative_link_caption = CharField()
+    creative_link_description = TextField()
+    creative_link_title = CharField()
 
     currency = FixedCharField(max_length=3)
     spending_lower = IntegerField()
