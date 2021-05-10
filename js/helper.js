@@ -114,14 +114,14 @@ function generateLineGraphConfig(title, data, key, labels=PARTIES) {
         callbacks: {
             label: function (tooltipItems, data) {
                 let percentage = percentageLineGraph(tooltipItems, data);
-                return data.datasets[tooltipItems.datasetIndex].label + ": " + tooltipItems.yLabel.toFixed(2) + " (" + percentage + "%)";
+                return data.datasets[tooltipItems.datasetIndex].label + ": " + tooltipItems.yLabel + " (" + percentage + "%)";
             },
         },
     };
     if (key.toLowerCase().includes("spending")) {
 
         scales.yAxes[0].ticks.callback = function (value, index, values) {
-                return "€" + value.toFixed(2).toString();
+                return "€" + value;
         };
         tooltips.callbacks.label = function (tooltipItems, data) {
             let percentage = percentageLineGraph(tooltipItems, data);
@@ -205,14 +205,14 @@ function generateBarChart(title, data, key, labels= PARTIES) {
                 let value = dataset.data[tooltipItems.index];
 
                 let percentage = percentageBarGraph(tooltipItems, data);
-                return value.toFixed(2) + " (" + percentage + "%)";
+                return value + " (" + percentage + "%)";
             },
         },
     };
 
     if (key.toLowerCase().includes("spending")) {
         scales.xAxes[0].ticks.callback = function (value, index, values) {
-                return "€" + value.toFixed(2).toString();
+                return "€" + value;
         };
 
         tooltips.callbacks.label = function (tooltipItems, data) {
