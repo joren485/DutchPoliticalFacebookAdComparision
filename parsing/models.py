@@ -1,5 +1,7 @@
 from datetime import date
 
+from functools import cached_property
+
 from peewee import (
     CharField,
     DateField,
@@ -47,43 +49,43 @@ class Ad(Model):
     potential_reach_lower = IntegerField()
     potential_reach_upper = IntegerField()
 
-    @property
+    @cached_property
     def days_active(self) -> int:
         """Return the amount of days this ad is/was active."""
         end_date = self.end_date or date.today()
         return 1 + (end_date - self.start_date).days
 
-    @property
+    @cached_property
     def has_potential_reach(self) -> bool:
         """Return whether potential reach data is available for this ad."""
         return self.potential_reach_lower > 0
 
-    @property
+    @cached_property
     def spending_average(self) -> float:
         """Return the average of the spending range given for this ad."""
         return (self.spending_lower + self.spending_upper) / 2
 
-    @property
+    @cached_property
     def impressions_average(self) -> float:
         """Return the average of the impressions range given for this ad."""
         return (self.impressions_lower + self.impressions_upper) / 2
 
-    @property
+    @cached_property
     def average_potential_reach(self) -> float:
         """Return the average of the potential reach range given for this ad."""
         return (self.potential_reach_lower + self.potential_reach_upper) / 2
 
-    @property
+    @cached_property
     def average_spending_per_day(self) -> float:
         """Return the average spending for every day this ad is/was active."""
         return self.spending_average / self.days_active
 
-    @property
+    @cached_property
     def average_impressions_per_day(self) -> float:
         """Return the average impressions for every day this ad is/was active."""
         return self.impressions_average / self.days_active
 
-    @property
+    @cached_property
     def average_potential_reach_per_day(self) -> float:
         """Return the average potential reach for every day this ad is/was active."""
         return self.average_potential_reach / self.days_active
