@@ -95,25 +95,25 @@ class Ad(Model):
             yield start_date_index + date_offset
 
     @staticmethod
-    def distribution_type_to_field_name(distribution_type: str) -> str:
+    def demographic_to_field_name(demographic: str) -> str:
         """
-        Map distribution types (male or 65+) to field names of the Ad model.
+        Map demographics (e.g. male or 65+) to field names of the Ad model.
 
-        :param distribution_type: A string (e.g. male or 65+).
+        :param demographic: A string (e.g. male or 65+).
         :return: A field name.
         """
-        slug = distribution_type.lower().replace("-", "_").replace("+", "")
-        if distribution_type in GENDERS:
-            return f"gender_distribution_{slug}"
-        elif distribution_type in AGE_RANGES:
-            return f"age_distribution_{slug}"
-        elif distribution_type in REGIONS:
-            return f"region_distribution_{slug}"
+        slug = demographic.lower().replace("-", "_").replace("+", "")
+        if demographic in GENDERS:
+            return f"gender_demographic_{slug}"
+        elif demographic in AGE_RANGES:
+            return f"age_demographic_{slug}"
+        elif demographic in REGIONS:
+            return f"region_demographic_{slug}"
 
-        raise ValueError(f"Unknown type: {distribution_type}")
+        raise ValueError(f"Unknown type: {demographic}")
 
 
 for dt in GENDERS + REGIONS + AGE_RANGES:
-    Ad._meta.add_field(Ad.distribution_type_to_field_name(dt), FloatField(default=0))
+    Ad._meta.add_field(Ad.demographic_to_field_name(dt), FloatField(default=0))
 
 database_handler.create_tables([Ad])

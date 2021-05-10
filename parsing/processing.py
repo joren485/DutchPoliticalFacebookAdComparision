@@ -3,7 +3,15 @@ import logging
 from datetime import datetime
 from typing import Union
 
-from constants import AGE_RANGES, DATETIME_FORMAT, FIRST_DATE, GENDERS, NUMBER_OF_DATES, PARTIES, REGIONS
+from constants import (
+    AGE_RANGES,
+    DATETIME_FORMAT,
+    FIRST_DATE,
+    GENDERS,
+    NUMBER_OF_DATES,
+    PARTIES,
+    REGIONS,
+)
 
 from models import Ad
 
@@ -92,35 +100,60 @@ party_specific_output_data = {
     for party in PARTIES
 }
 
-for party_index, party in enumerate(PARTIES):
+for party_i, party in enumerate(PARTIES):
     LOGGER.info(f"Processing {len(ads_per_party[party])} ads for {party}.")
     for ad in ads_per_party[party]:
 
-        for distribution, distribution_list in (("gender", GENDERS),
-                                                ("age", AGE_RANGES),
-                                                ("region", REGIONS),):
-            for distribution_type_index, distribution_type in enumerate(distribution_list):
-                field_name = Ad.distribution_type_to_field_name(distribution_type)
+        for demographic_type, demographic_list in (
+            ("gender", GENDERS),
+            ("age", AGE_RANGES),
+            ("region", REGIONS),
+        ):
+            for demographic_i, demographic in enumerate(demographic_list):
+                field_name = Ad.demographic_to_field_name(demographic)
                 percentage = getattr(ad, field_name)
 
-                party_specific_output_data[party][f"spending-per-{distribution}"][distribution_type_index] += ad.spending_average * percentage
-                party_specific_output_data[party][f"impressions-per-{distribution}"][distribution_type_index] += ad.impressions_average * percentage
+                party_specific_output_data[party][f"spending-per-{demographic_type}"][
+                    demographic_i
+                ] += (ad.spending_average * percentage)
 
-        for date_index in ad.active_date_indices():
-            general_output_data["active-ads-per-party-per-date"][party_index][date_index] += 1
-            general_output_data["spending-per-party-per-date"][party_index][date_index] += ad.average_spending_per_day
-            general_output_data["impressions-per-party-per-date"][party_index][date_index] += ad.average_impressions_per_day
-            general_output_data["potential-reach-per-party-per-date"][party_index][date_index] += ad.average_potential_reach_per_day
+                party_specific_output_data[party][f"impressions-per-{demographic_type}"][
+                    demographic_i
+                ] += (ad.impressions_average * percentage)
 
-            for distribution, distribution_list in (("gender", GENDERS),
-                                                    ("age", AGE_RANGES),
-                                                    ("region", REGIONS),):
-                for distribution_type_index, distribution_type in enumerate(distribution_list):
-                    field_name = Ad.distribution_type_to_field_name(distribution_type)
+        for date_i in ad.active_date_indices():
+            general_output_data["active-ads-per-party-per-date"][party_i][date_i] += 1
+            general_output_data["spending-per-party-per-date"][party_i][
+                date_i
+            ] += ad.average_spending_per_day
+            general_output_data["impressions-per-party-per-date"][party_i][
+                date_i
+            ] += ad.average_impressions_per_day
+            general_output_data["potential-reach-per-party-per-date"][party_i][
+                date_i
+            ] += ad.average_potential_reach_per_day
+
+            for demographic_type, demographic_list in (
+                ("gender", GENDERS),
+                ("age", AGE_RANGES),
+                ("region", REGIONS),
+            ):
+                for demographic_i, demographic in enumerate(
+                    demographic_list
+                ):
+                    field_name = Ad.demographic_to_field_name(demographic)
                     percentage = getattr(ad, field_name)
 
-                    party_specific_output_data[party][f"spending-per-{distribution}-per-date"][distribution_type_index][date_index] += ad.average_spending_per_day * percentage
-                    party_specific_output_data[party][f"impressions-per-{distribution}-per-date"][distribution_type_index][date_index] += ad.average_impressions_per_day * percentage
+                    party_specific_output_data[party][
+                        f"spending-per-{demographic_type}-per-date"
+                    ][demographic_i][date_i] += (
+                        ad.average_spending_per_day * percentage
+                    )
+                    party_specific_output_data[party][
+                        f"impressions-per-{demographic_type}-per-date"
+                    ][demographic_i][date_i] += (
+                        ad.average_impressions_per_day * percentage
+                    )
 
 recursive_round(general_output_data)
 recursive_round(party_specific_output_data)

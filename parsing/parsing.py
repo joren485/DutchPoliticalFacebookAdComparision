@@ -67,7 +67,7 @@ def json_to_ad_dict(ad_json_data: dict, party: str) -> dict:
                 region = "Noord-Brabant"
 
             if region in REGIONS:
-                field_name = Ad.distribution_type_to_field_name(region)
+                field_name = Ad.demographic_to_field_name(region)
                 ad_dict[field_name] = percentage
             else:
                 if region not in ("unknown", "Unknown"):
@@ -76,15 +76,15 @@ def json_to_ad_dict(ad_json_data: dict, party: str) -> dict:
     if "demographic_distribution" in ad_json_data:
         for distribution in ad_json_data["demographic_distribution"]:
             percentage = Decimal(distribution["percentage"])
-            for distribution_type in (distribution["gender"], distribution["age"]):
-                if distribution_type in GENDERS or distribution_type in AGE_RANGES:
-                    field_name = Ad.distribution_type_to_field_name(distribution_type)
+            for demographic in (distribution["gender"], distribution["age"]):
+                if demographic in GENDERS or demographic in AGE_RANGES:
+                    field_name = Ad.demographic_to_field_name(demographic)
                     if field_name not in ad_dict:
                         ad_dict[field_name] = percentage
                     else:
                         ad_dict[field_name] += percentage
                 else:
-                    if distribution_type not in ("unknown", "Unknown"):
-                        LOGGER.info(f"Unknown: {distribution_type} ({percentage})")
+                    if demographic not in ("unknown", "Unknown"):
+                        LOGGER.info(f"Unknown: {demographic} ({percentage})")
 
     return ad_dict
