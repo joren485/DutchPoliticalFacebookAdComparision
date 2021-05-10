@@ -21,7 +21,7 @@ $(document).ready(function () {
 
         $("#spending-total-lower").text("€" + generalAdData["spending-total-range"][0]);
         $("#spending-total-upper").text("€" + generalAdData["spending-total-range"][1]);
-        $("#most-expensive-ad-cost").text("€" + generalAdData["most-expensive-ad"]["spend-per-day"]);
+        $("#most-expensive-ad-cost").text("€" + generalAdData["most-expensive-ad"]["spend-per-day"].toFixed(2));
         $("#most-expensive-ad-party").text(generalAdData["most-expensive-ad"]["party"]);
         $("#most-expensive-ad-days").text(generalAdData["most-expensive-ad"]["days"]);
         $("#most-expensive-ad-link").attr("href", $("#most-expensive-ad-link").attr("href") + generalAdData["most-expensive-ad"]["id"]);
