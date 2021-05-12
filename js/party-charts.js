@@ -82,7 +82,7 @@ $(document).ready(function () {
                 new Chart($("#" + LineChartCanvasId), lineChart);
 
                 let barChart = generateBarChart(
-                    "Total (Estimated) " + dataType + " per " + labelType + "",
+                    "Total (Estimated) " + dataType + " per " + labelType,
                     partyAdData,
                     dataTypeLowerCase + "-per-" + labelTypeLowerCase,
                     labels);
