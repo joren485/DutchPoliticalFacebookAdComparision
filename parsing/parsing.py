@@ -61,10 +61,10 @@ def json_to_ad_dict(ad_json_data: dict, party: str) -> dict:
 
     if "region_distribution" in ad_json_data:
         for distribution in ad_json_data["region_distribution"]:
-            region = distribution["region"]
+            region = distribution["region"].lower()
             percentage = Decimal(distribution["percentage"])
-            if region == "North Brabant":
-                region = "Noord-Brabant"
+            if region == "north brabant":
+                region = "noord-brabant"
 
             if region in REGIONS:
                 field_name = Ad.demographic_to_field_name(region)

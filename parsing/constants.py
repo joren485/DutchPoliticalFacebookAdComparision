@@ -70,18 +70,18 @@ PARTIES = [
 ]
 
 REGIONS = [
-    "Drenthe",
-    "Friesland",
-    "Gelderland",
-    "Groningen",
-    "Limburg",
-    "Noord-Brabant",
-    "Noord-Holland",
-    "Utrecht",
-    "Zeeland",
-    "Zuid-Holland",
-    "Overijssel",
-    "Flevoland",
+    "drenthe",
+    "flevoland",
+    "friesland",
+    "gelderland",
+    "groningen",
+    "limburg",
+    "noord-brabant",
+    "noord-holland",
+    "overijssel",
+    "utrecht",
+    "zeeland",
+    "zuid-holland",
 ]
 
 GENDERS = ["male", "female"]
