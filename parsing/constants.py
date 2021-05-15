@@ -54,7 +54,6 @@ PARTIES = [
     "BBB",
     "CDA",
     "CU",
-    "CO",
     "D66",
     "DENK",
     "FvD",
