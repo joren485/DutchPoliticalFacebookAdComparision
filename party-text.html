@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-zoom/0.7.7/chartjs-plugin-zoom.min.js"></script>
+
+    <script src="js/helper.js"></script>
+    <script src="js/party-text-charts.js"></script>
+
+    <meta charset="UTF-8">
+    <title>Dutch Political Facebook Ad Comparison</title>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="index.html">
+        Dutch Political Facebook Ad Comparison
+    </a>
+
+    <ul class="nav">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="general-charts-navbar-dropdown-button" role="button"
+               data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">
+                General Charts
+            </a>
+            <div class="dropdown-menu" aria-labelledby="general-charts-navbar-dropdown-button">
+                <a class="dropdown-item" href="index.html#active-ads">Active Ads</a>
+                <a class="dropdown-item" href="index.html#spending-charts">Spending</a>
+                <a class="dropdown-item" href="index.html#impressions-charts">Impressions</a>
+                <a class="dropdown-item" href="index.html#potential-reach-charts">Potential Reach</a>
+            </div>
+
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="party-specific-charts-navbar-dropdown-button" role="button"
+               data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">Party Specific Charts</a>
+            <div id="party-specific-charts-navbar-dropdown" class="dropdown-menu"
+                 aria-labelledby="party-specific-charts-navbar-dropdown-button"></div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="party-specific-text-charts-navbar-dropdown-button" role="button"
+               data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">Text Charts</a>
+            <div id="party-specific-text-charts-navbar-dropdown" class="dropdown-menu"
+                 aria-labelledby="party-specific-charts-navbar-dropdown-button"></div>
+        </li>
+        <li>
+            <a class="nav-link" href="about.html">About</a>
+        </li>
+    </ul>
+    <ul class="nav ml-auto">
+        <li class="nav-item">
+            <span class="nav-link">Last Updated: <span id="last-updated"></span></span>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="https://github.com/joren485/DutchPoliticalFacebookAdComparision">
+                <i class="fab fa-github"></i>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<div id="party-specific-text-charts" class="container-fluid pt-4"></div>
+
+</body>
+</html>

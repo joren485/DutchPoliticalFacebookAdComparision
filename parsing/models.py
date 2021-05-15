@@ -1,3 +1,5 @@
+import re
+
 from datetime import date
 
 from functools import cached_property
@@ -13,7 +15,16 @@ from peewee import (
     TextField,
 )
 
-from constants import AGE_RANGES, FIRST_DATE, GENDERS, LOCAL_AD_ARCHIVE_PATH, REGIONS
+from constants import (
+    AGE_RANGES,
+    FIRST_DATE,
+    GENDERS,
+    LOCAL_AD_ARCHIVE_PATH,
+    REGIONS,
+    IGNORED_WORDS,
+)
+
+PATTERN_NON_WORD_CHARS = re.compile(r"[^a-zA-Z0-9-' #]")
 
 database_handler = SqliteDatabase(LOCAL_AD_ARCHIVE_PATH)
 
@@ -113,6 +124,31 @@ class Ad(Model):
             return f"region_demographic_{slug}"
 
         raise ValueError(f"Unknown type: {demographic}")
+
+    @cached_property
+    def parsed_text(self):
+        text = PATTERN_NON_WORD_CHARS.sub(
+            " ", self.creative_body + " " + self.creative_link_description
+        )
+        text = text.lower()
+
+        return [
+            word
+            for word in text.split()
+            if len(word) > 3 and word not in IGNORED_WORDS
+        ]
+
+    def rank_to_data(self, rank: str):
+        data_type, demographic = rank.split("-", 1)
+
+        amount = 1 if data_type == "occurrences" else self.impressions_average
+        percentage = (
+            1
+            if demographic == "total"
+            else getattr(self, Ad.demographic_to_field_name(demographic))
+        )
+
+        return amount * percentage
 
 
 for dt in GENDERS + REGIONS + AGE_RANGES:

@@ -34,10 +34,10 @@ def recursive_round(o: Union[dict, list], precision: int = 0):
     if isinstance(o, dict):
         for key in o:
             recursive_round(o[key], 2 if "spend" in key else precision)
-    elif isinstance(o, list) and isinstance(o[0], (list, dict)):
+    elif isinstance(o, list) and len(o) > 0 and isinstance(o[0], (list, dict)):
         for object_element in o:
             recursive_round(object_element, precision)
-    elif isinstance(o, list) and isinstance(o[0], (int, float)):
+    elif isinstance(o, list) and len(o) > 0 and isinstance(o[0], (int, float)):
         for object_index, object_element in enumerate(o):
             o[object_index] = round(object_element, precision)
 
