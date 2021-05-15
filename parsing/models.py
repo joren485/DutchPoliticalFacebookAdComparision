@@ -82,7 +82,7 @@ class Ad(Model):
         return (self.impressions_lower + self.impressions_upper) / 2
 
     @cached_property
-    def average_potential_reach(self) -> float:
+    def potential_reach_average(self) -> float:
         """Return the average of the potential reach range given for this ad."""
         return (self.potential_reach_lower + self.potential_reach_upper) / 2
 
@@ -138,18 +138,21 @@ class Ad(Model):
             if len(word) > 3 and word not in IGNORED_WORDS
         ]
 
-    def rank_to_data(self, rank: str):
-        data_type, demographic = rank.split("-", 1)
+    def rank_to_data(self, data_type: str, demographic: str):
 
-        amount = 1 if data_type == "occurrences" else self.impressions_average
-        percentage = (
-            1
-            if demographic == "total"
-            else getattr(self, Ad.demographic_to_field_name(demographic))
-        )
+        if data_type == "occurrences":
+            return 1
+        elif data_type == "impressions":
+            amount = self.impressions_average
+        elif data_type == "potential-reach":
+            amount = self.potential_reach_average
+        else:
+            raise ValueError(f"Unknown data type: {data_type}")
 
-        return amount * percentage
+        if demographic == "total":
+            return amount
 
+        return amount * getattr(self, Ad.demographic_to_field_name(demographic))
 
 for dt in GENDERS + REGIONS + AGE_RANGES:
     Ad._meta.add_field(Ad.demographic_to_field_name(dt), FloatField(default=0))

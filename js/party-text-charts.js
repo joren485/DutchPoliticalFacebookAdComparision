@@ -41,8 +41,8 @@ $(document).ready(function () {
                  </div>`
             );
 
-            ["Occurrences", "Impressions"].forEach(function (dataType) {
-                let dataTypeSlug = dataType.toLowerCase()
+            ["Occurrences", "Impressions", "Potential Reach"].forEach(function (dataType) {
+                let dataTypeSlug = dataType.replace(" ", "-").toLowerCase()
                 let datatypeDivBarChartId = party + "-" + demographicSlug + "-" + dataTypeSlug + "-bar-chart"
 
                 $("#" + demographicChartsDivId).append(
@@ -52,7 +52,7 @@ $(document).ready(function () {
                      <hr>`
                 );
 
-                let key = dataType.toLowerCase() + "-" + demographic.toLowerCase();
+                let key = dataTypeSlug + "-" + demographic.toLowerCase();
 
                 let barChart = generateBarChart(
                     dataType,

@@ -5,7 +5,7 @@ from datetime import datetime
 
 from models import Ad
 
-from constants import FIRST_DATE, PARTIES, DATETIME_FORMAT, NUMBER_OF_DATES, GENDERS, AGE_RANGES, REGIONS
+from constants import FIRST_DATE, PARTIES, GENDERS, AGE_RANGES, REGIONS
 
 from collections import Counter
 
@@ -21,9 +21,9 @@ logging.basicConfig(
     datefmt="%Y-%m-%d %H:%M:%S",
 )
 
-RANKS = [f"{data_type}-{demographic.lower()}"
+RANKS = [(data_type, demographic.lower())
          for demographic in ["total"] + GENDERS + AGE_RANGES + REGIONS
-         for data_type in ("occurrences", "impressions")]
+         for data_type in ("occurrences", "impressions", "potential-reach")]
 
 party_data = {
     p: {
@@ -33,8 +33,8 @@ party_data = {
 }
 
 for p in PARTIES:
-    for r in RANKS:
-        party_data[p][r] = {
+    for data_type, demographic in RANKS:
+        party_data[p][f"{data_type}-{demographic}"] = {
             "labels": [],
             "data": [],
         }
@@ -44,17 +44,19 @@ ads_per_party = {p: [ad for ad in ads if ad.party == p] for p in PARTIES}
 
 for party in PARTIES:
 
-    for rank in RANKS:
-        LOGGER.info(f"{party}: {rank}")
+    for data_type, demographic in RANKS:
+        LOGGER.info(f"{party}: {data_type}-{demographic}")
 
         party_text_counter = Counter()
         for ad in ads_per_party[party]:
             for word in ad.parsed_text:
-                party_text_counter.update({word: ad.rank_to_data(rank)})
+                party_text_counter.update({word: ad.rank_to_data(data_type, demographic)})
 
         for word, occurrences in party_text_counter.most_common(NUMBER_OF_COMMON_WORDS):
-            party_data[party][rank]["labels"].append(word)
-            party_data[party][rank]["data"].append(occurrences)
+
+            if occurrences > 0:
+                party_data[party][f"{data_type}-{demographic}"]["labels"].append(word)
+                party_data[party][f"{data_type}-{demographic}"]["data"].append(occurrences)
 
 recursive_round(party_data)
 

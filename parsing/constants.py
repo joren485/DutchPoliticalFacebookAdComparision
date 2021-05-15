@@ -140,4 +140,6 @@ IGNORED_WORDS = [
     "moeten",
     "heeft",
     "veel",
+    "geen",
+    "hier",
 ]
