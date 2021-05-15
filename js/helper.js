@@ -1,48 +1,25 @@
-const COLORS = {
-
-    '50P': '#92278f',
-    'BIJ1': '#ee047e',
-    'BBB': '#94c120',
-    'CDA': '#007b5f',
-    'CU': '#012466',
-    'CO': '#eb984e',
-    'DENK': '#41bac2',
-    'D66': '#01af40',
-    'FvD': '#841818',
-    'GL': '#50c401',
-    'JA21': '#242B57',
-    'PVV': '#212F3D',
-    'PvdA': '#C0392B',
-    'PvdD': '#006c2e',
-    'SGP': '#024a90',
-    'SP': '#fe0000',
-    'VOLT': '#512e5f',
-    'VVD': '#ff7709',
-
-    'Male': '#0000ff',
-    'Female': '#ffc0cb',
-
-    '13-17': '#641E16',
-    '18-24': '#512E5F',
-    '25-34': '#154360',
-    '35-44': '#0E6251',
-    '45-54': '#145A32',
-    '55-64': '#7D6608',
-    '65+': '#784212',
-
-    'Drenthe': '#AED6F1',
-    'Friesland': '#AF7AC5',
-    'Gelderland': '#E74C3C',
-    'Groningen': '#ABEBC6',
-    'Limburg': '#1A5276',
-    'Noord-Brabant': '#F2D7D5',
-    'Noord-Holland': '#239B56',
-    'Utrecht': '#F4D03F',
-    'Zeeland': '#D7BDE2',
-    'Zuid-Holland': '#EB984E',
-    'Overijssel': '#B7950B',
-    'Flevoland': '#E59866',
-};
+const COLORS = [
+    "#BFC3BA",
+    "#60495A",
+    "#1A3A3A",
+    "#3B429F",
+    "#AA7DCE",
+    "#F5D7E3",
+    "#512500",
+    "#84ACCE",
+    "#D7D9B1",
+    "#7D1D3F",
+    "#FF6B35",
+    "#F7C59F",
+    "#004E89",
+    "#050517",
+    "#D3D5D7",
+    "#B3DEC1",
+    "#F7B801",
+    "#2D4739",
+    "#09814A",
+    "#B5BD89",
+];
 
 const PARTIES = ["50P", "BIJ1", "BBB", "CDA", "CU", "CO", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"];
 const REGIONS = ["Drenthe", "Flevoland", "Friesland", "Gelderland", "Groningen", "Limburg", "Noord-Brabant", "Noord-Holland", "Overijssel", "Utrecht", "Zeeland", "Zuid-Holland"];
@@ -174,8 +151,8 @@ function generateLineGraphConfig(title, data, key, labels=PARTIES) {
                 label: item,
                 data: data[key][index],
                 fill: !is_general_chart,
-                backgroundColor: COLORS[item],
-                borderColor: COLORS[item],
+                backgroundColor: COLORS[index],
+                borderColor: COLORS[index],
                 pointRadius: 0,
                 borderWidth: 2,
             });
@@ -260,7 +237,7 @@ function generateBarChart(title, data, key, labels= PARTIES) {
     labels.forEach(function (item, index) {
         chartConfig.data.labels.push(item);
         chartConfig.data.datasets[0].data.push(data[key][index])
-        chartConfig.data.datasets[0].backgroundColor.push(COLORS[item])
+        chartConfig.data.datasets[0].backgroundColor.push(COLORS[index])
     });
 
     return chartConfig;
