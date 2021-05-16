@@ -99,7 +99,7 @@ class Ad(Model):
     @cached_property
     def average_potential_reach_per_day(self) -> float:
         """Return the average potential reach for every day this ad is/was active."""
-        return self.average_potential_reach / self.days_active
+        return self.potential_reach_average / self.days_active
 
     def active_date_indices(self) -> int:
         """Yield dates and indexes that this ad is/was active."""
