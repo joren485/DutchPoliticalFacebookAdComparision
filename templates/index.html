@@ -37,7 +37,7 @@
                         <div class="col-8 mx-auto">
                             <canvas
                                     id="{{ data_type }}-per-party-per-date-chart"
-                                    data-data='{{ general_data[data_type + "-per-party-per-date"] | tojson }}'
+                                    data-data={{ general_data[data_type + "-per-party-per-date"] | string | replace(" ", "") | tojson }}
                                     data-labels='{{ PARTIES | tojson }}'
                             ></canvas>
                         </div>

@@ -28,7 +28,7 @@
                     <div class="col-8 mx-auto">
                         <canvas
                                 id="{{ data_type }}-per-{{ demographic_type }}-per-date-chart"
-                                data-data='{{ party_data[data_type + "-per-" + demographic_type + "-per-date"] | tojson }}'
+                                data-data={{ party_data[data_type + "-per-" + demographic_type + "-per-date"] | string | replace(" ", "") | tojson }}
                                 {% if demographic_type == "gender" %}
                                 data-labels='{{ GENDERS | map("capitalize") | list | tojson }}'
                                 {% elif demographic_type == "age" %}

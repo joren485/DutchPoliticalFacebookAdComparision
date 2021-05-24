@@ -2,4 +2,4 @@
 data/** binary
 data/facebook_page_ids.csv !binary text
 pages/** binary
-index.html binary
+/index.html binary
