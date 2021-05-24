@@ -57,10 +57,8 @@ if __name__ == '__main__':
         "ads-total": len(ads),
         "ads-without-potential-reach": sum(1 for a in ads if not a.has_potential_reach),
         "ads-per-party": [len(ads_per_party[p]) for p in PARTIES],
-        "spending-total-range": (
-            sum(ad.spending_lower for ad in ads),
-            sum(ad.spending_upper for ad in ads),
-        ),
+        "spending-total-lower": sum(ad.spending_lower for ad in ads),
+        "spending-total-upper": sum(ad.spending_upper for ad in ads),
         "spending-per-party": [sum(ad.spending_average for ad in ads_per_party[p]) for p in PARTIES],
         "impressions-per-party": [sum(ad.impressions_average for ad in ads_per_party[p]) for p in PARTIES],
         "most-expensive-ad": {
@@ -82,10 +80,8 @@ if __name__ == '__main__':
             "last-updated": general_data["last-updated"],
             "start-date": general_data["start-date"],
             "total-ads": len(ads_per_party[party]),
-            "spending-total-range": (
-                sum(ad.spending_lower for ad in ads_per_party[party]),
-                sum(ad.spending_upper for ad in ads_per_party[party]),
-            ),
+            "spending-total-lower": sum(ad.spending_lower for ad in ads_per_party[party]),
+            "spending-total-upper": sum(ad.spending_upper for ad in ads_per_party[party]),
             "spending-per-gender": [
                 sum(a.spending_average * getattr(a, Ad.demographic_to_field_name(d)) for a in ads_per_party[party])
                 for d in GENDERS

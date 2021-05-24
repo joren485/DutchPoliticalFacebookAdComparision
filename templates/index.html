@@ -20,7 +20,7 @@
                         {% if data_type == "ads" %}
                             All parties combined ran <strong>{{ general_data["ads-total"] }}</strong> ads.
                         {% elif data_type == "spending" %}
-                            In total an (estimated) <strong>{{ general_data["spending-total-range"][0] }} - {{ general_data["spending-total-range"][1] }}</strong> has been spent.
+                            In total an (estimated) <strong>€{{ general_data["spending-total-lower"] }} - €{{ general_data["spending-total-upper"] }}</strong> has been spent.
                             <a id="most-expensive-ad-link" href="https://www.facebook.com/ads/library/?id=">The most expensive ad</a> cost an estimated <strong><span id="most-expensive-ad-cost"></span></strong> per day, ran for <strong><span id="most-expensive-ad-days"></span></strong> day(s) and is from <strong><span id="most-expensive-ad-party"></span></strong>.
                         {% elif data_type == "impressions" %}
                             These graphs show data about the <a href="https://www.facebook.com/business/help/675615482516035">impressions</a> (i.e. how many times an ad was show).
