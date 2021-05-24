@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/index.html">Dutch Political Facebook Ad Comparison</a>
+    <a class="navbar-brand" href="/DutchPoliticalFacebookAdComparision/index.html">Dutch Political Facebook Ad Comparison</a>
 
     <ul class="nav">
         <li class="nav-item dropdown">
@@ -7,10 +7,10 @@
                data-toggle="dropdown"
                aria-haspopup="true" aria-expanded="false">Overall Statistics</a>
             <div class="dropdown-menu" aria-labelledby="general-charts-navbar-dropdown-button">
-                <a class="dropdown-item" href="/index.html#ads-charts">Ads</a>
-                <a class="dropdown-item" href="/index.html#spending-charts">Spending</a>
-                <a class="dropdown-item" href="/index.html#impressions-charts">Impressions</a>
-                <a class="dropdown-item" href="/index.html#potential-reach-charts">Potential Reach</a>
+                <a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/index.html#ads-charts">Ads</a>
+                <a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/index.html#spending-charts">Spending</a>
+                <a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/index.html#impressions-charts">Impressions</a>
+                <a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/index.html#potential-reach-charts">Potential Reach</a>
             </div>
 
         <li class="nav-item dropdown">
@@ -19,12 +19,12 @@
                aria-haspopup="true" aria-expanded="false">Party Statistics</a>
             <div id="party-specific-charts-navbar-dropdown" class="dropdown-menu" aria-labelledby="party-specific-charts-navbar-dropdown-button">
                 {% for party in PARTIES %}
-                    <a class="dropdown-item" href="/pages/{{ party | lower | safe }}-statistics.html">{{ party | safe }}</a>
+                    <a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/pages/{{ party | lower | safe }}-statistics.html">{{ party | safe }}</a>
                 {% endfor %}
             </div>
         </li>
         <li>
-            <a class="nav-link" href="/pages/about.html">About</a>
+            <a class="nav-link" href="/DutchPoliticalFacebookAdComparision/pages/about.html">About</a>
         </li>
     </ul>
     <ul class="nav ml-auto">
@@ -32,7 +32,7 @@
             <span class="nav-link">Last Updated: {{ last_updated }}</span>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-dark" href="https://github.com/joren485/DutchPoliticalFacebookAdComparision">
+            <a class="nav-link text-dark" href="https://github.com/joren485/DutchPoliticalFacebookAdComparision/">
                 <i class="fab fa-github"></i>
             </a>
         </li>
