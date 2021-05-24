@@ -1,7 +1,7 @@
 import json
 import logging
 from datetime import datetime
-from typing import Union
+from typing import Optional, Union
 
 from constants import (
     AGE_RANGES,
@@ -24,7 +24,7 @@ logging.basicConfig(
 )
 
 
-def recursive_round(o: Union[dict, list], precision: int = 0):
+def recursive_round(o: Union[dict, list], precision: Optional[int] = None):
     """
     Traverses an object recursively and rounds numbers found in lists.
 
