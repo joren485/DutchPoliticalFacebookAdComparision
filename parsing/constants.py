@@ -49,7 +49,7 @@ CURRENCY_TO_EUR_MAP = {
 }
 
 PARTIES = [
-    "50P",
+    "50+",
     "BIJ1",
     "BBB",
     "CDA",
