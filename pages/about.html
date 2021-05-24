@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.bundle.min.js"></script>
@@ -7,44 +8,83 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 
-    <script src="js/helper.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-zoom/0.7.7/chartjs-plugin-zoom.min.js"></script>
+
+    <script src="/js/helper.js"></script>
+    <script src="/js/charts.js"></script>
 
     <meta charset="UTF-8">
-    <title>Dutch Political Facebook Ad Comparison</title>
+    <title>About | Dutch Political Facebook Ad Comparison</title>
 </head>
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="index.html">
-        Dutch Political Facebook Ad Comparison
-    </a>
+    <a class="navbar-brand" href="/index.html">Dutch Political Facebook Ad Comparison</a>
 
     <ul class="nav">
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="general-charts-navbar-dropdown-button" role="button"
                data-toggle="dropdown"
-               aria-haspopup="true" aria-expanded="false">
-                General Charts
-            </a>
+               aria-haspopup="true" aria-expanded="false">Overall Statistics</a>
             <div class="dropdown-menu" aria-labelledby="general-charts-navbar-dropdown-button">
-                <a class="dropdown-item" href="index.html#active-ads">Active Ads</a>
-                <a class="dropdown-item" href="index.html#spending-charts">Spending</a>
-                <a class="dropdown-item" href="index.html#impressions-charts">Impressions</a>
-                <a class="dropdown-item" href="index.html#potential-reach-charts">Potential Reach</a>
+                <a class="dropdown-item" href="/index.html#ads-charts">Ads</a>
+                <a class="dropdown-item" href="/index.html#spending-charts">Spending</a>
+                <a class="dropdown-item" href="/index.html#impressions-charts">Impressions</a>
+                <a class="dropdown-item" href="/index.html#potential-reach-charts">Potential Reach</a>
             </div>
 
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="party-specific-charts-navbar-dropdown-button" role="button"
                data-toggle="dropdown"
-               aria-haspopup="true" aria-expanded="false">Party Specific Charts</a>
-            <div id="party-specific-charts-navbar-dropdown" class="dropdown-menu"
-                 aria-labelledby="party-specific-charts-navbar-dropdown-button"></div>
+               aria-haspopup="true" aria-expanded="false">Party Statistics</a>
+            <div id="party-specific-charts-navbar-dropdown" class="dropdown-menu" aria-labelledby="party-specific-charts-navbar-dropdown-button">
+                
+                    <a class="dropdown-item" href="/pages/50p-statistics.html">50P</a>
+                
+                    <a class="dropdown-item" href="/pages/bij1-statistics.html">BIJ1</a>
+                
+                    <a class="dropdown-item" href="/pages/bbb-statistics.html">BBB</a>
+                
+                    <a class="dropdown-item" href="/pages/cda-statistics.html">CDA</a>
+                
+                    <a class="dropdown-item" href="/pages/cu-statistics.html">CU</a>
+                
+                    <a class="dropdown-item" href="/pages/d66-statistics.html">D66</a>
+                
+                    <a class="dropdown-item" href="/pages/denk-statistics.html">DENK</a>
+                
+                    <a class="dropdown-item" href="/pages/fvd-statistics.html">FvD</a>
+                
+                    <a class="dropdown-item" href="/pages/gl-statistics.html">GL</a>
+                
+                    <a class="dropdown-item" href="/pages/ja21-statistics.html">JA21</a>
+                
+                    <a class="dropdown-item" href="/pages/pvv-statistics.html">PVV</a>
+                
+                    <a class="dropdown-item" href="/pages/pvda-statistics.html">PvdA</a>
+                
+                    <a class="dropdown-item" href="/pages/pvdd-statistics.html">PvdD</a>
+                
+                    <a class="dropdown-item" href="/pages/sgp-statistics.html">SGP</a>
+                
+                    <a class="dropdown-item" href="/pages/sp-statistics.html">SP</a>
+                
+                    <a class="dropdown-item" href="/pages/volt-statistics.html">VOLT</a>
+                
+                    <a class="dropdown-item" href="/pages/vvd-statistics.html">VVD</a>
+                
+            </div>
         </li>
         <li>
-            <a class="nav-link" href="about.html">About</a>
+            <a class="nav-link" href="/pages/about.html">About</a>
         </li>
     </ul>
     <ul class="nav ml-auto">
+        <li class="nav-item">
+            <span class="nav-link">Last Updated: 13:46 24-05-2021</span>
+        </li>
         <li class="nav-item">
             <a class="nav-link text-dark" href="https://github.com/joren485/DutchPoliticalFacebookAdComparision">
                 <i class="fab fa-github"></i>
@@ -53,12 +93,12 @@
     </ul>
 </nav>
 
-<div class="container pt-4">
-
+<div class="container-fluid pt-4">
+    
+<div class="col-6 mx-auto">
     <p class="lead">
         As part of an effort by Facebook to be more transparent about the political ads they were showing,
-        they created
-        <a href="https://www.facebook.com/ads/library/">the Facebook Ad Library</a>,
+        they created <a href="https://www.facebook.com/ads/library/">the Facebook Ad Library</a>,
         a website where you can view information about all political ads Facebook shows in certain countries
         (e.g. which organisation is and how much an organisation spend on ads).
 
@@ -79,8 +119,8 @@
         which allows anyone to programmatically request data from the the Facebook Ad Library.
 
         For each party, I request the data of specific Facebook pages (Facebook ads are always connected to Facebook
-        page). The Facebook pages I used can be found <a
-                href="https://github.com/joren485/DutchPoliticalFacebookAdComparision/blob/master/data/facebook_page_ids.csv">here</a>.
+        page). The Facebook pages I used can be found
+        <a href="https://github.com/joren485/DutchPoliticalFacebookAdComparision/blob/master/data/facebook_page_ids.csv">here</a>.
     </p>
 
     <p>In step 2, all ads from before 2020 are removed and the data is added up for each date and in total.
@@ -104,15 +144,18 @@
     </p>
 
     <h4>Why is party X missing?</h4>
-    <p>If there is a (new) party with a significant Facebook ad presence, please let me know by
-        <a href="https://github.com/joren485/DutchPoliticalFacebookAdComparision/issues/new">opening an issue on
-            GitHub</a></p>
+    <p>
+        If there is a (new) party with a significant Facebook ad presence, please let me know by
+        <a href="https://github.com/joren485/DutchPoliticalFacebookAdComparision/issues/new">opening an issue on GitHub</a>
+    </p>
 
 
     <h4>I found an issue in the website and/or the data! / I have a great idea of a graph to add!</h4>
-    <p>Please open
-        <a href="https://github.com/joren485/DutchPoliticalFacebookAdComparision/issues/new">
-            an issue on GitHub</a>.</p>
+    <p>
+        Please open <a href="https://github.com/joren485/DutchPoliticalFacebookAdComparision/issues/new"> an issue on GitHub</a>.
+    </p>
+</div>
+
 </div>
 </body>
 </html>

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Index{% endblock %}
+
+{% block content %}
+    <p class="lead">
+        This website lets you to compare statistics about Facebook advertisements by Dutch political parties.
+        It is based on data from the <a href="https://www.facebook.com/ads/library/">Facebook Ad Library</a>.
+        For more information visit the <a href="about.html">about page</a>.
+    </p>
+
+    <hr>
+
+    <div>
+        {% for data_type in ("ads", "spending", "impressions", "potential-reach") %}
+            <div id="{{ data_type }}-charts">
+                <div class="text-center">
+                    <h3>{{ data_type | replace("-", " ") | capitalize }}</h3>
+                    <p>
+                        {% if data_type == "ads" %}
+                            All parties combined ran <strong>{{ general_data["ads-total"] }}</strong> ads.
+                        {% elif data_type == "spending" %}
+                            In total an (estimated) <strong>{{ general_data["spending-total-range"][0] }} - {{ general_data["spending-total-range"][1] }}</strong> has been spent.
+                            <a id="most-expensive-ad-link" href="https://www.facebook.com/ads/library/?id=">The most expensive ad</a> cost an estimated <strong><span id="most-expensive-ad-cost"></span></strong> per day, ran for <strong><span id="most-expensive-ad-days"></span></strong> day(s) and is from <strong><span id="most-expensive-ad-party"></span></strong>.
+                        {% elif data_type == "impressions" %}
+                            These graphs show data about the <a href="https://www.facebook.com/business/help/675615482516035">impressions</a> (i.e. how many times an ad was show).
+                        {% elif data_type == "potential-reach" %}
+                            This graph shows the <a href="https://www.facebook.com/business/help/1665333080167380?id=176276233019487">potential reach</a> (i.e. the maximum amount of people that could have seen an ad) over time.
+                            <br>
+                            Please note that {{ general_data["ads-without-potential-reach"] }} ads (out of {{ general_data["ads-total"] }} total ads) did not have potential reach data. Almost all of those ads are from before April 2020.
+                        {% endif %}
+                    </p>
+                </div>
+
+                <div class="row">
+                    {% if data_type + "-per-party-per-date" in general_data %}
+                        <div class="col-8 mx-auto">
+                            <canvas
+                                    id="{{ data_type }}-per-party-per-date-chart"
+                                    data-data='{{ general_data[data_type + "-per-party-per-date"] | tojson }}'
+                                    data-labels='{{ PARTIES | tojson }}'
+                            ></canvas>
+                        </div>
+                    {% endif %}
+                    {% if data_type + "-per-party" in general_data %}
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="{{ data_type }}-per-party-chart"
+                                    data-data='{{ general_data[data_type + "-per-party"] | tojson }}'
+                                    data-labels='{{ PARTIES | tojson }}'
+                            ></canvas>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            <hr>
+        {% endfor %}
+    </div>
+{% endblock %}

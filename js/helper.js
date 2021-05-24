@@ -21,13 +21,6 @@ const COLORS = [
     "#B5BD89",
 ];
 
-const PARTIES = ["50P", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"];
-const GENDERS = ["Male", "Female"];
-const AGE_RANGES = ["13-17", "18-24", "25-34", "35-44", "45-54", "55-64", "65+"];
-const REGIONS = ["Drenthe", "Flevoland", "Friesland", "Gelderland", "Groningen", "Limburg", "Noord-Brabant", "Noord-Holland", "Overijssel", "Utrecht", "Zeeland", "Zuid-Holland"];
-
-const DEMOGRAPHICS = ["Total"].concat(GENDERS, AGE_RANGES, REGIONS);
-
 function percentageBarGraph(tooltipItems, data) {
     let dataset = data.datasets[tooltipItems.datasetIndex];
     let value = dataset.data[tooltipItems.index];
@@ -57,7 +50,8 @@ function percentageLineGraph(tooltipItems, data) {
     return (tooltipItems.yLabel / total * 100).toFixed(2);
 }
 
-function getDaysArray(startDate) {
+function getDaysArray() {
+    let startDate = new Date("2020-01-01");
     let dates = [];
     let now = new Date();
     for (let dt = new Date(startDate); dt <= now; dt.setDate(dt.getDate() + 1)) {
@@ -66,11 +60,12 @@ function getDaysArray(startDate) {
     return dates;
 }
 
-function generateLineGraphConfig(title, data, key, labels=PARTIES) {
+function generateLineGraphConfig(canvas) {
 
-    //If the first element of labels is not equal to the first element of PARTIES,
-    //the chart is not a chart with general data, but a party specific chart.
-    let is_general_chart = labels.indexOf(PARTIES[0]) === 0
+    let data = $(canvas).data("data");
+    let labels = $(canvas).data("labels");
+
+    let is_general_chart = labels[-1] === "VVD"
 
     let scales = {
         xAxes: [{
@@ -97,7 +92,7 @@ function generateLineGraphConfig(title, data, key, labels=PARTIES) {
             },
         },
     };
-    if (key.toLowerCase().includes("spending")) {
+    if (canvas.id.includes("spending")) {
 
         scales.yAxes[0].ticks.callback = function (value, index, values) {
                 return "€" + value;
@@ -113,7 +108,7 @@ function generateLineGraphConfig(title, data, key, labels=PARTIES) {
     let graphConfig = {
         type: "line",
         data: {
-            labels: getDaysArray(new Date(data["start-date"])),
+            labels: getDaysArray(),
             datasets: []
         },
         options: {
@@ -125,11 +120,7 @@ function generateLineGraphConfig(title, data, key, labels=PARTIES) {
             },
             responsiveAnimationDuration: 0,
             responsive: true,
-            title: {
-                display: true,
-                text: title,
-                fontSize: 16,
-            },
+
             legend: {
                 position: "bottom",
                 labels: {padding: 7,},
@@ -151,7 +142,7 @@ function generateLineGraphConfig(title, data, key, labels=PARTIES) {
         graphConfig.data.datasets.push(
             {
                 label: item,
-                data: data[key][index],
+                data: data[index],
                 fill: !is_general_chart,
                 backgroundColor: COLORS[index],
                 borderColor: COLORS[index],
@@ -163,7 +154,10 @@ function generateLineGraphConfig(title, data, key, labels=PARTIES) {
     return graphConfig;
 }
 
-function generateBarChart(title, data, key, labels= PARTIES) {
+function generateBarChart(canvas) {
+
+    let data = $(canvas).data("data");
+    let labels = $(canvas).data("labels");
 
     let scales = {
         xAxes: [
@@ -189,7 +183,7 @@ function generateBarChart(title, data, key, labels= PARTIES) {
         },
     };
 
-    if (key.toLowerCase().includes("spending")) {
+    if (canvas.id.includes("spending")) {
         scales.xAxes[0].ticks.callback = function (value, index, values) {
                 return "€" + value;
         };
@@ -223,11 +217,6 @@ function generateBarChart(title, data, key, labels= PARTIES) {
             responsiveAnimationDuration: 0,
             maintainAspectRatio: false,
             responsive: true,
-            title: {
-                display: true,
-                text: title,
-                fontSize: 16,
-            },
             legend: {
                 display: false,
             },
@@ -238,15 +227,9 @@ function generateBarChart(title, data, key, labels= PARTIES) {
 
     labels.forEach(function (item, index) {
         chartConfig.data.labels.push(item);
-        chartConfig.data.datasets[0].data.push(data[key][index])
+        chartConfig.data.datasets[0].data.push(data[index])
         chartConfig.data.datasets[0].backgroundColor.push(COLORS[index])
     });
 
     return chartConfig;
 }
-
-$(document).ready(function () {
-    PARTIES.forEach(function (party) {
-        $("#party-specific-charts-navbar-dropdown").append(`<a class="dropdown-item" href="party.html?party=${party}">${party}</a>`);
-    });
-});

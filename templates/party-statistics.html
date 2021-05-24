@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}{{ party }}{% endblock %}
+
+{% block content %}
+    <div class="text-center">
+        <h1>{{ party }} Graphs</h1>
+
+        <p class="lead">
+            {{ party }} ran <strong>{{ party_data['total-ads'] }}</strong> ads
+            and spent between <strong>€{{ party_data['spending-total-range'][0] }}</strong>
+            and <strong>€{{ party_data['spending-total-range'][1] }}</strong>.
+        </p>
+    </div>
+    <hr>
+
+    {% for data_type in ("spending", "impressions") %}
+        <div id="{{ party }}-{{ data_type }}-charts">
+            <div class="text-center">
+                <h2>{{ data_type | capitalize }}</h2>
+            </div>
+            {% for demographic_type in ("gender", "age", "region") %}
+                <div class="text-center">
+                    <h4>(Estimated) {{ data_type | capitalize }} per {{ demographic_type | replace("-", " ") | capitalize }}</h4>
+                </div>
+
+                <div class="row">
+                    <div class="col-8 mx-auto">
+                        <canvas
+                                id="{{ data_type }}-per-{{ demographic_type }}-per-date-chart"
+                                data-data='{{ party_data[data_type + "-per-" + demographic_type + "-per-date"] | tojson }}'
+                                {% if demographic_type == "gender" %}
+                                data-labels='{{ GENDERS | tojson }}'
+                                {% elif demographic_type == "age" %}
+                                data-labels='{{ AGE_RANGES | tojson }}'
+                                {% elif demographic_type == "region" %}
+                                data-labels='{{ REGIONS | tojson }}'
+                                {% endif %}
+                        ></canvas>
+                    </div>
+                    <div class="col-4 mx-auto">
+                        <canvas
+                                id="{{ data_type }}-per-{{ demographic_type }}-chart"
+                                data-data='{{ party_data[data_type + "-per-" + demographic_type] | tojson }}'
+                                {% if demographic_type == "gender" %}
+                                data-labels='{{ GENDERS | tojson }}'
+                                {% elif demographic_type == "age" %}
+                                data-labels='{{ AGE_RANGES | tojson }}'
+                                {% elif demographic_type == "region" %}
+                                data-labels='{{ REGIONS | tojson }}'
+                                {% endif %}
+                        ></canvas>
+                    </div>
+                </div>
+
+                <hr>
+            {% endfor %}
+
+        </div>
+    {% endfor %}
+
+{% endblock %}

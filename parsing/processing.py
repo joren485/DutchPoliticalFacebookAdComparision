@@ -69,7 +69,7 @@ if __name__ == '__main__':
             "spend-per-day": most_expensive_ad.average_spending_per_day,
             "days": most_expensive_ad.days_active,
         },
-        "active-ads-per-party-per-date": [[0] * NUMBER_OF_DATES for _ in PARTIES],
+        "ads-per-party-per-date": [[0] * NUMBER_OF_DATES for _ in PARTIES],
         "spending-per-party-per-date": [[0] * NUMBER_OF_DATES for _ in PARTIES],
         "impressions-per-party-per-date": [[0] * NUMBER_OF_DATES for _ in PARTIES],
         "potential-reach-per-party-per-date": [[0] * NUMBER_OF_DATES for _ in PARTIES],
@@ -124,7 +124,7 @@ if __name__ == '__main__':
         LOGGER.info(f"Processing {len(ads_per_party[party])} ads for {party}.")
         for ad in ads_per_party[party]:
             for date_i in ad.active_date_indices():
-                general_data["active-ads-per-party-per-date"][party_i][date_i] += 1
+                general_data["ads-per-party-per-date"][party_i][date_i] += 1
                 general_data["spending-per-party-per-date"][party_i][date_i] += ad.average_spending_per_day
                 general_data["impressions-per-party-per-date"][party_i][date_i] += ad.average_impressions_per_day
                 general_data["potential-reach-per-party-per-date"][party_i][date_i] += ad.average_potential_reach_per_day
