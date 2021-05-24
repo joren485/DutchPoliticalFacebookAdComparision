@@ -65,7 +65,7 @@ function generateLineGraphConfig(canvas) {
     let data = $(canvas).data("data");
     let labels = $(canvas).data("labels");
 
-    let is_general_chart = labels[-1] === "VVD"
+    let is_general_chart = labels[labels.length - 1] === "VVD"
 
     let scales = {
         xAxes: [{
