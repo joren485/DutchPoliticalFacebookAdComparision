@@ -120,7 +120,11 @@ function generateLineGraphConfig(canvas) {
             },
             responsiveAnimationDuration: 0,
             responsive: true,
-
+            title: {
+                display: true,
+                text: "Per Date",
+                fontSize: 16,
+            },
             legend: {
                 position: "bottom",
                 labels: {padding: 7,},
@@ -217,6 +221,11 @@ function generateBarChart(canvas) {
             responsiveAnimationDuration: 0,
             maintainAspectRatio: false,
             responsive: true,
+            title: {
+                display: true,
+                text: "Total",
+                fontSize: 16,
+            },
             legend: {
                 display: false,
             },
