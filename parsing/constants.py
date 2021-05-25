@@ -142,3 +142,24 @@ IGNORED_WORDS = [
     "geen",
     "hier",
 ]
+
+LEADERS = [
+    "Esther Ouwehand",
+    "Kees van der Staaij",
+    "Lilianne Ploumen",
+    "Gert-Jan Segers",
+    "Wopke Hoekstra",
+    "Mark Rutte",
+    "Sigrid Kaag",
+    "Geert Wilders",
+    "Lilian Marijnissen",
+    "Jesse Klaver",
+    "Liane Den Haan",
+    "Farid Azarkan",
+    "Thierry Baudet",
+    "Sylvana Simons",
+    "Laurens Dassen",
+    "Caroline Plas",
+    "Joost Eerdmans",
+    "Pieter Omtzigt",
+]

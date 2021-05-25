@@ -137,800 +137,978 @@
 <div class="container-fluid pt-4">
     
     <div class="text-center">
-        <h1>D66 Text Graphs</h1>
+        <h1>D66 Content Analysis</h1>
     </div>
     <hr>
+    
+        <div class="text-center">
+            <h2>Ranked by Leaders</h2>
+        </div>
         
             <div class="text-center">
-                <h2>Ranked by Total</h2>
+                <h4>Leaders</h4>
             </div>
-            
-                <div class="text-center">
-                    <h4>Total</h4>
-                </div>
-                <div class="row">
-                    
-                        <div class="col-4 mx-auto">
+            <div class="row">
+                
+                    <div class="col-4 mx-auto">
+                        
+                            <canvas
+                                    id="occurrences-leaders-chart"
+                                    data-data='[1, 4, 156, 4, 1]'
+                                    data-labels='["Lilianne ploumen", "Mark rutte", "Sigrid kaag", "Geert wilders", "Pieter omtzigt"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-4 mx-auto">
+                        
+                            <canvas
+                                    id="impressions-leaders-chart"
+                                    data-data='[17500, 27998, 3110922, 199998, 500]'
+                                    data-labels='["Lilianne ploumen", "Mark rutte", "Sigrid kaag", "Geert wilders", "Pieter omtzigt"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-4 mx-auto">
+                        
+                            <canvas
+                                    id="potential-reach-leaders-chart"
+                                    data-data='[750000, 2350002, 58665088, 2600003, 7500]'
+                                    data-labels='["Lilianne ploumen", "Mark rutte", "Sigrid kaag", "Geert wilders", "Pieter omtzigt"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        
+                    </div>
+                
+            </div>
+            <hr>
+        
+    
+        <div class="text-center">
+            <h2>Ranked by Total</h2>
+        </div>
+        
+            <div class="text-center">
+                <h4>Total</h4>
+            </div>
+            <div class="row">
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="occurrences-total-chart"
                                     data-data='[429, 339, 338, 318, 211, 208, 204, 201, 200, 162]'
                                     data-labels='["Iedereen", "Euro", "Vrij", "Leiderschap", "Nieuw", "Haar", "Vallen", "Niemand", "Laat", "Tijd"]'
                                     data-title="Occurrences"
                             ></canvas>
-                        </div>
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="impressions-total-chart"
                                     data-data='[7087786, 5946842, 5096395, 4777332, 4076423, 3970948, 3334900, 3322984, 3110922, 3095422]'
                                     data-labels='["Iedereen", "Leiderschap", "Nieuw", "Vrij", "Bekijk", "Laten", "Laat", "Land", "Kaag", "Sigrid"]'
                                     data-title="Impressions"
                             ></canvas>
-                        </div>
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="potential-reach-total-chart"
                                     data-data='[163552536, 139915584, 138427978, 132878888, 86617270, 80523318, 80284464, 80243963, 68588938, 65755008]'
                                     data-labels='["Iedereen", "Euro", "Leiderschap", "Vrij", "Nieuw", "Haar", "Vallen", "Niemand", "Bekijk", "Laat"]'
                                     data-title="Potential reach"
                             ></canvas>
-                        </div>
-                    
-                </div>
-                <hr>
-            
+                        
+                    </div>
+                
+            </div>
+            <hr>
+        
+    
+        <div class="text-center">
+            <h2>Ranked by Gender</h2>
+        </div>
         
             <div class="text-center">
-                <h2>Ranked by Gender</h2>
+                <h4>Female</h4>
             </div>
-            
-                <div class="text-center">
-                    <h4>Female</h4>
-                </div>
-                <div class="row">
-                    
-                        <div class="col-4 mx-auto">
+            <div class="row">
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="occurrences-female-chart"
                                     data-data='[429, 339, 338, 318, 211, 208, 204, 201, 200, 162]'
                                     data-labels='["Iedereen", "Euro", "Vrij", "Leiderschap", "Nieuw", "Haar", "Vallen", "Niemand", "Laat", "Tijd"]'
                                     data-title="Occurrences"
                             ></canvas>
-                        </div>
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="impressions-female-chart"
                                     data-data='[3816161, 3473194, 2905177, 2503869, 2242866, 2147312, 1927037, 1915550, 1803331, 1800307]'
                                     data-labels='["Iedereen", "Leiderschap", "Nieuw", "Vrij", "Bekijk", "Laten", "Kaag", "Sigrid", "Laat", "Land"]'
                                     data-title="Impressions"
                             ></canvas>
-                        </div>
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="potential-reach-female-chart"
                                     data-data='[86680858, 82740694, 64976677, 57829032, 53642511, 52060365, 40746754, 40521537, 37580003, 37488078]'
                                     data-labels='["Leiderschap", "Iedereen", "Vrij", "Euro", "Haar", "Nieuw", "Kaag", "Sigrid", "Vallen", "Niemand"]'
                                     data-title="Potential reach"
                             ></canvas>
-                        </div>
-                    
-                </div>
-                <hr>
-            
-                <div class="text-center">
-                    <h4>Male</h4>
-                </div>
-                <div class="row">
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+            </div>
+            <hr>
+        
+            <div class="text-center">
+                <h4>Male</h4>
+            </div>
+            <div class="row">
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="occurrences-male-chart"
                                     data-data='[429, 339, 338, 318, 211, 208, 204, 201, 200, 162]'
                                     data-labels='["Iedereen", "Euro", "Vrij", "Leiderschap", "Nieuw", "Haar", "Vallen", "Niemand", "Laat", "Tijd"]'
                                     data-title="Occurrences"
                             ></canvas>
-                        </div>
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="impressions-male-chart"
                                     data-data='[3245537, 2455788, 2255504, 2175500, 1820250, 1811322, 1519707, 1512741, 1487502, 1450277]'
                                     data-labels='["Iedereen", "Leiderschap", "Vrij", "Nieuw", "Bekijk", "Laten", "Laat", "Land", "Euro", "Vallen"]'
                                     data-title="Impressions"
                             ></canvas>
-                        </div>
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="potential-reach-male-chart"
                                     data-data='[81470137, 80174512, 67349038, 51330622, 42427085, 42373166, 34264562, 34208177, 33149277, 29647907]'
                                     data-labels='["Euro", "Iedereen", "Vrij", "Leiderschap", "Niemand", "Vallen", "Nieuw", "Bekijk", "Laat", "Verhalen"]'
                                     data-title="Potential reach"
                             ></canvas>
-                        </div>
-                    
-                </div>
-                <hr>
-            
+                        
+                    </div>
+                
+            </div>
+            <hr>
+        
+    
+        <div class="text-center">
+            <h2>Ranked by Age</h2>
+        </div>
         
             <div class="text-center">
-                <h2>Ranked by Age</h2>
+                <h4>13-17</h4>
             </div>
-            
-                <div class="text-center">
-                    <h4>13-17</h4>
-                </div>
-                <div class="row">
-                    
-                        <div class="col-4 mx-auto">
+            <div class="row">
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="occurrences-13-17-chart"
                                     data-data='[429, 339, 338, 318, 211, 208, 204, 201, 200, 162]'
                                     data-labels='["Iedereen", "Euro", "Vrij", "Leiderschap", "Nieuw", "Haar", "Vallen", "Niemand", "Laat", "Tijd"]'
                                     data-title="Occurrences"
                             ></canvas>
-                        </div>
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="impressions-13-17-chart"
                                     data-data='[16845, 14319, 12165, 11957, 9973, 9536, 9167, 8270, 7391, 7030]'
                                     data-labels='["Iedereen", "Vrij", "Polder", "Duurzame", "Lees", "Ruimte", "Energietransitie", "Groene", "Waar", "Politiek"]'
                                     data-title="Impressions"
                             ></canvas>
-                        </div>
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="potential-reach-13-17-chart"
                                     data-data='[761347, 327834, 299240, 289087, 286459, 280018, 277285, 276400, 276356, 276356]'
                                     data-labels='["Emmen", "Gesprek", "Instagram", "Check", "Tweede", "Februari", "Meedoen", "World", "Welcome", "Back"]'
                                     data-title="Potential reach"
                             ></canvas>
-                        </div>
-                    
-                </div>
-                <hr>
-            
-                <div class="text-center">
-                    <h4>18-24</h4>
-                </div>
-                <div class="row">
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+            </div>
+            <hr>
+        
+            <div class="text-center">
+                <h4>18-24</h4>
+            </div>
+            <div class="row">
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="occurrences-18-24-chart"
                                     data-data='[429, 339, 338, 318, 211, 208, 204, 201, 200, 162]'
                                     data-labels='["Iedereen", "Euro", "Vrij", "Leiderschap", "Nieuw", "Haar", "Vallen", "Niemand", "Laat", "Tijd"]'
                                     data-title="Occurrences"
                             ></canvas>
-                        </div>
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="impressions-18-24-chart"
                                     data-data='[1768574, 1542072, 1302699, 1292390, 1037500, 1024083, 987836, 844805, 842422, 831883]'
                                     data-labels='["Iedereen", "Leiderschap", "Vrij", "Nieuw", "Bekijk", "Laten", "Haar", "Land", "Kaag", "Sigrid"]'
                                     data-title="Impressions"
                             ></canvas>
-                        </div>
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="potential-reach-18-24-chart"
                                     data-data='[39017091, 35766218, 34349068, 27775162, 25479753, 22787867, 22382460, 20784203, 20778857, 20013203]'
                                     data-labels='["Vrij", "Iedereen", "Haar", "Leiderschap", "Euro", "Kaag", "Sigrid", "Vallen", "Niemand", "Bekijk"]'
                                     data-title="Potential reach"
                             ></canvas>
-                        </div>
-                    
-                </div>
-                <hr>
-            
-                <div class="text-center">
-                    <h4>25-34</h4>
-                </div>
-                <div class="row">
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+            </div>
+            <hr>
+        
+            <div class="text-center">
+                <h4>25-34</h4>
+            </div>
+            <div class="row">
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="occurrences-25-34-chart"
                                     data-data='[429, 339, 338, 318, 211, 208, 204, 201, 200, 162]'
                                     data-labels='["Iedereen", "Euro", "Vrij", "Leiderschap", "Nieuw", "Haar", "Vallen", "Niemand", "Laat", "Tijd"]'
                                     data-title="Occurrences"
                             ></canvas>
-                        </div>
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="impressions-25-34-chart"
                                     data-data='[1613494, 1335087, 1156784, 1069828, 935664, 861250, 757469, 726904, 703401, 672995]'
                                     data-labels='["Iedereen", "Leiderschap", "Nieuw", "Vrij", "Bekijk", "Laten", "Land", "Kansen", "Haar", "Vallen"]'
                                     data-title="Impressions"
                             ></canvas>
-                        </div>
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="potential-reach-25-34-chart"
                                     data-data='[34588220, 32686612, 28993915, 26421398, 23155506, 19256241, 19237206, 17585398, 17445003, 16692738]'
                                     data-labels='["Iedereen", "Vrij", "Euro", "Haar", "Leiderschap", "Niemand", "Vallen", "Kaag", "Sigrid", "Bekijk"]'
                                     data-title="Potential reach"
                             ></canvas>
-                        </div>
-                    
-                </div>
-                <hr>
-            
-                <div class="text-center">
-                    <h4>35-44</h4>
-                </div>
-                <div class="row">
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+            </div>
+            <hr>
+        
+            <div class="text-center">
+                <h4>35-44</h4>
+            </div>
+            <div class="row">
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="occurrences-35-44-chart"
                                     data-data='[429, 339, 338, 318, 211, 208, 204, 201, 200, 162]'
                                     data-labels='["Iedereen", "Euro", "Vrij", "Leiderschap", "Nieuw", "Haar", "Vallen", "Niemand", "Laat", "Tijd"]'
                                     data-title="Occurrences"
                             ></canvas>
-                        </div>
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="impressions-35-44-chart"
                                     data-data='[805699, 598739, 537560, 528933, 483595, 396849, 374389, 367174, 357435, 337769]'
                                     data-labels='["Iedereen", "Leiderschap", "Nieuw", "Vrij", "Bekijk", "Kansen", "Laten", "Laat", "Euro", "Keuze"]'
                                     data-title="Impressions"
                             ></canvas>
-                        </div>
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="potential-reach-35-44-chart"
                                     data-data='[23059617, 21563165, 17501964, 11853248, 11803124, 11796889, 8813931, 8506963, 8032385, 7659899]'
                                     data-labels='["Euro", "Iedereen", "Vrij", "Leiderschap", "Vallen", "Niemand", "Bekijk", "Laat", "Nieuw", "Verhalen"]'
                                     data-title="Potential reach"
                             ></canvas>
-                        </div>
-                    
-                </div>
-                <hr>
-            
-                <div class="text-center">
-                    <h4>45-54</h4>
-                </div>
-                <div class="row">
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+            </div>
+            <hr>
+        
+            <div class="text-center">
+                <h4>45-54</h4>
+            </div>
+            <div class="row">
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="occurrences-45-54-chart"
                                     data-data='[429, 339, 338, 318, 211, 208, 204, 201, 200, 162]'
                                     data-labels='["Iedereen", "Euro", "Vrij", "Leiderschap", "Nieuw", "Haar", "Vallen", "Niemand", "Laat", "Tijd"]'
                                     data-title="Occurrences"
                             ></canvas>
-                        </div>
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="impressions-45-54-chart"
                                     data-data='[860577, 742535, 660236, 564254, 551289, 440821, 422627, 422087, 421502, 382781]'
                                     data-labels='["Iedereen", "Leiderschap", "Nieuw", "Bekijk", "Vrij", "Euro", "Laat", "Laten", "Keuze", "Kansen"]'
                                     data-title="Impressions"
                             ></canvas>
-                        </div>
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="potential-reach-45-54-chart"
                                     data-data='[25126439, 22167721, 16496438, 15415865, 10734434, 10541991, 10526501, 8770057, 8334879, 7786489]'
                                     data-labels='["Euro", "Iedereen", "Leiderschap", "Vrij", "Nieuw", "Vallen", "Niemand", "Onderwijs", "Bekijk", "Laat"]'
                                     data-title="Potential reach"
                             ></canvas>
-                        </div>
-                    
-                </div>
-                <hr>
-            
-                <div class="text-center">
-                    <h4>55-64</h4>
-                </div>
-                <div class="row">
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+            </div>
+            <hr>
+        
+            <div class="text-center">
+                <h4>55-64</h4>
+            </div>
+            <div class="row">
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="occurrences-55-64-chart"
                                     data-data='[429, 339, 338, 318, 211, 208, 204, 201, 200, 162]'
                                     data-labels='["Iedereen", "Euro", "Vrij", "Leiderschap", "Nieuw", "Haar", "Vallen", "Niemand", "Laat", "Tijd"]'
                                     data-title="Occurrences"
                             ></canvas>
-                        </div>
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="impressions-55-64-chart"
                                     data-data='[957827, 823516, 707114, 620713, 570163, 556927, 500503, 448371, 424524, 423057]'
                                     data-labels='["Iedereen", "Leiderschap", "Nieuw", "Vrij", "Bekijk", "Laten", "Laat", "Land", "Vallen", "Euro"]'
                                     data-title="Impressions"
                             ></canvas>
-                        </div>
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="potential-reach-55-64-chart"
                                     data-data='[23368231, 22565418, 21644772, 14650002, 14076572, 9615723, 9599186, 9208003, 8139318, 7897154]'
                                     data-labels='["Iedereen", "Leiderschap", "Euro", "Vrij", "Nieuw", "Vallen", "Niemand", "Onderwijs", "Tijd", "Bekijk"]'
                                     data-title="Potential reach"
                             ></canvas>
-                        </div>
-                    
-                </div>
-                <hr>
-            
-                <div class="text-center">
-                    <h4>65+</h4>
-                </div>
-                <div class="row">
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+            </div>
+            <hr>
+        
+            <div class="text-center">
+                <h4>65+</h4>
+            </div>
+            <div class="row">
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="occurrences-65+-chart"
                                     data-data='[429, 339, 338, 318, 211, 208, 204, 201, 200, 162]'
                                     data-labels='["Iedereen", "Euro", "Vrij", "Leiderschap", "Nieuw", "Haar", "Vallen", "Niemand", "Laat", "Tijd"]'
                                     data-title="Occurrences"
                             ></canvas>
-                        </div>
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="impressions-65+-chart"
                                     data-data='[1064072, 898317, 735743, 730848, 688685, 633480, 612120, 606729, 606463, 506588]'
                                     data-labels='["Iedereen", "Leiderschap", "Nieuw", "Laten", "Vrij", "Laat", "Land", "Sigrid", "Kaag", "Kansen"]'
                                     data-title="Impressions"
                             ></canvas>
-                        </div>
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="potential-reach-65+-chart"
                                     data-data='[36414901, 26013845, 21040313, 15611042, 14157578, 13516352, 11049819, 9409773, 8631737, 8259554]'
                                     data-labels='["Leiderschap", "Iedereen", "Nieuw", "Euro", "Tijd", "Vrij", "Onderwijs", "Nederland", "Goed", "Vallen"]'
                                     data-title="Potential reach"
                             ></canvas>
-                        </div>
-                    
-                </div>
-                <hr>
-            
+                        
+                    </div>
+                
+            </div>
+            <hr>
+        
+    
+        <div class="text-center">
+            <h2>Ranked by Region</h2>
+        </div>
         
             <div class="text-center">
-                <h2>Ranked by Region</h2>
+                <h4>Drenthe</h4>
             </div>
-            
-                <div class="text-center">
-                    <h4>Drenthe</h4>
-                </div>
-                <div class="row">
-                    
-                        <div class="col-4 mx-auto">
+            <div class="row">
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="occurrences-drenthe-chart"
                                     data-data='[429, 339, 338, 318, 211, 208, 204, 201, 200, 162]'
                                     data-labels='["Iedereen", "Euro", "Vrij", "Leiderschap", "Nieuw", "Haar", "Vallen", "Niemand", "Laat", "Tijd"]'
                                     data-title="Occurrences"
                             ></canvas>
-                        </div>
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="impressions-drenthe-chart"
                                     data-data='[196750, 196638, 168928, 145104, 137677, 118040, 105548, 105548, 103712, 97876]'
                                     data-labels='["Iedereen", "Leiderschap", "Nieuw", "Vrij", "Bekijk", "Laat", "Sigrid", "Kaag", "Laten", "Keuze"]'
                                     data-title="Impressions"
                             ></canvas>
-                        </div>
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="potential-reach-drenthe-chart"
                                     data-data='[5387796, 5053568, 4905850, 4285454, 3334344, 2934372, 2912731, 2833749, 2648438, 2438810]'
                                     data-labels='["Iedereen", "Leiderschap", "Vrij", "Euro", "Nieuw", "Vallen", "Niemand", "Laat", "Onderwijs", "Bekijk"]'
                                     data-title="Potential reach"
                             ></canvas>
-                        </div>
-                    
-                </div>
-                <hr>
-            
-                <div class="text-center">
-                    <h4>Flevoland</h4>
-                </div>
-                <div class="row">
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+            </div>
+            <hr>
+        
+            <div class="text-center">
+                <h4>Flevoland</h4>
+            </div>
+            <div class="row">
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="occurrences-flevoland-chart"
                                     data-data='[429, 339, 338, 318, 211, 208, 204, 201, 200, 162]'
                                     data-labels='["Iedereen", "Euro", "Vrij", "Leiderschap", "Nieuw", "Haar", "Vallen", "Niemand", "Laat", "Tijd"]'
                                     data-title="Occurrences"
                             ></canvas>
-                        </div>
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="impressions-flevoland-chart"
                                     data-data='[152663, 118544, 99813, 98477, 90056, 89952, 86052, 75642, 71895, 66483]'
                                     data-labels='["Iedereen", "Leiderschap", "Nieuw", "Vrij", "Sigrid", "Kaag", "Bekijk", "Laten", "Kansen", "Laat"]'
                                     data-title="Impressions"
                             ></canvas>
-                        </div>
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="potential-reach-flevoland-chart"
                                     data-data='[4440799, 4106617, 3457061, 2658828, 2287836, 2220792, 2220792, 1929445, 1773569, 1769637]'
                                     data-labels='["Euro", "Iedereen", "Vrij", "Leiderschap", "Haar", "Niemand", "Vallen", "Sigrid", "Kaag", "Bekijk"]'
                                     data-title="Potential reach"
                             ></canvas>
-                        </div>
-                    
-                </div>
-                <hr>
-            
-                <div class="text-center">
-                    <h4>Friesland</h4>
-                </div>
-                <div class="row">
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+            </div>
+            <hr>
+        
+            <div class="text-center">
+                <h4>Friesland</h4>
+            </div>
+            <div class="row">
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="occurrences-friesland-chart"
                                     data-data='[429, 339, 338, 318, 211, 208, 204, 201, 200, 162]'
                                     data-labels='["Iedereen", "Euro", "Vrij", "Leiderschap", "Nieuw", "Haar", "Vallen", "Niemand", "Laat", "Tijd"]'
                                     data-title="Occurrences"
                             ></canvas>
-                        </div>
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="impressions-friesland-chart"
                                     data-data='[249958, 247579, 208653, 181033, 180079, 138750, 131789, 127280, 127257, 123886]'
                                     data-labels='["Leiderschap", "Iedereen", "Nieuw", "Vrij", "Bekijk", "Laat", "Laten", "Sigrid", "Kaag", "Keuze"]'
                                     data-title="Impressions"
                             ></canvas>
-                        </div>
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="potential-reach-friesland-chart"
                                     data-data='[7618360, 7090538, 6920161, 5888333, 4182579, 3817865, 3817865, 3585161, 3287206, 3127381]'
                                     data-labels='["Iedereen", "Leiderschap", "Vrij", "Euro", "Nieuw", "Niemand", "Vallen", "Bekijk", "Laat", "Verhalen"]'
                                     data-title="Potential reach"
                             ></canvas>
-                        </div>
-                    
-                </div>
-                <hr>
-            
-                <div class="text-center">
-                    <h4>Gelderland</h4>
-                </div>
-                <div class="row">
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+            </div>
+            <hr>
+        
+            <div class="text-center">
+                <h4>Gelderland</h4>
+            </div>
+            <div class="row">
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="occurrences-gelderland-chart"
                                     data-data='[429, 339, 338, 318, 211, 208, 204, 201, 200, 162]'
                                     data-labels='["Iedereen", "Euro", "Vrij", "Leiderschap", "Nieuw", "Haar", "Vallen", "Niemand", "Laat", "Tijd"]'
                                     data-title="Occurrences"
                             ></canvas>
-                        </div>
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="impressions-gelderland-chart"
                                     data-data='[837624, 731061, 622783, 555245, 507454, 446171, 375102, 363167, 362962, 361829]'
                                     data-labels='["Iedereen", "Leiderschap", "Nieuw", "Vrij", "Bekijk", "Laten", "Laat", "Kaag", "Sigrid", "Niemand"]'
                                     data-title="Impressions"
                             ></canvas>
-                        </div>
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="potential-reach-gelderland-chart"
                                     data-data='[18755788, 16549622, 15832779, 15708095, 9657806, 9657806, 9566267, 8879855, 8516907, 7742920]'
                                     data-labels='["Iedereen", "Euro", "Vrij", "Leiderschap", "Niemand", "Vallen", "Nieuw", "Haar", "Bekijk", "Laat"]'
                                     data-title="Potential reach"
                             ></canvas>
-                        </div>
-                    
-                </div>
-                <hr>
-            
-                <div class="text-center">
-                    <h4>Groningen</h4>
-                </div>
-                <div class="row">
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+            </div>
+            <hr>
+        
+            <div class="text-center">
+                <h4>Groningen</h4>
+            </div>
+            <div class="row">
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="occurrences-groningen-chart"
                                     data-data='[429, 339, 338, 318, 211, 208, 204, 201, 200, 162]'
                                     data-labels='["Iedereen", "Euro", "Vrij", "Leiderschap", "Nieuw", "Haar", "Vallen", "Niemand", "Laat", "Tijd"]'
                                     data-title="Occurrences"
                             ></canvas>
-                        </div>
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="impressions-groningen-chart"
                                     data-data='[439833, 390242, 298107, 253327, 247907, 243919, 237643, 232540, 224312, 210579]'
                                     data-labels='["Iedereen", "Laten", "Vrij", "Land", "Leiderschap", "Laat", "Vallen", "Niemand", "Waar", "Nieuw"]'
                                     data-title="Impressions"
                             ></canvas>
-                        </div>
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="potential-reach-groningen-chart"
                                     data-data='[7611115, 6151964, 6059939, 5768261, 5613272, 3853278, 3574918, 3512944, 3436765, 3184473]'
                                     data-labels='["Iedereen", "Vrij", "Groningen", "Euro", "Leiderschap", "Vallen", "Niemand", "Onderwijs", "Nieuw", "Laat"]'
                                     data-title="Potential reach"
                             ></canvas>
-                        </div>
-                    
-                </div>
-                <hr>
-            
-                <div class="text-center">
-                    <h4>Limburg</h4>
-                </div>
-                <div class="row">
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+            </div>
+            <hr>
+        
+            <div class="text-center">
+                <h4>Limburg</h4>
+            </div>
+            <div class="row">
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="occurrences-limburg-chart"
                                     data-data='[429, 339, 338, 318, 211, 208, 204, 201, 200, 162]'
                                     data-labels='["Iedereen", "Euro", "Vrij", "Leiderschap", "Nieuw", "Haar", "Vallen", "Niemand", "Laat", "Tijd"]'
                                     data-title="Occurrences"
                             ></canvas>
-                        </div>
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="impressions-limburg-chart"
                                     data-data='[402663, 392839, 334257, 296290, 284184, 235212, 233045, 214932, 214932, 199486]'
                                     data-labels='["Iedereen", "Leiderschap", "Nieuw", "Vrij", "Bekijk", "Laat", "Laten", "Sigrid", "Kaag", "Land"]'
                                     data-title="Impressions"
                             ></canvas>
-                        </div>
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="potential-reach-limburg-chart"
                                     data-data='[10817793, 10483515, 9635932, 8627427, 6241881, 5420456, 5409955, 4981181, 4699426, 4683541]'
                                     data-labels='["Iedereen", "Leiderschap", "Euro", "Vrij", "Nieuw", "Vallen", "Niemand", "Onderwijs", "Haar", "Bekijk"]'
                                     data-title="Potential reach"
                             ></canvas>
-                        </div>
-                    
-                </div>
-                <hr>
-            
-                <div class="text-center">
-                    <h4>Noord-brabant</h4>
-                </div>
-                <div class="row">
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+            </div>
+            <hr>
+        
+            <div class="text-center">
+                <h4>Noord-brabant</h4>
+            </div>
+            <div class="row">
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="occurrences-noord-brabant-chart"
                                     data-data='[429, 339, 338, 318, 211, 208, 204, 201, 200, 162]'
                                     data-labels='["Iedereen", "Euro", "Vrij", "Leiderschap", "Nieuw", "Haar", "Vallen", "Niemand", "Laat", "Tijd"]'
                                     data-title="Occurrences"
                             ></canvas>
-                        </div>
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="impressions-noord-brabant-chart"
                                     data-data='[975252, 820197, 696993, 664001, 596184, 495618, 485396, 480221, 442186, 438686]'
                                     data-labels='["Iedereen", "Leiderschap", "Nieuw", "Vrij", "Bekijk", "Kansen", "Laten", "Laat", "Niemand", "Vallen"]'
                                     data-title="Impressions"
                             ></canvas>
-                        </div>
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="potential-reach-noord-brabant-chart"
                                     data-data='[22276167, 19949841, 19148809, 18289383, 12275491, 11975491, 11755902, 11159455, 10001489, 9412258]'
                                     data-labels='["Iedereen", "Euro", "Vrij", "Leiderschap", "Niemand", "Vallen", "Haar", "Nieuw", "Bekijk", "Laat"]'
                                     data-title="Potential reach"
                             ></canvas>
-                        </div>
-                    
-                </div>
-                <hr>
-            
-                <div class="text-center">
-                    <h4>Noord-holland</h4>
-                </div>
-                <div class="row">
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+            </div>
+            <hr>
+        
+            <div class="text-center">
+                <h4>Noord-holland</h4>
+            </div>
+            <div class="row">
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="occurrences-noord-holland-chart"
                                     data-data='[429, 339, 338, 318, 211, 208, 204, 201, 200, 162]'
                                     data-labels='["Iedereen", "Euro", "Vrij", "Leiderschap", "Nieuw", "Haar", "Vallen", "Niemand", "Laat", "Tijd"]'
                                     data-title="Occurrences"
                             ></canvas>
-                        </div>
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="impressions-noord-holland-chart"
                                     data-data='[1119318, 952656, 806083, 705441, 641804, 609964, 584667, 504707, 501321, 481706]'
                                     data-labels='["Iedereen", "Leiderschap", "Nieuw", "Vrij", "Laten", "Bekijk", "Land", "Kaag", "Sigrid", "Kansen"]'
                                     data-title="Impressions"
                             ></canvas>
-                        </div>
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="potential-reach-noord-holland-chart"
                                     data-data='[25267974, 23641602, 22982575, 20256505, 14458121, 13712796, 12444550, 12414550, 11511712, 11147229]'
                                     data-labels='["Iedereen", "Euro", "Leiderschap", "Vrij", "Nieuw", "Haar", "Vallen", "Niemand", "Sigrid", "Kaag"]'
                                     data-title="Potential reach"
                             ></canvas>
-                        </div>
-                    
-                </div>
-                <hr>
-            
-                <div class="text-center">
-                    <h4>Overijssel</h4>
-                </div>
-                <div class="row">
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+            </div>
+            <hr>
+        
+            <div class="text-center">
+                <h4>Overijssel</h4>
+            </div>
+            <div class="row">
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="occurrences-overijssel-chart"
                                     data-data='[429, 339, 338, 318, 211, 208, 204, 201, 200, 162]'
                                     data-labels='["Iedereen", "Euro", "Vrij", "Leiderschap", "Nieuw", "Haar", "Vallen", "Niemand", "Laat", "Tijd"]'
                                     data-title="Occurrences"
                             ></canvas>
-                        </div>
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="impressions-overijssel-chart"
                                     data-data='[453570, 430093, 361974, 322117, 316421, 255974, 239068, 222170, 221668, 216834]'
                                     data-labels='["Iedereen", "Leiderschap", "Nieuw", "Vrij", "Bekijk", "Laten", "Laat", "Kaag", "Sigrid", "Land"]'
                                     data-title="Impressions"
                             ></canvas>
-                        </div>
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="potential-reach-overijssel-chart"
                                     data-data='[12369714, 10396615, 10344088, 9399524, 6803881, 6260396, 6260396, 6167952, 5767144, 5523824]'
                                     data-labels='["Iedereen", "Vrij", "Leiderschap", "Euro", "Onderwijs", "Niemand", "Vallen", "Nieuw", "Haar", "Bekijk"]'
                                     data-title="Potential reach"
                             ></canvas>
-                        </div>
-                    
-                </div>
-                <hr>
-            
-                <div class="text-center">
-                    <h4>Utrecht</h4>
-                </div>
-                <div class="row">
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+            </div>
+            <hr>
+        
+            <div class="text-center">
+                <h4>Utrecht</h4>
+            </div>
+            <div class="row">
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="occurrences-utrecht-chart"
                                     data-data='[429, 339, 338, 318, 211, 208, 204, 201, 200, 162]'
                                     data-labels='["Iedereen", "Euro", "Vrij", "Leiderschap", "Nieuw", "Haar", "Vallen", "Niemand", "Laat", "Tijd"]'
                                     data-title="Occurrences"
                             ></canvas>
-                        </div>
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="impressions-utrecht-chart"
                                     data-data='[512766, 434753, 374438, 312377, 296984, 277346, 276077, 274999, 248931, 241366]'
                                     data-labels='["Iedereen", "Leiderschap", "Nieuw", "Vrij", "Bekijk", "Keuze", "Laten", "Natuurgebied", "Groot", "Land"]'
                                     data-title="Impressions"
                             ></canvas>
-                        </div>
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="potential-reach-utrecht-chart"
                                     data-data='[13051436, 11687312, 9408342, 9209646, 5623318, 5372510, 5372510, 5165254, 4772444, 4698201]'
                                     data-labels='["Iedereen", "Euro", "Vrij", "Leiderschap", "Nieuw", "Niemand", "Vallen", "Haar", "Kaag", "Sigrid"]'
                                     data-title="Potential reach"
                             ></canvas>
-                        </div>
-                    
-                </div>
-                <hr>
-            
-                <div class="text-center">
-                    <h4>Zeeland</h4>
-                </div>
-                <div class="row">
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+            </div>
+            <hr>
+        
+            <div class="text-center">
+                <h4>Zeeland</h4>
+            </div>
+            <div class="row">
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="occurrences-zeeland-chart"
                                     data-data='[429, 339, 338, 318, 211, 208, 204, 201, 200, 162]'
                                     data-labels='["Iedereen", "Euro", "Vrij", "Leiderschap", "Nieuw", "Haar", "Vallen", "Niemand", "Laat", "Tijd"]'
                                     data-title="Occurrences"
                             ></canvas>
-                        </div>
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="impressions-zeeland-chart"
                                     data-data='[178552, 132280, 124018, 116157, 110032, 109998, 106665, 101996, 97524, 88101]'
                                     data-labels='["Iedereen", "Laat", "Leiderschap", "Nieuw", "Tijd", "Wouter", "Waar", "Goes", "Vrij", "Bekijk"]'
                                     data-title="Impressions"
                             ></canvas>
-                        </div>
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="potential-reach-zeeland-chart"
                                     data-data='[4190823, 3285280, 3064074, 2862323, 2265191, 1942958, 1933199, 1933199, 1870276, 1788465]'
                                     data-labels='["Iedereen", "Vrij", "Leiderschap", "Euro", "Haar", "Laat", "Niemand", "Vallen", "Nieuw", "Tijd"]'
                                     data-title="Potential reach"
                             ></canvas>
-                        </div>
-                    
-                </div>
-                <hr>
-            
-                <div class="text-center">
-                    <h4>Zuid-holland</h4>
-                </div>
-                <div class="row">
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+            </div>
+            <hr>
+        
+            <div class="text-center">
+                <h4>Zuid-holland</h4>
+            </div>
+            <div class="row">
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="occurrences-zuid-holland-chart"
                                     data-data='[429, 339, 338, 318, 211, 208, 204, 201, 200, 162]'
                                     data-labels='["Iedereen", "Euro", "Vrij", "Leiderschap", "Nieuw", "Haar", "Vallen", "Niemand", "Laat", "Tijd"]'
                                     data-title="Occurrences"
                             ></canvas>
-                        </div>
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="impressions-zuid-holland-chart"
                                     data-data='[1570708, 1248145, 1101546, 1095684, 860925, 800031, 735526, 722909, 672107, 661745]'
                                     data-labels='["Iedereen", "Leiderschap", "Vrij", "Nieuw", "Laten", "Bekijk", "Land", "Kansen", "Laat", "Kaag"]'
                                     data-title="Impressions"
                             ></canvas>
-                        </div>
-                    
-                        <div class="col-4 mx-auto">
+                        
+                    </div>
+                
+                    <div class="col-4 mx-auto">
+                        
                             <canvas
                                     id="potential-reach-zuid-holland-chart"
                                     data-data='[32075833, 27928475, 25806396, 24481545, 18913159, 17914345, 14387740, 14387740, 12793383, 12478143]'
                                     data-labels='["Iedereen", "Leiderschap", "Euro", "Vrij", "Nieuw", "Haar", "Niemand", "Vallen", "Kaag", "Sigrid"]'
                                     data-title="Potential reach"
                             ></canvas>
-                        </div>
-                    
-                </div>
-                <hr>
-            
+                        
+                    </div>
+                
+            </div>
+            <hr>
         
+    
 
 </div>
 </body>

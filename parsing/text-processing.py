@@ -5,7 +5,7 @@ from datetime import datetime
 
 from models import Ad
 
-from constants import FIRST_DATE, PARTIES, GENDERS, AGE_RANGES, REGIONS
+from constants import FIRST_DATE, PARTIES, GENDERS, AGE_RANGES, REGIONS, LEADERS
 
 from collections import Counter
 
@@ -25,6 +25,9 @@ RANKS = [(data_type, demographic.lower())
          for demographic in ["total"] + GENDERS + AGE_RANGES + REGIONS
          for data_type in ("occurrences", "impressions", "potential-reach")]
 
+ads = list(Ad.select().where(Ad.start_date >= FIRST_DATE))
+ads_per_party = {p: [ad for ad in ads if ad.party == p] for p in PARTIES}
+
 party_data = {
     p: {
         "last-updated": datetime.now().strftime("%H:%M %d-%m-%Y"),
@@ -33,14 +36,17 @@ party_data = {
 }
 
 for p in PARTIES:
+    for data_type in ("occurrences", "impressions", "potential-reach"):
+        party_data[p][f"{data_type}-leaders"] = {
+            "labels": [],
+            "data": [],
+        }
+
     for data_type, demographic in RANKS:
         party_data[p][f"{data_type}-{demographic}"] = {
             "labels": [],
             "data": [],
         }
-
-ads = list(Ad.select().where(Ad.start_date >= FIRST_DATE))
-ads_per_party = {p: [ad for ad in ads if ad.party == p] for p in PARTIES}
 
 for party in PARTIES:
 
@@ -52,11 +58,17 @@ for party in PARTIES:
             for word in ad.parsed_text:
                 party_text_counter.update({word: ad.rank_to_data(data_type, demographic)})
 
-        for word, occurrences in party_text_counter.most_common(NUMBER_OF_COMMON_WORDS):
+        if demographic == "total":
+            for name in LEADERS:
+                count = party_text_counter[name.rsplit(" ", 1)[-1].lower()]
+                if count > 0:
+                    party_data[party][f"{data_type}-leaders"]["labels"].append(name)
+                    party_data[party][f"{data_type}-leaders"]["data"].append(count)
 
-            if occurrences > 0:
+        for word, count in party_text_counter.most_common(NUMBER_OF_COMMON_WORDS):
+            if count > 0:
                 party_data[party][f"{data_type}-{demographic}"]["labels"].append(word)
-                party_data[party][f"{data_type}-{demographic}"]["data"].append(occurrences)
+                party_data[party][f"{data_type}-{demographic}"]["data"].append(count)
 
 recursive_round(party_data)
 

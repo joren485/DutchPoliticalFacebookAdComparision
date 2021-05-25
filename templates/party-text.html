@@ -4,30 +4,34 @@
 
 {% block content %}
     <div class="text-center">
-        <h1>{{ party }} Text Graphs</h1>
+        <h1>{{ party }} Content Analysis</h1>
     </div>
     <hr>
-        {% for demographic_type, demographic_list  in (("total", ["total"]), ("gender", GENDERS), ("age", AGE_RANGES), ("region", REGIONS),) %}
+    {% for demographic_type, demographic_list  in (("leaders", ["leaders"]), ("total", ["total"]), ("gender", GENDERS), ("age", AGE_RANGES), ("region", REGIONS),) %}
+        <div class="text-center">
+            <h2>Ranked by {{ demographic_type | capitalize }}</h2>
+        </div>
+        {% for demographic in demographic_list %}
             <div class="text-center">
-                <h2>Ranked by {{ demographic_type | capitalize }}</h2>
+                <h4>{{ demographic | capitalize }}</h4>
             </div>
-            {% for demographic in demographic_list %}
-                <div class="text-center">
-                    <h4>{{ demographic | capitalize }}</h4>
-                </div>
-                <div class="row">
-                    {% for data_type in ("occurrences", "impressions", "potential-reach") %}
-                        <div class="col-4 mx-auto">
+            <div class="row">
+                {% for data_type in ("occurrences", "impressions", "potential-reach") %}
+                    <div class="col-4 mx-auto">
+                        {% if party_text_data[data_type + "-" + demographic]["labels"] | length > 0 %}
                             <canvas
                                     id="{{ data_type }}-{{ demographic }}-chart"
                                     data-data='{{ party_text_data[data_type + "-" + demographic]["data"] | tojson }}'
                                     data-labels='{{ party_text_data[data_type + "-" + demographic]["labels"] | map("capitalize") | list | tojson }}'
                                     data-title="{{ data_type | capitalize | replace("-", " ") }}"
                             ></canvas>
-                        </div>
-                    {% endfor %}
-                </div>
-                <hr>
-            {% endfor %}
+                        {% else %}
+                            <p>No data available</p>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+            <hr>
         {% endfor %}
+    {% endfor %}
 {% endblock %}
