@@ -1,11 +1,9 @@
 import json
 import logging
-from datetime import datetime
 from typing import Optional, Union
 
 from constants import (
     AGE_RANGES,
-    DATETIME_FORMAT,
     FIRST_DATE,
     GENDERS,
     NUMBER_OF_DATES,
@@ -52,8 +50,6 @@ if __name__ == '__main__':
     LOGGER.info(f"Creating general data.")
 
     general_data = {
-        "last-updated": datetime.now().strftime("%H:%M %d-%m-%Y"),
-        "start-date": FIRST_DATE.strftime(DATETIME_FORMAT),
         "ads-total": len(ads),
         "ads-without-potential-reach": sum(1 for a in ads if not a.has_potential_reach),
         "ads-per-party": [len(ads_per_party[p]) for p in PARTIES],
@@ -77,8 +73,6 @@ if __name__ == '__main__':
 
     party_specific_data = {
         party: {
-            "last-updated": general_data["last-updated"],
-            "start-date": general_data["start-date"],
             "total-ads": len(ads_per_party[party]),
             "spending-total-lower": sum(ad.spending_lower for ad in ads_per_party[party]),
             "spending-total-upper": sum(ad.spending_upper for ad in ads_per_party[party]),

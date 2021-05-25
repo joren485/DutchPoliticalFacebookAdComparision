@@ -1,5 +1,7 @@
 import json
 
+from datetime import datetime
+
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 from constants import PARTIES, GENDERS, AGE_RANGES, REGIONS
@@ -19,7 +21,7 @@ def write_template(template, destination=None, **kwargs):
         destination = template
 
     content = env.get_template(f"{template}.html").render(
-        last_updated=general_data["last-updated"],
+        last_updated=datetime.now().strftime("%H:%M %d-%m-%Y"),
         PARTIES=PARTIES,
         GENDERS=GENDERS,
         AGE_RANGES=AGE_RANGES,
