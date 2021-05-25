@@ -41,6 +41,7 @@
                                     id="{{ data_type }}-per-party-per-date-chart"
                                     data-data={{ general_data[data_type + "-per-party-per-date"] | string | replace(" ", "") | tojson }}
                                     data-labels='{{ PARTIES | tojson }}'
+                                    data-title="{{ data_type | capitalize }} per Date"
                             ></canvas>
                         </div>
                     {% endif %}
@@ -50,7 +51,7 @@
                                     id="{{ data_type }}-per-party-chart"
                                     data-data='{{ general_data[data_type + "-per-party"] | tojson }}'
                                     data-labels='{{ PARTIES | tojson }}'
-                                    data-title="Total"
+                                    data-title="Total {{ data_type | capitalize }}"
                             ></canvas>
                         </div>
                     {% endif %}

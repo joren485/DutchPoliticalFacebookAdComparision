@@ -122,7 +122,7 @@ function generateLineGraphConfig(canvas) {
             responsive: true,
             title: {
                 display: true,
-                text: "Per Date",
+                text: $(canvas).data("title"),
                 fontSize: 16,
             },
             legend: {
