@@ -1,7 +1,5 @@
 import re
-
 from datetime import date
-
 from functools import cached_property
 
 from peewee import (
@@ -15,14 +13,7 @@ from peewee import (
     TextField,
 )
 
-from constants import (
-    AGE_RANGES,
-    FIRST_DATE,
-    GENDERS,
-    LOCAL_AD_ARCHIVE_PATH,
-    REGIONS,
-    IGNORED_WORDS,
-)
+from constants import AGE_RANGES, FIRST_DATE, GENDERS, IGNORED_WORDS, LOCAL_AD_ARCHIVE_PATH, REGIONS
 
 PATTERN_NON_WORD_CHARS = re.compile(r"[^a-zA-Z0-9-' #]")
 
@@ -153,6 +144,7 @@ class Ad(Model):
             return amount
 
         return amount * getattr(self, Ad.demographic_to_field_name(demographic))
+
 
 for dt in GENDERS + REGIONS + AGE_RANGES:
     Ad._meta.add_field(Ad.demographic_to_field_name(dt), FloatField(default=0))

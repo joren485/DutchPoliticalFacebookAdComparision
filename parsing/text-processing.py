@@ -1,13 +1,11 @@
 import json
 import logging
-
+from collections import Counter
 from datetime import datetime
 
+from constants import AGE_RANGES, FIRST_DATE, GENDERS, LEADERS, PARTIES, REGIONS
+
 from models import Ad
-
-from constants import FIRST_DATE, PARTIES, GENDERS, AGE_RANGES, REGIONS, LEADERS
-
-from collections import Counter
 
 from processing import recursive_round
 

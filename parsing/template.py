@@ -1,15 +1,11 @@
 import json
-
 from datetime import datetime
 
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
-from constants import PARTIES, GENDERS, AGE_RANGES, REGIONS
+from constants import AGE_RANGES, GENDERS, PARTIES, REGIONS
 
-env = Environment(
-    loader=FileSystemLoader("../templates"),
-    autoescape=select_autoescape()
-)
+env = Environment(loader=FileSystemLoader("../templates"), autoescape=select_autoescape())
 
 with open("../data/parsed_data/general-data.json") as h_file:
     general_data = json.load(h_file)
@@ -30,9 +26,9 @@ def write_template(template, destination=None, **kwargs):
         **kwargs,
     )
 
-    destination_path = f"../index.html" if template == "index" else f"../website/{destination}.html"
+    destination_path = "../index.html" if template == "index" else f"../website/{destination}.html"
 
-    with open(destination_path, 'w') as h_dest:
+    with open(destination_path, "w") as h_dest:
         h_dest.write(content)
 
 

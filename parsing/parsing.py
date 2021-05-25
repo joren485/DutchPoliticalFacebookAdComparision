@@ -1,7 +1,7 @@
 import logging
 from datetime import datetime
 from decimal import Decimal
-from typing import Tuple, Optional
+from typing import Optional, Tuple
 
 from constants import AGE_RANGES, DATETIME_FORMAT, GENDERS, REGIONS
 

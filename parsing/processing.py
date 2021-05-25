@@ -47,7 +47,7 @@ if __name__ == '__main__':
 
     most_expensive_ad = max(ads, key=lambda e: e.average_spending_per_day)
 
-    LOGGER.info(f"Creating general data.")
+    LOGGER.info("Creating general data.")
 
     general_data = {
         "ads-total": len(ads),
@@ -69,7 +69,7 @@ if __name__ == '__main__':
         "potential-reach-per-party-per-date": [[0] * NUMBER_OF_DATES for _ in PARTIES],
     }
 
-    LOGGER.info(f"Creating party specific data.")
+    LOGGER.info("Creating party specific data.")
 
     party_specific_data = {
         party: {
