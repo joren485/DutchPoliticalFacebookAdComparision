@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-zoom/0.7.7/chartjs-plugin-zoom.min.js"></script>
+
+    <script src="/DutchPoliticalFacebookAdComparision/website/js/helper.js"></script>
+    <script src="/DutchPoliticalFacebookAdComparision/website/js/charts.js"></script>
+
+    <meta charset="UTF-8">
+    <title>VOLT | Dutch Political Facebook Ad Comparison</title>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/DutchPoliticalFacebookAdComparision/index.html">Dutch Political Facebook Ad Comparison</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="index-nav-dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Overall Statistics</a>
+                    <ul class="dropdown-menu" aria-labelledby="index-nav-dropdown">
+                        <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/index.html#ads-charts">Ads</a></li>
+                        <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/index.html#spending-charts">Spending</a></li>
+                        <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/index.html#impressions-charts">Impressions</a></li>
+                        <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/index.html#potential-reach-charts">Potential Reach</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="party-statistics-nav-dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Party Statistics</a>
+                    <ul class="dropdown-menu" aria-labelledby="party-statistics-nav-dropdown">
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/50+-statistics.html">50+</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/bij1-statistics.html">BIJ1</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/bbb-statistics.html">BBB</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/cda-statistics.html">CDA</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/cu-statistics.html">CU</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/d66-statistics.html">D66</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/denk-statistics.html">DENK</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/fvd-statistics.html">FvD</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/gl-statistics.html">GL</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/ja21-statistics.html">JA21</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/pvv-statistics.html">PVV</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/pvda-statistics.html">PvdA</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/pvdd-statistics.html">PvdD</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/sgp-statistics.html">SGP</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/sp-statistics.html">SP</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/volt-statistics.html">VOLT</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/vvd-statistics.html">VVD</a></li>
+                        
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="party-text-nav-dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Party Text</a>
+                    <ul class="dropdown-menu" aria-labelledby="party-text-nav-dropdown">
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/50+-text.html">50+</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/bij1-text.html">BIJ1</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/bbb-text.html">BBB</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/cda-text.html">CDA</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/cu-text.html">CU</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/d66-text.html">D66</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/denk-text.html">DENK</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/fvd-text.html">FvD</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/gl-text.html">GL</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/ja21-text.html">JA21</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/pvv-text.html">PVV</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/pvda-text.html">PvdA</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/pvdd-text.html">PvdD</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/sgp-text.html">SGP</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/sp-text.html">SP</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/volt-text.html">VOLT</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/vvd-text.html">VVD</a></li>
+                        
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/DutchPoliticalFacebookAdComparision/website/about.html">About</a>
+                </li>
+            </ul>
+
+            <span class="navbar-text">Last Updated: 14:36 25-05-2021</span>
+            <a class="nav-link link-dark" href="https://github.com/joren485/DutchPoliticalFacebookAdComparision/"><i class="fab fa-github"></i></a>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid pt-4">
+    
+    <div class="text-center">
+        <h1>VOLT Text Graphs</h1>
+    </div>
+    <hr>
+        
+            <div class="text-center">
+                <h2>Ranked by Total</h2>
+            </div>
+            
+                <div class="text-center">
+                    <h4>Total</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-total-chart"
+                                    data-data='[663, 563, 217, 199, 193, 171, 170, 165, 163, 143]'
+                                    data-labels='["Volt", "Stemvolt", "Politiek", "Nieuwe", "Europa", "Tijd", "Toekomst", "Tweede", "Kamer", "Vernieuwing"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-total-chart"
+                                    data-data='[11052668, 4871218, 4739440, 4372900, 3208392, 3118966, 2724904, 2513948, 2483976, 2363942]'
+                                    data-labels='["Volt", "Stemvolt", "Jongeren", "Nieuwe", "Politiek", "Energie", "Europa", "Zich", "Schouder", "Brengen"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-total-chart"
+                                    data-data='[426236142, 230714985, 130015136, 119487741, 112759724, 107420661, 107400106, 95973764, 95373762, 93000092]'
+                                    data-labels='["Volt", "Stemvolt", "Nieuwe", "Politiek", "Europa", "Toekomst", "Vernieuwing", "Tweede", "Kamer", "Brengen"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+        
+            <div class="text-center">
+                <h2>Ranked by Gender</h2>
+            </div>
+            
+                <div class="text-center">
+                    <h4>Male</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-male-chart"
+                                    data-data='[663, 563, 217, 199, 193, 171, 170, 165, 163, 143]'
+                                    data-labels='["Volt", "Stemvolt", "Politiek", "Nieuwe", "Europa", "Tijd", "Toekomst", "Tweede", "Kamer", "Vernieuwing"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-male-chart"
+                                    data-data='[5981111, 2582501, 2459494, 2386536, 1752271, 1664481, 1577852, 1408258, 1404020, 1366317]'
+                                    data-labels='["Volt", "Stemvolt", "Jongeren", "Nieuwe", "Politiek", "Energie", "Europa", "Tweede", "Kamer", "Brengen"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-male-chart"
+                                    data-data='[204182683, 106993925, 62033428, 58396007, 50772415, 49984488, 48548254, 46280187, 45954246, 44119566]'
+                                    data-labels='["Volt", "Stemvolt", "Nieuwe", "Politiek", "Toekomst", "Europa", "Vernieuwing", "Tweede", "Kamer", "Brengen"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Female</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-female-chart"
+                                    data-data='[663, 563, 217, 199, 193, 171, 170, 165, 163, 143]'
+                                    data-labels='["Volt", "Stemvolt", "Politiek", "Nieuwe", "Europa", "Tijd", "Toekomst", "Tweede", "Kamer", "Vernieuwing"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-female-chart"
+                                    data-data='[5041900, 2265485, 2255936, 1978508, 1448520, 1448494, 1371912, 1187573, 1142168, 1021544]'
+                                    data-labels='["Volt", "Stemvolt", "Jongeren", "Nieuwe", "Politiek", "Energie", "Schouder", "Zich", "Europa", "Corona"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-female-chart"
+                                    data-data='[217262078, 122416857, 66674260, 62119023, 60057305, 55997441, 55596507, 46794923, 46522898, 45657705]'
+                                    data-labels='["Volt", "Stemvolt", "Nieuwe", "Europa", "Politiek", "Vernieuwing", "Toekomst", "Tweede", "Kamer", "Brengen"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+        
+            <div class="text-center">
+                <h2>Ranked by Age</h2>
+            </div>
+            
+                <div class="text-center">
+                    <h4>13-17</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-13-17-chart"
+                                    data-data='[663, 563, 217, 199, 193, 171, 170, 165, 163, 143]'
+                                    data-labels='["Volt", "Stemvolt", "Politiek", "Nieuwe", "Europa", "Tijd", "Toekomst", "Tweede", "Kamer", "Vernieuwing"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-13-17-chart"
+                                    data-data='[561, 550, 462, 351, 272, 246, 244, 244, 244, 244]'
+                                    data-labels='["Jongeren", "Volt", "Stemvolt", "Nederland", "Zich", "Corona", "Ernst", "Boutkan", "Betekenen", "Check"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-13-17-chart"
+                                    data-data='[54780, 26541, 23676, 22200, 22175, 20663, 19991, 19991, 19673, 19673]'
+                                    data-labels='["Volt", "Toekomst", "Jongeren", "Jouw", "Nederland", "Stemvolt", "Laat", "Horen", "Doet", "Praat"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>18-24</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-18-24-chart"
+                                    data-data='[663, 563, 217, 199, 193, 171, 170, 165, 163, 143]'
+                                    data-labels='["Volt", "Stemvolt", "Politiek", "Nieuwe", "Europa", "Tijd", "Toekomst", "Tweede", "Kamer", "Vernieuwing"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-18-24-chart"
+                                    data-data='[2399811, 1793318, 1732280, 897603, 814361, 800728, 793932, 793932, 793932, 793932]'
+                                    data-labels='["Volt", "Jongeren", "Stemvolt", "Zich", "Corona", "Betekenen", "Ernst", "Boutkan", "Check", "Jongerenplan"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-18-24-chart"
+                                    data-data='[112257396, 81593588, 36352730, 36201192, 29446864, 27300816, 26277538, 26225497, 25717990, 24825740]'
+                                    data-labels='["Volt", "Stemvolt", "Nieuwe", "Politiek", "Europa", "Toekomst", "Tijd", "Tweede", "Kamer", "Vernieuwing"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>25-34</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-25-34-chart"
+                                    data-data='[663, 563, 217, 199, 193, 171, 170, 165, 163, 143]'
+                                    data-labels='["Volt", "Stemvolt", "Politiek", "Nieuwe", "Europa", "Tijd", "Toekomst", "Tweede", "Kamer", "Vernieuwing"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-25-34-chart"
+                                    data-data='[3074020, 1867619, 1564978, 1048447, 1037543, 1036735, 936957, 828406, 812222, 726986]'
+                                    data-labels='["Volt", "Stemvolt", "Jongeren", "Nieuwe", "Tweede", "Kamer", "Tijd", "Politiek", "Zich", "Lijsttrekker"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-25-34-chart"
+                                    data-data='[110449079, 79964629, 35145349, 34733190, 34693576, 29318865, 25227592, 25070527, 24978177, 24965645]'
+                                    data-labels='["Volt", "Stemvolt", "Politiek", "Nieuwe", "Europa", "Toekomst", "Tijd", "Tweede", "Kamer", "Vernieuwing"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>35-44</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-35-44-chart"
+                                    data-data='[663, 563, 217, 199, 193, 171, 170, 165, 163, 143]'
+                                    data-labels='["Volt", "Stemvolt", "Politiek", "Nieuwe", "Europa", "Tijd", "Toekomst", "Tweede", "Kamer", "Vernieuwing"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-35-44-chart"
+                                    data-data='[2244312, 1066851, 810209, 737962, 683052, 673324, 671259, 565535, 532690, 389710]'
+                                    data-labels='["Volt", "Nieuwe", "Energie", "Politiek", "Stemvolt", "Jongeren", "Europa", "Schouder", "Brengen", "Zich"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-35-44-chart"
+                                    data-data='[79671349, 35657970, 25124931, 23544746, 21557116, 21447161, 20188878, 20188878, 19915986, 19699768]'
+                                    data-labels='["Volt", "Stemvolt", "Nieuwe", "Vernieuwing", "Brengen", "Politiek", "Tweede", "Kamer", "Toekomst", "Europa"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>45-54</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-45-54-chart"
+                                    data-data='[663, 563, 217, 199, 193, 171, 170, 165, 163, 143]'
+                                    data-labels='["Volt", "Stemvolt", "Politiek", "Nieuwe", "Europa", "Tijd", "Toekomst", "Tweede", "Kamer", "Vernieuwing"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-45-54-chart"
+                                    data-data='[2911314, 1396111, 1097477, 916081, 898088, 888978, 676161, 637141, 527033, 449917]'
+                                    data-labels='["Volt", "Nieuwe", "Energie", "Politiek", "Europa", "Schouder", "Brengen", "Jongeren", "Stemvolt", "Plaats"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-45-54-chart"
+                                    data-data='[96648013, 30606634, 30511368, 29694231, 27438596, 26285857, 26194530, 24132993, 23471969, 22206452]'
+                                    data-labels='["Volt", "Vernieuwing", "Nieuwe", "Stemvolt", "Toekomst", "Brengen", "Weet", "Europa", "Politiek", "Tweede"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>55-64</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-55-64-chart"
+                                    data-data='[663, 563, 217, 199, 193, 171, 170, 165, 163, 143]'
+                                    data-labels='["Volt", "Stemvolt", "Politiek", "Nieuwe", "Europa", "Tijd", "Toekomst", "Tweede", "Kamer", "Vernieuwing"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-55-64-chart"
+                                    data-data='[363578, 144393, 117501, 112543, 104799, 99500, 69828, 66499, 58652, 58270]'
+                                    data-labels='["Volt", "Nieuwe", "Europa", "Energie", "Schouder", "Politiek", "Brengen", "Jongeren", "Plaats", "Stemvolt"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-55-64-chart"
+                                    data-data='[15349759, 3684693, 3585004, 3338259, 3290602, 3189720, 2898120, 2835266, 2591969, 2220582]'
+                                    data-labels='["Volt", "Stemvolt", "Europa", "Toekomst", "Vernieuwing", "Nieuwe", "Politiek", "Weet", "Brengen", "Europese"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>65+</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-65+-chart"
+                                    data-data='[663, 563, 217, 199, 193, 171, 170, 165, 163, 143]'
+                                    data-labels='["Volt", "Stemvolt", "Politiek", "Nieuwe", "Europa", "Tijd", "Toekomst", "Tweede", "Kamer", "Vernieuwing"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-65+-chart"
+                                    data-data='[55492, 21659, 17942, 12223, 12156, 12040, 11331, 10379, 9342, 9232]'
+                                    data-labels='["Volt", "Sterk", "Europa", "Nederland", "#volt", "#tk2021", "Jonge", "#volt2021", "#jointhechange", "Positieve"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-65+-chart"
+                                    data-data='[11507466, 2610923, 1838785, 1838785, 1743864, 1443973, 1443973, 1443973, 1261382, 1261382]'
+                                    data-labels='["Volt", "Vonkradio", "#tk2021", "#volt", "#volt2021", "#radio", "#vonkradio", "#vonk", "Radio", "Europe"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+        
+            <div class="text-center">
+                <h2>Ranked by Region</h2>
+            </div>
+            
+                <div class="text-center">
+                    <h4>Drenthe</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-drenthe-chart"
+                                    data-data='[663, 563, 217, 199, 193, 171, 170, 165, 163, 143]'
+                                    data-labels='["Volt", "Stemvolt", "Politiek", "Nieuwe", "Europa", "Tijd", "Toekomst", "Tweede", "Kamer", "Vernieuwing"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-drenthe-chart"
+                                    data-data='[322295, 137665, 98347, 95162, 91246, 83522, 69580, 68171, 66482, 48308]'
+                                    data-labels='["Volt", "Nieuwe", "Energie", "Politiek", "Europa", "Schouder", "Stemvolt", "Brengen", "Jongeren", "Generatie"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-drenthe-chart"
+                                    data-data='[11749061, 5026591, 3373478, 3185947, 2911309, 2766592, 2670305, 2397786, 2393798, 2328039]'
+                                    data-labels='["Volt", "Stemvolt", "Nieuwe", "Europa", "Vernieuwing", "Politiek", "Toekomst", "Weet", "Brengen", "Tweede"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Flevoland</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-flevoland-chart"
+                                    data-data='[663, 563, 217, 199, 193, 171, 170, 165, 163, 143]'
+                                    data-labels='["Volt", "Stemvolt", "Politiek", "Nieuwe", "Europa", "Tijd", "Toekomst", "Tweede", "Kamer", "Vernieuwing"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-flevoland-chart"
+                                    data-data='[253187, 101164, 98828, 98675, 73219, 73001, 64489, 62991, 52231, 51124]'
+                                    data-labels='["Volt", "Nieuwe", "Jongeren", "Stemvolt", "Politiek", "Energie", "Schouder", "Europa", "Zich", "Brengen"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-flevoland-chart"
+                                    data-data='[9526223, 5974410, 3094104, 2928653, 2775601, 2384889, 2291208, 2054807, 1994439, 1994439]'
+                                    data-labels='["Volt", "Stemvolt", "Nieuwe", "Politiek", "Europa", "Toekomst", "Vernieuwing", "Generatie", "Tweede", "Kamer"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Friesland</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-friesland-chart"
+                                    data-data='[663, 563, 217, 199, 193, 171, 170, 165, 163, 143]'
+                                    data-labels='["Volt", "Stemvolt", "Politiek", "Nieuwe", "Europa", "Tijd", "Toekomst", "Tweede", "Kamer", "Vernieuwing"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-friesland-chart"
+                                    data-data='[453031, 195536, 139167, 138755, 129342, 122638, 108617, 105967, 101698, 70640]'
+                                    data-labels='["Volt", "Nieuwe", "Politiek", "Energie", "Europa", "Stemvolt", "Jongeren", "Schouder", "Brengen", "Generatie"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-friesland-chart"
+                                    data-data='[16455563, 8278305, 5024809, 4570311, 4530193, 4032724, 3991616, 3595060, 3595060, 3506162]'
+                                    data-labels='["Volt", "Stemvolt", "Nieuwe", "Europa", "Politiek", "Toekomst", "Vernieuwing", "Tweede", "Kamer", "Brengen"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Gelderland</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-gelderland-chart"
+                                    data-data='[663, 563, 217, 199, 193, 171, 170, 165, 163, 143]'
+                                    data-labels='["Volt", "Stemvolt", "Politiek", "Nieuwe", "Europa", "Tijd", "Toekomst", "Tweede", "Kamer", "Vernieuwing"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-gelderland-chart"
+                                    data-data='[1319363, 546136, 515359, 494137, 394059, 387664, 338572, 303221, 294800, 265270]'
+                                    data-labels='["Volt", "Nieuwe", "Stemvolt", "Jongeren", "Politiek", "Energie", "Europa", "Schouder", "Brengen", "Zich"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-gelderland-chart"
+                                    data-data='[51069090, 25450190, 15513289, 13756959, 13504789, 13255985, 12788553, 11295473, 11295473, 11128625]'
+                                    data-labels='["Volt", "Stemvolt", "Nieuwe", "Politiek", "Europa", "Vernieuwing", "Toekomst", "Tweede", "Kamer", "Brengen"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Groningen</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-groningen-chart"
+                                    data-data='[663, 563, 217, 199, 193, 171, 170, 165, 163, 143]'
+                                    data-labels='["Volt", "Stemvolt", "Politiek", "Nieuwe", "Europa", "Tijd", "Toekomst", "Tweede", "Kamer", "Vernieuwing"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-groningen-chart"
+                                    data-data='[487690, 254195, 240236, 180428, 137465, 126826, 121263, 119775, 119775, 114182]'
+                                    data-labels='["Volt", "Stemvolt", "Jongeren", "Nieuwe", "Politiek", "Zich", "Energie", "Tweede", "Kamer", "Europa"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-groningen-chart"
+                                    data-data='[18652901, 10985452, 5584574, 5181683, 5005662, 4927878, 4745045, 3979365, 3979365, 3790079]'
+                                    data-labels='["Volt", "Stemvolt", "Nieuwe", "Europa", "Politiek", "Toekomst", "Vernieuwing", "Tweede", "Kamer", "Weet"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Limburg</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-limburg-chart"
+                                    data-data='[663, 563, 217, 199, 193, 171, 170, 165, 163, 143]'
+                                    data-labels='["Volt", "Stemvolt", "Politiek", "Nieuwe", "Europa", "Tijd", "Toekomst", "Tweede", "Kamer", "Vernieuwing"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-limburg-chart"
+                                    data-data='[655081, 272894, 209188, 200313, 193544, 192193, 169502, 162202, 137719, 108450]'
+                                    data-labels='["Volt", "Nieuwe", "Stemvolt", "Jongeren", "Politiek", "Energie", "Europa", "Schouder", "Brengen", "Zich"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-limburg-chart"
+                                    data-data='[23458246, 11156862, 6758787, 5989619, 5945538, 5783021, 5456549, 4897251, 4897251, 4792812]'
+                                    data-labels='["Volt", "Stemvolt", "Nieuwe", "Europa", "Politiek", "Vernieuwing", "Toekomst", "Tweede", "Kamer", "Brengen"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Noord-brabant</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-noord-brabant-chart"
+                                    data-data='[663, 563, 217, 199, 193, 171, 170, 165, 163, 143]'
+                                    data-labels='["Volt", "Stemvolt", "Politiek", "Nieuwe", "Europa", "Tijd", "Toekomst", "Tweede", "Kamer", "Vernieuwing"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-noord-brabant-chart"
+                                    data-data='[1554801, 730064, 699799, 633157, 462928, 453312, 382728, 367172, 352994, 343263]'
+                                    data-labels='["Volt", "Stemvolt", "Jongeren", "Nieuwe", "Politiek", "Energie", "Europa", "Zich", "Schouder", "Tweede"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-noord-brabant-chart"
+                                    data-data='[58117181, 32597167, 18155212, 16824281, 16269163, 15010729, 14825400, 13306782, 13306782, 13045237]'
+                                    data-labels='["Volt", "Stemvolt", "Nieuwe", "Politiek", "Europa", "Vernieuwing", "Toekomst", "Tweede", "Kamer", "Brengen"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Noord-holland</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-noord-holland-chart"
+                                    data-data='[663, 563, 217, 199, 193, 171, 170, 165, 163, 143]'
+                                    data-labels='["Volt", "Stemvolt", "Politiek", "Nieuwe", "Europa", "Tijd", "Toekomst", "Tweede", "Kamer", "Vernieuwing"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-noord-holland-chart"
+                                    data-data='[1876637, 1025632, 1021071, 698510, 534782, 530306, 501150, 451952, 449019, 449019]'
+                                    data-labels='["Volt", "Stemvolt", "Jongeren", "Nieuwe", "Zich", "Politiek", "Energie", "Corona", "Tweede", "Kamer"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-noord-holland-chart"
+                                    data-data='[74683754, 44062284, 24266015, 22956659, 20043613, 19253567, 18720525, 17162616, 17162616, 16812576]'
+                                    data-labels='["Volt", "Stemvolt", "Nieuwe", "Politiek", "Toekomst", "Europa", "Vernieuwing", "Tweede", "Kamer", "Brengen"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Overijssel</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-overijssel-chart"
+                                    data-data='[663, 563, 217, 199, 193, 171, 170, 165, 163, 143]'
+                                    data-labels='["Volt", "Stemvolt", "Politiek", "Nieuwe", "Europa", "Tijd", "Toekomst", "Tweede", "Kamer", "Vernieuwing"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-overijssel-chart"
+                                    data-data='[772077, 334705, 243230, 240488, 236265, 232454, 208610, 183821, 175912, 128060]'
+                                    data-labels='["Volt", "Nieuwe", "Stemvolt", "Energie", "Politiek", "Jongeren", "Europa", "Schouder", "Brengen", "Zich"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-overijssel-chart"
+                                    data-data='[28283436, 13534889, 8259012, 7465967, 7351590, 7030159, 6819586, 6196236, 6196236, 6151264]'
+                                    data-labels='["Volt", "Stemvolt", "Nieuwe", "Europa", "Politiek", "Vernieuwing", "Toekomst", "Tweede", "Kamer", "Brengen"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Utrecht</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-utrecht-chart"
+                                    data-data='[663, 563, 217, 199, 193, 171, 170, 165, 163, 143]'
+                                    data-labels='["Volt", "Stemvolt", "Politiek", "Nieuwe", "Europa", "Tijd", "Toekomst", "Tweede", "Kamer", "Vernieuwing"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-utrecht-chart"
+                                    data-data='[835625, 496824, 469086, 308793, 249471, 249471, 245539, 233653, 218136, 217031]'
+                                    data-labels='["Volt", "Stemvolt", "Jongeren", "Nieuwe", "Tweede", "Kamer", "Zich", "Politiek", "Energie", "Tijd"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-utrecht-chart"
+                                    data-data='[33071571, 19650131, 10101627, 9328453, 9157208, 9020431, 8835558, 8762445, 8762445, 8041796]'
+                                    data-labels='["Volt", "Stemvolt", "Nieuwe", "Politiek", "Vernieuwing", "Toekomst", "Europa", "Tweede", "Kamer", "Brengen"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Zeeland</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-zeeland-chart"
+                                    data-data='[663, 563, 217, 199, 193, 171, 170, 165, 163, 143]'
+                                    data-labels='["Volt", "Stemvolt", "Politiek", "Nieuwe", "Europa", "Tijd", "Toekomst", "Tweede", "Kamer", "Vernieuwing"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-zeeland-chart"
+                                    data-data='[239033, 95262, 77630, 73105, 69083, 67540, 63025, 60385, 49233, 40460]'
+                                    data-labels='["Volt", "Nieuwe", "Stemvolt", "Jongeren", "Politiek", "Energie", "Europa", "Schouder", "Brengen", "Zich"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-zeeland-chart"
+                                    data-data='[8931340, 4225652, 2576279, 2354769, 2311031, 2159313, 2123570, 1917613, 1917613, 1917239]'
+                                    data-labels='["Volt", "Stemvolt", "Nieuwe", "Politiek", "Europa", "Toekomst", "Vernieuwing", "Tweede", "Kamer", "Brengen"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Zuid-holland</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-zuid-holland-chart"
+                                    data-data='[663, 563, 217, 199, 193, 171, 170, 165, 163, 143]'
+                                    data-labels='["Volt", "Stemvolt", "Politiek", "Nieuwe", "Europa", "Tijd", "Toekomst", "Tweede", "Kamer", "Vernieuwing"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-zuid-holland-chart"
+                                    data-data='[2283673, 1035270, 1028161, 868516, 643443, 626998, 549166, 543107, 515871, 474831]'
+                                    data-labels='["Volt", "Jongeren", "Stemvolt", "Nieuwe", "Politiek", "Energie", "Europa", "Zich", "Schouder", "Brengen"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-zuid-holland-chart"
+                                    data-data='[92215002, 49764393, 27297980, 25729262, 23408222, 22369742, 22286335, 20530157, 19930156, 19549985]'
+                                    data-labels='["Volt", "Stemvolt", "Nieuwe", "Politiek", "Europa", "Vernieuwing", "Toekomst", "Tweede", "Kamer", "Brengen"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+        
+
+</div>
+</body>
+</html>

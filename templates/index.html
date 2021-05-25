@@ -50,6 +50,7 @@
                                     id="{{ data_type }}-per-party-chart"
                                     data-data='{{ general_data[data_type + "-per-party"] | tojson }}'
                                     data-labels='{{ PARTIES | tojson }}'
+                                    data-title="Total"
                             ></canvas>
                         </div>
                     {% endif %}

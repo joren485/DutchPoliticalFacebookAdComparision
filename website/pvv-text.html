@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-zoom/0.7.7/chartjs-plugin-zoom.min.js"></script>
+
+    <script src="/DutchPoliticalFacebookAdComparision/website/js/helper.js"></script>
+    <script src="/DutchPoliticalFacebookAdComparision/website/js/charts.js"></script>
+
+    <meta charset="UTF-8">
+    <title>PVV | Dutch Political Facebook Ad Comparison</title>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/DutchPoliticalFacebookAdComparision/index.html">Dutch Political Facebook Ad Comparison</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="index-nav-dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Overall Statistics</a>
+                    <ul class="dropdown-menu" aria-labelledby="index-nav-dropdown">
+                        <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/index.html#ads-charts">Ads</a></li>
+                        <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/index.html#spending-charts">Spending</a></li>
+                        <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/index.html#impressions-charts">Impressions</a></li>
+                        <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/index.html#potential-reach-charts">Potential Reach</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="party-statistics-nav-dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Party Statistics</a>
+                    <ul class="dropdown-menu" aria-labelledby="party-statistics-nav-dropdown">
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/50+-statistics.html">50+</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/bij1-statistics.html">BIJ1</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/bbb-statistics.html">BBB</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/cda-statistics.html">CDA</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/cu-statistics.html">CU</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/d66-statistics.html">D66</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/denk-statistics.html">DENK</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/fvd-statistics.html">FvD</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/gl-statistics.html">GL</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/ja21-statistics.html">JA21</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/pvv-statistics.html">PVV</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/pvda-statistics.html">PvdA</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/pvdd-statistics.html">PvdD</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/sgp-statistics.html">SGP</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/sp-statistics.html">SP</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/volt-statistics.html">VOLT</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/vvd-statistics.html">VVD</a></li>
+                        
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="party-text-nav-dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Party Text</a>
+                    <ul class="dropdown-menu" aria-labelledby="party-text-nav-dropdown">
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/50+-text.html">50+</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/bij1-text.html">BIJ1</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/bbb-text.html">BBB</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/cda-text.html">CDA</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/cu-text.html">CU</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/d66-text.html">D66</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/denk-text.html">DENK</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/fvd-text.html">FvD</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/gl-text.html">GL</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/ja21-text.html">JA21</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/pvv-text.html">PVV</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/pvda-text.html">PvdA</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/pvdd-text.html">PvdD</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/sgp-text.html">SGP</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/sp-text.html">SP</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/volt-text.html">VOLT</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/vvd-text.html">VVD</a></li>
+                        
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/DutchPoliticalFacebookAdComparision/website/about.html">About</a>
+                </li>
+            </ul>
+
+            <span class="navbar-text">Last Updated: 14:36 25-05-2021</span>
+            <a class="nav-link link-dark" href="https://github.com/joren485/DutchPoliticalFacebookAdComparision/"><i class="fab fa-github"></i></a>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid pt-4">
+    
+    <div class="text-center">
+        <h1>PVV Text Graphs</h1>
+    </div>
+    <hr>
+        
+            <div class="text-center">
+                <h2>Ranked by Total</h2>
+            </div>
+            
+                <div class="text-center">
+                    <h4>Total</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-total-chart"
+                                    data-data='[31, 14, 13, 13, 12, 11, 11, 10, 10, 8]'
+                                    data-labels='["Utrecht", "Utrechtse", "Mail", "Stad", "Pagina", "Facebook", "Snel", "Fryslan", "Hoogte", "Stuur"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-total-chart"
+                                    data-data='[68484, 31993, 29494, 29494, 27498, 26494, 25496, 24498, 23996, 23494]'
+                                    data-labels='["Utrecht", "Utrechtse", "Facebook", "Mail", "Horen", "Stad", "Versterkte", "Brief", "Moskee", "Snel"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-total-chart"
+                                    data-data='[11253016, 7150007, 6400007, 6000006, 5050006, 5025006, 4950006, 4650005, 4605007, 4050004]'
+                                    data-labels='["Utrecht", "Hoogte", "Mail", "Facebook", "Fryslan", "Stad", "Pagina", "Meld", "Utrechtse", "Snel"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+        
+            <div class="text-center">
+                <h2>Ranked by Gender</h2>
+            </div>
+            
+                <div class="text-center">
+                    <h4>Male</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-male-chart"
+                                    data-data='[31, 14, 13, 13, 12, 11, 11, 10, 10, 8]'
+                                    data-labels='["Utrecht", "Utrechtse", "Mail", "Stad", "Pagina", "Facebook", "Snel", "Fryslan", "Hoogte", "Stuur"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-male-chart"
+                                    data-data='[42080, 20303, 18707, 15948, 15661, 15000, 14737, 14136, 13878, 13071]'
+                                    data-labels='["Utrecht", "Mail", "Utrechtse", "Facebook", "Horen", "Stad", "Versterkte", "Moskee", "Brief", "Stuur"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-male-chart"
+                                    data-data='[6981935, 4385575, 3983063, 3363485, 3254473, 3077316, 2889373, 2766575, 2722769, 2534366]'
+                                    data-labels='["Utrecht", "Mail", "Hoogte", "Facebook", "Fryslan", "Meld", "Stad", "Pagina", "Utrechtse", "Stuur"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Female</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-female-chart"
+                                    data-data='[31, 14, 13, 13, 12, 11, 11, 10, 10, 8]'
+                                    data-labels='["Utrecht", "Utrechtse", "Mail", "Stad", "Pagina", "Facebook", "Snel", "Fryslan", "Hoogte", "Stuur"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-female-chart"
+                                    data-data='[26131, 13384, 13119, 11741, 11376, 10796, 10664, 10540, 10362, 9758]'
+                                    data-labels='["Utrecht", "Facebook", "Utrechtse", "Horen", "Stad", "Snel", "Versterkte", "Brief", "Pagina", "Moskee"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-female-chart"
+                                    data-data='[4228257, 3139525, 2605117, 2161591, 2113722, 1985573, 1853550, 1776492, 1771436, 1627711]'
+                                    data-labels='["Utrecht", "Hoogte", "Facebook", "Pagina", "Stad", "Mail", "Utrechtse", "Snel", "Fryslan", "Offici"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+        
+            <div class="text-center">
+                <h2>Ranked by Age</h2>
+            </div>
+            
+                <div class="text-center">
+                    <h4>13-17</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-13-17-chart"
+                                    data-data='[31, 14, 13, 13, 12, 11, 11, 10, 10, 8]'
+                                    data-labels='["Utrecht", "Utrechtse", "Mail", "Stad", "Pagina", "Facebook", "Snel", "Fryslan", "Hoogte", "Stuur"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-13-17-chart"
+                                    data-data='[122, 119, 112, 103, 94, 93, 93, 89, 78, 78]'
+                                    data-labels='["Utrechtse", "Moskee", "Gemeenteraad", "Utrecht", "Versterkte", "College", "Zuilen", "Gebedsoproepen", "Nagtegaal", "Antwoorden"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-13-17-chart"
+                                    data-data='[16009, 15174, 13886, 13033, 12871, 11664, 11664, 11583, 11583, 11583]'
+                                    data-labels='["Utrecht", "Utrechtse", "Gemeenteraad", "Moskee", "Gebedsoproepen", "College", "Zuilen", "Nagtegaal", "Antwoorden", "Alleen"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>18-24</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-18-24-chart"
+                                    data-data='[31, 14, 13, 13, 12, 11, 11, 10, 10, 8]'
+                                    data-labels='["Utrecht", "Utrechtse", "Mail", "Stad", "Pagina", "Facebook", "Snel", "Fryslan", "Hoogte", "Stuur"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-18-24-chart"
+                                    data-data='[6655, 4914, 3856, 3062, 2818, 2786, 2776, 2655, 2618, 2402]'
+                                    data-labels='["Utrecht", "Mail", "Fryslan", "Horen", "Laat", "Versterkte", "Utrechtse", "Brief", "Moskee", "Stuur"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-18-24-chart"
+                                    data-data='[1292947, 1265005, 918570, 599934, 566580, 508006, 508006, 508006, 508006, 501640]'
+                                    data-labels='["Mail", "Fryslan", "Utrecht", "Stuur", "Hoogte", "Belangstelling", "Proberen", "Geef", "06-37353448", "Vragen"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>25-34</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-25-34-chart"
+                                    data-data='[31, 14, 13, 13, 12, 11, 11, 10, 10, 8]'
+                                    data-labels='["Utrecht", "Utrechtse", "Mail", "Stad", "Pagina", "Facebook", "Snel", "Fryslan", "Hoogte", "Stuur"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-25-34-chart"
+                                    data-data='[11446, 5341, 5281, 5001, 4812, 4800, 4731, 3689, 3594, 3454]'
+                                    data-labels='["Utrecht", "Horen", "Utrechtse", "Versterkte", "Mail", "Moskee", "Brief", "Stad", "Laat", "Gemeenteraad"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-25-34-chart"
+                                    data-data='[1763211, 1000623, 759721, 712870, 707023, 696087, 658821, 628912, 579665, 526988]'
+                                    data-labels='["Utrecht", "Mail", "Fryslan", "Pagina", "Stad", "Hoogte", "Utrechtse", "Facebook", "Meld", "Stuur"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>35-44</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-35-44-chart"
+                                    data-data='[31, 14, 13, 13, 12, 11, 11, 10, 10, 8]'
+                                    data-labels='["Utrecht", "Utrechtse", "Mail", "Stad", "Pagina", "Facebook", "Snel", "Fryslan", "Hoogte", "Stuur"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-35-44-chart"
+                                    data-data='[10418, 4203, 4127, 3872, 3868, 3816, 3589, 3534, 3449, 3388]'
+                                    data-labels='["Utrecht", "Facebook", "Utrechtse", "Stad", "Horen", "Pagina", "Mail", "Versterkte", "Brief", "Snel"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-35-44-chart"
+                                    data-data='[2155962, 902638, 881523, 864149, 768530, 697217, 637243, 605806, 605806, 605806]'
+                                    data-labels='["Utrecht", "Facebook", "Mail", "Pagina", "Stad", "Hoogte", "Snel", "Offici", "Makkelijk", "Contact"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>45-54</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-45-54-chart"
+                                    data-data='[31, 14, 13, 13, 12, 11, 11, 10, 10, 8]'
+                                    data-labels='["Utrecht", "Utrechtse", "Mail", "Stad", "Pagina", "Facebook", "Snel", "Fryslan", "Hoogte", "Stuur"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-45-54-chart"
+                                    data-data='[12785, 6687, 5566, 5470, 5235, 5159, 4292, 4192, 4084, 4084]'
+                                    data-labels='["Utrecht", "Facebook", "Utrechtse", "Stad", "Pagina", "Snel", "Horen", "Mail", "Offici", "Makkelijk"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-45-54-chart"
+                                    data-data='[2072558, 1361897, 1125038, 1049871, 942545, 915047, 851090, 851090, 851090, 851090]'
+                                    data-labels='["Utrecht", "Facebook", "Pagina", "Stad", "Hoogte", "Snel", "Offici", "Makkelijk", "Contact", "0618866230"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>55-64</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-55-64-chart"
+                                    data-data='[31, 14, 13, 13, 12, 11, 11, 10, 10, 8]'
+                                    data-labels='["Utrecht", "Utrechtse", "Mail", "Stad", "Pagina", "Facebook", "Snel", "Fryslan", "Hoogte", "Stuur"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-55-64-chart"
+                                    data-data='[13765, 7736, 6865, 6221, 5948, 5416, 5353, 4938, 4705, 4621]'
+                                    data-labels='["Utrecht", "Facebook", "Utrechtse", "Stad", "Snel", "Mail", "Pagina", "Horen", "Versterkte", "Hoogte"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-55-64-chart"
+                                    data-data='[2244959, 1844415, 1529314, 1160865, 1115178, 1102068, 1073833, 1062967, 992286, 896893]'
+                                    data-labels='["Utrecht", "Hoogte", "Facebook", "Stad", "Meld", "Pagina", "Mail", "Utrechtse", "Snel", "Offici"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>65+</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-65+-chart"
+                                    data-data='[31, 14, 13, 13, 12, 11, 11, 10, 10, 8]'
+                                    data-labels='["Utrecht", "Utrechtse", "Mail", "Stad", "Pagina", "Facebook", "Snel", "Fryslan", "Hoogte", "Stuur"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-65+-chart"
+                                    data-data='[13314, 7255, 6981, 6571, 5923, 5715, 5319, 5315, 5220, 5218]'
+                                    data-labels='["Utrecht", "Utrechtse", "Facebook", "Mail", "Horen", "Stad", "Versterkte", "Stuur", "Brief", "Snel"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-65+-chart"
+                                    data-data='[2400239, 2081744, 1613590, 1371239, 1368594, 1180048, 1108788, 1062376, 1016715, 1001670]'
+                                    data-labels='["Hoogte", "Utrecht", "Meld", "Mail", "Facebook", "Fryslan", "Utrechtse", "Stad", "Stuur", "Blijven"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+        
+            <div class="text-center">
+                <h2>Ranked by Region</h2>
+            </div>
+            
+                <div class="text-center">
+                    <h4>Drenthe</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-drenthe-chart"
+                                    data-data='[31, 14, 13, 13, 12, 11, 11, 10, 10, 8]'
+                                    data-labels='["Utrecht", "Utrechtse", "Mail", "Stad", "Pagina", "Facebook", "Snel", "Fryslan", "Hoogte", "Stuur"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-drenthe-chart"
+                                    data-data='[527, 527, 295, 232, 232, 232, 232, 198, 198, 198]'
+                                    data-labels='["Mail", "Fryslan", "Stuur", "Belangstelling", "Proberen", "Geef", "06-37353448", "Avondklok", "2021", "Geert-wilders-en-fleur-agema-de-avondklok-is-overschat-doe-het-niet"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-drenthe-chart"
+                                    data-data='[200000, 182420, 182420, 140487, 117275, 100000, 100000, 100000, 100000, 100000]'
+                                    data-labels='["Hoogte", "Mail", "Fryslan", "Meld", "Stuur", "Achterban", "Sturen", "Blijven", "Geregeld", "Nieuwsbrieven"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Flevoland</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-flevoland-chart"
+                                    data-data='[31, 14, 13, 13, 12, 11, 11, 10, 10, 8]'
+                                    data-labels='["Utrecht", "Utrechtse", "Mail", "Stad", "Pagina", "Facebook", "Snel", "Fryslan", "Hoogte", "Stuur"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-flevoland-chart"
+                                    data-data='[299, 299, 214, 173, 85, 85, 85, 85, 67, 67]'
+                                    data-labels='["Mail", "Fryslan", "Stuur", "Meld", "Belangstelling", "Proberen", "Geef", "06-37353448", "Avondklok", "2021"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-flevoland-chart"
+                                    data-data='[114195, 114195, 70588, 70123, 64136, 50058, 50058, 50058, 50058, 35294]'
+                                    data-labels='["Mail", "Fryslan", "Hoogte", "Meld", "Stuur", "Belangstelling", "Proberen", "Geef", "06-37353448", "Achterban"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Friesland</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-friesland-chart"
+                                    data-data='[31, 14, 13, 13, 12, 11, 11, 10, 10, 8]'
+                                    data-labels='["Utrecht", "Utrechtse", "Mail", "Stad", "Pagina", "Facebook", "Snel", "Fryslan", "Hoogte", "Stuur"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-friesland-chart"
+                                    data-data='[12548, 11049, 7866, 5670, 3183, 3183, 3183, 3183, 2999, 2240]'
+                                    data-labels='["Fryslan", "Mail", "Stuur", "Meld", "Belangstelling", "Proberen", "Geef", "06-37353448", "Lijkt", "Vragen"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-friesland-chart"
+                                    data-data='[3333558, 3033558, 2068972, 1120276, 1120276, 1036932, 964586, 964586, 964586, 964586]'
+                                    data-labels='["Fryslan", "Mail", "Stuur", "Vragen", "Interesse", "Meld", "Belangstelling", "Proberen", "Geef", "06-37353448"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Gelderland</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-gelderland-chart"
+                                    data-data='[31, 14, 13, 13, 12, 11, 11, 10, 10, 8]'
+                                    data-labels='["Utrecht", "Utrechtse", "Mail", "Stad", "Pagina", "Facebook", "Snel", "Fryslan", "Hoogte", "Stuur"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-gelderland-chart"
+                                    data-data='[3760, 3519, 3500, 3500, 3500, 3500, 3500, 3500, 3500, 3500]'
+                                    data-labels='["Snel", "#pvv", "#stempvv", "Nijmegen", "Mogelijk", "Onderdak", "Bieden", "Minderjarige", "Weesvluchtelingen", "#poll"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-gelderland-chart"
+                                    data-data='[606308, 398007, 276470, 276470, 276470, 276470, 276470, 276470, 276470, 276470]'
+                                    data-labels='["Hoogte", "Meld", "Achterban", "Sturen", "Blijven", "Geregeld", "Nieuwsbrieven", "Houden", "Nieuws", "Ontwikkelingen"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Groningen</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-groningen-chart"
+                                    data-data='[31, 14, 13, 13, 12, 11, 11, 10, 10, 8]'
+                                    data-labels='["Utrecht", "Utrechtse", "Mail", "Stad", "Pagina", "Facebook", "Snel", "Fryslan", "Hoogte", "Stuur"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-groningen-chart"
+                                    data-data='[1560, 1560, 934, 934, 934, 934, 626, 457, 457, 228]'
+                                    data-labels='["Mail", "Fryslan", "Belangstelling", "Proberen", "Geef", "06-37353448", "Stuur", "Vragen", "Interesse", "Meld"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-groningen-chart"
+                                    data-data='[490205, 490205, 276874, 235296, 228525, 228525, 213331, 213331, 213331, 213331]'
+                                    data-labels='["Mail", "Fryslan", "Stuur", "Hoogte", "Vragen", "Interesse", "Belangstelling", "Proberen", "Geef", "06-37353448"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Limburg</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-limburg-chart"
+                                    data-data='[31, 14, 13, 13, 12, 11, 11, 10, 10, 8]'
+                                    data-labels='["Utrecht", "Utrechtse", "Mail", "Stad", "Pagina", "Facebook", "Snel", "Fryslan", "Hoogte", "Stuur"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-limburg-chart"
+                                    data-data='[493, 493, 493, 493, 493, 493, 493, 493, 493, 493]'
+                                    data-labels='["Avondklok", "2021", "Geert-wilders-en-fleur-agema-de-avondklok-is-overschat-doe-het-niet", "Rapporten", "Leest", "Krijgt", "Heel", "Ander", "Beeld", "Regering"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-limburg-chart"
+                                    data-data='[388236, 283741, 194118, 194118, 194118, 194118, 194118, 194118, 194118, 194118]'
+                                    data-labels='["Hoogte", "Meld", "Achterban", "Sturen", "Blijven", "Geregeld", "Nieuwsbrieven", "Houden", "Nieuws", "Ontwikkelingen"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Noord-brabant</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-noord-brabant-chart"
+                                    data-data='[31, 14, 13, 13, 12, 11, 11, 10, 10, 8]'
+                                    data-labels='["Utrecht", "Utrechtse", "Mail", "Stad", "Pagina", "Facebook", "Snel", "Fryslan", "Hoogte", "Stuur"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-noord-brabant-chart"
+                                    data-data='[553, 553, 553, 553, 553, 553, 553, 553, 553, 553]'
+                                    data-labels='["Avondklok", "2021", "Geert-wilders-en-fleur-agema-de-avondklok-is-overschat-doe-het-niet", "Rapporten", "Leest", "Krijgt", "Heel", "Ander", "Beeld", "Regering"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-noord-brabant-chart"
+                                    data-data='[376472, 298299, 188236, 188236, 188236, 188236, 188236, 188236, 188236, 188236]'
+                                    data-labels='["Hoogte", "Meld", "Achterban", "Sturen", "Blijven", "Geregeld", "Nieuwsbrieven", "Houden", "Nieuws", "Ontwikkelingen"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Noord-holland</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-noord-holland-chart"
+                                    data-data='[31, 14, 13, 13, 12, 11, 11, 10, 10, 8]'
+                                    data-labels='["Utrecht", "Utrechtse", "Mail", "Stad", "Pagina", "Facebook", "Snel", "Fryslan", "Hoogte", "Stuur"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-noord-holland-chart"
+                                    data-data='[1497, 1416, 967, 943, 861, 778, 708, 708, 708, 708]'
+                                    data-labels='["Utrecht", "Facebook", "Meld", "Hoogte", "Mail", "Stad", "Like", "Blijf", "Offici", "Pagina"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-noord-holland-chart"
+                                    data-data='[610689, 441142, 280200, 271825, 235294, 235294, 235294, 235294, 235294, 235294]'
+                                    data-labels='["Hoogte", "Meld", "Facebook", "Utrecht", "Achterban", "Sturen", "Blijven", "Geregeld", "Nieuwsbrieven", "Houden"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Overijssel</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-overijssel-chart"
+                                    data-data='[31, 14, 13, 13, 12, 11, 11, 10, 10, 8]'
+                                    data-labels='["Utrecht", "Utrechtse", "Mail", "Stad", "Pagina", "Facebook", "Snel", "Fryslan", "Hoogte", "Stuur"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-overijssel-chart"
+                                    data-data='[999, 587, 567, 500, 500, 500, 500, 500, 500, 500]'
+                                    data-labels='["Hengelo", "Vragen", "Wilt", "Snel", "Raadsleden", "Geeft", "Mogelijkheid", "Stellen", "Statenleden", "Kamerleden"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-overijssel-chart"
+                                    data-data='[270588, 213328, 165375, 165375, 135294, 135294, 135294, 135294, 135294, 135294]'
+                                    data-labels='["Hoogte", "Meld", "Mail", "Fryslan", "Achterban", "Sturen", "Blijven", "Geregeld", "Nieuwsbrieven", "Houden"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Utrecht</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-utrecht-chart"
+                                    data-data='[31, 14, 13, 13, 12, 11, 11, 10, 10, 8]'
+                                    data-labels='["Utrecht", "Utrechtse", "Mail", "Stad", "Pagina", "Facebook", "Snel", "Fryslan", "Hoogte", "Stuur"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-utrecht-chart"
+                                    data-data='[65057, 31283, 27498, 27474, 25496, 24801, 24498, 23996, 21984, 18485]'
+                                    data-labels='["Utrecht", "Utrechtse", "Horen", "Facebook", "Versterkte", "Stad", "Brief", "Moskee", "Pagina", "Snel"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-utrecht-chart"
+                                    data-data='[10633538, 5596538, 4748272, 4686690, 4467544, 3848271, 3548270, 3548270, 3548270, 3548270]'
+                                    data-labels='["Utrecht", "Facebook", "Pagina", "Stad", "Utrechtse", "Snel", "Offici", "Makkelijk", "Contact", "0618866230"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Zeeland</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-zeeland-chart"
+                                    data-data='[31, 14, 13, 13, 12, 11, 11, 10, 10, 8]'
+                                    data-labels='["Utrecht", "Utrechtse", "Mail", "Stad", "Pagina", "Facebook", "Snel", "Fryslan", "Hoogte", "Stuur"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-zeeland-chart"
+                                    data-data='[179, 129, 114, 114, 114, 73, 73, 73, 73, 73]'
+                                    data-labels='["Meld", "Hoogte", "Stuur", "Mail", "Fryslan", "Avondklok", "2021", "Geert-wilders-en-fleur-agema-de-avondklok-is-overschat-doe-het-niet", "Rapporten", "Leest"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-zeeland-chart"
+                                    data-data='[258824, 162038, 129412, 129412, 129412, 129412, 129412, 129412, 129412, 129412]'
+                                    data-labels='["Hoogte", "Meld", "Achterban", "Sturen", "Blijven", "Geregeld", "Nieuwsbrieven", "Houden", "Nieuws", "Ontwikkelingen"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Zuid-holland</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-zuid-holland-chart"
+                                    data-data='[31, 14, 13, 13, 12, 11, 11, 10, 10, 8]'
+                                    data-labels='["Utrecht", "Utrechtse", "Mail", "Stad", "Pagina", "Facebook", "Snel", "Fryslan", "Hoogte", "Stuur"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-zuid-holland-chart"
+                                    data-data='[977, 754, 729, 729, 487, 478, 478, 478, 478, 478]'
+                                    data-labels='["Meld", "Mail", "Stuur", "Fryslan", "Hoogte", "Avondklok", "2021", "Geert-wilders-en-fleur-agema-de-avondklok-is-overschat-doe-het-niet", "Rapporten", "Leest"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-zuid-holland-chart"
+                                    data-data='[902198, 659549, 447058, 447058, 447058, 447058, 447058, 447058, 447058, 447058]'
+                                    data-labels='["Hoogte", "Meld", "Achterban", "Sturen", "Blijven", "Geregeld", "Nieuwsbrieven", "Houden", "Nieuws", "Ontwikkelingen"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+        
+
+</div>
+</body>
+</html>

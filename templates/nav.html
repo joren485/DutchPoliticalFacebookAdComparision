@@ -19,10 +19,19 @@
                 </li>
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="index-nav-dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Party Statistics</a>
-                    <ul class="dropdown-menu" aria-labelledby="index-nav-dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="party-statistics-nav-dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Party Statistics</a>
+                    <ul class="dropdown-menu" aria-labelledby="party-statistics-nav-dropdown">
                         {% for party in PARTIES %}
                             <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/{{ party | lower | safe }}-statistics.html">{{ party | safe }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="party-text-nav-dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Party Text</a>
+                    <ul class="dropdown-menu" aria-labelledby="party-text-nav-dropdown">
+                        {% for party in PARTIES %}
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/{{ party | lower | safe }}-text.html">{{ party | safe }}</a></li>
                         {% endfor %}
                     </ul>
                 </li>

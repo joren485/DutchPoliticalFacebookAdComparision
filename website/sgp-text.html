@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-zoom/0.7.7/chartjs-plugin-zoom.min.js"></script>
+
+    <script src="/DutchPoliticalFacebookAdComparision/website/js/helper.js"></script>
+    <script src="/DutchPoliticalFacebookAdComparision/website/js/charts.js"></script>
+
+    <meta charset="UTF-8">
+    <title>SGP | Dutch Political Facebook Ad Comparison</title>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/DutchPoliticalFacebookAdComparision/index.html">Dutch Political Facebook Ad Comparison</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="index-nav-dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Overall Statistics</a>
+                    <ul class="dropdown-menu" aria-labelledby="index-nav-dropdown">
+                        <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/index.html#ads-charts">Ads</a></li>
+                        <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/index.html#spending-charts">Spending</a></li>
+                        <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/index.html#impressions-charts">Impressions</a></li>
+                        <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/index.html#potential-reach-charts">Potential Reach</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="party-statistics-nav-dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Party Statistics</a>
+                    <ul class="dropdown-menu" aria-labelledby="party-statistics-nav-dropdown">
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/50+-statistics.html">50+</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/bij1-statistics.html">BIJ1</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/bbb-statistics.html">BBB</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/cda-statistics.html">CDA</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/cu-statistics.html">CU</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/d66-statistics.html">D66</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/denk-statistics.html">DENK</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/fvd-statistics.html">FvD</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/gl-statistics.html">GL</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/ja21-statistics.html">JA21</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/pvv-statistics.html">PVV</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/pvda-statistics.html">PvdA</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/pvdd-statistics.html">PvdD</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/sgp-statistics.html">SGP</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/sp-statistics.html">SP</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/volt-statistics.html">VOLT</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/vvd-statistics.html">VVD</a></li>
+                        
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="party-text-nav-dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Party Text</a>
+                    <ul class="dropdown-menu" aria-labelledby="party-text-nav-dropdown">
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/50+-text.html">50+</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/bij1-text.html">BIJ1</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/bbb-text.html">BBB</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/cda-text.html">CDA</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/cu-text.html">CU</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/d66-text.html">D66</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/denk-text.html">DENK</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/fvd-text.html">FvD</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/gl-text.html">GL</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/ja21-text.html">JA21</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/pvv-text.html">PVV</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/pvda-text.html">PvdA</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/pvdd-text.html">PvdD</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/sgp-text.html">SGP</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/sp-text.html">SP</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/volt-text.html">VOLT</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/vvd-text.html">VVD</a></li>
+                        
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/DutchPoliticalFacebookAdComparision/website/about.html">About</a>
+                </li>
+            </ul>
+
+            <span class="navbar-text">Last Updated: 14:36 25-05-2021</span>
+            <a class="nav-link link-dark" href="https://github.com/joren485/DutchPoliticalFacebookAdComparision/"><i class="fab fa-github"></i></a>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid pt-4">
+    
+    <div class="text-center">
+        <h1>SGP Text Graphs</h1>
+    </div>
+    <hr>
+        
+            <div class="text-center">
+                <h2>Ranked by Total</h2>
+            </div>
+            
+                <div class="text-center">
+                    <h4>Total</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-total-chart"
+                                    data-data='[56, 53, 49, 45, 44, 42, 41, 38, 36, 34]'
+                                    data-labels='["Kijk", "Aflevering", "Youtu", "#studiosgp", "Zeeland", "Uitzending", "Live", "Studio", "Kees", "Chris"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-total-chart"
+                                    data-data='[738478, 721480, 717976, 683979, 677972, 590481, 435982, 408990, 404484, 383488]'
+                                    data-labels='["#studiosgp", "Live", "Youtu", "Uitzending", "Kijk", "Studio", "Kees", "Youtube-kanaal", "Staaij", "#invertrouwen"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-total-chart"
+                                    data-data='[47110051, 44360048, 42095045, 40575042, 33400036, 32900034, 31300032, 31050034, 26580032, 23000023]'
+                                    data-labels='["Kijk", "Aflevering", "Youtu", "#studiosgp", "Uitzending", "Kees", "Staaij", "Studio", "Live", "Praat"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+        
+            <div class="text-center">
+                <h2>Ranked by Gender</h2>
+            </div>
+            
+                <div class="text-center">
+                    <h4>Male</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-male-chart"
+                                    data-data='[56, 53, 49, 45, 44, 42, 41, 38, 36, 34]'
+                                    data-labels='["Kijk", "Aflevering", "Youtu", "#studiosgp", "Zeeland", "Uitzending", "Live", "Studio", "Kees", "Chris"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-male-chart"
+                                    data-data='[384684, 378165, 364860, 363547, 337010, 323302, 214913, 211182, 206596, 199824]'
+                                    data-labels='["#studiosgp", "Uitzending", "Live", "Youtu", "Kijk", "Studio", "Youtube-kanaal", "#invertrouwen", "Kees", "Vrijdag"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-male-chart"
+                                    data-data='[23598658, 21826703, 21771931, 20061993, 17214605, 16418649, 15349574, 14320434, 13657114, 11388694]'
+                                    data-labels='["Kijk", "Youtu", "Aflevering", "#studiosgp", "Uitzending", "Studio", "Kees", "Staaij", "Live", "Chris"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Female</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-female-chart"
+                                    data-data='[56, 53, 49, 45, 44, 42, 41, 38, 36, 34]'
+                                    data-labels='["Kijk", "Aflevering", "Youtu", "#studiosgp", "Zeeland", "Uitzending", "Live", "Studio", "Kees", "Chris"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-female-chart"
+                                    data-data='[355607, 353399, 352752, 340022, 304839, 266339, 228730, 217269, 193514, 182552]'
+                                    data-labels='["Live", "Youtu", "#studiosgp", "Kijk", "Uitzending", "Studio", "Kees", "Staaij", "Youtube-kanaal", "Nieuwjaarsconcert"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-female-chart"
+                                    data-data='[23453609, 22545838, 20457809, 20220047, 17501272, 16935581, 16138816, 14583911, 12880985, 11609432]'
+                                    data-labels='["Kijk", "Aflevering", "#studiosgp", "Youtu", "Kees", "Staaij", "Uitzending", "Studio", "Live", "Praat"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+        
+            <div class="text-center">
+                <h2>Ranked by Age</h2>
+            </div>
+            
+                <div class="text-center">
+                    <h4>13-17</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-13-17-chart"
+                                    data-data='[56, 53, 49, 45, 44, 42, 41, 38, 36, 34]'
+                                    data-labels='["Kijk", "Aflevering", "Youtu", "#studiosgp", "Zeeland", "Uitzending", "Live", "Studio", "Kees", "Chris"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-13-17-chart"
+                                    data-data='[22498, 17549, 14925, 14020, 13039, 12176, 11570, 11296, 11296, 11296]'
+                                    data-labels='["#zeeland", "Boer", "Sector", "Zeeland", "Vragen", "Steun", "Gebruiken", "#trotsopdeboer", "Agrarische", "Ooit"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-13-17-chart"
+                                    data-data='[2517355, 1956667, 1821438, 1743005, 1733017, 1596111, 1563611, 1501704, 1327744, 1090971]'
+                                    data-labels='["Zeeland", "Boer", "#zeeland", "#sgp", "Mooi", "Elkaar", "Sector", "Vrouwen", "Vragen", "Vrijdag"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>18-24</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-18-24-chart"
+                                    data-data='[56, 53, 49, 45, 44, 42, 41, 38, 36, 34]'
+                                    data-labels='["Kijk", "Aflevering", "Youtu", "#studiosgp", "Zeeland", "Uitzending", "Live", "Studio", "Kees", "Chris"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-18-24-chart"
+                                    data-data='[169268, 165105, 150682, 143892, 142465, 127711, 106267, 90200, 87032, 86924]'
+                                    data-labels='["#studiosgp", "Live", "Youtu", "Kijk", "Uitzending", "Studio", "Kees", "#invertrouwen", "Tweede", "Staaij"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-18-24-chart"
+                                    data-data='[9008575, 8874052, 7959067, 7527359, 7199680, 6499982, 6447634, 6105528, 5842868, 4541419]'
+                                    data-labels='["Kijk", "#studiosgp", "Aflevering", "Youtu", "Uitzending", "Studio", "Kees", "Staaij", "Live", "Praat"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>25-34</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-25-34-chart"
+                                    data-data='[56, 53, 49, 45, 44, 42, 41, 38, 36, 34]'
+                                    data-labels='["Kijk", "Aflevering", "Youtu", "#studiosgp", "Zeeland", "Uitzending", "Live", "Studio", "Kees", "Chris"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-25-34-chart"
+                                    data-data='[188588, 182703, 181534, 177562, 168520, 153973, 105716, 102248, 95960, 94064]'
+                                    data-labels='["#studiosgp", "Live", "Uitzending", "Youtu", "Kijk", "Studio", "Kees", "Youtube-kanaal", "Staaij", "Vrijdag"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-25-34-chart"
+                                    data-data='[13458846, 12223971, 10851144, 10086859, 8878874, 7982756, 7754159, 7729703, 6896189, 6681154]'
+                                    data-labels='["Aflevering", "Kijk", "Youtu", "#studiosgp", "Uitzending", "Kees", "Staaij", "Studio", "Praat", "Live"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>35-44</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-35-44-chart"
+                                    data-data='[56, 53, 49, 45, 44, 42, 41, 38, 36, 34]'
+                                    data-labels='["Kijk", "Aflevering", "Youtu", "#studiosgp", "Zeeland", "Uitzending", "Live", "Studio", "Kees", "Chris"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-35-44-chart"
+                                    data-data='[111692, 111223, 109788, 103496, 102507, 90807, 64324, 60909, 60018, 58046]'
+                                    data-labels='["#studiosgp", "Uitzending", "Youtu", "Kijk", "Live", "Studio", "Youtube-kanaal", "Staaij", "Kees", "#invertrouwen"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-35-44-chart"
+                                    data-data='[8495163, 8309285, 7129438, 6395698, 5291417, 5169864, 5152192, 4760066, 4192733, 4021734]'
+                                    data-labels='["Kijk", "Aflevering", "Youtu", "#studiosgp", "Uitzending", "Kees", "Staaij", "Studio", "Praat", "Chris"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>45-54</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-45-54-chart"
+                                    data-data='[56, 53, 49, 45, 44, 42, 41, 38, 36, 34]'
+                                    data-labels='["Kijk", "Aflevering", "Youtu", "#studiosgp", "Zeeland", "Uitzending", "Live", "Studio", "Kees", "Chris"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-45-54-chart"
+                                    data-data='[101872, 98852, 97886, 97187, 97116, 80219, 59027, 56707, 56533, 52502]'
+                                    data-labels='["Youtu", "#studiosgp", "Uitzending", "Kijk", "Live", "Studio", "Youtube-kanaal", "Staaij", "Kees", "Florian"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-45-54-chart"
+                                    data-data='[7067945, 6883889, 6594906, 5525386, 4740871, 4704874, 4702498, 4278858, 3728175, 3377535]'
+                                    data-labels='["Kijk", "Aflevering", "Youtu", "#studiosgp", "Kees", "Staaij", "Uitzending", "Studio", "Live", "Praat"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>55-64</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-55-64-chart"
+                                    data-data='[56, 53, 49, 45, 44, 42, 41, 38, 36, 34]'
+                                    data-labels='["Kijk", "Aflevering", "Youtu", "#studiosgp", "Zeeland", "Uitzending", "Live", "Studio", "Kees", "Chris"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-55-64-chart"
+                                    data-data='[85863, 82193, 81201, 79661, 76081, 64722, 49166, 48886, 47949, 47319]'
+                                    data-labels='["Youtu", "Live", "#studiosgp", "Kijk", "Uitzending", "Studio", "Nieuwjaarsconcert", "Youtube-kanaal", "Staaij", "Kees"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-55-64-chart"
+                                    data-data='[5358973, 5126036, 4631908, 4471535, 3696850, 3678191, 3652601, 3503430, 3068384, 2531009]'
+                                    data-labels='["Youtu", "Kijk", "Aflevering", "#studiosgp", "Kees", "Staaij", "Uitzending", "Studio", "Live", "Zeeland"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>65+</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-65+-chart"
+                                    data-data='[56, 53, 49, 45, 44, 42, 41, 38, 36, 34]'
+                                    data-labels='["Kijk", "Aflevering", "Youtu", "#studiosgp", "Zeeland", "Uitzending", "Live", "Studio", "Kees", "Chris"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-65+-chart"
+                                    data-data='[91791, 90934, 87649, 85217, 74120, 72882, 58690, 54643, 52941, 50793]'
+                                    data-labels='["Live", "Youtu", "#studiosgp", "Kijk", "Uitzending", "Studio", "Nieuwjaarsconcert", "Staaij", "Kees", "Thema"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-65+-chart"
+                                    data-data='[5189728, 5188368, 4600593, 4268752, 3865925, 3856361, 3658556, 3337651, 3304263, 3111427]'
+                                    data-labels='["#studiosgp", "Kijk", "Youtu", "Studio", "Staaij", "Kees", "Uitzending", "Zorg", "Live", "Aflevering"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+        
+            <div class="text-center">
+                <h2>Ranked by Region</h2>
+            </div>
+            
+                <div class="text-center">
+                    <h4>Drenthe</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-drenthe-chart"
+                                    data-data='[56, 53, 49, 45, 44, 42, 41, 38, 36, 34]'
+                                    data-labels='["Kijk", "Aflevering", "Youtu", "#studiosgp", "Zeeland", "Uitzending", "Live", "Studio", "Kees", "Chris"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-drenthe-chart"
+                                    data-data='[16359, 15801, 14970, 13975, 12703, 11748, 11288, 10810, 9634, 7803]'
+                                    data-labels='["Live", "Youtu", "#studiosgp", "Kijk", "Studio", "#invertrouwen", "Uitzending", "Kees", "Staaij", "Avond"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-drenthe-chart"
+                                    data-data='[881233, 869789, 841057, 727863, 715968, 714058, 665419, 643181, 575694, 446274]'
+                                    data-labels='["#studiosgp", "Kijk", "Youtu", "Kees", "Aflevering", "Studio", "Staaij", "Uitzending", "Live", "Onder"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Flevoland</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-flevoland-chart"
+                                    data-data='[56, 53, 49, 45, 44, 42, 41, 38, 36, 34]'
+                                    data-labels='["Kijk", "Aflevering", "Youtu", "#studiosgp", "Zeeland", "Uitzending", "Live", "Studio", "Kees", "Chris"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-flevoland-chart"
+                                    data-data='[39741, 37250, 36356, 34207, 32047, 31675, 27354, 25967, 22141, 20865]'
+                                    data-labels='["Kijk", "#studiosgp", "Youtu", "Live", "Uitzending", "Studio", "Kees", "Staaij", "Nieuwjaarsconcert", "Thema"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-flevoland-chart"
+                                    data-data='[3842740, 3342094, 2550174, 2441461, 2248383, 2181150, 2139255, 2103912, 2035659, 1895311]'
+                                    data-labels='["Aflevering", "Kijk", "#studiosgp", "Youtu", "Kees", "Staaij", "Praat", "Uitzending", "Kandidaat", "Studio"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Friesland</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-friesland-chart"
+                                    data-data='[56, 53, 49, 45, 44, 42, 41, 38, 36, 34]'
+                                    data-labels='["Kijk", "Aflevering", "Youtu", "#studiosgp", "Zeeland", "Uitzending", "Live", "Studio", "Kees", "Chris"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-friesland-chart"
+                                    data-data='[59217, 57894, 57734, 55141, 54999, 54999, 54999, 54999, 48295, 46713]'
+                                    data-labels='["Aflevering", "Gesprek", "Instagram", "Provincie", "Frysl", "Friese", "\u0027het", "Gesprek\u0027", "Youtu", "Kijk"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-friesland-chart"
+                                    data-data='[1376258, 1243626, 1190921, 1166763, 996525, 952103, 920417, 919235, 778652, 611998]'
+                                    data-labels='["Kijk", "Youtu", "#studiosgp", "Aflevering", "Kees", "Studio", "Staaij", "Uitzending", "Live", "Onder"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Gelderland</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-gelderland-chart"
+                                    data-data='[56, 53, 49, 45, 44, 42, 41, 38, 36, 34]'
+                                    data-labels='["Kijk", "Aflevering", "Youtu", "#studiosgp", "Zeeland", "Uitzending", "Live", "Studio", "Kees", "Chris"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-gelderland-chart"
+                                    data-data='[149966, 146655, 141484, 137947, 129251, 124886, 99480, 82631, 80786, 78590]'
+                                    data-labels='["#studiosgp", "Uitzending", "Live", "Youtu", "Kijk", "Studio", "Youtube-kanaal", "Kees", "Vrijdag", "Staaij"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-gelderland-chart"
+                                    data-data='[9518017, 9495847, 8837863, 8285395, 7193498, 6498178, 6277388, 6249422, 5115755, 4847630]'
+                                    data-labels='["Aflevering", "Kijk", "Youtu", "#studiosgp", "Uitzending", "Kees", "Studio", "Staaij", "Live", "Praat"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Groningen</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-groningen-chart"
+                                    data-data='[56, 53, 49, 45, 44, 42, 41, 38, 36, 34]'
+                                    data-labels='["Kijk", "Aflevering", "Youtu", "#studiosgp", "Zeeland", "Uitzending", "Live", "Studio", "Kees", "Chris"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-groningen-chart"
+                                    data-data='[19229, 17763, 17251, 16270, 14200, 14012, 12452, 11807, 11172, 8918]'
+                                    data-labels='["Live", "Youtu", "#studiosgp", "Kijk", "Studio", "Uitzending", "Kees", "#invertrouwen", "Staaij", "Avond"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-groningen-chart"
+                                    data-data='[1015829, 1001058, 925708, 886072, 855104, 802631, 798430, 797633, 672594, 533153]'
+                                    data-labels='["Kijk", "#studiosgp", "Youtu", "Aflevering", "Kees", "Studio", "Uitzending", "Staaij", "Live", "Onder"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Limburg</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-limburg-chart"
+                                    data-data='[56, 53, 49, 45, 44, 42, 41, 38, 36, 34]'
+                                    data-labels='["Kijk", "Aflevering", "Youtu", "#studiosgp", "Zeeland", "Uitzending", "Live", "Studio", "Kees", "Chris"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-limburg-chart"
+                                    data-data='[13528, 11958, 10940, 10130, 9948, 9339, 8565, 8549, 7701, 6741]'
+                                    data-labels='["#invertrouwen", "#studiosgp", "Youtu", "Kees", "Live", "Kijk", "Uitzending", "Studio", "Staaij", "Jouw"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-limburg-chart"
+                                    data-data='[1021454, 885469, 752995, 719758, 647304, 630400, 609865, 562573, 556218, 455707]'
+                                    data-labels='["Youtu", "Aflevering", "#studiosgp", "Kees", "Kijk", "Staaij", "Uitzending", "Studio", "Zeeland", "Onder"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Noord-brabant</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-noord-brabant-chart"
+                                    data-data='[56, 53, 49, 45, 44, 42, 41, 38, 36, 34]'
+                                    data-labels='["Kijk", "Aflevering", "Youtu", "#studiosgp", "Zeeland", "Uitzending", "Live", "Studio", "Kees", "Chris"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-noord-brabant-chart"
+                                    data-data='[34052, 32719, 31397, 28976, 28829, 25391, 24953, 24823, 21110, 15591]'
+                                    data-labels='["#studiosgp", "Live", "Youtu", "Kijk", "#invertrouwen", "Kees", "Uitzending", "Studio", "Staaij", "Youtube-kanaal"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-noord-brabant-chart"
+                                    data-data='[2022545, 1950756, 1744241, 1683583, 1488651, 1458919, 1458475, 1391995, 1239595, 1049796]'
+                                    data-labels='["#studiosgp", "Kijk", "Youtu", "Kees", "Staaij", "Uitzending", "Studio", "Aflevering", "Live", "Onder"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Noord-holland</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-noord-holland-chart"
+                                    data-data='[56, 53, 49, 45, 44, 42, 41, 38, 36, 34]'
+                                    data-labels='["Kijk", "Aflevering", "Youtu", "#studiosgp", "Zeeland", "Uitzending", "Live", "Studio", "Kees", "Chris"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-noord-holland-chart"
+                                    data-data='[33995, 32864, 31084, 28408, 28389, 24524, 23677, 23618, 20924, 15677]'
+                                    data-labels='["Live", "#studiosgp", "Youtu", "Kijk", "#invertrouwen", "Kees", "Studio", "Uitzending", "Staaij", "Youtube-kanaal"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-noord-holland-chart"
+                                    data-data='[2076355, 1971103, 1963893, 1920808, 1709164, 1542523, 1461363, 1394633, 1254505, 1010370]'
+                                    data-labels='["Youtu", "#studiosgp", "Aflevering", "Kijk", "Kees", "Staaij", "Uitzending", "Studio", "Live", "Gast"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Overijssel</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-overijssel-chart"
+                                    data-data='[56, 53, 49, 45, 44, 42, 41, 38, 36, 34]'
+                                    data-labels='["Kijk", "Aflevering", "Youtu", "#studiosgp", "Zeeland", "Uitzending", "Live", "Studio", "Kees", "Chris"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-overijssel-chart"
+                                    data-data='[194129, 173746, 145879, 143076, 134936, 121181, 119625, 115216, 110651, 106824]'
+                                    data-labels='["Uitzending", "#studiosgp", "Youtu", "Florian", "Eendje", "Live", "Nieuwe", "Studio", "Kijk", "Youtube-kanaal"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-overijssel-chart"
+                                    data-data='[7006311, 6809525, 6458456, 6244690, 5512935, 4651696, 4347423, 4168302, 3813899, 3185602]'
+                                    data-labels='["Youtu", "Kijk", "Aflevering", "#studiosgp", "Uitzending", "Studio", "Kees", "Staaij", "Live", "Vrijdag"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Utrecht</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-utrecht-chart"
+                                    data-data='[56, 53, 49, 45, 44, 42, 41, 38, 36, 34]'
+                                    data-labels='["Kijk", "Aflevering", "Youtu", "#studiosgp", "Zeeland", "Uitzending", "Live", "Studio", "Kees", "Chris"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-utrecht-chart"
+                                    data-data='[55807, 49356, 48751, 48730, 42158, 41927, 32699, 31413, 28357, 26574]'
+                                    data-labels='["Live", "Kijk", "Youtu", "#studiosgp", "Studio", "Uitzending", "Kees", "Staaij", "Nieuwjaarsconcert", "Avond"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-utrecht-chart"
+                                    data-data='[3724187, 3684326, 3583189, 3039073, 2577481, 2575461, 2488105, 2342680, 1985340, 1794469]'
+                                    data-labels='["Aflevering", "Kijk", "Youtu", "#studiosgp", "Uitzending", "Kees", "Staaij", "Studio", "Live", "Praat"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Zeeland</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-zeeland-chart"
+                                    data-data='[56, 53, 49, 45, 44, 42, 41, 38, 36, 34]'
+                                    data-labels='["Kijk", "Aflevering", "Youtu", "#studiosgp", "Zeeland", "Uitzending", "Live", "Studio", "Kees", "Chris"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-zeeland-chart"
+                                    data-data='[146875, 67466, 64151, 60360, 60233, 60233, 60233, 60233, 60233, 60233]'
+                                    data-labels='["Zeeland", "Politiek", "Waar", "Elke", "Betrouwbaar", "Daadkrachtig", "Volgens", "Bijbelse", "Waarden", "Normen"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-zeeland-chart"
+                                    data-data='[9697498, 4971681, 4515595, 4201607, 4150928, 4150928, 4150928, 4150928, 4150928, 4150928]'
+                                    data-labels='["Zeeland", "Politiek", "Waar", "Elke", "Betrouwbaar", "Daadkrachtig", "Volgens", "Bijbelse", "Waarden", "Normen"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Zuid-holland</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-zuid-holland-chart"
+                                    data-data='[56, 53, 49, 45, 44, 42, 41, 38, 36, 34]'
+                                    data-labels='["Kijk", "Aflevering", "Youtu", "#studiosgp", "Zeeland", "Uitzending", "Live", "Studio", "Kees", "Chris"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-zuid-holland-chart"
+                                    data-data='[181705, 160464, 159614, 156875, 138407, 133004, 108342, 102594, 93778, 88807]'
+                                    data-labels='["Live", "Kijk", "#studiosgp", "Youtu", "Studio", "Uitzending", "Kees", "Staaij", "Chris", "Avond"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-zuid-holland-chart"
+                                    data-data='[12478843, 11299587, 10217627, 10143821, 8370220, 8069096, 8006746, 7796853, 6796732, 5967278]'
+                                    data-labels='["Kijk", "Aflevering", "#studiosgp", "Youtu", "Kees", "Staaij", "Uitzending", "Studio", "Live", "Praat"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+        
+
+</div>
+</body>
+</html>

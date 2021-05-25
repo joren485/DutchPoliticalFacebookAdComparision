@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-zoom/0.7.7/chartjs-plugin-zoom.min.js"></script>
+
+    <script src="/DutchPoliticalFacebookAdComparision/website/js/helper.js"></script>
+    <script src="/DutchPoliticalFacebookAdComparision/website/js/charts.js"></script>
+
+    <meta charset="UTF-8">
+    <title>DENK | Dutch Political Facebook Ad Comparison</title>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/DutchPoliticalFacebookAdComparision/index.html">Dutch Political Facebook Ad Comparison</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="index-nav-dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Overall Statistics</a>
+                    <ul class="dropdown-menu" aria-labelledby="index-nav-dropdown">
+                        <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/index.html#ads-charts">Ads</a></li>
+                        <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/index.html#spending-charts">Spending</a></li>
+                        <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/index.html#impressions-charts">Impressions</a></li>
+                        <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/index.html#potential-reach-charts">Potential Reach</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="party-statistics-nav-dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Party Statistics</a>
+                    <ul class="dropdown-menu" aria-labelledby="party-statistics-nav-dropdown">
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/50+-statistics.html">50+</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/bij1-statistics.html">BIJ1</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/bbb-statistics.html">BBB</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/cda-statistics.html">CDA</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/cu-statistics.html">CU</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/d66-statistics.html">D66</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/denk-statistics.html">DENK</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/fvd-statistics.html">FvD</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/gl-statistics.html">GL</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/ja21-statistics.html">JA21</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/pvv-statistics.html">PVV</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/pvda-statistics.html">PvdA</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/pvdd-statistics.html">PvdD</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/sgp-statistics.html">SGP</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/sp-statistics.html">SP</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/volt-statistics.html">VOLT</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/vvd-statistics.html">VVD</a></li>
+                        
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="party-text-nav-dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Party Text</a>
+                    <ul class="dropdown-menu" aria-labelledby="party-text-nav-dropdown">
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/50+-text.html">50+</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/bij1-text.html">BIJ1</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/bbb-text.html">BBB</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/cda-text.html">CDA</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/cu-text.html">CU</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/d66-text.html">D66</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/denk-text.html">DENK</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/fvd-text.html">FvD</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/gl-text.html">GL</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/ja21-text.html">JA21</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/pvv-text.html">PVV</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/pvda-text.html">PvdA</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/pvdd-text.html">PvdD</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/sgp-text.html">SGP</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/sp-text.html">SP</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/volt-text.html">VOLT</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/vvd-text.html">VVD</a></li>
+                        
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/DutchPoliticalFacebookAdComparision/website/about.html">About</a>
+                </li>
+            </ul>
+
+            <span class="navbar-text">Last Updated: 14:36 25-05-2021</span>
+            <a class="nav-link link-dark" href="https://github.com/joren485/DutchPoliticalFacebookAdComparision/"><i class="fab fa-github"></i></a>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid pt-4">
+    
+    <div class="text-center">
+        <h1>DENK Text Graphs</h1>
+    </div>
+    <hr>
+        
+            <div class="text-center">
+                <h2>Ranked by Total</h2>
+            </div>
+            
+                <div class="text-center">
+                    <h4>Total</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-total-chart"
+                                    data-data='[918, 245, 221, 191, 172, 164, 126, 113, 96, 96]'
+                                    data-labels='["Denk", "Tegen", "2021", "Armoede", "Politieke", "Nederland", "Strijden", "Strijd", "Landelijk", "Onder"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-total-chart"
+                                    data-data='[11871541, 3059890, 1718473, 1626918, 1598474, 1379980, 1247378, 999480, 999480, 975977]'
+                                    data-labels='["Denk", "2021", "Azarkan", "Nederland", "Farid", "Wilders", "Tegen", "Tunahan", "Kuzu", "Waar"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-total-chart"
+                                    data-data='[237966755, 49296190, 40146895, 30318143, 24550034, 20720029, 20640032, 20620586, 20360580, 19440028]'
+                                    data-labels='["Denk", "Nederland", "2021", "Tegen", "Openbaar", "Vervoer", "Staat", "Zich", "Discriminatie", "Kansen"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+        
+            <div class="text-center">
+                <h2>Ranked by Gender</h2>
+            </div>
+            
+                <div class="text-center">
+                    <h4>Male</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-male-chart"
+                                    data-data='[918, 245, 221, 191, 172, 164, 126, 113, 96, 96]'
+                                    data-labels='["Denk", "Tegen", "2021", "Armoede", "Politieke", "Nederland", "Strijden", "Strijd", "Landelijk", "Onder"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-male-chart"
+                                    data-data='[7285581, 1836114, 1137241, 1066699, 948796, 931089, 762455, 661454, 644905, 639018]'
+                                    data-labels='["Denk", "2021", "Azarkan", "Farid", "Nederland", "Wilders", "Tegen", "Waar", "Beledigen", "Tunahan"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-male-chart"
+                                    data-data='[129607517, 26207341, 24349658, 16039491, 12020279, 11680928, 11328590, 10436822, 10168661, 10148979]'
+                                    data-labels='["Denk", "Nederland", "2021", "Tegen", "Openbaar", "Azarkan", "Farid", "Discriminatie", "Thuis", "Vervoer"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Female</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-female-chart"
+                                    data-data='[918, 245, 221, 191, 172, 164, 126, 113, 96, 96]'
+                                    data-labels='["Denk", "Tegen", "2021", "Armoede", "Politieke", "Nederland", "Strijden", "Strijd", "Landelijk", "Onder"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-female-chart"
+                                    data-data='[4549571, 1214745, 672164, 576347, 527160, 480830, 445182, 357332, 357332, 344839]'
+                                    data-labels='["Denk", "2021", "Nederland", "Azarkan", "Farid", "Tegen", "Wilders", "Tunahan", "Kuzu", "Staat"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-female-chart"
+                                    data-data='[107583563, 22923464, 15673609, 14166189, 12592101, 12455622, 11201369, 10544060, 10507342, 9852972]'
+                                    data-labels='["Denk", "Nederland", "2021", "Tegen", "Kansen", "Openbaar", "Staat", "Zich", "Vervoer", "Discriminatie"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+        
+            <div class="text-center">
+                <h2>Ranked by Age</h2>
+            </div>
+            
+                <div class="text-center">
+                    <h4>13-17</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-13-17-chart"
+                                    data-data='[918, 245, 221, 191, 172, 164, 126, 113, 96, 96]'
+                                    data-labels='["Denk", "Tegen", "2021", "Armoede", "Politieke", "Nederland", "Strijden", "Strijd", "Landelijk", "Onder"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-13-17-chart"
+                                    data-data='[5205, 1657, 848, 782, 770, 752, 605, 601, 544, 448]'
+                                    data-labels='["Denk", "2021", "Azarkan", "Tegen", "#stemdenk", "Farid", "Altijd", "Wilders", "#denkanders", "Geschiedenis"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-13-17-chart"
+                                    data-data='[104054, 30201, 19444, 17023, 17013, 14723, 13591, 13185, 11312, 11312]'
+                                    data-labels='["Denk", "2021", "Altijd", "#stemdenk", "Tegen", "#denkanders", "Strijden", "Moslims", "Islam", "Haatpolitici"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>18-24</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-18-24-chart"
+                                    data-data='[918, 245, 221, 191, 172, 164, 126, 113, 96, 96]'
+                                    data-labels='["Denk", "Tegen", "2021", "Armoede", "Politieke", "Nederland", "Strijden", "Strijd", "Landelijk", "Onder"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-18-24-chart"
+                                    data-data='[1210929, 309371, 230370, 126634, 112690, 102598, 92924, 91597, 91195, 85984]'
+                                    data-labels='["Denk", "2021", "Nederland", "Tegen", "Wilders", "Discriminatie", "Toch", "Kinderen", "Azarkan", "Farid"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-18-24-chart"
+                                    data-data='[41651544, 10359919, 8397083, 8308824, 6980762, 5417390, 5235572, 4620483, 4618547, 4517690]'
+                                    data-labels='["Denk", "Openbaar", "Vervoer", "Nederland", "Kansen", "Staat", "Ouders", "Zich", "2021", "Tegen"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>25-34</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-25-34-chart"
+                                    data-data='[918, 245, 221, 191, 172, 164, 126, 113, 96, 96]'
+                                    data-labels='["Denk", "Tegen", "2021", "Armoede", "Politieke", "Nederland", "Strijden", "Strijd", "Landelijk", "Onder"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-25-34-chart"
+                                    data-data='[2360862, 671429, 406726, 275774, 271089, 255988, 226751, 201349, 193476, 182886]'
+                                    data-labels='["Denk", "2021", "Nederland", "Azarkan", "Tegen", "Farid", "Wilders", "Toch", "Stemt", "Discriminatie"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-25-34-chart"
+                                    data-data='[52763428, 11993722, 8255589, 6030438, 5781616, 5194379, 5189706, 4853383, 4780965, 4779383]'
+                                    data-labels='["Denk", "Nederland", "2021", "Kansen", "Openbaar", "Tegen", "Staat", "Zich", "Vervoer", "Discriminatie"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>35-44</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-35-44-chart"
+                                    data-data='[918, 245, 221, 191, 172, 164, 126, 113, 96, 96]'
+                                    data-labels='["Denk", "Tegen", "2021", "Armoede", "Politieke", "Nederland", "Strijden", "Strijd", "Landelijk", "Onder"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-35-44-chart"
+                                    data-data='[2508083, 653183, 379897, 371794, 342119, 286509, 266974, 205328, 202641, 202641]'
+                                    data-labels='["Denk", "2021", "Nederland", "Azarkan", "Farid", "Tegen", "Wilders", "Waar", "Tunahan", "Kuzu"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-35-44-chart"
+                                    data-data='[46937175, 10712715, 8104203, 5053083, 4161155, 4004833, 3920492, 3772356, 3753519, 3208237]'
+                                    data-labels='["Denk", "Nederland", "2021", "Tegen", "Discriminatie", "Zich", "Azarkan", "Farid", "Staat", "Kinderen"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>45-54</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-45-54-chart"
+                                    data-data='[918, 245, 221, 191, 172, 164, 126, 113, 96, 96]'
+                                    data-labels='["Denk", "Tegen", "2021", "Armoede", "Politieke", "Nederland", "Strijden", "Strijd", "Landelijk", "Onder"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-45-54-chart"
+                                    data-data='[2536113, 641639, 399970, 369718, 312276, 301409, 269044, 261636, 261636, 222427]'
+                                    data-labels='["Denk", "2021", "Azarkan", "Farid", "Wilders", "Nederland", "Tegen", "Tunahan", "Kuzu", "Beledigen"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-45-54-chart"
+                                    data-data='[43096638, 8712269, 8290046, 5409223, 3887365, 3736813, 3577945, 3298116, 3285692, 3059735]'
+                                    data-labels='["Denk", "Nederland", "2021", "Tegen", "Azarkan", "Farid", "Discriminatie", "Zich", "Thuis", "Tunahan"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>55-64</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-55-64-chart"
+                                    data-data='[918, 245, 221, 191, 172, 164, 126, 113, 96, 96]'
+                                    data-labels='["Denk", "Tegen", "2021", "Armoede", "Politieke", "Nederland", "Strijden", "Strijd", "Landelijk", "Onder"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-55-64-chart"
+                                    data-data='[1985443, 488794, 338702, 316860, 272691, 231016, 231016, 197127, 191387, 191209]'
+                                    data-labels='["Denk", "2021", "Azarkan", "Farid", "Wilders", "Tunahan", "Kuzu", "Beledigen", "Moslims", "Nederland"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-55-64-chart"
+                                    data-data='[33050889, 6753131, 5915225, 5611648, 4204085, 3805711, 3620803, 3319425, 3210177, 3134295]'
+                                    data-labels='["Denk", "2021", "Nederland", "Tegen", "Bewoners", "Thuis", "Samen", "Azarkan", "Farid", "Haag"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>65+</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-65+-chart"
+                                    data-data='[918, 245, 221, 191, 172, 164, 126, 113, 96, 96]'
+                                    data-labels='["Denk", "Tegen", "2021", "Armoede", "Politieke", "Nederland", "Strijden", "Strijd", "Landelijk", "Onder"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-65+-chart"
+                                    data-data='[1264633, 293751, 240183, 227047, 187976, 152461, 147554, 145480, 145480, 143856]'
+                                    data-labels='["Denk", "2021", "Azarkan", "Farid", "Wilders", "Beledigen", "Waar", "Tunahan", "Kuzu", "Moslims"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-65+-chart"
+                                    data-data='[20355110, 4817884, 4514758, 4093826, 3995366, 3643890, 3588934, 3577471, 3577471, 3568988]'
+                                    data-labels='["Denk", "Bewoners", "Tegen", "2021", "Samen", "Nederland", "Haag", "Donderdag", "Soms", "Thuis"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+        
+            <div class="text-center">
+                <h2>Ranked by Region</h2>
+            </div>
+            
+                <div class="text-center">
+                    <h4>Drenthe</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-drenthe-chart"
+                                    data-data='[918, 245, 221, 191, 172, 164, 126, 113, 96, 96]'
+                                    data-labels='["Denk", "Tegen", "2021", "Armoede", "Politieke", "Nederland", "Strijden", "Strijd", "Landelijk", "Onder"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-drenthe-chart"
+                                    data-data='[214128, 45016, 33597, 31279, 30711, 26169, 23167, 21716, 21564, 20574]'
+                                    data-labels='["Denk", "2021", "Azarkan", "Farid", "Wilders", "Nederland", "Staat", "Moslims", "Waar", "Beledigen"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-drenthe-chart"
+                                    data-data='[5047727, 1004840, 798955, 798362, 541955, 509443, 486256, 476237, 473400, 467155]'
+                                    data-labels='["Denk", "Nederland", "Tegen", "2021", "Openbaar", "Thuis", "Bewoners", "Staat", "Discriminatie", "Zich"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Flevoland</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-flevoland-chart"
+                                    data-data='[918, 245, 221, 191, 172, 164, 126, 113, 96, 96]'
+                                    data-labels='["Denk", "Tegen", "2021", "Armoede", "Politieke", "Nederland", "Strijden", "Strijd", "Landelijk", "Onder"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-flevoland-chart"
+                                    data-data='[294177, 68454, 43687, 41372, 40122, 39619, 37192, 26817, 26296, 25390]'
+                                    data-labels='["Denk", "2021", "Azarkan", "Tegen", "Farid", "Nederland", "Wilders", "Waar", "Staat", "Moslims"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-flevoland-chart"
+                                    data-data='[5726141, 1169319, 995655, 706715, 505130, 504078, 489076, 475778, 443720, 425866]'
+                                    data-labels='["Denk", "Nederland", "2021", "Tegen", "Zich", "Discriminatie", "Staat", "Openbaar", "Kansen", "Azarkan"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Friesland</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-friesland-chart"
+                                    data-data='[918, 245, 221, 191, 172, 164, 126, 113, 96, 96]'
+                                    data-labels='["Denk", "Tegen", "2021", "Armoede", "Politieke", "Nederland", "Strijden", "Strijd", "Landelijk", "Onder"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-friesland-chart"
+                                    data-data='[260101, 54483, 40109, 37698, 37505, 32214, 28330, 26634, 26541, 25111]'
+                                    data-labels='["Denk", "2021", "Azarkan", "Wilders", "Farid", "Nederland", "Staat", "Waar", "Moslims", "Beledigen"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-friesland-chart"
+                                    data-data='[5996259, 1265825, 954672, 848438, 595962, 595240, 587623, 556419, 539919, 510755]'
+                                    data-labels='["Denk", "Nederland", "2021", "Tegen", "Discriminatie", "Openbaar", "Thuis", "Staat", "Zich", "Vervoer"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Gelderland</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-gelderland-chart"
+                                    data-data='[918, 245, 221, 191, 172, 164, 126, 113, 96, 96]'
+                                    data-labels='["Denk", "Tegen", "2021", "Armoede", "Politieke", "Nederland", "Strijden", "Strijd", "Landelijk", "Onder"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-gelderland-chart"
+                                    data-data='[1118891, 249097, 152084, 149335, 141916, 137606, 135704, 95026, 94732, 91283]'
+                                    data-labels='["Denk", "2021", "Azarkan", "Nederland", "Farid", "Tegen", "Wilders", "Waar", "Staat", "Tunahan"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-gelderland-chart"
+                                    data-data='[23449463, 4766004, 3885134, 3206454, 2469975, 2134169, 2087864, 2085830, 1997495, 1987144]'
+                                    data-labels='["Denk", "Nederland", "2021", "Tegen", "Openbaar", "Staat", "Vervoer", "Zich", "Kansen", "Discriminatie"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Groningen</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-groningen-chart"
+                                    data-data='[918, 245, 221, 191, 172, 164, 126, 113, 96, 96]'
+                                    data-labels='["Denk", "Tegen", "2021", "Armoede", "Politieke", "Nederland", "Strijden", "Strijd", "Landelijk", "Onder"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-groningen-chart"
+                                    data-data='[266355, 55184, 40913, 38318, 37189, 35046, 28217, 26606, 26253, 24678]'
+                                    data-labels='["Denk", "2021", "Azarkan", "Farid", "Wilders", "Nederland", "Staat", "Waar", "Moslims", "Beledigen"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-groningen-chart"
+                                    data-data='[6180896, 1328496, 986452, 812488, 697885, 615235, 588921, 570859, 566533, 565234]'
+                                    data-labels='["Denk", "Nederland", "2021", "Tegen", "Openbaar", "Discriminatie", "Vervoer", "Staat", "Thuis", "Zich"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Limburg</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-limburg-chart"
+                                    data-data='[918, 245, 221, 191, 172, 164, 126, 113, 96, 96]'
+                                    data-labels='["Denk", "Tegen", "2021", "Armoede", "Politieke", "Nederland", "Strijden", "Strijd", "Landelijk", "Onder"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-limburg-chart"
+                                    data-data='[688246, 148275, 98718, 97716, 91579, 87545, 65671, 63032, 61227, 61039]'
+                                    data-labels='["Denk", "2021", "Azarkan", "Nederland", "Farid", "Wilders", "Staat", "Tegen", "Waar", "Moslims"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-limburg-chart"
+                                    data-data='[15530192, 3376093, 2488460, 1909987, 1628789, 1428155, 1401951, 1377631, 1360677, 1338351]'
+                                    data-labels='["Denk", "Nederland", "2021", "Tegen", "Openbaar", "Discriminatie", "Staat", "Vervoer", "Zich", "Thuis"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Noord-brabant</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-noord-brabant-chart"
+                                    data-data='[918, 245, 221, 191, 172, 164, 126, 113, 96, 96]'
+                                    data-labels='["Denk", "Tegen", "2021", "Armoede", "Politieke", "Nederland", "Strijden", "Strijd", "Landelijk", "Onder"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-noord-brabant-chart"
+                                    data-data='[1427908, 327025, 209008, 198564, 183340, 175504, 165103, 122712, 122154, 122154]'
+                                    data-labels='["Denk", "2021", "Nederland", "Azarkan", "Farid", "Wilders", "Tegen", "Staat", "Tunahan", "Kuzu"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-noord-brabant-chart"
+                                    data-data='[30620743, 6584635, 5213515, 3506667, 2950309, 2689230, 2672157, 2655020, 2488005, 2472650]'
+                                    data-labels='["Denk", "Nederland", "2021", "Tegen", "Openbaar", "Zich", "Discriminatie", "Staat", "Kansen", "Vervoer"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Noord-holland</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-noord-holland-chart"
+                                    data-data='[918, 245, 221, 191, 172, 164, 126, 113, 96, 96]'
+                                    data-labels='["Denk", "Tegen", "2021", "Armoede", "Politieke", "Nederland", "Strijden", "Strijd", "Landelijk", "Onder"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-noord-holland-chart"
+                                    data-data='[2245177, 647493, 315881, 314485, 290218, 256862, 212350, 207970, 206997, 205493]'
+                                    data-labels='["Denk", "2021", "Nederland", "Azarkan", "Farid", "Wilders", "Stemt", "Toch", "Amsterdam", "Tegen"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-noord-holland-chart"
+                                    data-data='[43553337, 9056557, 7581425, 5142213, 4611488, 3867285, 3713059, 3702521, 3677482, 3611828]'
+                                    data-labels='["Denk", "Nederland", "2021", "Tegen", "Openbaar", "Vervoer", "Staat", "Zich", "Kansen", "Discriminatie"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Overijssel</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-overijssel-chart"
+                                    data-data='[918, 245, 221, 191, 172, 164, 126, 113, 96, 96]'
+                                    data-labels='["Denk", "Tegen", "2021", "Armoede", "Politieke", "Nederland", "Strijden", "Strijd", "Landelijk", "Onder"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-overijssel-chart"
+                                    data-data='[703614, 161050, 101091, 94254, 94125, 90945, 82384, 63606, 63606, 61980]'
+                                    data-labels='["Denk", "2021", "Azarkan", "Farid", "Nederland", "Wilders", "Tegen", "Tunahan", "Kuzu", "Staat"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-overijssel-chart"
+                                    data-data='[15157250, 3135703, 2536748, 2128875, 1565054, 1441198, 1344304, 1306622, 1293447, 1288477]'
+                                    data-labels='["Denk", "Nederland", "2021", "Tegen", "Openbaar", "Thuis", "Vervoer", "Discriminatie", "Staat", "Zich"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Utrecht</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-utrecht-chart"
+                                    data-data='[918, 245, 221, 191, 172, 164, 126, 113, 96, 96]'
+                                    data-labels='["Denk", "Tegen", "2021", "Armoede", "Politieke", "Nederland", "Strijden", "Strijd", "Landelijk", "Onder"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-utrecht-chart"
+                                    data-data='[871217, 255497, 125276, 116031, 114927, 106304, 91828, 90849, 88971, 75298]'
+                                    data-labels='["Denk", "2021", "Azarkan", "Farid", "Nederland", "Tegen", "Stemt", "Toch", "Wilders", "Tunahan"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-utrecht-chart"
+                                    data-data='[14757993, 3026243, 2777294, 1688713, 1492500, 1397346, 1351371, 1342745, 1287183, 1249849]'
+                                    data-labels='["Denk", "Nederland", "2021", "Tegen", "Openbaar", "Azarkan", "Farid", "Discriminatie", "Kansen", "Zich"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Zeeland</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-zeeland-chart"
+                                    data-data='[918, 245, 221, 191, 172, 164, 126, 113, 96, 96]'
+                                    data-labels='["Denk", "Tegen", "2021", "Armoede", "Politieke", "Nederland", "Strijden", "Strijd", "Landelijk", "Onder"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-zeeland-chart"
+                                    data-data='[173793, 37527, 26182, 24375, 23922, 22569, 17502, 16535, 16414, 15626]'
+                                    data-labels='["Denk", "2021", "Azarkan", "Farid", "Wilders", "Nederland", "Staat", "Moslims", "Waar", "Beledigen"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-zeeland-chart"
+                                    data-data='[4084037, 825975, 657054, 578896, 503656, 426182, 382712, 379730, 368659, 363635]'
+                                    data-labels='["Denk", "Nederland", "2021", "Tegen", "Openbaar", "Vervoer", "Staat", "Discriminatie", "Thuis", "Kansen"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Zuid-holland</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-zuid-holland-chart"
+                                    data-data='[918, 245, 221, 191, 172, 164, 126, 113, 96, 96]'
+                                    data-labels='["Denk", "Tegen", "2021", "Armoede", "Politieke", "Nederland", "Strijden", "Strijd", "Landelijk", "Onder"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-zuid-holland-chart"
+                                    data-data='[3607891, 1010771, 543766, 509536, 490311, 377736, 374427, 315635, 315635, 305096]'
+                                    data-labels='["Denk", "2021", "Azarkan", "Farid", "Nederland", "Wilders", "Tegen", "Tunahan", "Kuzu", "Stemt"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-zuid-holland-chart"
+                                    data-data='[67862319, 13756506, 11271973, 8989477, 7017408, 5939240, 5853683, 5808278, 5731422, 5681579]'
+                                    data-labels='["Denk", "Nederland", "2021", "Tegen", "Openbaar", "Vervoer", "Azarkan", "Zich", "Staat", "Farid"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+        
+
+</div>
+</body>
+</html>

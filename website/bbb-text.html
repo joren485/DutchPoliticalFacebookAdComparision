@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-zoom/0.7.7/chartjs-plugin-zoom.min.js"></script>
+
+    <script src="/DutchPoliticalFacebookAdComparision/website/js/helper.js"></script>
+    <script src="/DutchPoliticalFacebookAdComparision/website/js/charts.js"></script>
+
+    <meta charset="UTF-8">
+    <title>BBB | Dutch Political Facebook Ad Comparison</title>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/DutchPoliticalFacebookAdComparision/index.html">Dutch Political Facebook Ad Comparison</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="index-nav-dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Overall Statistics</a>
+                    <ul class="dropdown-menu" aria-labelledby="index-nav-dropdown">
+                        <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/index.html#ads-charts">Ads</a></li>
+                        <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/index.html#spending-charts">Spending</a></li>
+                        <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/index.html#impressions-charts">Impressions</a></li>
+                        <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/index.html#potential-reach-charts">Potential Reach</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="party-statistics-nav-dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Party Statistics</a>
+                    <ul class="dropdown-menu" aria-labelledby="party-statistics-nav-dropdown">
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/50+-statistics.html">50+</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/bij1-statistics.html">BIJ1</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/bbb-statistics.html">BBB</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/cda-statistics.html">CDA</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/cu-statistics.html">CU</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/d66-statistics.html">D66</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/denk-statistics.html">DENK</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/fvd-statistics.html">FvD</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/gl-statistics.html">GL</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/ja21-statistics.html">JA21</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/pvv-statistics.html">PVV</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/pvda-statistics.html">PvdA</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/pvdd-statistics.html">PvdD</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/sgp-statistics.html">SGP</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/sp-statistics.html">SP</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/volt-statistics.html">VOLT</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/vvd-statistics.html">VVD</a></li>
+                        
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="party-text-nav-dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Party Text</a>
+                    <ul class="dropdown-menu" aria-labelledby="party-text-nav-dropdown">
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/50+-text.html">50+</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/bij1-text.html">BIJ1</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/bbb-text.html">BBB</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/cda-text.html">CDA</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/cu-text.html">CU</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/d66-text.html">D66</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/denk-text.html">DENK</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/fvd-text.html">FvD</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/gl-text.html">GL</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/ja21-text.html">JA21</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/pvv-text.html">PVV</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/pvda-text.html">PvdA</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/pvdd-text.html">PvdD</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/sgp-text.html">SGP</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/sp-text.html">SP</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/volt-text.html">VOLT</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/vvd-text.html">VVD</a></li>
+                        
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/DutchPoliticalFacebookAdComparision/website/about.html">About</a>
+                </li>
+            </ul>
+
+            <span class="navbar-text">Last Updated: 14:36 25-05-2021</span>
+            <a class="nav-link link-dark" href="https://github.com/joren485/DutchPoliticalFacebookAdComparision/"><i class="fab fa-github"></i></a>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid pt-4">
+    
+    <div class="text-center">
+        <h1>BBB Text Graphs</h1>
+    </div>
+    <hr>
+        
+            <div class="text-center">
+                <h2>Ranked by Total</h2>
+            </div>
+            
+                <div class="text-center">
+                    <h4>Total</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-total-chart"
+                                    data-data='[226, 76, 52, 43, 41, 41, 41, 39, 38, 36]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Boeren", "Politiek", "Leefbaarheid", "Dorpen", "Nederland", "Bekijk", "Staat", "Grijs"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-total-chart"
+                                    data-data='[25176387, 7271462, 6051980, 5279984, 5047474, 4027480, 3952480, 3844982, 3822481, 3799982]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Nederland", "Waar", "Boeren", "Dorpen", "Leefbaarheid", "Grijs", "Staat", "Mega-zonneparken"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-total-chart"
+                                    data-data='[133450162, 51335057, 44850044, 34430035, 27050028, 22475028, 21475022, 19325024, 18400026, 17250020]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Boeren", "Nederland", "Waar", "Politiek", "Zich", "Staat", "Leefbaarheid", "Komen"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+        
+            <div class="text-center">
+                <h2>Ranked by Gender</h2>
+            </div>
+            
+                <div class="text-center">
+                    <h4>Male</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-male-chart"
+                                    data-data='[226, 76, 52, 43, 41, 41, 41, 39, 38, 36]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Boeren", "Politiek", "Leefbaarheid", "Dorpen", "Nederland", "Bekijk", "Staat", "Grijs"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-male-chart"
+                                    data-data='[15073014, 4881887, 4112627, 3410559, 3393088, 2407231, 2366293, 2241311, 2200427, 2193817]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Nederland", "Boeren", "Waar", "Zorgen", "Femke", "Politiek", "Grijs", "Dorpen"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-male-chart"
+                                    data-data='[82799897, 33322724, 30781908, 22589963, 17689929, 15131497, 14707082, 11742255, 11679950, 11509183]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Boeren", "Nederland", "Waar", "Zich", "Politiek", "Grote", "Komen", "Staat"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Female</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-female-chart"
+                                    data-data='[226, 76, 52, 43, 41, 41, 41, 39, 38, 36]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Boeren", "Politiek", "Leefbaarheid", "Dorpen", "Nederland", "Bekijk", "Staat", "Grijs"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-female-chart"
+                                    data-data='[10042605, 2372636, 1925853, 1874850, 1823614, 1765092, 1637848, 1634819, 1629454, 1625704]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Nederland", "Waar", "Dorpen", "Leefbaarheid", "Mega-zonneparken", "Grijs", "Staat", "Boeren"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-female-chart"
+                                    data-data='[50347324, 17888705, 13974485, 11760763, 9299776, 8122844, 7767925, 7715535, 7359461, 6912110]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Boeren", "Nederland", "Waar", "Leefbaarheid", "Staat", "Politiek", "Dorpen", "Mega-zonneparken"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+        
+            <div class="text-center">
+                <h2>Ranked by Age</h2>
+            </div>
+            
+                <div class="text-center">
+                    <h4>13-17</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-13-17-chart"
+                                    data-data='[226, 76, 52, 43, 41, 41, 41, 39, 38, 36]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Boeren", "Politiek", "Leefbaarheid", "Dorpen", "Nederland", "Bekijk", "Staat", "Grijs"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-13-17-chart"
+                                    data-data='[481, 123, 112, 112, 111, 108, 106, 105, 105, 103]'
+                                    data-labels='["Platteland", "Leefbaarheid", "Boerennatuur", "Belangrijk", "Dorpen", "Datacenters", "Mega-zonneparken", "Politiek", "Bossen", "Boerburgerbeweging"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-13-17-chart"
+                                    data-data='[1917, 495, 467, 460, 456, 456, 443, 439, 437, 434]'
+                                    data-labels='["Platteland", "Leefbaarheid", "Dorpen", "Datacenters", "Boerennatuur", "Belangrijk", "Politiek", "Mega-zonneparken", "Boerburgerbeweging", "Bossen"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>18-24</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-18-24-chart"
+                                    data-data='[226, 76, 52, 43, 41, 41, 41, 39, 38, 36]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Boeren", "Politiek", "Leefbaarheid", "Dorpen", "Nederland", "Bekijk", "Staat", "Grijs"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-18-24-chart"
+                                    data-data='[4559877, 1312040, 895336, 796713, 785803, 765955, 763168, 714129, 704013, 700411]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Nederland", "Dorpen", "Leefbaarheid", "Boeren", "Waar", "Politiek", "Mega-zonneparken", "Grijs"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-18-24-chart"
+                                    data-data='[26438663, 9461072, 8930750, 6195888, 4695067, 4556530, 3921896, 3918546, 3554600, 3510288]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Boeren", "Nederland", "Politiek", "Waar", "Leefbaarheid", "Zich", "Belangrijk", "Bekijk"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>25-34</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-25-34-chart"
+                                    data-data='[226, 76, 52, 43, 41, 41, 41, 39, 38, 36]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Boeren", "Politiek", "Leefbaarheid", "Dorpen", "Nederland", "Bekijk", "Staat", "Grijs"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-25-34-chart"
+                                    data-data='[5822553, 1809983, 1372208, 1136473, 1130159, 980579, 943709, 914017, 908280, 897030]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Nederland", "Boeren", "Waar", "Dorpen", "Leefbaarheid", "Politiek", "Grijs", "Mega-zonneparken"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-25-34-chart"
+                                    data-data='[28271042, 9963068, 7886775, 6814495, 5256777, 4785584, 4131593, 4126847, 3932420, 3883332]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Boeren", "Nederland", "Waar", "Politiek", "Staat", "Leefbaarheid", "Bekijk", "Dorpen"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>35-44</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-35-44-chart"
+                                    data-data='[226, 76, 52, 43, 41, 41, 41, 39, 38, 36]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Boeren", "Politiek", "Leefbaarheid", "Dorpen", "Nederland", "Bekijk", "Staat", "Grijs"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-35-44-chart"
+                                    data-data='[4202995, 1324695, 1050689, 882783, 878855, 680566, 655770, 650799, 649269, 639565]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Nederland", "Waar", "Boeren", "Dorpen", "Leefbaarheid", "Zorgen", "Grijs", "Mega-zonneparken"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-35-44-chart"
+                                    data-data='[19901977, 7309669, 5764048, 4885076, 3929006, 3325137, 2977289, 2948560, 2767950, 2738459]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Boeren", "Nederland", "Waar", "Politiek", "Zich", "Staat", "Leefbaarheid", "Grijs"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>45-54</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-45-54-chart"
+                                    data-data='[226, 76, 52, 43, 41, 41, 41, 39, 38, 36]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Boeren", "Politiek", "Leefbaarheid", "Dorpen", "Nederland", "Bekijk", "Staat", "Grijs"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-45-54-chart"
+                                    data-data='[4623969, 1240482, 1190452, 1058391, 895932, 732928, 706726, 702606, 690678, 690149]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Nederland", "Waar", "Boeren", "Zorgen", "Dorpen", "Grijs", "Leefbaarheid", "Mega-zonneparken"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-45-54-chart"
+                                    data-data='[22519735, 7946298, 6810725, 5937911, 4831283, 3711359, 3673072, 3276706, 3099442, 3027197]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Boeren", "Nederland", "Waar", "Zich", "Politiek", "Staat", "Komen", "Peilingen"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>55-64</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-55-64-chart"
+                                    data-data='[226, 76, 52, 43, 41, 41, 41, 39, 38, 36]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Boeren", "Politiek", "Leefbaarheid", "Dorpen", "Nederland", "Bekijk", "Staat", "Grijs"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-55-64-chart"
+                                    data-data='[4023989, 1058881, 1011461, 973238, 841736, 651773, 595335, 593227, 584637, 584338]'
+                                    data-labels='["Platteland", "Nederland", "Waar", "Boerburgerbeweging", "Boeren", "Zorgen", "Staat", "Grijs", "Mega-zonneparken", "Dorpen"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-55-64-chart"
+                                    data-data='[20650797, 7877137, 7456316, 5886083, 4815531, 3729911, 3286212, 3038338, 2895230, 2880803]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Boeren", "Nederland", "Waar", "Zich", "Politiek", "Staat", "Haag", "Komen"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>65+</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-65+-chart"
+                                    data-data='[226, 76, 52, 43, 41, 41, 41, 39, 38, 36]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Boeren", "Politiek", "Leefbaarheid", "Dorpen", "Nederland", "Bekijk", "Staat", "Grijs"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-65+-chart"
+                                    data-data='[1940121, 610327, 528475, 484318, 433913, 320008, 292720, 291341, 290576, 290576]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Boeren", "Nederland", "Waar", "Staat", "Leefbaarheid", "Bekijk", "Groen", "Grijs"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-65+-chart"
+                                    data-data='[15655533, 8771880, 8000388, 4708858, 3659641, 3320334, 3306195, 2736334, 2706360, 2564197]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Boeren", "Nederland", "Waar", "Haag", "Zich", "Burgers", "Politiek", "Programma"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+        
+            <div class="text-center">
+                <h2>Ranked by Region</h2>
+            </div>
+            
+                <div class="text-center">
+                    <h4>Drenthe</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-drenthe-chart"
+                                    data-data='[226, 76, 52, 43, 41, 41, 41, 39, 38, 36]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Boeren", "Politiek", "Leefbaarheid", "Dorpen", "Nederland", "Bekijk", "Staat", "Grijs"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-drenthe-chart"
+                                    data-data='[1841759, 429261, 389576, 336628, 305987, 300721, 290437, 260126, 224556, 223521]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Nederland", "Waar", "Zorgen", "Leefbaarheid", "Boeren", "Ruimte", "Staat", "Grijs"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-drenthe-chart"
+                                    data-data='[9046483, 2880410, 2749325, 2161964, 1663354, 1365452, 1302466, 1240635, 1234500, 1219138]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Boeren", "Nederland", "Waar", "Politiek", "Zich", "Leefbaarheid", "Ruimte", "Komen"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Flevoland</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-flevoland-chart"
+                                    data-data='[226, 76, 52, 43, 41, 41, 41, 39, 38, 36]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Boeren", "Politiek", "Leefbaarheid", "Dorpen", "Nederland", "Bekijk", "Staat", "Grijs"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-flevoland-chart"
+                                    data-data='[477694, 166722, 158512, 129737, 111104, 87070, 83664, 76408, 73960, 71097]'
+                                    data-labels='["Platteland", "Nederland", "Boerburgerbeweging", "Waar", "Boeren", "Ruimte", "Zorgen", "Lelystad", "Plaats", "Voedselmakers"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-flevoland-chart"
+                                    data-data='[2609911, 1038168, 903489, 892708, 616990, 515110, 503220, 416774, 401803, 395151]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Nederland", "Boeren", "Waar", "Lelystad", "Ruimte", "Vliegveld", "Zich", "Politiek"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Friesland</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-friesland-chart"
+                                    data-data='[226, 76, 52, 43, 41, 41, 41, 39, 38, 36]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Boeren", "Politiek", "Leefbaarheid", "Dorpen", "Nederland", "Bekijk", "Staat", "Grijs"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-friesland-chart"
+                                    data-data='[1825822, 582819, 569527, 513020, 455561, 395509, 300289, 282783, 276135, 275324]'
+                                    data-labels='["Platteland", "Femke", "Boerburgerbeweging", "Nederland", "Waar", "Boeren", "Zorgen", "Politiek", "Grijs", "Staat"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-friesland-chart"
+                                    data-data='[9987411, 3664662, 3550112, 2940477, 2714108, 2216670, 1936778, 1737475, 1616156, 1511607]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Boeren", "Femke", "Nederland", "Waar", "Politiek", "Zich", "Grote", "Politieke"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Gelderland</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-gelderland-chart"
+                                    data-data='[226, 76, 52, 43, 41, 41, 41, 39, 38, 36]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Boeren", "Politiek", "Leefbaarheid", "Dorpen", "Nederland", "Bekijk", "Staat", "Grijs"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-gelderland-chart"
+                                    data-data='[4357586, 1125513, 1014188, 889242, 728863, 682869, 631958, 608255, 606969, 597844]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Nederland", "Waar", "Boeren", "Dorpen", "Leefbaarheid", "Grijs", "Staat", "Zorgen"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-gelderland-chart"
+                                    data-data='[22015257, 7117849, 5809071, 5366220, 4060558, 3901831, 3373676, 3166156, 3048812, 2980480]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Boeren", "Nederland", "Waar", "Zich", "Politiek", "Haag", "Laten", "Verkiezingsprogramma"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Groningen</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-groningen-chart"
+                                    data-data='[226, 76, 52, 43, 41, 41, 41, 39, 38, 36]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Boeren", "Politiek", "Leefbaarheid", "Dorpen", "Nederland", "Bekijk", "Staat", "Grijs"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-groningen-chart"
+                                    data-data='[1288263, 377611, 321907, 283931, 260683, 256733, 251829, 226833, 193275, 190921]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Nederland", "Waar", "Leefbaarheid", "Boeren", "Dorpen", "Kleine", "Staat", "Grijs"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-groningen-chart"
+                                    data-data='[7265804, 2696563, 2658485, 1888656, 1531279, 1349888, 1261501, 1197271, 1008780, 981546]'
+                                    data-labels='["Platteland", "Boeren", "Boerburgerbeweging", "Nederland", "Waar", "Politiek", "Zich", "Leefbaarheid", "Staat", "Kleine"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Limburg</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-limburg-chart"
+                                    data-data='[226, 76, 52, 43, 41, 41, 41, 39, 38, 36]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Boeren", "Politiek", "Leefbaarheid", "Dorpen", "Nederland", "Bekijk", "Staat", "Grijs"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-limburg-chart"
+                                    data-data='[1757162, 571690, 447624, 404722, 395167, 350729, 339519, 336888, 310567, 283039]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Nederland", "Boeren", "Waar", "Frank", "Dorpen", "Mega-zonneparken", "Bekijk", "Leefbaarheid"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-limburg-chart"
+                                    data-data='[9477282, 8080321, 6335238, 4469852, 3980117, 3818386, 3533342, 3181623, 3121766, 3070846]'
+                                    data-labels='["Platteland", "Frank", "Boerburgerbeweging", "Boeren", "Bekijk", "Ervoor", "Boer", "Jaar", "Vraag", "Graag"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Noord-brabant</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-noord-brabant-chart"
+                                    data-data='[226, 76, 52, 43, 41, 41, 41, 39, 38, 36]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Boeren", "Politiek", "Leefbaarheid", "Dorpen", "Nederland", "Bekijk", "Staat", "Grijs"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-noord-brabant-chart"
+                                    data-data='[3797045, 1044436, 870868, 822569, 774909, 762536, 647453, 628813, 605293, 599956]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Nederland", "Dorpen", "Waar", "Boeren", "Mega-zonneparken", "Leefbaarheid", "Grijs", "Zorgen"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-noord-brabant-chart"
+                                    data-data='[18938903, 6387873, 5185894, 4475301, 3589409, 3409700, 2937437, 2836463, 2695660, 2688043]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Boeren", "Nederland", "Waar", "Dorpen", "Politiek", "Leefbaarheid", "Staat", "Mega-zonneparken"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Noord-holland</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-noord-holland-chart"
+                                    data-data='[226, 76, 52, 43, 41, 41, 41, 39, 38, 36]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Boeren", "Politiek", "Leefbaarheid", "Dorpen", "Nederland", "Bekijk", "Staat", "Grijs"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-noord-holland-chart"
+                                    data-data='[1658361, 818364, 596995, 526942, 444807, 398609, 392867, 385043, 356451, 356188]'
+                                    data-labels='["Platteland", "Boeren", "Boerburgerbeweging", "Nederland", "Waar", "Staat", "Grijs", "Groen", "Overheid", "Grond"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-noord-holland-chart"
+                                    data-data='[10556839, 7119367, 4671735, 3486765, 3169691, 2764775, 2729120, 2712699, 2535167, 2491403]'
+                                    data-labels='["Platteland", "Boeren", "Boerburgerbeweging", "Nederland", "Krijgen", "Grond", "Waar", "Staat", "Tweede", "Programma"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Overijssel</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-overijssel-chart"
+                                    data-data='[226, 76, 52, 43, 41, 41, 41, 39, 38, 36]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Boeren", "Politiek", "Leefbaarheid", "Dorpen", "Nederland", "Bekijk", "Staat", "Grijs"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-overijssel-chart"
+                                    data-data='[3801210, 980004, 891347, 714750, 609772, 601355, 579342, 563700, 560948, 559875]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Nederland", "Waar", "Dorpen", "Politiek", "Boeren", "Leefbaarheid", "Grijs", "Staat"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-overijssel-chart"
+                                    data-data='[19345395, 6134401, 5081807, 4738798, 3534027, 3317866, 2807132, 2716880, 2590731, 2500119]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Boeren", "Nederland", "Politiek", "Waar", "Zich", "Staat", "Leefbaarheid", "Altijd"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Utrecht</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-utrecht-chart"
+                                    data-data='[226, 76, 52, 43, 41, 41, 41, 39, 38, 36]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Boeren", "Politiek", "Leefbaarheid", "Dorpen", "Nederland", "Bekijk", "Staat", "Grijs"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-utrecht-chart"
+                                    data-data='[1547074, 389842, 293724, 291980, 268613, 267659, 260380, 257336, 256843, 252867]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Nederland", "Politiek", "Leefbaarheid", "Waar", "Staat", "Mega-zonneparken", "Grijs", "Groen"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-utrecht-chart"
+                                    data-data='[7562521, 2422765, 1920773, 1709142, 1570486, 1317219, 1205958, 1188349, 1099325, 1056386]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Boeren", "Nederland", "Politiek", "Waar", "Leefbaarheid", "Staat", "Inwoners", "Mega-zonneparken"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Zeeland</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-zeeland-chart"
+                                    data-data='[226, 76, 52, 43, 41, 41, 41, 39, 38, 36]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Boeren", "Politiek", "Leefbaarheid", "Dorpen", "Nederland", "Bekijk", "Staat", "Grijs"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-zeeland-chart"
+                                    data-data='[1187279, 368579, 344027, 339483, 333707, 306622, 298148, 290647, 251563, 249371]'
+                                    data-labels='["Platteland", "Waar", "Boerburgerbeweging", "Staan", "Zeeuwse", "Overheid", "Zeeland", "Zullen", "Arno", "Kandidaten"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-zeeland-chart"
+                                    data-data='[5671731, 2298798, 2231452, 2211523, 2202388, 2127689, 1911855, 1837370, 1808706, 1736105]'
+                                    data-labels='["Platteland", "Staan", "Boerburgerbeweging", "Waar", "Zeeuwse", "Zullen", "Zeeland", "Hanse", "Vael", "Overheid"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Zuid-holland</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-zuid-holland-chart"
+                                    data-data='[226, 76, 52, 43, 41, 41, 41, 39, 38, 36]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Boeren", "Politiek", "Leefbaarheid", "Dorpen", "Nederland", "Bekijk", "Staat", "Grijs"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-zuid-holland-chart"
+                                    data-data='[1630877, 682433, 401533, 345404, 287468, 275424, 263307, 258496, 253777, 248232]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Nederland", "Boeren", "Femke", "Leefbaarheid", "Belangrijk", "Bekijk", "Tweede", "Politiek"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-zuid-holland-chart"
+                                    data-data='[10946748, 5785138, 4315136, 3337705, 1949670, 1936266, 1846963, 1762657, 1659062, 1631543]'
+                                    data-labels='["Platteland", "Boerburgerbeweging", "Boeren", "Nederland", "Zich", "Politiek", "Waar", "Burgers", "Haag", "Goed"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+        
+
+</div>
+</body>
+</html>

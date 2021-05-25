@@ -49,6 +49,7 @@
                                 {% elif demographic_type == "region" %}
                                 data-labels='{{ REGIONS | map("capitalize") | list | tojson }}'
                                 {% endif %}
+                                data-title="Total"
                         ></canvas>
                     </div>
                 </div>

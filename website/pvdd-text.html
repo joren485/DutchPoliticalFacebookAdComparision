@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-zoom/0.7.7/chartjs-plugin-zoom.min.js"></script>
+
+    <script src="/DutchPoliticalFacebookAdComparision/website/js/helper.js"></script>
+    <script src="/DutchPoliticalFacebookAdComparision/website/js/charts.js"></script>
+
+    <meta charset="UTF-8">
+    <title>PvdD | Dutch Political Facebook Ad Comparison</title>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/DutchPoliticalFacebookAdComparision/index.html">Dutch Political Facebook Ad Comparison</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="index-nav-dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Overall Statistics</a>
+                    <ul class="dropdown-menu" aria-labelledby="index-nav-dropdown">
+                        <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/index.html#ads-charts">Ads</a></li>
+                        <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/index.html#spending-charts">Spending</a></li>
+                        <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/index.html#impressions-charts">Impressions</a></li>
+                        <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/index.html#potential-reach-charts">Potential Reach</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="party-statistics-nav-dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Party Statistics</a>
+                    <ul class="dropdown-menu" aria-labelledby="party-statistics-nav-dropdown">
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/50+-statistics.html">50+</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/bij1-statistics.html">BIJ1</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/bbb-statistics.html">BBB</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/cda-statistics.html">CDA</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/cu-statistics.html">CU</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/d66-statistics.html">D66</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/denk-statistics.html">DENK</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/fvd-statistics.html">FvD</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/gl-statistics.html">GL</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/ja21-statistics.html">JA21</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/pvv-statistics.html">PVV</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/pvda-statistics.html">PvdA</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/pvdd-statistics.html">PvdD</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/sgp-statistics.html">SGP</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/sp-statistics.html">SP</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/volt-statistics.html">VOLT</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/vvd-statistics.html">VVD</a></li>
+                        
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="party-text-nav-dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Party Text</a>
+                    <ul class="dropdown-menu" aria-labelledby="party-text-nav-dropdown">
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/50+-text.html">50+</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/bij1-text.html">BIJ1</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/bbb-text.html">BBB</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/cda-text.html">CDA</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/cu-text.html">CU</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/d66-text.html">D66</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/denk-text.html">DENK</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/fvd-text.html">FvD</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/gl-text.html">GL</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/ja21-text.html">JA21</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/pvv-text.html">PVV</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/pvda-text.html">PvdA</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/pvdd-text.html">PvdD</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/sgp-text.html">SGP</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/sp-text.html">SP</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/volt-text.html">VOLT</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/vvd-text.html">VVD</a></li>
+                        
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/DutchPoliticalFacebookAdComparision/website/about.html">About</a>
+                </li>
+            </ul>
+
+            <span class="navbar-text">Last Updated: 14:36 25-05-2021</span>
+            <a class="nav-link link-dark" href="https://github.com/joren485/DutchPoliticalFacebookAdComparision/"><i class="fab fa-github"></i></a>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid pt-4">
+    
+    <div class="text-center">
+        <h1>PvdD Text Graphs</h1>
+    </div>
+    <hr>
+        
+            <div class="text-center">
+                <h2>Ranked by Total</h2>
+            </div>
+            
+                <div class="text-center">
+                    <h4>Total</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-total-chart"
+                                    data-data='[173, 56, 39, 38, 36, 36, 36, 33, 31, 29]'
+                                    data-labels='["Dieren", "Almere", "Partijvoordedieren", "Esther", "Vragen", "Natuur", "Nederland", "Samen", "Ouwehand", "Andere"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-total-chart"
+                                    data-data='[4900914, 3259481, 2834492, 2825992, 2779986, 2779984, 2699995, 2697996, 2064994, 2015990]'
+                                    data-labels='["Dieren", "Esther", "Partijen", "Verkiezingen", "Andere", "Ouwehand", "Tussen", "Zweefvliegchecker", "Mogelijk", "#pvdd"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-total-chart"
+                                    data-data='[70827098, 21061024, 20095023, 18410016, 17190017, 16835018, 16450020, 16000022, 15735023, 14885016]'
+                                    data-labels='["Dieren", "Samen", "Nederland", "Kamer", "Tweede", "Andere", "Natuur", "Partijvoordedieren", "Esther", "Plan"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+        
+            <div class="text-center">
+                <h2>Ranked by Gender</h2>
+            </div>
+            
+                <div class="text-center">
+                    <h4>Male</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-male-chart"
+                                    data-data='[173, 56, 39, 38, 36, 36, 36, 33, 31, 29]'
+                                    data-labels='["Dieren", "Almere", "Partijvoordedieren", "Esther", "Vragen", "Natuur", "Nederland", "Samen", "Ouwehand", "Andere"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-male-chart"
+                                    data-data='[1449096, 1172452, 1049058, 730820, 689585, 678866, 666356, 665403, 664997, 663414]'
+                                    data-labels='["Dieren", "Esther", "Ouwehand", "Partijen", "Vandaag", "Andere", "Tussen", "Zweefvliegchecker", "Verkiezingen", "Volkskrant"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-male-chart"
+                                    data-data='[28400594, 10176577, 8353118, 7036717, 6820862, 6764177, 6349150, 6333046, 6282329, 6077283]'
+                                    data-labels='["Dieren", "Samen", "Nederland", "Plan", "Zien", "Biomassa", "Esther", "Natuur", "Verandering", "Ouwehand"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Female</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-female-chart"
+                                    data-data='[173, 56, 39, 38, 36, 36, 36, 33, 31, 29]'
+                                    data-labels='["Dieren", "Almere", "Partijvoordedieren", "Esther", "Vragen", "Natuur", "Nederland", "Samen", "Ouwehand", "Andere"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-female-chart"
+                                    data-data='[3426458, 2148181, 2089367, 2088081, 2063716, 2018582, 2017558, 1711578, 1526678, 1471001]'
+                                    data-labels='["Dieren", "Verkiezingen", "Andere", "Partijen", "Esther", "Tussen", "Zweefvliegchecker", "Ouwehand", "Mogelijk", "#pvdd"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-female-chart"
+                                    data-data='[42057709, 14878598, 12828672, 12142653, 11734274, 11660231, 10821264, 10044552, 9818108, 9303783]'
+                                    data-labels='["Dieren", "Kamer", "Tweede", "Andere", "Partijvoordedieren", "Nederland", "Samen", "Natuur", "Vragen", "Esther"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+        
+            <div class="text-center">
+                <h2>Ranked by Age</h2>
+            </div>
+            
+                <div class="text-center">
+                    <h4>13-17</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-13-17-chart"
+                                    data-data='[173, 56, 39, 38, 36, 36, 36, 33, 31, 29]'
+                                    data-labels='["Dieren", "Almere", "Partijvoordedieren", "Esther", "Vragen", "Natuur", "Nederland", "Samen", "Ouwehand", "Andere"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-13-17-chart"
+                                    data-data='[13869, 13021, 12901, 12604, 12604, 12604, 12604, 12604, 12602, 8623]'
+                                    data-labels='["#pvdd", "Toch", "#planb", "Jongeren", "Opzadelen", "Enorme", "Schuld", "Ligt", "Estherouwehand", "Dieren"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-13-17-chart"
+                                    data-data='[1752809, 1653167, 1243187, 1212196, 1212196, 1204254, 1029824, 951313, 951039, 944916]'
+                                    data-labels='["Samen", "Dieren", "Stad", "Zien", "Voedselsysteem", "Almere", "Toekomst", "Nodig", "Iedereen", "Hard"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>18-24</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-18-24-chart"
+                                    data-data='[173, 56, 39, 38, 36, 36, 36, 33, 31, 29]'
+                                    data-labels='["Dieren", "Almere", "Partijvoordedieren", "Esther", "Vragen", "Natuur", "Nederland", "Samen", "Ouwehand", "Andere"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-18-24-chart"
+                                    data-data='[986572, 784788, 759999, 655578, 619702, 554578, 519610, 506325, 482471, 472840]'
+                                    data-labels='["Dieren", "Andere", "Verkiezingen", "Esther", "Ouwehand", "Kabinet", "Partijen", "Mogelijk", "Vandaag", "Tussen"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-18-24-chart"
+                                    data-data='[9460819, 6429021, 5343918, 5136162, 4839382, 4333566, 4234976, 4020634, 3524575, 3475337]'
+                                    data-labels='["Dieren", "Kamer", "Samen", "Biomassa", "Tweede", "Plan", "Andere", "Partijvoordedieren", "Tegen", "Nodig"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>25-34</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-25-34-chart"
+                                    data-data='[173, 56, 39, 38, 36, 36, 36, 33, 31, 29]'
+                                    data-labels='["Dieren", "Almere", "Partijvoordedieren", "Esther", "Vragen", "Natuur", "Nederland", "Samen", "Ouwehand", "Andere"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-25-34-chart"
+                                    data-data='[1106456, 771086, 760554, 742264, 742048, 682345, 677842, 669339, 643160, 516807]'
+                                    data-labels='["Dieren", "Partijen", "Esther", "Tussen", "Zweefvliegchecker", "Verkiezingen", "Ouwehand", "Andere", "#pvdd", "Mogelijk"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-25-34-chart"
+                                    data-data='[10334532, 3867414, 3672448, 3537547, 3387800, 3114245, 2894752, 2882985, 2863207, 2839969]'
+                                    data-labels='["Dieren", "Kamer", "Samen", "Tweede", "Andere", "Nederland", "Groen", "Plan", "Biomassa", "Esther"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>35-44</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-35-44-chart"
+                                    data-data='[173, 56, 39, 38, 36, 36, 36, 33, 31, 29]'
+                                    data-labels='["Dieren", "Almere", "Partijvoordedieren", "Esther", "Vragen", "Natuur", "Nederland", "Samen", "Ouwehand", "Andere"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-35-44-chart"
+                                    data-data='[663086, 487897, 436055, 424635, 424455, 414776, 361656, 328268, 312607, 294960]'
+                                    data-labels='["Dieren", "Esther", "Partijen", "Tussen", "Zweefvliegchecker", "Ouwehand", "#pvdd", "Verkiezingen", "Andere", "Groen"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-35-44-chart"
+                                    data-data='[7712157, 2001680, 1982997, 1957470, 1935009, 1890542, 1814883, 1810242, 1783689, 1774990]'
+                                    data-labels='["Dieren", "Andere", "Tweede", "Esther", "Nederland", "Samen", "Ouwehand", "Partijvoordedieren", "Kamer", "Vragen"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>45-54</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-45-54-chart"
+                                    data-data='[173, 56, 39, 38, 36, 36, 36, 33, 31, 29]'
+                                    data-labels='["Dieren", "Almere", "Partijvoordedieren", "Esther", "Vragen", "Natuur", "Nederland", "Samen", "Ouwehand", "Andere"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-45-54-chart"
+                                    data-data='[741971, 506385, 450906, 437492, 437248, 406402, 375259, 353630, 294831, 288330]'
+                                    data-labels='["Dieren", "Esther", "Partijen", "Tussen", "Zweefvliegchecker", "Ouwehand", "Verkiezingen", "Andere", "Groen", "Mogelijk"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-45-54-chart"
+                                    data-data='[10464625, 2883561, 2317579, 2295104, 2220285, 2205989, 2160428, 2128895, 2123199, 2121846]'
+                                    data-labels='["Dieren", "Nederland", "Tweede", "Andere", "Natuur", "Partijvoordedieren", "Esther", "Samen", "Vragen", "Kamer"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>55-64</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-55-64-chart"
+                                    data-data='[173, 56, 39, 38, 36, 36, 36, 33, 31, 29]'
+                                    data-labels='["Dieren", "Almere", "Partijvoordedieren", "Esther", "Vragen", "Natuur", "Nederland", "Samen", "Ouwehand", "Andere"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-55-64-chart"
+                                    data-data='[734638, 469249, 381588, 369259, 365930, 365647, 363670, 353240, 270718, 257672]'
+                                    data-labels='["Dieren", "Esther", "Partijen", "Verkiezingen", "Tussen", "Zweefvliegchecker", "Ouwehand", "Andere", "Mogelijk", "Stemmen"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-55-64-chart"
+                                    data-data='[13800631, 3513366, 3180877, 2990875, 2917687, 2764216, 2662046, 2583019, 2488881, 2443944]'
+                                    data-labels='["Dieren", "Nederland", "Natuur", "Plusquin", "Limburg", "Stichting", "Esther", "Samen", "Partijvoordedieren", "Ouwehand"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>65+</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-65+-chart"
+                                    data-data='[173, 56, 39, 38, 36, 36, 36, 33, 31, 29]'
+                                    data-labels='["Dieren", "Almere", "Partijvoordedieren", "Esther", "Vragen", "Natuur", "Nederland", "Samen", "Ouwehand", "Andere"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-65+-chart"
+                                    data-data='[659149, 379117, 310655, 305477, 296892, 274698, 256521, 256110, 219854, 206056]'
+                                    data-labels='["Dieren", "Esther", "Verkiezingen", "Andere", "Ouwehand", "Partijen", "Tussen", "Zweefvliegchecker", "Mogelijk", "Kamer"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-65+-chart"
+                                    data-data='[17387448, 5428660, 4052605, 3896559, 3689395, 3638927, 3552083, 3452038, 3426700, 3392929]'
+                                    data-labels='["Dieren", "Nederland", "Beter", "Persoonlijke", "Samen", "Plusquin", "Limburg", "Natuur", "Stichting", "Esther"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+        
+            <div class="text-center">
+                <h2>Ranked by Region</h2>
+            </div>
+            
+                <div class="text-center">
+                    <h4>Drenthe</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-drenthe-chart"
+                                    data-data='[173, 56, 39, 38, 36, 36, 36, 33, 31, 29]'
+                                    data-labels='["Dieren", "Almere", "Partijvoordedieren", "Esther", "Vragen", "Natuur", "Nederland", "Samen", "Ouwehand", "Andere"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-drenthe-chart"
+                                    data-data='[124546, 86173, 76514, 75867, 72789, 72789, 72208, 71621, 57305, 53579]'
+                                    data-labels='["Dieren", "Esther", "Partijen", "Andere", "Tussen", "Zweefvliegchecker", "Verkiezingen", "Ouwehand", "Mogelijk", "Stemmen"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-drenthe-chart"
+                                    data-data='[1023705, 474166, 426237, 394719, 341969, 306192, 293173, 280740, 276144, 270952]'
+                                    data-labels='["Dieren", "Biomassa", "Esther", "Ouwehand", "Andere", "Nieuwe", "Partijvoordedieren", "Planeet", "Kies", "Overlast"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Flevoland</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-flevoland-chart"
+                                    data-data='[173, 56, 39, 38, 36, 36, 36, 33, 31, 29]'
+                                    data-labels='["Dieren", "Almere", "Partijvoordedieren", "Esther", "Vragen", "Natuur", "Nederland", "Samen", "Ouwehand", "Andere"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-flevoland-chart"
+                                    data-data='[189424, 73063, 72793, 72330, 65708, 64585, 63709, 62375, 58017, 56608]'
+                                    data-labels='["Dieren", "Andere", "Partijen", "Esther", "Tussen", "Verkiezingen", "Zweefvliegchecker", "Ouwehand", "Stemmen", "Vandaag"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-flevoland-chart"
+                                    data-data='[10486409, 4012179, 3914442, 3008919, 2700004, 2156674, 2031345, 2031345, 2001662, 1928232]'
+                                    data-labels='["Dieren", "Almere", "Flevoland", "Vandaag", "Provincie", "Willen", "Leonie", "Vestering", "Week", "Vragen"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Friesland</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-friesland-chart"
+                                    data-data='[173, 56, 39, 38, 36, 36, 36, 33, 31, 29]'
+                                    data-labels='["Dieren", "Almere", "Partijvoordedieren", "Esther", "Vragen", "Natuur", "Nederland", "Samen", "Ouwehand", "Andere"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-friesland-chart"
+                                    data-data='[188913, 126988, 114372, 111540, 109261, 109261, 106585, 105538, 84111, 79000]'
+                                    data-labels='["Dieren", "Esther", "Partijen", "Andere", "Tussen", "Zweefvliegchecker", "Verkiezingen", "Ouwehand", "Mogelijk", "Stemmen"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-friesland-chart"
+                                    data-data='[1452963, 668476, 650525, 633468, 603373, 588798, 587769, 519782, 500186, 474665]'
+                                    data-labels='["Dieren", "Samen", "Biomassa", "Esther", "Kamer", "Ouwehand", "Plan", "Partijvoordedieren", "Andere", "Nieuwe"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Gelderland</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-gelderland-chart"
+                                    data-data='[173, 56, 39, 38, 36, 36, 36, 33, 31, 29]'
+                                    data-labels='["Dieren", "Almere", "Partijvoordedieren", "Esther", "Vragen", "Natuur", "Nederland", "Samen", "Ouwehand", "Andere"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-gelderland-chart"
+                                    data-data='[523617, 347548, 315048, 308947, 301798, 295544, 295544, 289249, 231263, 225414]'
+                                    data-labels='["Dieren", "Esther", "Andere", "Partijen", "Verkiezingen", "Tussen", "Zweefvliegchecker", "Ouwehand", "Mogelijk", "#pvdd"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-gelderland-chart"
+                                    data-data='[4992706, 2086388, 2082840, 2065555, 1946683, 1714302, 1700246, 1494845, 1490566, 1378968]'
+                                    data-labels='["Dieren", "Partijvoordedieren", "Kamer", "Esther", "Ouwehand", "Andere", "Biomassa", "Tweede", "Zien", "Plan"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Groningen</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-groningen-chart"
+                                    data-data='[173, 56, 39, 38, 36, 36, 36, 33, 31, 29]'
+                                    data-labels='["Dieren", "Almere", "Partijvoordedieren", "Esther", "Vragen", "Natuur", "Nederland", "Samen", "Ouwehand", "Andere"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-groningen-chart"
+                                    data-data='[178272, 124317, 119962, 119777, 119777, 113842, 109381, 99610, 87433, 86989]'
+                                    data-labels='["Dieren", "Partijen", "Esther", "Tussen", "Zweefvliegchecker", "Andere", "Verkiezingen", "Ouwehand", "Mogelijk", "#pvdd"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-groningen-chart"
+                                    data-data='[1171760, 1098854, 719261, 608292, 605447, 591561, 577809, 572381, 529113, 488921]'
+                                    data-labels='["Dieren", "Samen", "Plan", "Boeren", "Kamer", "Zien", "Biomassa", "Laten", "Esther", "Nodig"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Limburg</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-limburg-chart"
+                                    data-data='[173, 56, 39, 38, 36, 36, 36, 33, 31, 29]'
+                                    data-labels='["Dieren", "Almere", "Partijvoordedieren", "Esther", "Vragen", "Natuur", "Nederland", "Samen", "Ouwehand", "Andere"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-limburg-chart"
+                                    data-data='[289853, 185396, 177955, 170225, 164117, 156715, 154715, 154715, 129552, 121150]'
+                                    data-labels='["Dieren", "Esther", "Andere", "Verkiezingen", "Partijen", "Ouwehand", "Tussen", "Zweefvliegchecker", "Mogelijk", "Stemmen"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-limburg-chart"
+                                    data-data='[9840008, 9750006, 9317634, 6090006, 5561908, 4500003, 3850704, 3750002, 3750002, 3030002]'
+                                    data-labels='["Limburg", "Plusquin", "Dieren", "Stichting", "Natuur", "Gerechtshof", "Haar", "Pascale", "Dassen", "Roermond"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Noord-brabant</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-noord-brabant-chart"
+                                    data-data='[173, 56, 39, 38, 36, 36, 36, 33, 31, 29]'
+                                    data-labels='["Dieren", "Almere", "Partijvoordedieren", "Esther", "Vragen", "Natuur", "Nederland", "Samen", "Ouwehand", "Andere"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-noord-brabant-chart"
+                                    data-data='[531875, 399509, 345749, 344267, 343513, 331143, 331143, 330045, 259616, 257484]'
+                                    data-labels='["Dieren", "Esther", "Partijen", "Andere", "Ouwehand", "Tussen", "Zweefvliegchecker", "Verkiezingen", "#pvdd", "Mogelijk"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-noord-brabant-chart"
+                                    data-data='[3131130, 2420006, 1883453, 1859256, 1652785, 1548954, 1531509, 1529931, 1510994, 1451475]'
+                                    data-labels='["Dieren", "Samen", "Plan", "Biomassa", "Kamer", "Duurzame", "Andere", "Tijd", "Boeren", "Esther"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Noord-holland</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-noord-holland-chart"
+                                    data-data='[173, 56, 39, 38, 36, 36, 36, 33, 31, 29]'
+                                    data-labels='["Dieren", "Almere", "Partijvoordedieren", "Esther", "Vragen", "Natuur", "Nederland", "Samen", "Ouwehand", "Andere"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-noord-holland-chart"
+                                    data-data='[891727, 728962, 696696, 635965, 585622, 566728, 566728, 544827, 476595, 472823]'
+                                    data-labels='["Dieren", "Esther", "Verkiezingen", "Ouwehand", "Partijen", "Tussen", "Zweefvliegchecker", "Andere", "Leven", "Kans"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-noord-holland-chart"
+                                    data-data='[9434225, 5379725, 4000974, 3816077, 3390255, 3305022, 3211940, 3201211, 3193219, 3128479]'
+                                    data-labels='["Dieren", "Samen", "Kamer", "Zien", "Tweede", "Almere", "Partijvoordedieren", "Andere", "Laten", "Boeren"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Overijssel</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-overijssel-chart"
+                                    data-data='[173, 56, 39, 38, 36, 36, 36, 33, 31, 29]'
+                                    data-labels='["Dieren", "Almere", "Partijvoordedieren", "Esther", "Vragen", "Natuur", "Nederland", "Samen", "Ouwehand", "Andere"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-overijssel-chart"
+                                    data-data='[269101, 176677, 168106, 166154, 164522, 155812, 155812, 141122, 127704, 120446]'
+                                    data-labels='["Dieren", "Andere", "Verkiezingen", "Esther", "Partijen", "Tussen", "Zweefvliegchecker", "Ouwehand", "Mogelijk", "#pvdd"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-overijssel-chart"
+                                    data-data='[2129514, 1243463, 1108570, 886573, 880445, 877605, 834698, 815255, 769678, 761683]'
+                                    data-labels='["Dieren", "Kamer", "Biomassa", "Tweede", "Samen", "Andere", "Partijvoordedieren", "Esther", "Plan", "Ouwehand"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Utrecht</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-utrecht-chart"
+                                    data-data='[173, 56, 39, 38, 36, 36, 36, 33, 31, 29]'
+                                    data-labels='["Dieren", "Almere", "Partijvoordedieren", "Esther", "Vragen", "Natuur", "Nederland", "Samen", "Ouwehand", "Andere"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-utrecht-chart"
+                                    data-data='[339555, 222023, 219791, 212543, 212543, 210672, 203603, 184138, 165815, 157233]'
+                                    data-labels='["Dieren", "Esther", "Partijen", "Tussen", "Zweefvliegchecker", "Andere", "Verkiezingen", "Ouwehand", "#pvdd", "Mogelijk"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-utrecht-chart"
+                                    data-data='[3892818, 1710956, 1375527, 1306602, 1202414, 1148935, 1109025, 1057902, 1052469, 907861]'
+                                    data-labels='["Dieren", "Kamer", "Tweede", "Partijvoordedieren", "Almere", "Stad", "Zien", "Samen", "Andere", "Biomassa"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Zeeland</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-zeeland-chart"
+                                    data-data='[173, 56, 39, 38, 36, 36, 36, 33, 31, 29]'
+                                    data-labels='["Dieren", "Almere", "Partijvoordedieren", "Esther", "Vragen", "Natuur", "Nederland", "Samen", "Ouwehand", "Andere"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-zeeland-chart"
+                                    data-data='[80720, 61493, 57655, 56714, 55135, 55135, 54242, 51057, 42712, 40982]'
+                                    data-labels='["Dieren", "Esther", "Partijen", "Andere", "Tussen", "Zweefvliegchecker", "Verkiezingen", "Ouwehand", "Mogelijk", "#pvdd"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-zeeland-chart"
+                                    data-data='[501470, 320803, 247309, 231766, 229861, 225140, 193003, 191662, 185961, 183264]'
+                                    data-labels='["Dieren", "Biomassa", "Esther", "Andere", "Kamer", "Ouwehand", "Tweede", "Partijvoordedieren", "Verkiezingen", "Overlast"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+                <div class="text-center">
+                    <h4>Zuid-holland</h4>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="occurrences-zuid-holland-chart"
+                                    data-data='[173, 56, 39, 38, 36, 36, 36, 33, 31, 29]'
+                                    data-labels='["Dieren", "Almere", "Partijvoordedieren", "Esther", "Vragen", "Natuur", "Nederland", "Samen", "Ouwehand", "Andere"]'
+                                    data-title="Occurrences"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="impressions-zuid-holland-chart"
+                                    data-data='[1291549, 742312, 638635, 616778, 600091, 578533, 560840, 560840, 547535, 426690]'
+                                    data-labels='["Dieren", "Esther", "Ouwehand", "Groen", "Partijen", "Andere", "Tussen", "Zweefvliegchecker", "Verkiezingen", "Mogelijk"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        </div>
+                    
+                        <div class="col-4 mx-auto">
+                            <canvas
+                                    id="potential-reach-zuid-holland-chart"
+                                    data-data='[23275912, 9480703, 7678909, 7508582, 7252836, 6616496, 6129414, 5978823, 5768640, 5750740]'
+                                    data-labels='["Dieren", "Nederland", "Persoonlijke", "Lammert", "Groen", "Staat", "Samen", "Beter", "Verandering", "Wereld"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        </div>
+                    
+                </div>
+                <hr>
+            
+        
+
+</div>
+</body>
+</html>

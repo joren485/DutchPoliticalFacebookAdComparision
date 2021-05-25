@@ -219,11 +219,12 @@ function generateBarChart(canvas) {
                 animationDuration: 0
             },
             responsiveAnimationDuration: 0,
-            maintainAspectRatio: false,
+            maintainAspectRatio: true,
+            aspectRatio: 1,
             responsive: true,
             title: {
                 display: true,
-                text: "Total",
+                text: $(canvas).data("title"),
                 fontSize: 16,
             },
             legend: {

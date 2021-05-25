@@ -40,5 +40,8 @@ write_template("about")
 for party in PARTIES:
     with open(f"../data/parsed_data/{party}.json") as h_file:
         party_data = json.load(h_file)
-
     write_template("party-statistics", f"{party.lower()}-statistics", party=party, party_data=party_data)
+
+    with open(f"../data/parsed_data/text-{party}.json") as h_file:
+        party_text_data = json.load(h_file)
+    write_template("party-text", f"{party.lower()}-text", party=party, party_text_data=party_text_data)
