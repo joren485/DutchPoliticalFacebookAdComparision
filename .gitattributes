@@ -1,5 +1,6 @@
 * text=auto
 data/** binary
 data/facebook_page_ids.csv !binary text
-pages/** binary
+pages/*.html binary
 /index.html binary
+

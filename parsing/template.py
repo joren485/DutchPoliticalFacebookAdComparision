@@ -28,7 +28,7 @@ def write_template(template, destination=None, **kwargs):
         **kwargs,
     )
 
-    destination_path = f"../index.html" if template == "index" else f"../pages/{destination}.html"
+    destination_path = f"../index.html" if template == "index" else f"../website/{destination}.html"
 
     with open(destination_path, 'w') as h_dest:
         h_dest.write(content)
