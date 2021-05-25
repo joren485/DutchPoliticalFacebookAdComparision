@@ -19,7 +19,7 @@
             <div class="text-center">
                 <h2>{{ data_type | capitalize }}</h2>
             </div>
-            {% for demographic_type in ("gender", "age", "region") %}
+            {% for demographic_type, demographic_list  in (("gender", GENDERS), ("age", AGE_RANGES), ("region", REGIONS),) %}
                 <div class="text-center">
                     <h4>(Estimated) {{ data_type | capitalize }} per {{ demographic_type | replace("-", " ") | capitalize }}</h4>
                 </div>
@@ -29,26 +29,14 @@
                         <canvas
                                 id="{{ data_type }}-per-{{ demographic_type }}-per-date-chart"
                                 data-data={{ party_data[data_type + "-per-" + demographic_type + "-per-date"] | string | replace(" ", "") | tojson }}
-                                {% if demographic_type == "gender" %}
-                                data-labels='{{ GENDERS | map("capitalize") | list | tojson }}'
-                                {% elif demographic_type == "age" %}
-                                data-labels='{{ AGE_RANGES | tojson }}'
-                                {% elif demographic_type == "region" %}
-                                data-labels='{{ REGIONS | map("capitalize") | list | tojson }}'
-                                {% endif %}
+                                data-labels='{{ demographic_list | map("capitalize") | list | tojson }}'
                         ></canvas>
                     </div>
                     <div class="col-4 mx-auto">
                         <canvas
                                 id="{{ data_type }}-per-{{ demographic_type }}-chart"
                                 data-data='{{ party_data[data_type + "-per-" + demographic_type] | tojson }}'
-                                {% if demographic_type == "gender" %}
-                                data-labels='{{ GENDERS | map("capitalize") | list | tojson }}'
-                                {% elif demographic_type == "age" %}
-                                data-labels='{{ AGE_RANGES | tojson }}'
-                                {% elif demographic_type == "region" %}
-                                data-labels='{{ REGIONS | map("capitalize") | list | tojson }}'
-                                {% endif %}
+                                data-labels='{{ demographic_list | map("capitalize") | list | tojson }}'
                                 data-title="Total"
                         ></canvas>
                     </div>
