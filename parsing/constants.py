@@ -83,7 +83,7 @@ REGIONS = [
     "zuid-holland",
 ]
 
-GENDERS = ["male", "female"]
+GENDERS = ["female", "male"]
 
 AGE_RANGES = [
     "13-17",
