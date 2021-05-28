@@ -51,7 +51,6 @@ if __name__ == '__main__':
 
     general_data = {
         "ads-total": len(ads),
-        "ads-without-potential-reach": sum(1 for a in ads if not a.has_potential_reach),
         "ads-per-party": [len(ads_per_party[p]) for p in PARTIES],
         "spending-total-lower": sum(ad.spending_lower for ad in ads),
         "spending-total-upper": sum(ad.spending_upper for ad in ads),
