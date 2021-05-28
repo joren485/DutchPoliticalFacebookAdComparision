@@ -125,8 +125,7 @@ function generateLineGraphConfig(canvas) {
 }
 
 function generateBarChart(canvas) {
-
-    let config = {
+    return {
         type: 'bar',
         data: {
             labels: $(canvas).data("labels"),
@@ -180,7 +179,6 @@ function generateBarChart(canvas) {
             }
         }
     }
-    return config
 }
 
 $(document).ready(function () {
