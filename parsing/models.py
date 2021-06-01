@@ -118,6 +118,7 @@ class Ad(Model):
 
     @cached_property
     def parsed_text(self):
+        """Return words used in texts of this ad."""
         text = PATTERN_NON_WORD_CHARS.sub(
             " ", self.creative_body + " " + self.creative_link_description
         )
@@ -130,7 +131,7 @@ class Ad(Model):
         ]
 
     def rank_to_data(self, data_type: str, demographic: str):
-
+        """Return the amount of data type per demographic for this ad."""
         if data_type == "occurrences":
             return 1
         elif data_type == "impressions":

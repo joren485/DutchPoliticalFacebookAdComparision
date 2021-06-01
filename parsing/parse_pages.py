@@ -13,7 +13,7 @@ SEARCH_MAP = {
 
 
 def get_spending_report(party, cursor=None):
-
+    """Retrieve Facebook page ids linked to parties from the Facebook Ad library spending report."""
     page_ids = {}
 
     url = (
