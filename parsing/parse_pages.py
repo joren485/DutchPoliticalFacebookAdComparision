@@ -1,51 +1,59 @@
-from bs4 import BeautifulSoup
-
-import os
-
 import csv
+import requests
+import json
 
-RAW_DATA_DIRECTORY = "../data/raw_ad_library_spending_report"
+from constants import PARTIES
 
-party_pages = {
-    "50P": {},
-    "BIJ1": {},
-    "CDA": {},
-    "CU": {},
-    "D66": {},
-    "DENK": {},
-    "FvD": {},
-    "GL": {},
-    "JA21": {},
-    "PVV": {},
-    "PvdA": {},
-    "PvdD": {},
-    "SGP": {},
-    "SP": {},
-    "VVD": {},
-    "VOLT": {},
+SEARCH_MAP = {
+    "50+": "50P",
+    "CU": "ChristenUnie",
+    "GL": "Groenlinks",
+    "PvdD": "Partij voor de Dieren",
 }
 
-for filename in os.listdir(RAW_DATA_DIRECTORY):
 
-    if not filename.endswith("html"):
-        continue
+def get_spending_report(party, cursor=None):
 
-    party = filename[: filename.index(".")]
+    page_ids = {}
 
-    path = os.path.join(RAW_DATA_DIRECTORY, filename)
+    url = (
+        "https://www.facebook.com/ads/library/report/async/advertiser_data/"
+        "?report_ds=2021-05-31&"
+        "country=NL"
+        "&time_preset=lifelong"
+        "&sort_column=spend"
+        f"&q={party}"
+    )
 
-    with open(path) as h_file:
-        parser = BeautifulSoup(h_file.read(), "html5lib")
+    if cursor is not None:
+        url += f"&encrypted_forward_cursor={cursor}"
 
-    for anchor in parser.find_all("a"):
-        page_id = anchor["href"][59:]
-        page_name = anchor.find("div", {"class": "_7vgw"}).text
-        page_name = page_name.replace(" (This Page has been deleted.)", "")
+    print(url)
+    r = requests.post(url, data={"__a": 1})
 
-        if party == "SP" and "SP" not in page_name and "sp" in page_name.lower():
-            continue
+    payload = json.loads(r.text[len("for (;;);") :])["payload"]
 
-        party_pages[party][page_id] = page_name
+    for advertiser in payload["advertisers"]:
+        page_ids[str(advertiser["advertiserPageID"])] = advertiser["advertiserPage"]
+
+    if payload["advertiserCursors"]["encryptedForwardCursor"] is not None:
+        page_ids.update(
+            get_spending_report(
+                party, payload["advertiserCursors"]["encryptedForwardCursor"]
+            )
+        )
+
+    return page_ids
+
+
+party_pages = {}
+for p in PARTIES:
+    print(p)
+
+    if p in SEARCH_MAP:
+        party_pages[p] = get_spending_report(SEARCH_MAP[p])
+    else:
+        party_pages[p] = get_spending_report(p)
 
 
 with open("../data/facebook_page_ids.csv", "w", newline="") as h_file:
