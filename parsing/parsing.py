@@ -3,7 +3,7 @@ from datetime import datetime
 from decimal import Decimal
 from typing import Optional, Tuple
 
-from constants import AGE_RANGES, DATETIME_FORMAT, GENDERS, REGIONS
+from constants import AGE_RANGES, DATETIME_FORMAT, GENDERS, REGIONS, CURRENCY_EXCHANGE_RATE_MAP
 
 from models import Ad
 
@@ -32,6 +32,9 @@ def json_to_ad_dict(ad_json_data: dict, party: str) -> dict:
     :return: A dict corresponds with the Ad model.
     """
     spending_lower, spending_upper = _parse_estimated_value(ad_json_data, "spend")
+    spending_lower *= CURRENCY_EXCHANGE_RATE_MAP[ad_json_data["currency"]]
+    spending_upper *= CURRENCY_EXCHANGE_RATE_MAP[ad_json_data["currency"]]
+
     impressions_lower, impressions_upper = _parse_estimated_value(
         ad_json_data, "impressions"
     )
@@ -50,7 +53,6 @@ def json_to_ad_dict(ad_json_data: dict, party: str) -> dict:
         "creative_link_caption": ad_json_data.get("ad_creative_link_caption", ""),
         "creative_link_description": ad_json_data.get("ad_creative_link_description", ""),
         "creative_link_title": ad_json_data.get("ad_creative_link_title", ""),
-        "currency": ad_json_data["currency"],
         "spending_lower": spending_lower,
         "spending_upper": spending_upper,
         "impressions_lower": impressions_lower,

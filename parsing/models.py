@@ -41,7 +41,6 @@ class Ad(Model):
     creative_link_description = TextField()
     creative_link_title = CharField()
 
-    currency = FixedCharField(max_length=3)
     spending_lower = IntegerField()
     spending_upper = IntegerField()
 

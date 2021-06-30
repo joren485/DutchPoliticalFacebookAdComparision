@@ -43,9 +43,9 @@ DATETIME_FORMAT = "%Y-%m-%d"
 FIRST_DATE = date(year=date.today().year - 1, month=date.today().month, day=date.today().day)
 NUMBER_OF_DATES = (date.today() - FIRST_DATE).days + 1
 
-CURRENCY_TO_EUR_MAP = {
+CURRENCY_EXCHANGE_RATE_MAP = {
     "EUR": 1,
-    "USD": 0.83,
+    "USD": 0.84,
 }
 
 PARTIES = [
