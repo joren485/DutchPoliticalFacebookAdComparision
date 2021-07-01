@@ -1,6 +1,7 @@
 import csv
-import requests
 import json
+
+import requests
 
 from constants import PARTIES
 

@@ -3,7 +3,7 @@ from datetime import datetime
 from decimal import Decimal
 from typing import Optional, Tuple
 
-from constants import AGE_RANGES, DATETIME_FORMAT, GENDERS, REGIONS, CURRENCY_EXCHANGE_RATE_MAP
+from constants import AGE_RANGES, CURRENCY_EXCHANGE_RATE_MAP, DATETIME_FORMAT, GENDERS, REGIONS
 
 from models import Ad
 

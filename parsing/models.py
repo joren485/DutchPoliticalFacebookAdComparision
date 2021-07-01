@@ -5,7 +5,6 @@ from functools import cached_property
 from peewee import (
     CharField,
     DateField,
-    FixedCharField,
     FloatField,
     IntegerField,
     Model,
