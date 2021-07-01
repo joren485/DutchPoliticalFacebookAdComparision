@@ -12,7 +12,14 @@ from peewee import (
     TextField,
 )
 
-from constants import AGE_RANGES, FIRST_DATE, GENDERS, IGNORED_WORDS, LOCAL_AD_ARCHIVE_PATH, REGIONS
+from constants import (
+    AGE_RANGES,
+    FIRST_DATE,
+    GENDERS,
+    IGNORED_WORDS,
+    LOCAL_AD_ARCHIVE_PATH,
+    REGIONS,
+)
 
 PATTERN_NON_WORD_CHARS = re.compile(r"[^a-zA-Z0-9-' #]")
 
@@ -123,9 +130,7 @@ class Ad(Model):
         text = text.lower()
 
         return [
-            word
-            for word in text.split()
-            if len(word) > 3 and word not in IGNORED_WORDS
+            word for word in text.split() if len(word) > 3 and word not in IGNORED_WORDS
         ]
 
     def rank_to_data(self, data_type: str, demographic: str):

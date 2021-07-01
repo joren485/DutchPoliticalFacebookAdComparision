@@ -40,7 +40,9 @@ FACEBOOK_API_URL = (
 )
 
 DATETIME_FORMAT = "%Y-%m-%d"
-FIRST_DATE = date(year=date.today().year - 1, month=date.today().month, day=date.today().day)
+FIRST_DATE = date(
+    year=date.today().year - 1, month=date.today().month, day=date.today().day
+)
 NUMBER_OF_DATES = (date.today() - FIRST_DATE).days + 1
 
 CURRENCY_EXCHANGE_RATE_MAP = {
