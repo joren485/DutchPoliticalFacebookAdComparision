@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}{{ party }} | {{ theme | capitalize }}{% endblock %}
+
+{% block content %}
+    <div class="text-center">
+        <h1>{{ party }} {{ theme | capitalize }} Graphs</h1>
+    </div>
+
+    <div class="col-5 mx-auto">
+        <p class="lead">This page shows graphs about ads about "{{ theme }}" compared by demographic for {{ party }}.</p>
+
+        <p>For each demographic, four graphs are shown that compare:</p>
+        <ul>
+            <li><strong>Occurrences:</strong> The amount of ads that were about "{{ theme }}".</li>
+            <li><strong>Impressions:</strong> How many times ads about "{{ theme }}" were shown.</li>
+            <li><strong>Potential reach:</strong> The maximum amount of people that ads about "{{ theme }}" could have been shown to.
+            </li>
+            <li><strong>Spending:</strong> The amount of money that {{ party }} spend on ads.</li>
+        </ul>
+    </div>
+
+    <hr>
+    {% for demographic_type in DEMOGRAPHIC_TYPES %}
+        <div class="text-center">
+            <h4>{{ demographic_type | capitalize }}</h4>
+        </div>
+        <div class="row">
+            {% for data_type in DATA_TYPES %}
+                <div class="col-3 mx-auto">
+                    {% if theme_text_data[party][data_type + "-" + demographic_type] | sum > 0 %}
+                        <canvas
+                                id="{{ data_type }}-{{ demographic_type }}-chart"
+                                data-data='{{ theme_text_data[party][data_type + "-" + demographic_type] | tojson }}'
+                                data-labels='{{ DEMOGRAPHIC_TYPE_TO_LIST_MAP[demographic_type] | tojson }}'
+                                data-title="{{ data_type | capitalize | replace("-", " ") }}"
+                        ></canvas>
+                    {% else %}
+                        <p>No data available</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+        <hr>
+    {% endfor %}
+
+{% endblock %}

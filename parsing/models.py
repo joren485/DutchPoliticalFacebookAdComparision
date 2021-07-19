@@ -16,9 +16,8 @@ from constants import (
     AGE_RANGES,
     FIRST_DATE,
     GENDERS,
-    IGNORED_WORDS,
     LOCAL_AD_ARCHIVE_PATH,
-    REGIONS,
+    REGIONS, THEMES,
 )
 
 PATTERN_NON_WORD_CHARS = re.compile(r"[^a-zA-Z0-9-' #]")
@@ -122,16 +121,9 @@ class Ad(Model):
         raise ValueError(f"Unknown type: {demographic}")
 
     @cached_property
-    def parsed_text(self):
+    def text(self) -> str:
         """Return words used in texts of this ad."""
-        text = PATTERN_NON_WORD_CHARS.sub(
-            " ", self.creative_body + " " + self.creative_link_description
-        )
-        text = text.lower()
-
-        return [
-            word for word in text.split() if len(word) > 3 and word not in IGNORED_WORDS
-        ]
+        return f"{self.creative_body} {self.creative_link_description}".lower()
 
     def rank_to_data(self, data_type: str, demographic: str):
         """Return the amount of data type per demographic for this ad."""
@@ -141,6 +133,8 @@ class Ad(Model):
             amount = self.impressions_average
         elif data_type == "potential-reach":
             amount = self.potential_reach_average
+        elif data_type == "spending":
+            amount = self.spending_average
         else:
             raise ValueError(f"Unknown data type: {data_type}")
 
@@ -148,6 +142,12 @@ class Ad(Model):
             return amount
 
         return amount * getattr(self, Ad.demographic_to_field_name(demographic))
+
+    def is_about_theme(self, theme: str):
+        for theme_word in THEMES[theme]:
+            if theme_word in self.text:
+                return True
+        return False
 
 
 for dt in GENDERS + REGIONS + AGE_RANGES:

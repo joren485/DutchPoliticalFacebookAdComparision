@@ -1,15 +1,11 @@
 import json
 import logging
-from collections import Counter
-from datetime import datetime
 
-from constants import AGE_RANGES, FIRST_DATE, GENDERS, LEADERS, PARTIES, REGIONS
+from constants import DATA_TYPES, DEMOGRAPHICS, DEMOGRAPHIC_TYPES, DEMOGRAPHIC_TYPE_TO_LIST_MAP, FIRST_DATE, PARTIES, THEMES
 
 from models import Ad
 
 from processing import recursive_round
-
-NUMBER_OF_COMMON_WORDS = 10
 
 LOGGER = logging.getLogger(__name__)
 
@@ -19,57 +15,47 @@ logging.basicConfig(
     datefmt="%Y-%m-%d %H:%M:%S",
 )
 
-RANKS = [(data_type, demographic.lower())
-         for demographic in ["total"] + GENDERS + AGE_RANGES + REGIONS
-         for data_type in ("occurrences", "impressions", "potential-reach")]
+RANKS = [(data_type, demographic)
+         for demographic in DEMOGRAPHICS
+         for data_type in DATA_TYPES]
 
 ads = list(Ad.select().where(Ad.start_date >= FIRST_DATE))
-ads_per_party = {p: [ad for ad in ads if ad.party == p] for p in PARTIES}
 
-party_data = {
-    p: {
-        "last-updated": datetime.now().strftime("%H:%M %d-%m-%Y"),
-    }
-    for p in PARTIES
+theme_data = {
+    t: {
+        "general": {
+            f"{data_type}-{demographic}": [0 for _ in PARTIES]
+            for data_type, demographic in RANKS
+        },
+    } for t in THEMES
 }
 
-for p in PARTIES:
-    for data_type in ("occurrences", "impressions", "potential-reach"):
-        party_data[p][f"{data_type}-leaders"] = {
-            "labels": [],
-            "data": [],
-        }
+for theme in THEMES:
+    logging.info(f"Theme: {theme}")
 
-    for data_type, demographic in RANKS:
-        party_data[p][f"{data_type}-{demographic}"] = {
-            "labels": [],
-            "data": [],
-        }
+    for party in PARTIES:
+        theme_data[theme][party] = {}
 
-for party in PARTIES:
+        for data_type in DATA_TYPES:
+            for demographic_type in DEMOGRAPHIC_TYPES:
+                demographic_list = DEMOGRAPHIC_TYPE_TO_LIST_MAP[demographic_type]
+                theme_data[theme][party][f"{data_type}-{demographic_type}"] = [0 for _ in demographic_list]
 
-    for data_type, demographic in RANKS:
-        LOGGER.info(f"{party}: {data_type}-{demographic}")
+    for ad in ads:
+        if ad.is_about_theme(theme):
+            for data_type, demographic in RANKS:
+                theme_data[theme]["general"][f"{data_type}-{demographic}"][PARTIES.index(ad.party)] += ad.rank_to_data(data_type, demographic)
 
-        party_text_counter = Counter()
-        for ad in ads_per_party[party]:
-            for word in ad.parsed_text:
-                party_text_counter.update({word: ad.rank_to_data(data_type, demographic)})
+            for data_type in DATA_TYPES:
+                for demographic_type in DEMOGRAPHIC_TYPES:
+                    demographic_list = DEMOGRAPHIC_TYPE_TO_LIST_MAP[demographic_type]
 
-        if demographic == "total":
-            for name in LEADERS:
-                count = party_text_counter[name.rsplit(" ", 1)[-1].lower()]
-                if count > 0:
-                    party_data[party][f"{data_type}-leaders"]["labels"].append(name)
-                    party_data[party][f"{data_type}-leaders"]["data"].append(count)
+                    for index, demographic in enumerate(demographic_list):
+                        theme_data[theme][ad.party][f"{data_type}-{demographic_type}"][index] += ad.rank_to_data(
+                            data_type, demographic
+                        )
 
-        for word, count in party_text_counter.most_common(NUMBER_OF_COMMON_WORDS):
-            if count > 0:
-                party_data[party][f"{data_type}-{demographic}"]["labels"].append(word)
-                party_data[party][f"{data_type}-{demographic}"]["data"].append(count)
+recursive_round(theme_data)
 
-recursive_round(party_data)
-
-for party in PARTIES:
-    with open(f"../data/parsed_data/text-{party}.json", "w") as h_party_data:
-        json.dump(party_data[party], h_party_data)
+with open("../data/parsed_data/text-theme.json", "w") as h_json:
+    json.dump(theme_data, h_json)

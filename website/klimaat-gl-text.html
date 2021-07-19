@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.3.0/dist/chart.min.js" integrity="sha256-KP9rTEikFk097YZVFmsYwZdAg4cdGdea8O/V7YZJUxw=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment@1.0.0/dist/chartjs-adapter-moment.min.js" integrity="sha256-sFB24K2xU2EOgWAtb3ySAGjhMqcUvUJGmwjDcTQa04k=" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js" integrity="sha256-eVNjHw5UeU0jUqPPpZHAkU1z4U+QFBBY488WvueTm88=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@1.0.0/dist/chartjs-plugin-zoom.min.js" integrity="sha256-oLHPMvaI4/JUap1NBhH+CVK4I9yWBB3dCKfXXAjRYxw=" crossorigin="anonymous"></script>
+
+    <script src="/DutchPoliticalFacebookAdComparision/website/js/charts.js"></script>
+
+    <meta charset="UTF-8">
+    <title>GL | Klimaat | Dutch Political Facebook Ad Comparison</title>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/DutchPoliticalFacebookAdComparision/index.html">Dutch Political Facebook Ad Comparison</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="index-nav-dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Overall Statistics</a>
+                    <ul class="dropdown-menu" aria-labelledby="index-nav-dropdown">
+                        <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/index.html#ads-charts">Ads</a></li>
+                        <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/index.html#spending-charts">Spending</a></li>
+                        <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/index.html#impressions-charts">Impressions</a></li>
+                        <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/index.html#potential-reach-charts">Potential Reach</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="party-statistics-nav-dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Party Statistics</a>
+                    <ul class="dropdown-menu" aria-labelledby="party-statistics-nav-dropdown">
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/50+-statistics.html">50+</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/bij1-statistics.html">BIJ1</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/bbb-statistics.html">BBB</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/cda-statistics.html">CDA</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/cu-statistics.html">CU</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/d66-statistics.html">D66</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/denk-statistics.html">DENK</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/fvd-statistics.html">FvD</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/gl-statistics.html">GL</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/ja21-statistics.html">JA21</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/pvv-statistics.html">PVV</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/pvda-statistics.html">PvdA</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/pvdd-statistics.html">PvdD</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/sgp-statistics.html">SGP</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/sp-statistics.html">SP</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/volt-statistics.html">VOLT</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/vvd-statistics.html">VVD</a></li>
+                        
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="theme-nav-dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Theme Statistics</a>
+                    <ul class="dropdown-menu" aria-labelledby="theme-nav-dropdown">
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/klimaat-text.html">Klimaat</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/onderwijs-text.html">Onderwijs</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/gezondheidszorg-text.html">Gezondheidszorg</a></li>
+                        
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/DutchPoliticalFacebookAdComparision/website/about.html">About</a>
+                </li>
+            </ul>
+
+            <span class="navbar-text">Last Updated: 15:05 19-07-2021</span>
+            <a class="nav-link link-dark" href="https://github.com/joren485/DutchPoliticalFacebookAdComparision/"><i class="fab fa-github"></i></a>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid pt-4">
+    
+    <div class="text-center">
+        <h1>GL Klimaat Graphs</h1>
+    </div>
+
+    <div class="col-5 mx-auto">
+        <p class="lead">This page shows graphs about ads about "klimaat" compared by demographic for GL.</p>
+
+        <p>For each demographic, four graphs are shown that compare:</p>
+        <ul>
+            <li><strong>Occurrences:</strong> The amount of ads that were about "klimaat".</li>
+            <li><strong>Impressions:</strong> How many times ads about "klimaat" were shown.</li>
+            <li><strong>Potential reach:</strong> The maximum amount of people that ads about "klimaat" could have been shown to.
+            </li>
+            <li><strong>Spending:</strong> The amount of money that GL spend on ads.</li>
+        </ul>
+    </div>
+
+    <hr>
+    
+        <div class="text-center">
+            <h4>Total</h4>
+        </div>
+        <div class="row">
+            
+                <div class="col-3 mx-auto">
+                    
+                        <canvas
+                                id="occurrences-total-chart"
+                                data-data='[535]'
+                                data-labels='["total"]'
+                                data-title="Occurrences"
+                        ></canvas>
+                    
+                </div>
+            
+                <div class="col-3 mx-auto">
+                    
+                        <canvas
+                                id="impressions-total-chart"
+                                data-data='[21155232]'
+                                data-labels='["total"]'
+                                data-title="Impressions"
+                        ></canvas>
+                    
+                </div>
+            
+                <div class="col-3 mx-auto">
+                    
+                        <canvas
+                                id="potential-reach-total-chart"
+                                data-data='[230957909]'
+                                data-labels='["total"]'
+                                data-title="Potential reach"
+                        ></canvas>
+                    
+                </div>
+            
+                <div class="col-3 mx-auto">
+                    
+                        <canvas
+                                id="spending-total-chart"
+                                data-data='[157266.5]'
+                                data-labels='["total"]'
+                                data-title="Spending"
+                        ></canvas>
+                    
+                </div>
+            
+        </div>
+        <hr>
+    
+        <div class="text-center">
+            <h4>Gender</h4>
+        </div>
+        <div class="row">
+            
+                <div class="col-3 mx-auto">
+                    
+                        <canvas
+                                id="occurrences-gender-chart"
+                                data-data='[535, 535]'
+                                data-labels='["female", "male"]'
+                                data-title="Occurrences"
+                        ></canvas>
+                    
+                </div>
+            
+                <div class="col-3 mx-auto">
+                    
+                        <canvas
+                                id="impressions-gender-chart"
+                                data-data='[11525860, 9536128]'
+                                data-labels='["female", "male"]'
+                                data-title="Impressions"
+                        ></canvas>
+                    
+                </div>
+            
+                <div class="col-3 mx-auto">
+                    
+                        <canvas
+                                id="potential-reach-gender-chart"
+                                data-data='[129352411, 100375665]'
+                                data-labels='["female", "male"]'
+                                data-title="Potential reach"
+                        ></canvas>
+                    
+                </div>
+            
+                <div class="col-3 mx-auto">
+                    
+                        <canvas
+                                id="spending-gender-chart"
+                                data-data='[87024.04, 69519.49]'
+                                data-labels='["female", "male"]'
+                                data-title="Spending"
+                        ></canvas>
+                    
+                </div>
+            
+        </div>
+        <hr>
+    
+        <div class="text-center">
+            <h4>Age</h4>
+        </div>
+        <div class="row">
+            
+                <div class="col-3 mx-auto">
+                    
+                        <canvas
+                                id="occurrences-age-chart"
+                                data-data='[535, 535, 535, 535, 535, 535, 535]'
+                                data-labels='["13-17", "18-24", "25-34", "35-44", "45-54", "55-64", "65+"]'
+                                data-title="Occurrences"
+                        ></canvas>
+                    
+                </div>
+            
+                <div class="col-3 mx-auto">
+                    
+                        <canvas
+                                id="impressions-age-chart"
+                                data-data='[23971, 4191775, 5788510, 2626936, 4091227, 3021141, 1408223]'
+                                data-labels='["13-17", "18-24", "25-34", "35-44", "45-54", "55-64", "65+"]'
+                                data-title="Impressions"
+                        ></canvas>
+                    
+                </div>
+            
+                <div class="col-3 mx-auto">
+                    
+                        <canvas
+                                id="potential-reach-age-chart"
+                                data-data='[4129394, 66419047, 60696955, 22448073, 34968374, 26871269, 15366556]'
+                                data-labels='["13-17", "18-24", "25-34", "35-44", "45-54", "55-64", "65+"]'
+                                data-title="Potential reach"
+                        ></canvas>
+                    
+                </div>
+            
+                <div class="col-3 mx-auto">
+                    
+                        <canvas
+                                id="spending-age-chart"
+                                data-data='[285.98, 37354.56, 46740.27, 19376.94, 23855.05, 18701.4, 10924.61]'
+                                data-labels='["13-17", "18-24", "25-34", "35-44", "45-54", "55-64", "65+"]'
+                                data-title="Spending"
+                        ></canvas>
+                    
+                </div>
+            
+        </div>
+        <hr>
+    
+        <div class="text-center">
+            <h4>Region</h4>
+        </div>
+        <div class="row">
+            
+                <div class="col-3 mx-auto">
+                    
+                        <canvas
+                                id="occurrences-region-chart"
+                                data-data='[535, 535, 535, 535, 535, 535, 535, 535, 535, 535, 535, 535]'
+                                data-labels='["drenthe", "flevoland", "friesland", "gelderland", "groningen", "limburg", "noord-brabant", "noord-holland", "overijssel", "utrecht", "zeeland", "zuid-holland"]'
+                                data-title="Occurrences"
+                        ></canvas>
+                    
+                </div>
+            
+                <div class="col-3 mx-auto">
+                    
+                        <canvas
+                                id="impressions-region-chart"
+                                data-data='[534866, 420156, 741448, 2435522, 906334, 1255504, 2683239, 3991570, 1255097, 1758161, 389288, 4778372]'
+                                data-labels='["drenthe", "flevoland", "friesland", "gelderland", "groningen", "limburg", "noord-brabant", "noord-holland", "overijssel", "utrecht", "zeeland", "zuid-holland"]'
+                                data-title="Impressions"
+                        ></canvas>
+                    
+                </div>
+            
+                <div class="col-3 mx-auto">
+                    
+                        <canvas
+                                id="potential-reach-region-chart"
+                                data-data='[5252103, 4506398, 7173444, 24373657, 8056138, 11819079, 29096237, 39093666, 12865029, 18027459, 3965212, 66159192]'
+                                data-labels='["drenthe", "flevoland", "friesland", "gelderland", "groningen", "limburg", "noord-brabant", "noord-holland", "overijssel", "utrecht", "zeeland", "zuid-holland"]'
+                                data-title="Potential reach"
+                        ></canvas>
+                    
+                </div>
+            
+                <div class="col-3 mx-auto">
+                    
+                        <canvas
+                                id="spending-region-chart"
+                                data-data='[3349.54, 2846.73, 4925.89, 17574.88, 6916.53, 8048.66, 19688.76, 30852.08, 8488.73, 14053.15, 2514.02, 37976.14]'
+                                data-labels='["drenthe", "flevoland", "friesland", "gelderland", "groningen", "limburg", "noord-brabant", "noord-holland", "overijssel", "utrecht", "zeeland", "zuid-holland"]'
+                                data-title="Spending"
+                        ></canvas>
+                    
+                </div>
+            
+        </div>
+        <hr>
+    
+
+
+</div>
+</body>
+</html>

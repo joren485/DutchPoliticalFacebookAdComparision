@@ -50,6 +50,62 @@ CURRENCY_EXCHANGE_RATE_MAP = {
     "USD": 0.84,
 }
 
+THEMES = {
+    "klimaat": [
+        "klimaat",
+        "duurzaam",
+        "groen",
+        "green",
+        "kernenergie",
+        "co2",
+        "windmolen",
+        "windturbines",
+        "zonnepaneel",
+        "zonnepanelen",
+        "vervuiling",
+        "vervuilend",
+        "stroom",
+        "energie",
+        "biomassa",
+        "stikstof"
+    ],
+    "onderwijs": [
+        "onderwijs",
+        "opleiding",
+        "kennis",
+        "universiteit",
+        "docent",
+        "leraar",
+        "leraren",
+        "school",
+        "scholen",
+        "wetenschap",
+        "onderzoek",
+        "studiefinanciering",
+        "leenstelsel",
+        "studievoorschot",
+        "mbo",
+        "klassen",
+    ],
+    "gezondheidszorg": [
+        "gezondheid",
+        "zorg",
+        "ziek",
+        "arts",
+        "dokter"
+        "corona",
+        "covid",
+        "ic-capaciteit",
+        "verzekering",
+        "verzekeraar",
+        "farmaceutisch",
+        "bejaard",
+        "verpleeg",
+        "eigen risico",
+        "virus",
+    ],
+}
+
 PARTIES = [
     "50+",
     "BIJ1",
@@ -70,6 +126,18 @@ PARTIES = [
     "VVD",
 ]
 
+GENDERS = ["female", "male"]
+
+AGE_RANGES = [
+    "13-17",
+    "18-24",
+    "25-34",
+    "35-44",
+    "45-54",
+    "55-64",
+    "65+",
+]
+
 REGIONS = [
     "drenthe",
     "flevoland",
@@ -85,83 +153,13 @@ REGIONS = [
     "zuid-holland",
 ]
 
-GENDERS = ["female", "male"]
+DEMOGRAPHIC_TYPES = ["total", "gender", "age", "region"]
+DEMOGRAPHICS = ["total"] + GENDERS + AGE_RANGES + REGIONS
+DATA_TYPES = ["occurrences", "impressions", "potential-reach", "spending"]
 
-AGE_RANGES = [
-    "13-17",
-    "18-24",
-    "25-34",
-    "35-44",
-    "45-54",
-    "55-64",
-    "65+",
-]
-
-IGNORED_WORDS = [
-    "productdescription",
-    "productbrand",
-    "product",
-    "brand",
-    "description",
-    "https",
-    "voor",
-    "gaan",
-    "deze",
-    "zijn",
-    "over",
-    "meer",
-    "gaat",
-    "weten",
-    "keer",
-    "onze",
-    "word",
-    "echt",
-    "naar",
-    "maar",
-    "weer",
-    "mensen",
-    "ergens",
-    "doen",
-    "vindt",
-    "daarom",
-    "worden",
-    "moet",
-    "niet",
-    "partij",
-    "stem",
-    "maand",
-    "vanaf",
-    "door",
-    "alle",
-    "wordt",
-    "kunnen",
-    "hebben",
-    "maken",
-    "maart",
-    "moeten",
-    "heeft",
-    "veel",
-    "geen",
-    "hier",
-]
-
-LEADERS = [
-    "Esther Ouwehand",
-    "Kees van der Staaij",
-    "Lilianne Ploumen",
-    "Gert-Jan Segers",
-    "Wopke Hoekstra",
-    "Mark Rutte",
-    "Sigrid Kaag",
-    "Geert Wilders",
-    "Lilian Marijnissen",
-    "Jesse Klaver",
-    "Liane Den Haan",
-    "Farid Azarkan",
-    "Thierry Baudet",
-    "Sylvana Simons",
-    "Laurens Dassen",
-    "Caroline Plas",
-    "Joost Eerdmans",
-    "Pieter Omtzigt",
-]
+DEMOGRAPHIC_TYPE_TO_LIST_MAP = {
+    "total": ["total"],
+    "gender": GENDERS,
+    "age": AGE_RANGES,
+    "region": REGIONS,
+}

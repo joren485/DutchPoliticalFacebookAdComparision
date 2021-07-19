@@ -3,7 +3,7 @@ from datetime import datetime
 
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
-from constants import AGE_RANGES, GENDERS, PARTIES, REGIONS
+from constants import AGE_RANGES, DATA_TYPES, DEMOGRAPHIC_TYPES, DEMOGRAPHIC_TYPE_TO_LIST_MAP, GENDERS, PARTIES, REGIONS, THEMES
 
 env = Environment(
     loader=FileSystemLoader("../templates"), autoescape=select_autoescape()
@@ -24,6 +24,10 @@ def write_template(template, destination=None, **kwargs):
         GENDERS=GENDERS,
         AGE_RANGES=AGE_RANGES,
         REGIONS=REGIONS,
+        THEMES=THEMES,
+        DATA_TYPES=DATA_TYPES,
+        DEMOGRAPHIC_TYPES=DEMOGRAPHIC_TYPES,
+        DEMOGRAPHIC_TYPE_TO_LIST_MAP=DEMOGRAPHIC_TYPE_TO_LIST_MAP,
         general_data=general_data,
         **kwargs,
     )
@@ -39,6 +43,16 @@ def write_template(template, destination=None, **kwargs):
 write_template("index")
 write_template("about")
 
+for theme in THEMES:
+    with open("../data/parsed_data/text-theme.json") as h_file:
+        data = json.load(h_file)
+    write_template(
+        "theme-text",
+        f"{theme.lower()}-text",
+        theme=theme,
+        theme_text_data=data[theme],
+    )
+
 for party in PARTIES:
     with open(f"../data/parsed_data/{party}.json") as h_file:
         party_data = json.load(h_file)
@@ -49,11 +63,13 @@ for party in PARTIES:
         party_data=party_data,
     )
 
-    with open(f"../data/parsed_data/text-{party}.json") as h_file:
-        party_text_data = json.load(h_file)
-    write_template(
-        "party-text",
-        f"{party.lower()}-text",
-        party=party,
-        party_text_data=party_text_data,
-    )
+    for theme in THEMES:
+        with open("../data/parsed_data/text-theme.json") as h_file:
+            data = json.load(h_file)
+        write_template(
+            "theme-party-text",
+            f"{theme.lower()}-{party.lower()}-text",
+            party=party,
+            theme=theme,
+            theme_text_data=data[theme],
+        )
