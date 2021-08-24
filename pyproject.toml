@@ -12,8 +12,6 @@ requests = "^2.26.0"
 
 [tool.poetry.dev-dependencies]
 pydocstyle = "^6.1.1"
-flake8 = "^3.9.2"
-flake8-import-order = "^0.18.1"
 black = "^21.7b0"
 
 [build-system]

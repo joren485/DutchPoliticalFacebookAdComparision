@@ -3,7 +3,16 @@ from datetime import datetime
 
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
-from constants import AGE_RANGES, DATA_TYPES, DEMOGRAPHIC_TYPES, DEMOGRAPHIC_TYPE_TO_LIST_MAP, GENDERS, PARTIES, REGIONS, THEMES
+from constants import (
+    AGE_RANGES,
+    DATA_TYPES,
+    DEMOGRAPHIC_TYPES,
+    DEMOGRAPHIC_TYPE_TO_LIST_MAP,
+    GENDERS,
+    PARTIES,
+    REGIONS,
+    THEMES,
+)
 
 env = Environment(
     loader=FileSystemLoader("../templates"), autoescape=select_autoescape()

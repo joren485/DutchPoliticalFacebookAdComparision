@@ -57,7 +57,9 @@ def json_to_ad_dict(ad_json_data: dict, party: str) -> dict:
         "end_date": _parse_date(ad_json_data, "ad_delivery_stop_time"),
         "creative_body": ad_json_data.get("ad_creative_body", ""),
         "creative_link_caption": ad_json_data.get("ad_creative_link_caption", ""),
-        "creative_link_description": ad_json_data.get("ad_creative_link_description", ""),
+        "creative_link_description": ad_json_data.get(
+            "ad_creative_link_description", ""
+        ),
         "creative_link_title": ad_json_data.get("ad_creative_link_title", ""),
         "spending_lower": spending_lower,
         "spending_upper": spending_upper,
