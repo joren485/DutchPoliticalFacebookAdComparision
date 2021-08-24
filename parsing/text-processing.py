@@ -1,4 +1,3 @@
-import json
 import logging
 
 from constants import (
@@ -13,7 +12,7 @@ from constants import (
 
 from models import Ad
 
-from processing import recursive_round
+from utils import recursive_round, render_template
 
 LOGGER = logging.getLogger(__name__)
 
@@ -68,7 +67,23 @@ for theme in THEMES:
                             index
                         ] += ad.rank_to_data(data_type, demographic)
 
+logging.info(f"Writing templates")
 recursive_round(theme_data)
+for theme in THEMES:
+    logging.debug(f"Writing theme-text for { theme }")
+    render_template(
+        "theme-text.html",
+        f"{theme.lower()}-text.html",
+        theme=theme,
+        theme_text_data=theme_data[theme],
+    )
 
-with open("../data/parsed_data/text-theme.json", "w") as h_json:
-    json.dump(theme_data, h_json)
+    for party in PARTIES:
+        logging.debug(f"Writing theme-party-text for { theme } and { party }")
+        render_template(
+            "theme-party-text.html",
+            f"{theme.lower()}-{party.lower()}-text.html",
+            party=party,
+            theme=theme,
+            theme_text_data=theme_data[theme],
+        )

@@ -1,6 +1,4 @@
-import json
 import logging
-from typing import Optional, Union
 
 from constants import (
     AGE_RANGES,
@@ -13,6 +11,8 @@ from constants import (
 
 from models import Ad
 
+from utils import recursive_round, render_template
+
 LOGGER = logging.getLogger(__name__)
 
 logging.basicConfig(
@@ -20,24 +20,6 @@ logging.basicConfig(
     level=logging.INFO,
     datefmt="%Y-%m-%d %H:%M:%S",
 )
-
-
-def recursive_round(o: Union[dict, list], precision: Optional[int] = None):
-    """
-    Traverses an object recursively and rounds numbers found in lists.
-
-    :param o: Object to round recursively.
-    :param precision: Precision to use when rounding
-    """
-    if isinstance(o, dict):
-        for key in o:
-            recursive_round(o[key], 2 if "spend" in key else precision)
-    elif isinstance(o, list) and len(o) > 0 and isinstance(o[0], (list, dict)):
-        for object_element in o:
-            recursive_round(object_element, precision)
-    elif isinstance(o, list) and len(o) > 0 and isinstance(o[0], (int, float)):
-        for object_index, object_element in enumerate(o):
-            o[object_index] = round(object_element, precision)
 
 
 if __name__ == "__main__":
@@ -172,12 +154,21 @@ if __name__ == "__main__":
                             ad.average_impressions_per_day * percentage
                         )
 
+    logging.info("Writing templates")
+
+    logging.debug("Writing index.html")
     recursive_round(general_data)
+    render_template("index.html", "index.html", general_data=general_data)
+
+    logging.debug("Writing about.html")
+    render_template("about.html", "about.html")
+
     recursive_round(party_specific_data)
-
-    with open("../data/parsed_data/general-data.json", "w") as h_general_data:
-        json.dump(general_data, h_general_data)
-
     for party in PARTIES:
-        with open(f"../data/parsed_data/{party}.json", "w") as h_party_data:
-            json.dump(party_specific_data[party], h_party_data)
+        logging.debug(f"Writing party-statistics.html for { party }")
+        render_template(
+            "party-statistics.html",
+            f"{party.lower()}-statistics.html",
+            party=party,
+            party_data=party_specific_data[party],
+        )
