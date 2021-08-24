@@ -139,18 +139,18 @@ AGE_RANGES = [
 ]
 
 REGIONS = [
-    "drenthe",
-    "flevoland",
-    "friesland",
-    "gelderland",
-    "groningen",
-    "limburg",
-    "noord-brabant",
-    "noord-holland",
-    "overijssel",
-    "utrecht",
-    "zeeland",
-    "zuid-holland",
+    "Drenthe",
+    "Flevoland",
+    "Friesland",
+    "Gelderland",
+    "Groningen",
+    "Limburg",
+    "Noord-Brabant",
+    "Noord-Holland",
+    "Overijssel",
+    "Utrecht",
+    "Zeeland",
+    "Zuid-Holland",
 ]
 
 DEMOGRAPHIC_TYPES = ["total", "gender", "age", "region"]
