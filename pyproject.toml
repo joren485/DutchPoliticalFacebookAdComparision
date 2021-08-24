@@ -11,7 +11,7 @@ peewee = "^3.14.4"
 requests = "^2.26.0"
 
 [tool.poetry.dev-dependencies]
-pydocstyle = "^6.1.1"
+pydocstyle = {extras = ["toml"], version = "^6.1.1"}
 black = "^21.7b0"
 
 [build-system]

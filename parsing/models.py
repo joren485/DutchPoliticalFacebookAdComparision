@@ -144,7 +144,13 @@ class Ad(Model):
 
         return amount * getattr(self, Ad.demographic_to_field_name(demographic))
 
-    def is_about_theme(self, theme: str):
+    def is_about_theme(self, theme: str) -> bool:
+        """
+        Check whether this ad contains words of a theme.
+
+        :param theme: The theme to check for.
+        :return: True if a theme word is found in the ad text.
+        """
         for theme_word in THEMES[theme]:
             if theme_word in self.text:
                 return True

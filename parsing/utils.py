@@ -47,7 +47,6 @@ def render_template(template: str, destination: str, **kwargs) -> None:
     :param kwargs: Any variables that should be passed to the template.
     :return:
     """
-
     rendered_content = JINJA_ENVIRONMENT.get_template(template).render(
         last_updated=datetime.now().strftime("%H:%M %d-%m-%Y"),
         PARTIES=PARTIES,
