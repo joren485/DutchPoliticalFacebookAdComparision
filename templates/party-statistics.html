@@ -27,16 +27,16 @@
                 <div class="row">
                     <div class="col-8 mx-auto">
                         <canvas
-                                id="{{ data_type }}-per-{{ demographic_type }}-per-date-chart"
-                                data-data={{ party_data[data_type + "-per-" + demographic_type + "-per-date"] | string | replace(" ", "") | tojson }}
+                                id="{{ data_type }}-{{ demographic_type }}-daily-chart"
+                                data-data={{ party_data[data_type + "-" + demographic_type + "-daily"] | string | replace(" ", "") | tojson }}
                                 data-labels='{{ demographic_list | map("capitalize") | list | tojson }}'
                                 data-title="{{ data_type | capitalize }} per Date"
                         ></canvas>
                     </div>
                     <div class="col-4 mx-auto">
                         <canvas
-                                id="{{ data_type }}-per-{{ demographic_type }}-chart"
-                                data-data='{{ party_data[data_type + "-per-" + demographic_type] | tojson }}'
+                                id="{{ data_type }}-{{ demographic_type }}-chart"
+                                data-data='{{ party_data[data_type + "-" + demographic_type] | tojson }}'
                                 data-labels='{{ demographic_list | map("capitalize") | list | tojson }}'
                                 data-title="Total {{ data_type | capitalize }}"
                         ></canvas>

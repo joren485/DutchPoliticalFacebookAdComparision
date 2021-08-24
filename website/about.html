@@ -19,7 +19,7 @@
     <script src="/DutchPoliticalFacebookAdComparision/website/js/charts.js"></script>
 
     <meta charset="UTF-8">
-    <title>Index | Dutch Political Facebook Ad Comparison</title>
+    <title>About | Dutch Political Facebook Ad Comparison</title>
 </head>
 <body>
 
@@ -110,97 +110,66 @@
 
 <div class="container-fluid pt-4">
     
+<div class="col-6 mx-auto">
     <p class="lead">
-        This website lets you to compare statistics about Facebook advertisements by Dutch political parties.
-        It is based on data from the <a href="https://www.facebook.com/ads/library/">Facebook Ad Library</a>.
-        For more information visit the <a href="/DutchPoliticalFacebookAdComparision/website/about.html">about page</a>.
+        As part of an effort by Facebook to be more transparent about the political ads they were showing,
+        they created <a href="https://www.facebook.com/ads/library/">the Facebook Ad Library</a>,
+        a website where you can view information about all political ads Facebook shows in certain countries
+        (e.g. which organisation is and how much an organisation spend on ads).
+
+        Their website is great for finding information about a single organisation or ad. However it lacks (in my
+        opinion) the ability to compare different organisations.
+        That is why I created this website, to compare statistics about political Facebook ads that are bought and
+        created by Dutch political parties.
     </p>
 
-    <hr>
+    <h4>What specific data did you use?</h4>
+    <p>The data-processing consists of two steps:</p>
+    <ol>
+        <li>Retrieving the data from Facebook.</li>
+        <li>Analyzing the data into a format that can be used in the charts on this website.</li>
+    </ol>
 
-    <div>
-        
-            <div id="ads-charts">
-                <div class="text-center">
-                    <h3>Ads</h3>
-                    <p>
-                        
-                            All parties combined ran <strong>32406</strong> ads in the past year.
-                        
-                    </p>
-                </div>
+    <p>For step 1, I use the <a href="https://www.facebook.com/ads/library/api/">the Facebook Ad Library API</a>,
+        which allows anyone to programmatically request data from the the Facebook Ad Library.
 
-                <div class="row">
-                    
-                    
-                        <div class="col-4 mx-auto">
-                            <canvas
-                                    id="ads-per-party-chart"
-                                    data-data='[181, 193, 70, 11904, 369, 2620, 535, 655, 765, 125, 36, 6124, 276, 150, 877, 1187, 6339]'
-                                    data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
-                                    data-title="Total Ads"
-                            ></canvas>
-                        </div>
-                    
-                </div>
-            </div>
-            <hr>
-        
-            <div id="spending-charts">
-                <div class="text-center">
-                    <h3>Spending</h3>
-                    <p>
-                        
-                            In total between <strong>€2049900 - €5482538</strong> has been spent in the past year.
-                            <br>
-                            <a id="most-expensive-ad-link" href="https://www.facebook.com/ads/library/?id=538442453790705">The most expensive ad</a> cost an estimated <strong>€4166.5</strong> per day,
-                            ran for <strong>3</strong> day(s) and is from <strong>D66</strong>.
-                        
-                    </p>
-                </div>
+        For each party, I request the data of specific Facebook pages (Facebook ads are always connected to Facebook
+        page). The Facebook pages I used can be found
+        <a href="https://github.com/joren485/DutchPoliticalFacebookAdComparision/blob/main/data/facebook_page_ids.csv">here</a>.
+    </p>
 
-                <div class="row">
-                    
-                    
-                </div>
-            </div>
-            <hr>
-        
-            <div id="impressions-charts">
-                <div class="text-center">
-                    <h3>Impressions</h3>
-                    <p>
-                        
-                            These graphs show data about the <a href="https://www.facebook.com/business/help/675615482516035">impressions</a> (i.e. how many times an ad was show).
-                        
-                    </p>
-                </div>
+    <p>In step 2, all ads from before 2020 are removed and the data is added up for each date and in total.
 
-                <div class="row">
-                    
-                    
-                </div>
-            </div>
-            <hr>
-        
-            <div id="potential-reach-charts">
-                <div class="text-center">
-                    <h3>Potential reach</h3>
-                    <p>
-                        
-                            This graph shows the <a href="https://www.facebook.com/business/help/1665333080167380?id=176276233019487">potential reach</a> (i.e. the maximum amount of people that could have seen an ad) over time.
-                        
-                    </p>
-                </div>
+        All data is estimated based on averages, because Facebook does not return exact numbers.
+        For example, Facebook does not say how much is spent on a single ad, instead they provide a range of a lower and
+        an upper bound (e.g. €1000 to €1999). I use the average of the lower and upper bound.
+        This means that single data points are not that interesting (e.g. it is quite a difference if you spend a €1000
+        or €1999 on a single ad and taking the average does not tell you much).
+        However, when compared over time or compared to other parties, it does become interesting because trends present
+        themselves.
 
-                <div class="row">
-                    
-                    
-                </div>
-            </div>
-            <hr>
-        
-    </div>
+        Averaging also removes any potential spikes in the data (e.g. 90% of the views of an ad where on a single day) and spreads it evenly over the runtime of the ad.
+    </p>
+
+
+    <h4>Is publishing this legal?</h4>
+    <p>
+        <a href="https://www.facebook.com/ads/library/api/">Facebook says</a>:
+        "Processed data or data that is analyzed as part of your research can be published and shared publicly."
+    </p>
+
+    <h4>Why is party X missing?</h4>
+    <p>
+        If there is a (new) party with a significant Facebook ad presence, please let me know by
+        <a href="https://github.com/joren485/DutchPoliticalFacebookAdComparision/issues/new">opening an issue on GitHub</a>
+    </p>
+
+
+    <h4>I found an issue in the website and/or the data! / I have a great idea of a graph to add!</h4>
+    <p>
+        Please open <a href="https://github.com/joren485/DutchPoliticalFacebookAdComparision/issues/new"> an issue on GitHub</a>.
+    </p>
+</div>
 
 </div>
 </body>

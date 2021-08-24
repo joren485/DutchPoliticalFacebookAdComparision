@@ -22,8 +22,9 @@ logging.basicConfig(
     datefmt="%Y-%m-%d %H:%M:%S",
 )
 
-RANKS = [
-    (data_type, demographic) for demographic in DEMOGRAPHICS for data_type in DATA_TYPES
+RANKS = [ (data_type, demographic)
+    for demographic in DEMOGRAPHICS
+    for data_type in DATA_TYPES
 ]
 
 ads = list(Ad.select().where(Ad.start_date >= FIRST_DATE))
