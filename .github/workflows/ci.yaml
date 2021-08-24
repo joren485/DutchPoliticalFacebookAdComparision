@@ -26,5 +26,5 @@ jobs:
       - name: "Run Black"
         run: "poetry run black --quiet --check ."
 
-    - name: "Run PyDocStyle"
-      run: "poetry run pydocstyle --add-ignore=D100,D104"
+      - name: "Run PyDocStyle"
+        run: "poetry run pydocstyle --add-ignore=D100,D104"
