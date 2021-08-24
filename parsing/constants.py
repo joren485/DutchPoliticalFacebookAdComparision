@@ -92,7 +92,7 @@ THEMES = {
         "zorg",
         "ziek",
         "arts",
-        "dokter"
+        "dokter",
         "corona",
         "covid",
         "ic-capaciteit",
