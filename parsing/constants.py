@@ -67,7 +67,7 @@ THEMES = {
         "stroom",
         "energie",
         "biomassa",
-        "stikstof"
+        "stikstof",
     ],
     "onderwijs": [
         "onderwijs",

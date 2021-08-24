@@ -40,7 +40,7 @@ def recursive_round(o: Union[dict, list], precision: Optional[int] = None):
             o[object_index] = round(object_element, precision)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 
     ads = list(Ad.select().where(Ad.start_date >= FIRST_DATE))
     ads_per_party = {p: [ad for ad in ads if ad.party == p] for p in PARTIES}
@@ -54,8 +54,12 @@ if __name__ == '__main__':
         "ads-per-party": [len(ads_per_party[p]) for p in PARTIES],
         "spending-total-lower": sum(ad.spending_lower for ad in ads),
         "spending-total-upper": sum(ad.spending_upper for ad in ads),
-        "spending-per-party": [sum(ad.spending_average for ad in ads_per_party[p]) for p in PARTIES],
-        "impressions-per-party": [sum(ad.impressions_average for ad in ads_per_party[p]) for p in PARTIES],
+        "spending-per-party": [
+            sum(ad.spending_average for ad in ads_per_party[p]) for p in PARTIES
+        ],
+        "impressions-per-party": [
+            sum(ad.impressions_average for ad in ads_per_party[p]) for p in PARTIES
+        ],
         "most-expensive-ad": {
             "id": most_expensive_ad.ad_id,
             "party": most_expensive_ad.party,
@@ -73,30 +77,52 @@ if __name__ == '__main__':
     party_specific_data = {
         party: {
             "total-ads": len(ads_per_party[party]),
-            "spending-total-lower": sum(ad.spending_lower for ad in ads_per_party[party]),
-            "spending-total-upper": sum(ad.spending_upper for ad in ads_per_party[party]),
+            "spending-total-lower": sum(
+                ad.spending_lower for ad in ads_per_party[party]
+            ),
+            "spending-total-upper": sum(
+                ad.spending_upper for ad in ads_per_party[party]
+            ),
             "spending-per-gender": [
-                sum(a.spending_average * getattr(a, Ad.demographic_to_field_name(d)) for a in ads_per_party[party])
+                sum(
+                    a.spending_average * getattr(a, Ad.demographic_to_field_name(d))
+                    for a in ads_per_party[party]
+                )
                 for d in GENDERS
             ],
             "spending-per-age": [
-                sum(a.spending_average * getattr(a, Ad.demographic_to_field_name(d)) for a in ads_per_party[party])
+                sum(
+                    a.spending_average * getattr(a, Ad.demographic_to_field_name(d))
+                    for a in ads_per_party[party]
+                )
                 for d in AGE_RANGES
             ],
             "spending-per-region": [
-                sum(a.spending_average * getattr(a, Ad.demographic_to_field_name(d)) for a in ads_per_party[party])
+                sum(
+                    a.spending_average * getattr(a, Ad.demographic_to_field_name(d))
+                    for a in ads_per_party[party]
+                )
                 for d in REGIONS
             ],
             "impressions-per-gender": [
-                sum(a.impressions_average * getattr(a, Ad.demographic_to_field_name(d)) for a in ads_per_party[party])
+                sum(
+                    a.impressions_average * getattr(a, Ad.demographic_to_field_name(d))
+                    for a in ads_per_party[party]
+                )
                 for d in GENDERS
             ],
             "impressions-per-age": [
-                sum(a.impressions_average * getattr(a, Ad.demographic_to_field_name(d)) for a in ads_per_party[party])
+                sum(
+                    a.impressions_average * getattr(a, Ad.demographic_to_field_name(d))
+                    for a in ads_per_party[party]
+                )
                 for d in AGE_RANGES
             ],
             "impressions-per-region": [
-                sum(a.impressions_average * getattr(a, Ad.demographic_to_field_name(d)) for a in ads_per_party[party])
+                sum(
+                    a.impressions_average * getattr(a, Ad.demographic_to_field_name(d))
+                    for a in ads_per_party[party]
+                )
                 for d in REGIONS
             ],
             "spending-per-gender-per-date": [[0] * NUMBER_OF_DATES for _ in GENDERS],
@@ -114,9 +140,17 @@ if __name__ == '__main__':
         for ad in ads_per_party[party]:
             for date_i in ad.active_date_indices():
                 general_data["ads-per-party-per-date"][party_i][date_i] += 1
-                general_data["spending-per-party-per-date"][party_i][date_i] += ad.average_spending_per_day
-                general_data["impressions-per-party-per-date"][party_i][date_i] += ad.average_impressions_per_day
-                general_data["potential-reach-per-party-per-date"][party_i][date_i] += ad.average_potential_reach_per_day
+                general_data["spending-per-party-per-date"][party_i][
+                    date_i
+                ] += ad.average_spending_per_day
+
+                general_data["impressions-per-party-per-date"][party_i][
+                    date_i
+                ] += ad.average_impressions_per_day
+
+                general_data["potential-reach-per-party-per-date"][party_i][
+                    date_i
+                ] += ad.average_potential_reach_per_day
 
                 for dem_type, demographic_list in (
                     ("gender", GENDERS),
@@ -124,12 +158,17 @@ if __name__ == '__main__':
                     ("region", REGIONS),
                 ):
                     for dem_i, demographic in enumerate(demographic_list):
-                        percentage = getattr(ad, Ad.demographic_to_field_name(demographic))
-
-                        party_specific_data[party][f"spending-per-{dem_type}-per-date"][dem_i][date_i] += (
-                            ad.average_spending_per_day * percentage
+                        percentage = getattr(
+                            ad, Ad.demographic_to_field_name(demographic)
                         )
-                        party_specific_data[party][f"impressions-per-{dem_type}-per-date"][dem_i][date_i] += (
+
+                        party_specific_data[party][f"spending-per-{dem_type}-per-date"][
+                            dem_i
+                        ][date_i] += (ad.average_spending_per_day * percentage)
+
+                        party_specific_data[party][
+                            f"impressions-per-{dem_type}-per-date"
+                        ][dem_i][date_i] += (
                             ad.average_impressions_per_day * percentage
                         )
 

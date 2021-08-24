@@ -17,7 +17,8 @@ from constants import (
     FIRST_DATE,
     GENDERS,
     LOCAL_AD_ARCHIVE_PATH,
-    REGIONS, THEMES,
+    REGIONS,
+    THEMES,
 )
 
 PATTERN_NON_WORD_CHARS = re.compile(r"[^a-zA-Z0-9-' #]")
