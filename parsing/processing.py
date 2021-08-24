@@ -30,7 +30,7 @@ if __name__ == "__main__":
 
     general_data = {
         "ads-total": len(ads),
-        "ads-per-party": [len(ads_per_party[p]) for p in PARTIES],
+        "ads-party": [len(ads_per_party[p]) for p in PARTIES],
         "spending-total-lower": sum(ad.spending_lower for ad in ads),
         "spending-total-upper": sum(ad.spending_upper for ad in ads),
         "spending-party": [

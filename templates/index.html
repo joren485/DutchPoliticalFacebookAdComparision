@@ -33,21 +33,21 @@
                 </div>
 
                 <div class="row">
-                    {% if data_type + "-per-party-per-date" in general_data %}
+                    {% if data_type + "-party-daily" in general_data %}
                         <div class="col-8 mx-auto">
                             <canvas
-                                    id="{{ data_type }}-per-party-per-date-chart"
-                                    data-data={{ general_data[data_type + "-per-party-per-date"] | string | replace(" ", "") | tojson }}
+                                    id="{{ data_type }}-party-daily-chart"
+                                    data-data={{ general_data[data_type + "-party-daily"] | string | replace(" ", "") | tojson }}
                                     data-labels='{{ PARTIES | tojson }}'
                                     data-title="{{ data_type | capitalize }} per Date"
                             ></canvas>
                         </div>
                     {% endif %}
-                    {% if data_type + "-per-party" in general_data %}
+                    {% if data_type + "-party" in general_data %}
                         <div class="col-4 mx-auto">
                             <canvas
-                                    id="{{ data_type }}-per-party-chart"
-                                    data-data='{{ general_data[data_type + "-per-party"] | tojson }}'
+                                    id="{{ data_type }}-party-chart"
+                                    data-data='{{ general_data[data_type + "-party"] | tojson }}'
                                     data-labels='{{ PARTIES | tojson }}'
                                     data-title="Total {{ data_type | capitalize }}"
                             ></canvas>

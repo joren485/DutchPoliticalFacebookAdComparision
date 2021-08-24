@@ -183,7 +183,7 @@ function generateBarChart(canvas) {
 
 $(document).ready(function () {
     $("canvas").each(function (index, canvas) {
-            if (canvas.id.includes("per-date")) {
+            if (canvas.id.includes("daily")) {
                 new Chart(canvas, generateLineGraphConfig(canvas));
             } else {
                 new Chart(canvas, generateBarChart(canvas));

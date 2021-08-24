@@ -44,11 +44,13 @@ if __name__ == "__main__":
             for demographic_type in ("gender", "age", "region"):
                 demographic_list = DEMOGRAPHIC_TYPE_TO_LIST_MAP[demographic_type]
 
-                party_data[f"{data_type}-{demographic_type}"] = sum(
-                    ad.rank_to_data(data_type, demographic)
-                    for ad in ads_per_party[party]
+                party_data[f"{data_type}-{demographic_type}"] = [
+                    sum(
+                        ad.rank_to_data(data_type, demographic)
+                        for ad in ads_per_party[party]
+                    )
                     for demographic in demographic_list
-                )
+                ]
 
                 party_data[f"{data_type}-{demographic_type}-daily"] = [
                     [0] * NUMBER_OF_DATES for _ in demographic_list
@@ -66,8 +68,8 @@ if __name__ == "__main__":
         logging.debug(f"Writing template for { party }")
         recursive_round(party_data)
         render_template(
-            "party-statistics.html",
-            f"{party.lower()}-statistics.html",
+            "party.html",
+            f"{party.lower()}.html",
             party=party,
             party_data=party_data,
         )

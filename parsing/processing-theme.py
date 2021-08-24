@@ -22,9 +22,8 @@ logging.basicConfig(
     datefmt="%Y-%m-%d %H:%M:%S",
 )
 
-RANKS = [ (data_type, demographic)
-    for demographic in DEMOGRAPHICS
-    for data_type in DATA_TYPES
+RANKS = [
+    (data_type, demographic) for demographic in DEMOGRAPHICS for data_type in DATA_TYPES
 ]
 
 ads = list(Ad.select().where(Ad.start_date >= FIRST_DATE))
@@ -71,20 +70,20 @@ for theme in THEMES:
 logging.info(f"Writing templates")
 recursive_round(theme_data)
 for theme in THEMES:
-    logging.debug(f"Writing theme-text for { theme }")
+    logging.debug(f"Writing theme.html for { theme }")
     render_template(
-        "theme-text.html",
-        f"{theme.lower()}-text.html",
+        "theme.html",
+        f"{theme.lower()}.html",
         theme=theme,
-        theme_text_data=theme_data[theme],
+        theme_data=theme_data[theme],
     )
 
     for party in PARTIES:
-        logging.debug(f"Writing theme-party-text for { theme } and { party }")
+        logging.debug(f"Writing party-theme.html for { theme } and { party }")
         render_template(
-            "theme-party-text.html",
-            f"{theme.lower()}-{party.lower()}-text.html",
+            "party-theme.html",
+            f"{party.lower()}-{theme.lower()}.html",
             party=party,
             theme=theme,
-            theme_text_data=theme_data[theme],
+            theme_data=theme_data[theme],
         )
