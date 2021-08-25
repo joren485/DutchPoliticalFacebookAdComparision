@@ -68,34 +68,34 @@ class Ad(Model):
         return self.potential_reach_lower > 0
 
     @cached_property
-    def spending_average(self) -> float:
+    def average_spending(self) -> float:
         """Return the average of the spending range given for this ad."""
         return (self.spending_lower + self.spending_upper) / 2
 
     @cached_property
-    def impressions_average(self) -> float:
+    def average_impressions(self) -> float:
         """Return the average of the impressions range given for this ad."""
         return (self.impressions_lower + self.impressions_upper) / 2
 
     @cached_property
-    def potential_reach_average(self) -> float:
+    def average_potential_reach(self) -> float:
         """Return the average of the potential reach range given for this ad."""
         return (self.potential_reach_lower + self.potential_reach_upper) / 2
 
     @cached_property
     def average_spending_per_day(self) -> float:
         """Return the average spending for every day this ad is/was active."""
-        return self.spending_average / self.days_active
+        return self.average_spending / self.days_active
 
     @cached_property
     def average_impressions_per_day(self) -> float:
         """Return the average impressions for every day this ad is/was active."""
-        return self.impressions_average / self.days_active
+        return self.average_impressions / self.days_active
 
     @cached_property
     def average_potential_reach_per_day(self) -> float:
         """Return the average potential reach for every day this ad is/was active."""
-        return self.potential_reach_average / self.days_active
+        return self.average_potential_reach / self.days_active
 
     def active_date_indices(self) -> int:
         """Yield dates and indexes that this ad is/was active."""
@@ -134,17 +134,17 @@ class Ad(Model):
         elif data_type == "spending" and per_day:
             amount = self.average_spending_per_day
         elif data_type == "spending" and not per_day:
-            amount = self.spending_average
+            amount = self.average_spending
 
         elif data_type == "impressions" and per_day:
             amount = self.average_impressions_per_day
         elif data_type == "impressions" and not per_day:
-            amount = self.impressions_average
+            amount = self.average_impressions
 
         elif data_type == "potential-reach" and per_day:
             amount = self.average_potential_reach_per_day
         elif data_type == "potential-reach" and not per_day:
-            amount = self.potential_reach_average
+            amount = self.average_potential_reach
 
         else:
             raise ValueError(f"Unknown data type: {data_type}")

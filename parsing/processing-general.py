@@ -35,10 +35,10 @@ if __name__ == "__main__":
         "spending-total-lower": sum(ad.spending_lower for ad in ads),
         "spending-total-upper": sum(ad.spending_upper for ad in ads),
         "spending-party": [
-            sum(ad.spending_average for ad in ads_per_party[p]) for p in PARTIES
+            sum(ad.average_spending for ad in ads_per_party[p]) for p in PARTIES
         ],
         "impressions-party": [
-            sum(ad.impressions_average for ad in ads_per_party[p]) for p in PARTIES
+            sum(ad.average_impressions for ad in ads_per_party[p]) for p in PARTIES
         ],
         "most-expensive-ad": {
             "id": most_expensive_ad.ad_id,
