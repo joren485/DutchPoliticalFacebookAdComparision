@@ -50,9 +50,6 @@ def render_template(template: str, destination: str, **kwargs) -> None:
     rendered_content = JINJA_ENVIRONMENT.get_template(template).render(
         last_updated=datetime.now().strftime("%H:%M %d-%m-%Y"),
         PARTIES=PARTIES,
-        GENDERS=GENDERS,
-        AGE_RANGES=AGE_RANGES,
-        REGIONS=REGIONS,
         THEMES=THEMES,
         DATA_TYPES=DATA_TYPES,
         DEMOGRAPHIC_TYPES=DEMOGRAPHIC_TYPES,
