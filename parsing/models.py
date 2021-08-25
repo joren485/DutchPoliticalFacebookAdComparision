@@ -126,16 +126,26 @@ class Ad(Model):
         """Return words used in texts of this ad."""
         return f"{self.creative_body} {self.creative_link_description}".lower()
 
-    def rank_to_data(self, data_type: str, demographic: str):
+    def rank_to_data(self, data_type: str, demographic: str, per_day: bool = False):
         """Return the amount of data type per demographic for this ad."""
-        if data_type == "occurrences":
+        if data_type == "number-of-ads":
             return 1
-        elif data_type == "impressions":
-            amount = self.impressions_average
-        elif data_type == "potential-reach":
-            amount = self.potential_reach_average
-        elif data_type == "spending":
+
+        elif data_type == "spending" and per_day:
+            amount = self.average_spending_per_day
+        elif data_type == "spending" and not per_day:
             amount = self.spending_average
+
+        elif data_type == "impressions" and per_day:
+            amount = self.average_impressions_per_day
+        elif data_type == "impressions" and not per_day:
+            amount = self.impressions_average
+
+        elif data_type == "potential-reach" and per_day:
+            amount = self.average_potential_reach_per_day
+        elif data_type == "potential-reach" and not per_day:
+            amount = self.potential_reach_average
+
         else:
             raise ValueError(f"Unknown data type: {data_type}")
 

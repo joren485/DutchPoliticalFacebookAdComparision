@@ -102,7 +102,7 @@
                 </li>
             </ul>
 
-            <span class="navbar-text">Last Updated: 09:58 25-08-2021</span>
+            <span class="navbar-text">Last Updated: 14:13 25-08-2021</span>
             <a class="nav-link link-dark" href="https://github.com/joren485/DutchPoliticalFacebookAdComparision/"><i class="fab fa-github"></i></a>
         </div>
     </div>
@@ -239,7 +239,7 @@
 
         <p>For each demographic, four graphs are shown that compare:</p>
         <ul>
-            <li><strong>Occurrences:</strong> The amount of ads that were about "gezondheidszorg".</li>
+            <li><strong>Number of ads:</strong> The amount of ads that were about "gezondheidszorg".</li>
             <li><strong>Impressions:</strong> How many times ads about "gezondheidszorg" were shown.</li>
             <li><strong>Potential reach:</strong> The maximum amount of people that ads about "gezondheidszorg" could have
                 been shown to.
@@ -262,10 +262,21 @@
                     <div class="col-3 mx-auto">
                         
                             <canvas
-                                    id="occurrences-total-chart"
+                                    id="number-of-ads-total-chart"
                                     data-data='[64, 19, 22, 2156, 92, 268, 66, 70, 147, 11, 3, 1488, 49, 38, 171, 91, 469]'
                                     data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
-                                    data-title="Occurrences"
+                                    data-title="Number of ads"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="spending-total-chart"
+                                    data-data='[7468.0, 2040.5, 11989.0, 177022.0, 17254.0, 26266.0, 3267.0, 28265.0, 41776.5, 6344.5, 232.5, 92556.0, 15225.5, 3381.0, 57064.5, 12804.5, 35807.5]'
+                                    data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Spending"
                             ></canvas>
                         
                     </div>
@@ -292,17 +303,6 @@
                         
                     </div>
                 
-                    <div class="col-3 mx-auto">
-                        
-                            <canvas
-                                    id="spending-total-chart"
-                                    data-data='[7468.0, 2040.5, 11989.0, 177022.0, 17254.0, 26266.0, 3267.0, 28265.0, 41776.5, 6344.5, 232.5, 92556.0, 15225.5, 3381.0, 57064.5, 12804.5, 35807.5]'
-                                    data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
-                                    data-title="Spending"
-                            ></canvas>
-                        
-                    </div>
-                
             </div>
             <hr>
         
@@ -319,10 +319,21 @@
                     <div class="col-3 mx-auto">
                         
                             <canvas
-                                    id="occurrences-female-chart"
+                                    id="number-of-ads-female-chart"
                                     data-data='[64, 19, 22, 2156, 92, 268, 66, 70, 147, 11, 3, 1488, 49, 38, 171, 91, 469]'
                                     data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
-                                    data-title="Occurrences"
+                                    data-title="Number of ads"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="spending-female-chart"
+                                    data-data='[4334.36, 1310.26, 4580.64, 124532.57, 11148.33, 15529.71, 1431.74, 10352.75, 23579.49, 2587.26, 55.99, 49934.27, 10766.82, 1697.07, 31009.55, 5670.79, 16617.41]'
+                                    data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Spending"
                             ></canvas>
                         
                     </div>
@@ -349,17 +360,6 @@
                         
                     </div>
                 
-                    <div class="col-3 mx-auto">
-                        
-                            <canvas
-                                    id="spending-female-chart"
-                                    data-data='[4334.36, 1310.26, 4580.64, 124532.57, 11148.33, 15529.71, 1431.74, 10352.75, 23579.49, 2587.26, 55.99, 49934.27, 10766.82, 1697.07, 31009.55, 5670.79, 16617.41]'
-                                    data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
-                                    data-title="Spending"
-                            ></canvas>
-                        
-                    </div>
-                
             </div>
             <hr>
         
@@ -371,10 +371,21 @@
                     <div class="col-3 mx-auto">
                         
                             <canvas
-                                    id="occurrences-male-chart"
+                                    id="number-of-ads-male-chart"
                                     data-data='[64, 19, 22, 2156, 92, 268, 66, 70, 147, 11, 3, 1488, 49, 38, 171, 91, 469]'
                                     data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
-                                    data-title="Occurrences"
+                                    data-title="Number of ads"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="spending-male-chart"
+                                    data-data='[2820.32, 694.08, 7378.71, 50673.99, 5859.15, 10013.06, 1628.25, 17561.93, 17904.33, 3741.21, 134.11, 29487.23, 4335.1, 1530.2, 25363.62, 5350.11, 18388.25]'
+                                    data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Spending"
                             ></canvas>
                         
                     </div>
@@ -401,17 +412,6 @@
                         
                     </div>
                 
-                    <div class="col-3 mx-auto">
-                        
-                            <canvas
-                                    id="spending-male-chart"
-                                    data-data='[2820.32, 694.08, 7378.71, 50673.99, 5859.15, 10013.06, 1628.25, 17561.93, 17904.33, 3741.21, 134.11, 29487.23, 4335.1, 1530.2, 25363.62, 5350.11, 18388.25]'
-                                    data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
-                                    data-title="Spending"
-                            ></canvas>
-                        
-                    </div>
-                
             </div>
             <hr>
         
@@ -428,10 +428,21 @@
                     <div class="col-3 mx-auto">
                         
                             <canvas
-                                    id="occurrences-13-17-chart"
+                                    id="number-of-ads-13-17-chart"
                                     data-data='[64, 19, 22, 2156, 92, 268, 66, 70, 147, 11, 3, 1488, 49, 38, 171, 91, 469]'
                                     data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
-                                    data-title="Occurrences"
+                                    data-title="Number of ads"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="spending-13-17-chart"
+                                    data-data='[0.0, 0.0, 0.2, 96.54, 19.05, 112.92, 0.19, 0.01, 22.81, 0.0, 0.0, 352.08, 27.86, 103.18, 3.67, 1.14, 72.5]'
+                                    data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Spending"
                             ></canvas>
                         
                     </div>
@@ -458,17 +469,6 @@
                         
                     </div>
                 
-                    <div class="col-3 mx-auto">
-                        
-                            <canvas
-                                    id="spending-13-17-chart"
-                                    data-data='[0.0, 0.0, 0.2, 96.54, 19.05, 112.92, 0.19, 0.01, 22.81, 0.0, 0.0, 352.08, 27.86, 103.18, 3.67, 1.14, 72.5]'
-                                    data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
-                                    data-title="Spending"
-                            ></canvas>
-                        
-                    </div>
-                
             </div>
             <hr>
         
@@ -480,10 +480,21 @@
                     <div class="col-3 mx-auto">
                         
                             <canvas
-                                    id="occurrences-18-24-chart"
+                                    id="number-of-ads-18-24-chart"
                                     data-data='[64, 19, 22, 2156, 92, 268, 66, 70, 147, 11, 3, 1488, 49, 38, 171, 91, 469]'
                                     data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
-                                    data-title="Occurrences"
+                                    data-title="Number of ads"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="spending-18-24-chart"
+                                    data-data='[0.0, 404.54, 1895.99, 20328.92, 1670.2, 5997.34, 495.0, 3779.21, 8437.81, 464.97, 19.26, 14298.27, 4120.87, 777.67, 5092.41, 3915.88, 6963.17]'
+                                    data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Spending"
                             ></canvas>
                         
                     </div>
@@ -510,17 +521,6 @@
                         
                     </div>
                 
-                    <div class="col-3 mx-auto">
-                        
-                            <canvas
-                                    id="spending-18-24-chart"
-                                    data-data='[0.0, 404.54, 1895.99, 20328.92, 1670.2, 5997.34, 495.0, 3779.21, 8437.81, 464.97, 19.26, 14298.27, 4120.87, 777.67, 5092.41, 3915.88, 6963.17]'
-                                    data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
-                                    data-title="Spending"
-                            ></canvas>
-                        
-                    </div>
-                
             </div>
             <hr>
         
@@ -532,10 +532,21 @@
                     <div class="col-3 mx-auto">
                         
                             <canvas
-                                    id="occurrences-25-34-chart"
+                                    id="number-of-ads-25-34-chart"
                                     data-data='[64, 19, 22, 2156, 92, 268, 66, 70, 147, 11, 3, 1488, 49, 38, 171, 91, 469]'
                                     data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
-                                    data-title="Occurrences"
+                                    data-title="Number of ads"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="spending-25-34-chart"
+                                    data-data='[0.0, 638.51, 2691.55, 31355.34, 2984.43, 5094.41, 746.17, 7044.89, 10392.67, 820.38, 33.46, 13798.7, 3675.85, 790.22, 8880.54, 3661.99, 7784.2]'
+                                    data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Spending"
                             ></canvas>
                         
                     </div>
@@ -562,17 +573,6 @@
                         
                     </div>
                 
-                    <div class="col-3 mx-auto">
-                        
-                            <canvas
-                                    id="spending-25-34-chart"
-                                    data-data='[0.0, 638.51, 2691.55, 31355.34, 2984.43, 5094.41, 746.17, 7044.89, 10392.67, 820.38, 33.46, 13798.7, 3675.85, 790.22, 8880.54, 3661.99, 7784.2]'
-                                    data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
-                                    data-title="Spending"
-                            ></canvas>
-                        
-                    </div>
-                
             </div>
             <hr>
         
@@ -584,10 +584,21 @@
                     <div class="col-3 mx-auto">
                         
                             <canvas
-                                    id="occurrences-35-44-chart"
+                                    id="number-of-ads-35-44-chart"
                                     data-data='[64, 19, 22, 2156, 92, 268, 66, 70, 147, 11, 3, 1488, 49, 38, 171, 91, 469]'
                                     data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
-                                    data-title="Occurrences"
+                                    data-title="Number of ads"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="spending-35-44-chart"
+                                    data-data='[0.0, 362.12, 2040.27, 19829.33, 2860.71, 2945.05, 684.47, 4726.37, 5985.34, 836.65, 23.1, 10019.48, 1813.87, 450.15, 7563.95, 1731.65, 5543.09]'
+                                    data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Spending"
                             ></canvas>
                         
                     </div>
@@ -614,17 +625,6 @@
                         
                     </div>
                 
-                    <div class="col-3 mx-auto">
-                        
-                            <canvas
-                                    id="spending-35-44-chart"
-                                    data-data='[0.0, 362.12, 2040.27, 19829.33, 2860.71, 2945.05, 684.47, 4726.37, 5985.34, 836.65, 23.1, 10019.48, 1813.87, 450.15, 7563.95, 1731.65, 5543.09]'
-                                    data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
-                                    data-title="Spending"
-                            ></canvas>
-                        
-                    </div>
-                
             </div>
             <hr>
         
@@ -636,10 +636,21 @@
                     <div class="col-3 mx-auto">
                         
                             <canvas
-                                    id="occurrences-45-54-chart"
+                                    id="number-of-ads-45-54-chart"
                                     data-data='[64, 19, 22, 2156, 92, 268, 66, 70, 147, 11, 3, 1488, 49, 38, 171, 91, 469]'
                                     data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
-                                    data-title="Occurrences"
+                                    data-title="Number of ads"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="spending-45-54-chart"
+                                    data-data='[994.34, 270.68, 2270.49, 19765.54, 2985.36, 3650.43, 575.62, 4955.6, 7139.66, 1142.65, 33.5, 11864.45, 1784.13, 398.68, 10597.95, 1572.17, 5983.58]'
+                                    data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Spending"
                             ></canvas>
                         
                     </div>
@@ -666,17 +677,6 @@
                         
                     </div>
                 
-                    <div class="col-3 mx-auto">
-                        
-                            <canvas
-                                    id="spending-45-54-chart"
-                                    data-data='[994.34, 270.68, 2270.49, 19765.54, 2985.36, 3650.43, 575.62, 4955.6, 7139.66, 1142.65, 33.5, 11864.45, 1784.13, 398.68, 10597.95, 1572.17, 5983.58]'
-                                    data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
-                                    data-title="Spending"
-                            ></canvas>
-                        
-                    </div>
-                
             </div>
             <hr>
         
@@ -688,10 +688,21 @@
                     <div class="col-3 mx-auto">
                         
                             <canvas
-                                    id="occurrences-55-64-chart"
+                                    id="number-of-ads-55-64-chart"
                                     data-data='[64, 19, 22, 2156, 92, 268, 66, 70, 147, 11, 3, 1488, 49, 38, 171, 91, 469]'
                                     data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
-                                    data-title="Occurrences"
+                                    data-title="Number of ads"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="spending-55-64-chart"
+                                    data-data='[2199.37, 196.67, 1968.89, 28675.79, 2942.15, 3786.59, 376.37, 4262.0, 5856.43, 1510.62, 39.74, 13968.86, 1953.12, 328.55, 12435.08, 172.01, 4807.03]'
+                                    data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Spending"
                             ></canvas>
                         
                     </div>
@@ -718,17 +729,6 @@
                         
                     </div>
                 
-                    <div class="col-3 mx-auto">
-                        
-                            <canvas
-                                    id="spending-55-64-chart"
-                                    data-data='[2199.37, 196.67, 1968.89, 28675.79, 2942.15, 3786.59, 376.37, 4262.0, 5856.43, 1510.62, 39.74, 13968.86, 1953.12, 328.55, 12435.08, 172.01, 4807.03]'
-                                    data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
-                                    data-title="Spending"
-                            ></canvas>
-                        
-                    </div>
-                
             </div>
             <hr>
         
@@ -740,10 +740,21 @@
                     <div class="col-3 mx-auto">
                         
                             <canvas
-                                    id="occurrences-65+-chart"
+                                    id="number-of-ads-65+-chart"
                                     data-data='[64, 19, 22, 2156, 92, 268, 66, 70, 147, 11, 3, 1488, 49, 38, 171, 91, 469]'
                                     data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
-                                    data-title="Occurrences"
+                                    data-title="Number of ads"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="spending-65+-chart"
+                                    data-data='[3977.29, 167.99, 1120.38, 55583.42, 3593.73, 4034.61, 191.1, 3199.83, 3832.82, 1569.22, 41.93, 15380.03, 1799.82, 384.06, 11944.87, 10.5, 3965.31]'
+                                    data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Spending"
                             ></canvas>
                         
                     </div>
@@ -770,17 +781,6 @@
                         
                     </div>
                 
-                    <div class="col-3 mx-auto">
-                        
-                            <canvas
-                                    id="spending-65+-chart"
-                                    data-data='[3977.29, 167.99, 1120.38, 55583.42, 3593.73, 4034.61, 191.1, 3199.83, 3832.82, 1569.22, 41.93, 15380.03, 1799.82, 384.06, 11944.87, 10.5, 3965.31]'
-                                    data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
-                                    data-title="Spending"
-                            ></canvas>
-                        
-                    </div>
-                
             </div>
             <hr>
         
@@ -797,10 +797,21 @@
                     <div class="col-3 mx-auto">
                         
                             <canvas
-                                    id="occurrences-Drenthe-chart"
+                                    id="number-of-ads-Drenthe-chart"
                                     data-data='[64, 19, 22, 2156, 92, 268, 66, 70, 147, 11, 3, 1488, 49, 38, 171, 91, 469]'
                                     data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
-                                    data-title="Occurrences"
+                                    data-title="Number of ads"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="spending-Drenthe-chart"
+                                    data-data='[349.11, 33.6, 779.57, 6290.36, 619.3, 731.25, 55.13, 1352.38, 951.56, 264.77, 2.1, 2792.61, 382.95, 71.98, 2322.89, 190.64, 1606.44]'
+                                    data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Spending"
                             ></canvas>
                         
                     </div>
@@ -827,17 +838,6 @@
                         
                     </div>
                 
-                    <div class="col-3 mx-auto">
-                        
-                            <canvas
-                                    id="spending-Drenthe-chart"
-                                    data-data='[349.11, 33.6, 779.57, 6290.36, 619.3, 731.25, 55.13, 1352.38, 951.56, 264.77, 2.1, 2792.61, 382.95, 71.98, 2322.89, 190.64, 1606.44]'
-                                    data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
-                                    data-title="Spending"
-                            ></canvas>
-                        
-                    </div>
-                
             </div>
             <hr>
         
@@ -849,10 +849,21 @@
                     <div class="col-3 mx-auto">
                         
                             <canvas
-                                    id="occurrences-Flevoland-chart"
+                                    id="number-of-ads-Flevoland-chart"
                                     data-data='[64, 19, 22, 2156, 92, 268, 66, 70, 147, 11, 3, 1488, 49, 38, 171, 91, 469]'
                                     data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
-                                    data-title="Occurrences"
+                                    data-title="Number of ads"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="spending-Flevoland-chart"
+                                    data-data='[149.66, 49.97, 201.25, 4414.99, 673.39, 559.98, 74.37, 699.51, 788.16, 156.11, 0.98, 1842.83, 728.26, 112.48, 1318.31, 243.75, 889.58]'
+                                    data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Spending"
                             ></canvas>
                         
                     </div>
@@ -879,17 +890,6 @@
                         
                     </div>
                 
-                    <div class="col-3 mx-auto">
-                        
-                            <canvas
-                                    id="spending-Flevoland-chart"
-                                    data-data='[149.66, 49.97, 201.25, 4414.99, 673.39, 559.98, 74.37, 699.51, 788.16, 156.11, 0.98, 1842.83, 728.26, 112.48, 1318.31, 243.75, 889.58]'
-                                    data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
-                                    data-title="Spending"
-                            ></canvas>
-                        
-                    </div>
-                
             </div>
             <hr>
         
@@ -901,10 +901,21 @@
                     <div class="col-3 mx-auto">
                         
                             <canvas
-                                    id="occurrences-Friesland-chart"
+                                    id="number-of-ads-Friesland-chart"
                                     data-data='[64, 19, 22, 2156, 92, 268, 66, 70, 147, 11, 3, 1488, 49, 38, 171, 91, 469]'
                                     data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
-                                    data-title="Occurrences"
+                                    data-title="Number of ads"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="spending-Friesland-chart"
+                                    data-data='[348.59, 49.51, 952.72, 6818.17, 849.67, 936.11, 65.59, 1693.5, 1421.54, 295.05, 3.44, 3649.34, 757.81, 82.44, 2629.42, 308.41, 935.87]'
+                                    data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Spending"
                             ></canvas>
                         
                     </div>
@@ -931,17 +942,6 @@
                         
                     </div>
                 
-                    <div class="col-3 mx-auto">
-                        
-                            <canvas
-                                    id="spending-Friesland-chart"
-                                    data-data='[348.59, 49.51, 952.72, 6818.17, 849.67, 936.11, 65.59, 1693.5, 1421.54, 295.05, 3.44, 3649.34, 757.81, 82.44, 2629.42, 308.41, 935.87]'
-                                    data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
-                                    data-title="Spending"
-                            ></canvas>
-                        
-                    </div>
-                
             </div>
             <hr>
         
@@ -953,10 +953,21 @@
                     <div class="col-3 mx-auto">
                         
                             <canvas
-                                    id="occurrences-Gelderland-chart"
+                                    id="number-of-ads-Gelderland-chart"
                                     data-data='[64, 19, 22, 2156, 92, 268, 66, 70, 147, 11, 3, 1488, 49, 38, 171, 91, 469]'
                                     data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
-                                    data-title="Occurrences"
+                                    data-title="Number of ads"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="spending-Gelderland-chart"
+                                    data-data='[871.59, 177.19, 1938.39, 21349.84, 3014.9, 2533.48, 271.91, 3324.03, 4864.36, 754.33, 18.82, 7982.51, 1674.17, 462.94, 7821.76, 1173.68, 3547.55]'
+                                    data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Spending"
                             ></canvas>
                         
                     </div>
@@ -983,17 +994,6 @@
                         
                     </div>
                 
-                    <div class="col-3 mx-auto">
-                        
-                            <canvas
-                                    id="spending-Gelderland-chart"
-                                    data-data='[871.59, 177.19, 1938.39, 21349.84, 3014.9, 2533.48, 271.91, 3324.03, 4864.36, 754.33, 18.82, 7982.51, 1674.17, 462.94, 7821.76, 1173.68, 3547.55]'
-                                    data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
-                                    data-title="Spending"
-                            ></canvas>
-                        
-                    </div>
-                
             </div>
             <hr>
         
@@ -1005,10 +1005,21 @@
                     <div class="col-3 mx-auto">
                         
                             <canvas
-                                    id="occurrences-Groningen-chart"
+                                    id="number-of-ads-Groningen-chart"
                                     data-data='[64, 19, 22, 2156, 92, 268, 66, 70, 147, 11, 3, 1488, 49, 38, 171, 91, 469]'
                                     data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
-                                    data-title="Occurrences"
+                                    data-title="Number of ads"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="spending-Groningen-chart"
+                                    data-data='[328.31, 83.96, 435.42, 5645.76, 812.43, 1294.02, 71.47, 1270.26, 1828.19, 260.21, 2.3, 5231.32, 649.05, 71.59, 2458.08, 551.61, 874.96]'
+                                    data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Spending"
                             ></canvas>
                         
                     </div>
@@ -1035,17 +1046,6 @@
                         
                     </div>
                 
-                    <div class="col-3 mx-auto">
-                        
-                            <canvas
-                                    id="spending-Groningen-chart"
-                                    data-data='[328.31, 83.96, 435.42, 5645.76, 812.43, 1294.02, 71.47, 1270.26, 1828.19, 260.21, 2.3, 5231.32, 649.05, 71.59, 2458.08, 551.61, 874.96]'
-                                    data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
-                                    data-title="Spending"
-                            ></canvas>
-                        
-                    </div>
-                
             </div>
             <hr>
         
@@ -1057,10 +1057,21 @@
                     <div class="col-3 mx-auto">
                         
                             <canvas
-                                    id="occurrences-Limburg-chart"
+                                    id="number-of-ads-Limburg-chart"
                                     data-data='[64, 19, 22, 2156, 92, 268, 66, 70, 147, 11, 3, 1488, 49, 38, 171, 91, 469]'
                                     data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
-                                    data-title="Occurrences"
+                                    data-title="Number of ads"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="spending-Limburg-chart"
+                                    data-data='[631.49, 91.74, 723.13, 16585.71, 423.56, 2587.05, 192.7, 2439.05, 2384.09, 552.84, 3.81, 5818.89, 842.16, 52.3, 5046.45, 497.56, 3484.11]'
+                                    data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Spending"
                             ></canvas>
                         
                     </div>
@@ -1087,17 +1098,6 @@
                         
                     </div>
                 
-                    <div class="col-3 mx-auto">
-                        
-                            <canvas
-                                    id="spending-Limburg-chart"
-                                    data-data='[631.49, 91.74, 723.13, 16585.71, 423.56, 2587.05, 192.7, 2439.05, 2384.09, 552.84, 3.81, 5818.89, 842.16, 52.3, 5046.45, 497.56, 3484.11]'
-                                    data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
-                                    data-title="Spending"
-                            ></canvas>
-                        
-                    </div>
-                
             </div>
             <hr>
         
@@ -1109,10 +1109,21 @@
                     <div class="col-3 mx-auto">
                         
                             <canvas
-                                    id="occurrences-Noord-Brabant-chart"
+                                    id="number-of-ads-Noord-Brabant-chart"
                                     data-data='[64, 19, 22, 2156, 92, 268, 66, 70, 147, 11, 3, 1488, 49, 38, 171, 91, 469]'
                                     data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
-                                    data-title="Occurrences"
+                                    data-title="Number of ads"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="spending-Noord-Brabant-chart"
+                                    data-data='[977.08, 180.69, 1949.67, 27490.99, 905.15, 3585.87, 394.78, 3877.58, 5141.77, 907.3, 139.55, 11820.27, 1708.7, 146.49, 8937.16, 1589.21, 6372.93]'
+                                    data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Spending"
                             ></canvas>
                         
                     </div>
@@ -1139,17 +1150,6 @@
                         
                     </div>
                 
-                    <div class="col-3 mx-auto">
-                        
-                            <canvas
-                                    id="spending-Noord-Brabant-chart"
-                                    data-data='[977.08, 180.69, 1949.67, 27490.99, 905.15, 3585.87, 394.78, 3877.58, 5141.77, 907.3, 139.55, 11820.27, 1708.7, 146.49, 8937.16, 1589.21, 6372.93]'
-                                    data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
-                                    data-title="Spending"
-                            ></canvas>
-                        
-                    </div>
-                
             </div>
             <hr>
         
@@ -1161,10 +1161,21 @@
                     <div class="col-3 mx-auto">
                         
                             <canvas
-                                    id="occurrences-Noord-Holland-chart"
+                                    id="number-of-ads-Noord-Holland-chart"
                                     data-data='[64, 19, 22, 2156, 92, 268, 66, 70, 147, 11, 3, 1488, 49, 38, 171, 91, 469]'
                                     data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
-                                    data-title="Occurrences"
+                                    data-title="Number of ads"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="spending-Noord-Holland-chart"
+                                    data-data='[910.77, 567.87, 1228.27, 18384.53, 1667.8, 3667.4, 609.96, 3216.09, 8095.79, 863.2, 5.89, 11143.66, 2794.0, 147.12, 6698.65, 2223.62, 4796.95]'
+                                    data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Spending"
                             ></canvas>
                         
                     </div>
@@ -1191,17 +1202,6 @@
                         
                     </div>
                 
-                    <div class="col-3 mx-auto">
-                        
-                            <canvas
-                                    id="spending-Noord-Holland-chart"
-                                    data-data='[910.77, 567.87, 1228.27, 18384.53, 1667.8, 3667.4, 609.96, 3216.09, 8095.79, 863.2, 5.89, 11143.66, 2794.0, 147.12, 6698.65, 2223.62, 4796.95]'
-                                    data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
-                                    data-title="Spending"
-                            ></canvas>
-                        
-                    </div>
-                
             </div>
             <hr>
         
@@ -1213,10 +1213,21 @@
                     <div class="col-3 mx-auto">
                         
                             <canvas
-                                    id="occurrences-Overijssel-chart"
+                                    id="number-of-ads-Overijssel-chart"
                                     data-data='[64, 19, 22, 2156, 92, 268, 66, 70, 147, 11, 3, 1488, 49, 38, 171, 91, 469]'
                                     data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
-                                    data-title="Occurrences"
+                                    data-title="Number of ads"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="spending-Overijssel-chart"
+                                    data-data='[559.57, 71.6, 1513.46, 18796.41, 2208.99, 1602.19, 170.11, 2450.58, 2316.11, 532.61, 3.73, 5615.82, 916.45, 654.69, 4300.5, 640.56, 2386.91]'
+                                    data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Spending"
                             ></canvas>
                         
                     </div>
@@ -1243,17 +1254,6 @@
                         
                     </div>
                 
-                    <div class="col-3 mx-auto">
-                        
-                            <canvas
-                                    id="spending-Overijssel-chart"
-                                    data-data='[559.57, 71.6, 1513.46, 18796.41, 2208.99, 1602.19, 170.11, 2450.58, 2316.11, 532.61, 3.73, 5615.82, 916.45, 654.69, 4300.5, 640.56, 2386.91]'
-                                    data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
-                                    data-title="Spending"
-                            ></canvas>
-                        
-                    </div>
-                
             </div>
             <hr>
         
@@ -1265,10 +1265,21 @@
                     <div class="col-3 mx-auto">
                         
                             <canvas
-                                    id="occurrences-Utrecht-chart"
+                                    id="number-of-ads-Utrecht-chart"
                                     data-data='[64, 19, 22, 2156, 92, 268, 66, 70, 147, 11, 3, 1488, 49, 38, 171, 91, 469]'
                                     data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
-                                    data-title="Occurrences"
+                                    data-title="Number of ads"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="spending-Utrecht-chart"
+                                    data-data='[440.91, 177.89, 608.66, 18242.69, 1783.55, 2097.14, 203.24, 1291.29, 3133.8, 318.62, 1.24, 4090.54, 1116.1, 230.43, 3852.17, 1061.79, 2793.97]'
+                                    data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Spending"
                             ></canvas>
                         
                     </div>
@@ -1295,17 +1306,6 @@
                         
                     </div>
                 
-                    <div class="col-3 mx-auto">
-                        
-                            <canvas
-                                    id="spending-Utrecht-chart"
-                                    data-data='[440.91, 177.89, 608.66, 18242.69, 1783.55, 2097.14, 203.24, 1291.29, 3133.8, 318.62, 1.24, 4090.54, 1116.1, 230.43, 3852.17, 1061.79, 2793.97]'
-                                    data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
-                                    data-title="Spending"
-                            ></canvas>
-                        
-                    </div>
-                
             </div>
             <hr>
         
@@ -1317,10 +1317,21 @@
                     <div class="col-3 mx-auto">
                         
                             <canvas
-                                    id="occurrences-Zeeland-chart"
+                                    id="number-of-ads-Zeeland-chart"
                                     data-data='[64, 19, 22, 2156, 92, 268, 66, 70, 147, 11, 3, 1488, 49, 38, 171, 91, 469]'
                                     data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
-                                    data-title="Occurrences"
+                                    data-title="Number of ads"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="spending-Zeeland-chart"
+                                    data-data='[177.13, 24.93, 706.38, 5648.61, 543.36, 518.17, 45.58, 850.22, 756.62, 159.23, 1.14, 4051.32, 253.43, 521.84, 1217.19, 180.59, 556.41]'
+                                    data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Spending"
                             ></canvas>
                         
                     </div>
@@ -1347,17 +1358,6 @@
                         
                     </div>
                 
-                    <div class="col-3 mx-auto">
-                        
-                            <canvas
-                                    id="spending-Zeeland-chart"
-                                    data-data='[177.13, 24.93, 706.38, 5648.61, 543.36, 518.17, 45.58, 850.22, 756.62, 159.23, 1.14, 4051.32, 253.43, 521.84, 1217.19, 180.59, 556.41]'
-                                    data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
-                                    data-title="Spending"
-                            ></canvas>
-                        
-                    </div>
-                
             </div>
             <hr>
         
@@ -1369,10 +1369,21 @@
                     <div class="col-3 mx-auto">
                         
                             <canvas
-                                    id="occurrences-Zuid-Holland-chart"
+                                    id="number-of-ads-Zuid-Holland-chart"
                                     data-data='[64, 19, 22, 2156, 92, 268, 66, 70, 147, 11, 3, 1488, 49, 38, 171, 91, 469]'
                                     data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
-                                    data-title="Occurrences"
+                                    data-title="Number of ads"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="spending-Zuid-Holland-chart"
+                                    data-data='[1426.79, 531.56, 949.52, 25956.27, 3553.88, 5507.5, 914.17, 5503.39, 9945.48, 1280.23, 8.01, 15620.46, 3344.99, 677.65, 9914.59, 2410.35, 6863.15]'
+                                    data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Spending"
                             ></canvas>
                         
                     </div>
@@ -1395,17 +1406,6 @@
                                     data-data='[7454666, 4708284, 1194316, 72678883, 3262140, 20551340, 6579370, 10092332, 15941117, 2287713, 192974, 41221415, 7431483, 5629278, 8735063, 7519098, 43522980]'
                                     data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
                                     data-title="Potential reach"
-                            ></canvas>
-                        
-                    </div>
-                
-                    <div class="col-3 mx-auto">
-                        
-                            <canvas
-                                    id="spending-Zuid-Holland-chart"
-                                    data-data='[1426.79, 531.56, 949.52, 25956.27, 3553.88, 5507.5, 914.17, 5503.39, 9945.48, 1280.23, 8.01, 15620.46, 3344.99, 677.65, 9914.59, 2410.35, 6863.15]'
-                                    data-labels='["50+", "BIJ1", "BBB", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
-                                    data-title="Spending"
                             ></canvas>
                         
                     </div>

@@ -102,7 +102,7 @@
                 </li>
             </ul>
 
-            <span class="navbar-text">Last Updated: 09:58 25-08-2021</span>
+            <span class="navbar-text">Last Updated: 14:13 25-08-2021</span>
             <a class="nav-link link-dark" href="https://github.com/joren485/DutchPoliticalFacebookAdComparision/"><i class="fab fa-github"></i></a>
         </div>
     </div>
@@ -119,7 +119,7 @@
 
         <p>For each demographic, four graphs are shown that compare:</p>
         <ul>
-            <li><strong>Occurrences:</strong> The amount of ads that were about "onderwijs".</li>
+            <li><strong>Number of ads:</strong> The amount of ads that were about "onderwijs".</li>
             <li><strong>Impressions:</strong> How many times ads about "onderwijs" were shown.</li>
             <li><strong>Potential reach:</strong> The maximum amount of people that ads about "onderwijs" could have been shown to.
             </li>
@@ -137,10 +137,21 @@
                 <div class="col-3 mx-auto">
                     
                         <canvas
-                                id="occurrences-total-chart"
+                                id="number-of-ads-total-chart"
                                 data-data='[3]'
                                 data-labels='["total"]'
-                                data-title="Occurrences"
+                                data-title="Number of ads"
+                        ></canvas>
+                    
+                </div>
+            
+                <div class="col-3 mx-auto">
+                    
+                        <canvas
+                                id="spending-total-chart"
+                                data-data='[148.5]'
+                                data-labels='["total"]'
+                                data-title="Spending"
                         ></canvas>
                     
                 </div>
@@ -167,17 +178,6 @@
                     
                 </div>
             
-                <div class="col-3 mx-auto">
-                    
-                        <canvas
-                                id="spending-total-chart"
-                                data-data='[148.5]'
-                                data-labels='["total"]'
-                                data-title="Spending"
-                        ></canvas>
-                    
-                </div>
-            
         </div>
         <hr>
     
@@ -189,10 +189,21 @@
                 <div class="col-3 mx-auto">
                     
                         <canvas
-                                id="occurrences-gender-chart"
+                                id="number-of-ads-gender-chart"
                                 data-data='[3, 3]'
                                 data-labels='["female", "male"]'
-                                data-title="Occurrences"
+                                data-title="Number of ads"
+                        ></canvas>
+                    
+                </div>
+            
+                <div class="col-3 mx-auto">
+                    
+                        <canvas
+                                id="spending-gender-chart"
+                                data-data='[60.67, 86.86]'
+                                data-labels='["female", "male"]'
+                                data-title="Spending"
                         ></canvas>
                     
                 </div>
@@ -219,17 +230,6 @@
                     
                 </div>
             
-                <div class="col-3 mx-auto">
-                    
-                        <canvas
-                                id="spending-gender-chart"
-                                data-data='[60.67, 86.86]'
-                                data-labels='["female", "male"]'
-                                data-title="Spending"
-                        ></canvas>
-                    
-                </div>
-            
         </div>
         <hr>
     
@@ -241,10 +241,21 @@
                 <div class="col-3 mx-auto">
                     
                         <canvas
-                                id="occurrences-age-chart"
+                                id="number-of-ads-age-chart"
                                 data-data='[3, 3, 3, 3, 3, 3, 3]'
                                 data-labels='["13-17", "18-24", "25-34", "35-44", "45-54", "55-64", "65+"]'
-                                data-title="Occurrences"
+                                data-title="Number of ads"
+                        ></canvas>
+                    
+                </div>
+            
+                <div class="col-3 mx-auto">
+                    
+                        <canvas
+                                id="spending-age-chart"
+                                data-data='[10.66, 118.25, 19.54, 0.0, 0.0, 0.0, 0.0]'
+                                data-labels='["13-17", "18-24", "25-34", "35-44", "45-54", "55-64", "65+"]'
+                                data-title="Spending"
                         ></canvas>
                     
                 </div>
@@ -271,17 +282,6 @@
                     
                 </div>
             
-                <div class="col-3 mx-auto">
-                    
-                        <canvas
-                                id="spending-age-chart"
-                                data-data='[10.66, 118.25, 19.54, 0.0, 0.0, 0.0, 0.0]'
-                                data-labels='["13-17", "18-24", "25-34", "35-44", "45-54", "55-64", "65+"]'
-                                data-title="Spending"
-                        ></canvas>
-                    
-                </div>
-            
         </div>
         <hr>
     
@@ -293,10 +293,21 @@
                 <div class="col-3 mx-auto">
                     
                         <canvas
-                                id="occurrences-region-chart"
+                                id="number-of-ads-region-chart"
                                 data-data='[3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]'
                                 data-labels='["Drenthe", "Flevoland", "Friesland", "Gelderland", "Groningen", "Limburg", "Noord-Brabant", "Noord-Holland", "Overijssel", "Utrecht", "Zeeland", "Zuid-Holland"]'
-                                data-title="Occurrences"
+                                data-title="Number of ads"
+                        ></canvas>
+                    
+                </div>
+            
+                <div class="col-3 mx-auto">
+                    
+                        <canvas
+                                id="spending-region-chart"
+                                data-data='[0.0, 0.0, 0.0, 6.0, 0.0, 0.0, 0.0, 0.0, 43.5, 0.0, 0.0, 99.0]'
+                                data-labels='["Drenthe", "Flevoland", "Friesland", "Gelderland", "Groningen", "Limburg", "Noord-Brabant", "Noord-Holland", "Overijssel", "Utrecht", "Zeeland", "Zuid-Holland"]'
+                                data-title="Spending"
                         ></canvas>
                     
                 </div>
@@ -319,17 +330,6 @@
                                 data-data='[0, 0, 0, 3636, 0, 0, 0, 0, 26364, 0, 0, 600001]'
                                 data-labels='["Drenthe", "Flevoland", "Friesland", "Gelderland", "Groningen", "Limburg", "Noord-Brabant", "Noord-Holland", "Overijssel", "Utrecht", "Zeeland", "Zuid-Holland"]'
                                 data-title="Potential reach"
-                        ></canvas>
-                    
-                </div>
-            
-                <div class="col-3 mx-auto">
-                    
-                        <canvas
-                                id="spending-region-chart"
-                                data-data='[0.0, 0.0, 0.0, 6.0, 0.0, 0.0, 0.0, 0.0, 43.5, 0.0, 0.0, 99.0]'
-                                data-labels='["Drenthe", "Flevoland", "Friesland", "Gelderland", "Groningen", "Limburg", "Noord-Brabant", "Noord-Holland", "Overijssel", "Utrecht", "Zeeland", "Zuid-Holland"]'
-                                data-title="Spending"
                         ></canvas>
                     
                 </div>

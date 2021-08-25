@@ -155,11 +155,11 @@ REGIONS = [
 
 DEMOGRAPHIC_TYPES = ["total", "gender", "age", "region"]
 DEMOGRAPHICS = ["total"] + GENDERS + AGE_RANGES + REGIONS
-DATA_TYPES = ["occurrences", "impressions", "potential-reach", "spending"]
-
 DEMOGRAPHIC_TYPE_TO_LIST_MAP = {
     "total": ["total"],
     "gender": GENDERS,
     "age": AGE_RANGES,
     "region": REGIONS,
 }
+
+DATA_TYPES = ["number-of-ads", "spending", "impressions", "potential-reach"]

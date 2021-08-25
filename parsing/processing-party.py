@@ -5,6 +5,8 @@ from constants import (
     NUMBER_OF_DATES,
     PARTIES,
     DEMOGRAPHIC_TYPE_TO_LIST_MAP,
+    DATA_TYPES,
+    DEMOGRAPHIC_TYPES,
 )
 
 from models import Ad
@@ -40,8 +42,8 @@ if __name__ == "__main__":
             ),
         }
 
-        for data_type in ("spending", "impressions"):
-            for demographic_type in ("gender", "age", "region"):
+        for data_type in DATA_TYPES:
+            for demographic_type in DEMOGRAPHIC_TYPES:
                 demographic_list = DEMOGRAPHIC_TYPE_TO_LIST_MAP[demographic_type]
 
                 party_data[f"{data_type}-{demographic_type}"] = [
@@ -61,8 +63,8 @@ if __name__ == "__main__":
                         for demographic_i, demographic in enumerate(demographic_list):
                             party_data[f"{data_type}-{demographic_type}-daily"][
                                 demographic_i
-                            ][date_i] += (
-                                ad.rank_to_data(data_type, demographic) / ad.days_active
+                            ][date_i] += ad.rank_to_data(
+                                data_type, demographic, per_day=True
                             )
 
         logging.debug(f"Writing template for { party }")

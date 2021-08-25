@@ -4,6 +4,7 @@ from constants import (
     FIRST_DATE,
     NUMBER_OF_DATES,
     PARTIES,
+    DATA_TYPES,
 )
 
 from models import Ad
@@ -29,8 +30,8 @@ if __name__ == "__main__":
     LOGGER.info("Creating general data.")
 
     general_data = {
-        "ads-total": len(ads),
-        "ads-party": [len(ads_per_party[p]) for p in PARTIES],
+        "number-of-ads-total": len(ads),
+        "number-of-ads-party": [len(ads_per_party[p]) for p in PARTIES],
         "spending-total-lower": sum(ad.spending_lower for ad in ads),
         "spending-total-upper": sum(ad.spending_upper for ad in ads),
         "spending-party": [
@@ -45,7 +46,7 @@ if __name__ == "__main__":
             "spend-per-day": most_expensive_ad.average_spending_per_day,
             "days": most_expensive_ad.days_active,
         },
-        "ads-party-daily": [[0] * NUMBER_OF_DATES for _ in PARTIES],
+        "number-of-ads-party-daily": [[0] * NUMBER_OF_DATES for _ in PARTIES],
         "spending-party-daily": [[0] * NUMBER_OF_DATES for _ in PARTIES],
         "impressions-party-daily": [[0] * NUMBER_OF_DATES for _ in PARTIES],
         "potential-reach-party-daily": [[0] * NUMBER_OF_DATES for _ in PARTIES],
@@ -56,17 +57,10 @@ if __name__ == "__main__":
     for party_i, party in enumerate(PARTIES):
         for ad in ads_per_party[party]:
             for date_i in ad.active_date_indices():
-
-                general_data["ads-party-daily"][party_i][date_i] += 1
-                general_data["spending-party-daily"][party_i][
-                    date_i
-                ] += ad.average_spending_per_day
-                general_data["impressions-party-daily"][party_i][
-                    date_i
-                ] += ad.average_impressions_per_day
-                general_data["potential-reach-party-daily"][party_i][
-                    date_i
-                ] += ad.average_potential_reach_per_day
+                for data_type in DATA_TYPES:
+                    general_data[f"{data_type}-party-daily"][party_i][
+                        date_i
+                    ] += ad.rank_to_data(data_type, "total", per_day=True)
 
     logging.info("Writing templates")
 
