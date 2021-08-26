@@ -9,6 +9,7 @@ python = "^3.9"
 Jinja2 = "^3.0.1"
 peewee = "^3.14.4"
 requests = "^2.26.0"
+spacy = "^3.1.2"
 
 [tool.poetry.dev-dependencies]
 pydocstyle = {extras = ["toml"], version = "^6.1.1"}
