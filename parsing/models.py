@@ -124,7 +124,7 @@ class Ad(Model):
     @cached_property
     def text(self) -> str:
         """Return words used in texts of this ad."""
-        return f"{self.creative_body} {self.creative_link_description}".lower()
+        return f"{self.creative_body} {self.creative_link_description}"
 
     def rank_to_data(self, data_type: str, demographic: str, per_day: bool = False):
         """Return the amount of data type per demographic for this ad."""
@@ -162,7 +162,7 @@ class Ad(Model):
         :return: True if a theme word is found in the ad text.
         """
         for theme_word in THEMES[theme]:
-            if theme_word in self.text:
+            if theme_word.lower() in self.text.lower():
                 return True
         return False
 
