@@ -85,9 +85,7 @@ def json_to_ad_dict(ad_json_data: dict, party: str) -> dict:
         "potential_reach_upper": potential_reach_upper,
     }
 
-    if "languages" in ad_json_data and not (
-        len(ad_json_data["languages"]) == 1 and ad_json_data["languages"][0] == "nl"
-    ):
+    if "languages" in ad_json_data and ad_json_data["languages"] != ["nl"]:
         LOGGER.warning(
             f"Non-dutch language detected ({ad_dict['ad_id']}): {','.join(ad_json_data['languages'])}"
         )
@@ -118,6 +116,8 @@ def json_to_ad_dict(ad_json_data: dict, party: str) -> dict:
                         ad_dict[field_name] += percentage
                 else:
                     if demographic not in GENDER_IGNORE_LIST:
-                        LOGGER.warning(f"Unknown gender/age group: {demographic} ({ad_dict['ad_id']})")
+                        LOGGER.warning(
+                            f"Unknown gender/age group: {demographic} ({ad_dict['ad_id']})"
+                        )
 
     return ad_dict
