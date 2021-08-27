@@ -29,6 +29,18 @@ def _parse_estimated_value(data: dict, key: str) -> Tuple[int, int]:
     return lower, upper
 
 
+def _parse_content(data: dict, key: str):
+    if key not in data:
+        return ""
+
+    return " ".join(
+        filter(
+            lambda s: not s.startswith("{{product") and not s.startswith("{{ngMeta"),
+            data[key],
+        )
+    )
+
+
 def json_to_ad_dict(ad_json_data: dict, party: str) -> dict:
     """
     Transform a json object into an dictionary that corresponds with the Ad model.
@@ -55,12 +67,14 @@ def json_to_ad_dict(ad_json_data: dict, party: str) -> dict:
         "creation_date": _parse_date(ad_json_data, "ad_creation_time"),
         "start_date": _parse_date(ad_json_data, "ad_delivery_start_time"),
         "end_date": _parse_date(ad_json_data, "ad_delivery_stop_time"),
-        "creative_body": ad_json_data.get("ad_creative_body", ""),
-        "creative_link_caption": ad_json_data.get("ad_creative_link_caption", ""),
-        "creative_link_description": ad_json_data.get(
-            "ad_creative_link_description", ""
+        "creative_bodies": _parse_content(ad_json_data, "ad_creative_bodies"),
+        "creative_link_captions": _parse_content(
+            ad_json_data, "ad_creative_link_captions"
         ),
-        "creative_link_title": ad_json_data.get("ad_creative_link_title", ""),
+        "creative_link_descriptions": _parse_content(
+            ad_json_data, "ad_creative_link_descriptions"
+        ),
+        "creative_link_titles": _parse_content(ad_json_data, "ad_creative_link_titles"),
         "spending_lower": spending_lower,
         "spending_upper": spending_upper,
         "impressions_lower": impressions_lower,
@@ -69,8 +83,8 @@ def json_to_ad_dict(ad_json_data: dict, party: str) -> dict:
         "potential_reach_upper": potential_reach_upper,
     }
 
-    if "region_distribution" in ad_json_data:
-        for distribution in ad_json_data["region_distribution"]:
+    if "delivery_by_region" in ad_json_data:
+        for distribution in ad_json_data["delivery_by_region"]:
             region = distribution["region"]
             percentage = Decimal(distribution["percentage"])
             if region == "North Brabant":

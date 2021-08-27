@@ -42,10 +42,10 @@ class Ad(Model):
     start_date = DateField()
     end_date = DateField(null=True)
 
-    creative_body = TextField()
-    creative_link_caption = CharField()
-    creative_link_description = TextField()
-    creative_link_title = CharField()
+    creative_bodies = TextField()
+    creative_link_captions = CharField()
+    creative_link_descriptions = TextField()
+    creative_link_titles = CharField()
 
     spending_lower = IntegerField()
     spending_upper = IntegerField()
@@ -124,7 +124,7 @@ class Ad(Model):
     @cached_property
     def text(self) -> str:
         """Return words used in texts of this ad."""
-        return f"{self.creative_body} {self.creative_link_description}"
+        return f"{self.creative_bodies} {self.creative_link_descriptions} {self.creative_link_titles}"
 
     def rank_to_data(self, data_type: str, demographic: str, per_day: bool = False):
         """Return the amount of data type per demographic for this ad."""
