@@ -21,6 +21,7 @@ FACEBOOK_API_FIELDS = [
     "delivery_by_region",
     "demographic_distribution",
     "impressions",
+    "languages",
     "page_id",
     "potential_reach",
     "spend",
