@@ -2,16 +2,14 @@ import logging
 
 from constants import (
     DATA_TYPES,
-    DEMOGRAPHICS,
-    DEMOGRAPHIC_TYPES,
     DEMOGRAPHIC_TYPE_TO_LIST_MAP,
+    DEMOGRAPHIC_TYPES,
+    DEMOGRAPHICS,
     FIRST_DATE,
     PARTIES,
     THEMES,
 )
-
 from models import Ad
-
 from utils import recursive_round, render_template
 
 logging.basicConfig(
@@ -65,7 +63,7 @@ for theme in THEMES:
                             index
                         ] += ad.rank_to_data(data_type, demographic)
 
-logging.info(f"Writing templates")
+logging.info("Writing templates")
 recursive_round(theme_data)
 for theme in THEMES:
     logging.debug(f"Writing theme.html for { theme }")

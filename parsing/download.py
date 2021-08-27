@@ -12,9 +12,7 @@ from constants import (
     MAX_PAGE_IDS_PER_REQUEST,
     PARTIES,
 )
-
 from models import Ad
-
 from parsing import json_to_ad_dict
 
 logging.basicConfig(
@@ -98,7 +96,8 @@ if __name__ == "__main__":
             page_ids_subset = page_ids[i : i + MAX_PAGE_IDS_PER_REQUEST]
 
             logging.info(
-                f"Downloading ads of {len(page_ids_subset)} pages ({i}/{len(page_ids)}) ({party})"
+                f"Downloading ads of {len(page_ids_subset)}"
+                f" pages ({i}/{len(page_ids)}) ({party})"
             )
 
             download_ads(

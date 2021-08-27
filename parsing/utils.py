@@ -1,17 +1,13 @@
 from datetime import datetime
-
 from typing import Optional, Union
 
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 from constants import (
-    AGE_RANGES,
     DATA_TYPES,
-    DEMOGRAPHIC_TYPES,
     DEMOGRAPHIC_TYPE_TO_LIST_MAP,
-    GENDERS,
+    DEMOGRAPHIC_TYPES,
     PARTIES,
-    REGIONS,
     THEMES,
 )
 

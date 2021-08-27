@@ -124,7 +124,11 @@ class Ad(Model):
     @cached_property
     def text(self) -> str:
         """Return words used in texts of this ad."""
-        return f"{self.creative_bodies} {self.creative_link_descriptions} {self.creative_link_titles}"
+        return (
+            f"{self.creative_bodies}"
+            f" {self.creative_link_descriptions}"
+            f" {self.creative_link_titles}"
+        )
 
     def rank_to_data(self, data_type: str, demographic: str, per_day: bool = False):
         """Return the amount of data type per demographic for this ad."""

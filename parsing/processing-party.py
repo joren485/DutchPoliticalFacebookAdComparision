@@ -1,16 +1,14 @@
 import logging
 
 from constants import (
+    DATA_TYPES,
+    DEMOGRAPHIC_TYPE_TO_LIST_MAP,
+    DEMOGRAPHIC_TYPES,
     FIRST_DATE,
     NUMBER_OF_DATES,
     PARTIES,
-    DEMOGRAPHIC_TYPE_TO_LIST_MAP,
-    DATA_TYPES,
-    DEMOGRAPHIC_TYPES,
 )
-
 from models import Ad
-
 from utils import recursive_round, render_template
 
 logging.basicConfig(

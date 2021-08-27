@@ -1,14 +1,7 @@
 import logging
 
-from constants import (
-    FIRST_DATE,
-    NUMBER_OF_DATES,
-    PARTIES,
-    DATA_TYPES,
-)
-
+from constants import DATA_TYPES, FIRST_DATE, NUMBER_OF_DATES, PARTIES
 from models import Ad
-
 from utils import recursive_round, render_template
 
 logging.basicConfig(

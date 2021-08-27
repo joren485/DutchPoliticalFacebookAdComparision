@@ -7,12 +7,11 @@ from constants import (
     AGE_RANGES,
     CURRENCY_EXCHANGE_RATE_MAP,
     DATETIME_FORMAT,
-    GENDERS,
-    REGIONS,
     GENDER_IGNORE_LIST,
+    GENDERS,
     REGION_IGNORE_LIST,
+    REGIONS,
 )
-
 from models import Ad
 
 
@@ -85,7 +84,8 @@ def json_to_ad_dict(ad_json_data: dict, party: str) -> dict:
 
     if "languages" in ad_json_data and ad_json_data["languages"] != ["nl"]:
         logging.warning(
-            f"Non-dutch language detected ({ad_dict['ad_id']}): {','.join(ad_json_data['languages'])}"
+            f"Non-dutch language detected "
+            f"({ad_dict['ad_id']}): {','.join(ad_json_data['languages'])}"
         )
 
     if "delivery_by_region" in ad_json_data:
@@ -115,7 +115,8 @@ def json_to_ad_dict(ad_json_data: dict, party: str) -> dict:
                 else:
                     if demographic not in GENDER_IGNORE_LIST:
                         logging.warning(
-                            f"Unknown gender/age group: {demographic} ({ad_dict['ad_id']})"
+                            f"Unknown gender/age group: "
+                            f"{demographic} ({ad_dict['ad_id']})"
                         )
 
     return ad_dict
