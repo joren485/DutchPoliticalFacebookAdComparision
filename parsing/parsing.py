@@ -9,6 +9,8 @@ from constants import (
     DATETIME_FORMAT,
     GENDERS,
     REGIONS,
+    GENDER_IGNORE_LIST,
+    REGION_IGNORE_LIST,
 )
 
 from models import Ad
@@ -101,8 +103,8 @@ def json_to_ad_dict(ad_json_data: dict, party: str) -> dict:
                 field_name = Ad.demographic_to_field_name(region)
                 ad_dict[field_name] = percentage
             else:
-                if region not in ("unknown", "Unknown"):
-                    LOGGER.info(f"Unknown: {region} ({percentage})")
+                if region not in REGION_IGNORE_LIST:
+                    LOGGER.warning(f"Unknown region: {region} ({ad_dict['ad_id']})")
 
     if "demographic_distribution" in ad_json_data:
         for distribution in ad_json_data["demographic_distribution"]:
@@ -115,7 +117,7 @@ def json_to_ad_dict(ad_json_data: dict, party: str) -> dict:
                     else:
                         ad_dict[field_name] += percentage
                 else:
-                    if demographic not in ("unknown", "Unknown"):
-                        LOGGER.info(f"Unknown: {demographic} ({percentage})")
+                    if demographic not in GENDER_IGNORE_LIST:
+                        LOGGER.warning(f"Unknown gender/age group: {demographic} ({ad_dict['ad_id']})")
 
     return ad_dict

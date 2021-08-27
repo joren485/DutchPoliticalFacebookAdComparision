@@ -153,6 +153,24 @@ REGIONS = [
     "Zuid-Holland",
 ]
 
+GENDER_IGNORE_LIST = [
+    "Unknown",
+    "unknown",
+]
+
+REGION_IGNORE_LIST = [
+    "Unknown",
+    "Nordrhein-Westfalen",
+    "Flemish Region",
+    "Niedersachsen",
+    "Wallonia",
+    "Brussels",
+    "Mandalay",
+    "Bonaire, Sint Eustatius and Saba",
+    "Aruba",
+    "Curaçao",
+]
+
 DEMOGRAPHIC_TYPES = ["total", "gender", "age", "region"]
 DEMOGRAPHICS = ["total"] + GENDERS + AGE_RANGES + REGIONS
 DEMOGRAPHIC_TYPE_TO_LIST_MAP = {
