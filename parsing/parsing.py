@@ -15,8 +15,6 @@ from constants import (
 
 from models import Ad
 
-LOGGER = logging.getLogger(__name__)
-
 
 def _parse_date(data: dict, key: str) -> Optional[datetime]:
     return datetime.strptime(data[key], DATETIME_FORMAT) if key in data else None
@@ -86,7 +84,7 @@ def json_to_ad_dict(ad_json_data: dict, party: str) -> dict:
     }
 
     if "languages" in ad_json_data and ad_json_data["languages"] != ["nl"]:
-        LOGGER.warning(
+        logging.warning(
             f"Non-dutch language detected ({ad_dict['ad_id']}): {','.join(ad_json_data['languages'])}"
         )
 
@@ -102,7 +100,7 @@ def json_to_ad_dict(ad_json_data: dict, party: str) -> dict:
                 ad_dict[field_name] = percentage
             else:
                 if region not in REGION_IGNORE_LIST:
-                    LOGGER.warning(f"Unknown region: {region} ({ad_dict['ad_id']})")
+                    logging.warning(f"Unknown region: {region} ({ad_dict['ad_id']})")
 
     if "demographic_distribution" in ad_json_data:
         for distribution in ad_json_data["demographic_distribution"]:
@@ -116,7 +114,7 @@ def json_to_ad_dict(ad_json_data: dict, party: str) -> dict:
                         ad_dict[field_name] += percentage
                 else:
                     if demographic not in GENDER_IGNORE_LIST:
-                        LOGGER.warning(
+                        logging.warning(
                             f"Unknown gender/age group: {demographic} ({ad_dict['ad_id']})"
                         )
 

@@ -13,8 +13,6 @@ from models import Ad
 
 from utils import recursive_round, render_template
 
-LOGGER = logging.getLogger(__name__)
-
 logging.basicConfig(
     format="[%(asctime)s] %(levelname)s: %(message)s",
     level=logging.INFO,
@@ -30,7 +28,7 @@ if __name__ == "__main__":
     }
 
     for party in PARTIES:
-        LOGGER.info(f"Processing {len(ads_per_party[party])} ads for {party}.")
+        logging.info(f"Processing {len(ads_per_party[party])} ads for {party}.")
 
         party_data = {
             "total-ads": len(ads_per_party[party]),

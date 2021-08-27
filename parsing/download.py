@@ -17,8 +17,6 @@ from models import Ad
 
 from parsing import json_to_ad_dict
 
-LOGGER = logging.getLogger(__name__)
-
 logging.basicConfig(
     format="[%(asctime)s] %(levelname)s: %(message)s",
     level=logging.INFO,
@@ -40,17 +38,17 @@ def download_ads(api_url: str, current_party: str) -> None:
     response_data = response.json()
 
     if "error" in response_data:
-        LOGGER.error(f"Error from API: '{response_data['error']}'")
+        logging.error(f"Error from API: '{response_data['error']}'")
         return
 
     if len(response_data["data"]) > 0:
-        LOGGER.info(f"Got {len(response_data['data'])} ads ({current_party})")
+        logging.info(f"Got {len(response_data['data'])} ads ({current_party})")
         Ad.insert_many(
             json_to_ad_dict(ad, current_party) for ad in response_data["data"]
         ).on_conflict_replace().execute()
 
     if "paging" in response_data:
-        LOGGER.info("Got paged ads")
+        logging.info("Got paged ads")
         download_ads(response_data["paging"]["next"], current_party)
 
 
@@ -68,7 +66,7 @@ def parse_facebook_page_ids(parties: List[str]) -> dict[str, List[str]]:
 
             if row["Party"] not in parties:
                 if row["Party"] not in PARTIES:
-                    LOGGER.warning(f"Unknown party: '{row['Party']}'")
+                    logging.warning(f"Unknown party: '{row['Party']}'")
                 continue
 
             page_ids_dict[row["Party"]].append(row["Page ID"])
@@ -85,7 +83,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     if args.verbose:
-        LOGGER.setLevel(logging.DEBUG)
+        logging.getLogger().setLevel(logging.DEBUG)
 
     if args.parties:
         page_ids_per_party = parse_facebook_page_ids(
@@ -99,7 +97,7 @@ if __name__ == "__main__":
         for i in range(0, len(page_ids), MAX_PAGE_IDS_PER_REQUEST):
             page_ids_subset = page_ids[i : i + MAX_PAGE_IDS_PER_REQUEST]
 
-            LOGGER.info(
+            logging.info(
                 f"Downloading ads of {len(page_ids_subset)} pages ({i}/{len(page_ids)}) ({party})"
             )
 

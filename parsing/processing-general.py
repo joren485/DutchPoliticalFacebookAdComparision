@@ -11,8 +11,6 @@ from models import Ad
 
 from utils import recursive_round, render_template
 
-LOGGER = logging.getLogger(__name__)
-
 logging.basicConfig(
     format="[%(asctime)s] %(levelname)s: %(message)s",
     level=logging.INFO,
@@ -27,7 +25,7 @@ if __name__ == "__main__":
 
     most_expensive_ad = max(ads, key=lambda e: e.average_spending_per_day)
 
-    LOGGER.info("Creating general data.")
+    logging.info("Creating general data.")
 
     general_data = {
         "number-of-ads-total": len(ads),
@@ -52,7 +50,7 @@ if __name__ == "__main__":
         "potential-reach-party-daily": [[0] * NUMBER_OF_DATES for _ in PARTIES],
     }
 
-    LOGGER.info("Creating party specific data.")
+    logging.info("Creating party specific data.")
 
     for party_i, party in enumerate(PARTIES):
         for ad in ads_per_party[party]:

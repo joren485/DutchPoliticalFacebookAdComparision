@@ -14,8 +14,6 @@ from models import Ad
 
 from utils import recursive_round, render_template
 
-LOGGER = logging.getLogger(__name__)
-
 logging.basicConfig(
     format="[%(asctime)s] %(levelname)s: %(message)s",
     level=logging.INFO,
@@ -39,7 +37,7 @@ theme_data = {
 }
 
 for theme in THEMES:
-    logging.info(f"Theme: {theme}")
+    logging.info(f"Processing theme: {theme}")
 
     for party in PARTIES:
         theme_data[theme][party] = {}
