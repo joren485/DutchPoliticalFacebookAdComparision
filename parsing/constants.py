@@ -46,7 +46,7 @@ NUMBER_OF_DATES = (date.today() - FIRST_DATE).days + 1
 
 CURRENCY_EXCHANGE_RATE_MAP = {
     "EUR": 1,
-    "USD": 0.84,
+    "USD": 0.85,
 }
 
 THEMES = {
