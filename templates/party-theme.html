@@ -33,7 +33,7 @@
                                 id="{{ data_type }}-{{ demographic_type }}-chart"
                                 data-data='{{ theme_data[party][data_type + "-" + demographic_type] | tojson }}'
                                 data-labels='{{ DEMOGRAPHIC_TYPE_TO_LIST_MAP[demographic_type] | tojson }}'
-                                data-title="{{ data_type | capitalize | replace("-", " ") }}"
+                                data-title="{{ data_type | replace("-", " ") | capitalize }}"
                         ></canvas>
                     {% else %}
                         <p>No data available</p>

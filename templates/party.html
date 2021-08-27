@@ -30,7 +30,7 @@
                                 id="{{ data_type }}-{{ demographic_type }}-daily-chart"
                                 data-data={{ party_data[data_type + "-" + demographic_type + "-daily"] | string | replace(" ", "") | tojson }}
                                 data-labels='{{ DEMOGRAPHIC_TYPE_TO_LIST_MAP[demographic_type] | map("capitalize") | list | tojson }}'
-                                data-title="{{ data_type | capitalize }} per Date"
+                                data-title="{{ data_type | replace("-", " ") | capitalize }} per Date"
                         ></canvas>
                     </div>
                     <div class="col-4 mx-auto">
@@ -38,7 +38,7 @@
                                 id="{{ data_type }}-{{ demographic_type }}-chart"
                                 data-data='{{ party_data[data_type + "-" + demographic_type] | tojson }}'
                                 data-labels='{{ DEMOGRAPHIC_TYPE_TO_LIST_MAP[demographic_type] | map("capitalize") | list | tojson }}'
-                                data-title="Total {{ data_type | capitalize }}"
+                                data-title="Total {{ data_type | replace("-", " ") | capitalize }}"
                         ></canvas>
                     </div>
                 </div>
