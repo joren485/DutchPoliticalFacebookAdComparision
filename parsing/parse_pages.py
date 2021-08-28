@@ -5,6 +5,8 @@ import requests
 
 from constants import PARTIES
 
+from datetime import date, timedelta
+
 SEARCH_MAP = {
     "50+": "50P",
     "CU": "ChristenUnie",
@@ -19,10 +21,11 @@ def get_spending_report(party, cursor=None):
 
     url = (
         "https://www.facebook.com/ads/library/report/async/advertiser_data/"
-        "?report_ds=2021-05-31&"
+        f"?report_ds={(date.today() - timedelta(days=2)).strftime('%Y-%m-%d')}&"
         "country=NL"
         "&time_preset=lifelong"
         "&sort_column=spend"
+        "&component_id=advertiser_table"
         f"&q={party}"
     )
 

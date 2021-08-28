@@ -107,9 +107,9 @@ THEMES = {
 }
 
 PARTIES = [
-    "50+",
-    "BIJ1",
     "BBB",
+    "BIJ1",
+    "BVNL",
     "CDA",
     "CU",
     "D66",
