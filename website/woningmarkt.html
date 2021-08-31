@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.3.0/dist/chart.min.js" integrity="sha256-KP9rTEikFk097YZVFmsYwZdAg4cdGdea8O/V7YZJUxw=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment@1.0.0/dist/chartjs-adapter-moment.min.js" integrity="sha256-sFB24K2xU2EOgWAtb3ySAGjhMqcUvUJGmwjDcTQa04k=" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js" integrity="sha256-eVNjHw5UeU0jUqPPpZHAkU1z4U+QFBBY488WvueTm88=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@1.0.0/dist/chartjs-plugin-zoom.min.js" integrity="sha256-oLHPMvaI4/JUap1NBhH+CVK4I9yWBB3dCKfXXAjRYxw=" crossorigin="anonymous"></script>
+
+    <script src="/DutchPoliticalFacebookAdComparision/website/js/charts.js"></script>
+
+    <meta charset="UTF-8">
+    <title>Woningmarkt | Dutch Political Facebook Ad Comparison</title>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/DutchPoliticalFacebookAdComparision/index.html">Dutch Political Facebook Ad Comparison</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="index-nav-dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Overall Statistics</a>
+                    <ul class="dropdown-menu" aria-labelledby="index-nav-dropdown">
+                        <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/index.html#ads-charts">Ads</a></li>
+                        <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/index.html#spending-charts">Spending</a></li>
+                        <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/index.html#impressions-charts">Impressions</a></li>
+                        <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/index.html#potential-reach-charts">Potential Reach</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="party-nav-dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Party Statistics</a>
+                    <ul class="dropdown-menu" aria-labelledby="party-nav-dropdown">
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/bbb.html">BBB</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/bij1.html">BIJ1</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/bvnl.html">BVNL</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/cda.html">CDA</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/cu.html">CU</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/d66.html">D66</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/denk.html">DENK</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/fvd.html">FvD</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/gl.html">GL</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/ja21.html">JA21</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/pvv.html">PVV</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/pvda.html">PvdA</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/pvdd.html">PvdD</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/sgp.html">SGP</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/sp.html">SP</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/volt.html">VOLT</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/vvd.html">VVD</a></li>
+                        
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="theme-nav-dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Theme Statistics</a>
+                    <ul class="dropdown-menu" aria-labelledby="theme-nav-dropdown">
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/klimaat.html">Klimaat</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/onderwijs.html">Onderwijs</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/gezondheidszorg.html">Gezondheidszorg</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/woningmarkt.html">Woningmarkt</a></li>
+                        
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/DutchPoliticalFacebookAdComparision/website/about.html">About</a>
+                </li>
+            </ul>
+
+            <span class="navbar-text">Last Updated: 10:02 31-08-2021</span>
+            <a class="nav-link link-dark" href="https://github.com/joren485/DutchPoliticalFacebookAdComparision/"><i class="fab fa-github"></i></a>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid pt-4">
+    
+    <div class="text-center">
+        <h1>Woningmarkt Graphs</h1>
+
+        <div>
+            <small><em>If you want to see the "woningmarkt" graphs for a specific party, please select a party:</em></small>
+
+            <div class="btn-group">
+                <div class="dropdown">
+                    <button class="btn btn-secondary btn-sm dropdown-toggle" type="button"
+                            id="woningmarkt-party-dropdown"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <small>Choose a party</small>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="woningmarkt-party-dropdown">
+                        
+                            <li><a class="dropdown-item"
+                                   href="/DutchPoliticalFacebookAdComparision/website/bbb-woningmarkt.html">
+                                <small>BBB</small>
+                            </a>
+                            </li>
+                        
+                            <li><a class="dropdown-item"
+                                   href="/DutchPoliticalFacebookAdComparision/website/bij1-woningmarkt.html">
+                                <small>BIJ1</small>
+                            </a>
+                            </li>
+                        
+                            <li><a class="dropdown-item"
+                                   href="/DutchPoliticalFacebookAdComparision/website/bvnl-woningmarkt.html">
+                                <small>BVNL</small>
+                            </a>
+                            </li>
+                        
+                            <li><a class="dropdown-item"
+                                   href="/DutchPoliticalFacebookAdComparision/website/cda-woningmarkt.html">
+                                <small>CDA</small>
+                            </a>
+                            </li>
+                        
+                            <li><a class="dropdown-item"
+                                   href="/DutchPoliticalFacebookAdComparision/website/cu-woningmarkt.html">
+                                <small>CU</small>
+                            </a>
+                            </li>
+                        
+                            <li><a class="dropdown-item"
+                                   href="/DutchPoliticalFacebookAdComparision/website/d66-woningmarkt.html">
+                                <small>D66</small>
+                            </a>
+                            </li>
+                        
+                            <li><a class="dropdown-item"
+                                   href="/DutchPoliticalFacebookAdComparision/website/denk-woningmarkt.html">
+                                <small>DENK</small>
+                            </a>
+                            </li>
+                        
+                            <li><a class="dropdown-item"
+                                   href="/DutchPoliticalFacebookAdComparision/website/fvd-woningmarkt.html">
+                                <small>FvD</small>
+                            </a>
+                            </li>
+                        
+                            <li><a class="dropdown-item"
+                                   href="/DutchPoliticalFacebookAdComparision/website/gl-woningmarkt.html">
+                                <small>GL</small>
+                            </a>
+                            </li>
+                        
+                            <li><a class="dropdown-item"
+                                   href="/DutchPoliticalFacebookAdComparision/website/ja21-woningmarkt.html">
+                                <small>JA21</small>
+                            </a>
+                            </li>
+                        
+                            <li><a class="dropdown-item"
+                                   href="/DutchPoliticalFacebookAdComparision/website/pvv-woningmarkt.html">
+                                <small>PVV</small>
+                            </a>
+                            </li>
+                        
+                            <li><a class="dropdown-item"
+                                   href="/DutchPoliticalFacebookAdComparision/website/pvda-woningmarkt.html">
+                                <small>PvdA</small>
+                            </a>
+                            </li>
+                        
+                            <li><a class="dropdown-item"
+                                   href="/DutchPoliticalFacebookAdComparision/website/pvdd-woningmarkt.html">
+                                <small>PvdD</small>
+                            </a>
+                            </li>
+                        
+                            <li><a class="dropdown-item"
+                                   href="/DutchPoliticalFacebookAdComparision/website/sgp-woningmarkt.html">
+                                <small>SGP</small>
+                            </a>
+                            </li>
+                        
+                            <li><a class="dropdown-item"
+                                   href="/DutchPoliticalFacebookAdComparision/website/sp-woningmarkt.html">
+                                <small>SP</small>
+                            </a>
+                            </li>
+                        
+                            <li><a class="dropdown-item"
+                                   href="/DutchPoliticalFacebookAdComparision/website/volt-woningmarkt.html">
+                                <small>VOLT</small>
+                            </a>
+                            </li>
+                        
+                            <li><a class="dropdown-item"
+                                   href="/DutchPoliticalFacebookAdComparision/website/vvd-woningmarkt.html">
+                                <small>VVD</small>
+                            </a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-5 mx-auto">
+        <p class="lead">This page shows graphs about ads about "woningmarkt" compared by party.</p>
+
+        <p>For each demographic, four graphs are shown that compare:</p>
+        <ul>
+            <li><strong>Number of ads:</strong> The amount of ads that were about "woningmarkt".</li>
+            <li><strong>Impressions:</strong> How many times ads about "woningmarkt" were shown.</li>
+            <li><strong>Potential reach:</strong> The maximum amount of people that ads about "woningmarkt" could have
+                been shown to.
+            </li>
+            <li><strong>Spending:</strong> The amount of money that parties spend on ads.</li>
+        </ul>
+    </div>
+
+    <hr>
+    
+        <div class="text-center">
+            <h2>Ranked by Total</h2>
+        </div>
+        
+            <div class="text-center">
+                <h4>Total</h4>
+            </div>
+            <div class="row">
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="number-of-ads-total-chart"
+                                    data-data='[45, 33, 3, 2099, 99, 445, 198, 86, 175, 48, 11, 2879, 61, 34, 288, 28, 755]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Number of ads"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="spending-total-chart"
+                                    data-data='[19427.5, 6033.5, 248.5, 182900.5, 19500.5, 49777.5, 12901.0, 25657.0, 45862.5, 33576.0, 622.0, 160710.5, 14119.5, 3383.0, 62656.0, 1786.0, 62965.0]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Spending"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="impressions-total-chart"
+                                    data-data='[4551978, 614484, 27498, 21238451, 1847950, 4119778, 1272901, 6918957, 6436412, 7462976, 38494, 14544060, 1815970, 372983, 8816357, 154486, 7115622]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="potential-reach-total-chart"
+                                    data-data='[27025032, 28725028, 225002, 319366208, 26503556, 123909943, 35188388, 58050062, 73171000, 35210037, 6750007, 334847856, 27575036, 17793024, 94249665, 14690016, 241391433]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        
+                    </div>
+                
+            </div>
+            <hr>
+        
+    
+        <div class="text-center">
+            <h2>Ranked by Gender</h2>
+        </div>
+        
+            <div class="text-center">
+                <h4>Female</h4>
+            </div>
+            <div class="row">
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="number-of-ads-female-chart"
+                                    data-data='[45, 33, 3, 2099, 99, 445, 198, 86, 175, 48, 11, 2879, 61, 34, 288, 28, 755]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Number of ads"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="spending-female-chart"
+                                    data-data='[6786.69, 3460.75, 120.74, 109499.63, 11978.94, 27485.65, 5175.29, 8682.06, 25456.73, 13413.02, 192.6, 72236.55, 8779.93, 1603.44, 31494.52, 653.15, 23014.34]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Spending"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="impressions-female-chart"
+                                    data-data='[1545861, 361038, 13165, 12233566, 1168111, 2243649, 501345, 2414846, 3647155, 3213852, 13361, 8588407, 1100408, 173233, 4405576, 50358, 2969780]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="potential-reach-female-chart"
+                                    data-data='[9429051, 18007229, 105508, 182158491, 13794291, 64751276, 15746382, 17818130, 39146693, 12499337, 1961802, 175694680, 15734504, 8408324, 45933163, 6376782, 92268964]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        
+                    </div>
+                
+            </div>
+            <hr>
+        
+            <div class="text-center">
+                <h4>Male</h4>
+            </div>
+            <div class="row">
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="number-of-ads-male-chart"
+                                    data-data='[45, 33, 3, 2099, 99, 445, 198, 86, 175, 48, 11, 2879, 61, 34, 288, 28, 755]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Number of ads"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="spending-male-chart"
+                                    data-data='[12591.13, 2469.15, 126.56, 70365.43, 7066.17, 20004.38, 7531.64, 16474.35, 19995.91, 20065.44, 335.42, 46888.81, 5163.77, 1773.41, 30486.86, 1022.91, 37862.16]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Spending"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="impressions-male-chart"
+                                    data-data='[2994582, 247559, 14205, 8923599, 670228, 1840916, 765365, 4484935, 2759545, 4228565, 23944, 5496639, 705518, 199170, 4382442, 102269, 4104163]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="potential-reach-male-chart"
+                                    data-data='[17529233, 9854196, 118486, 135377092, 11714062, 50520224, 18508118, 35954070, 31757051, 22621966, 3463489, 122910789, 11625144, 9348904, 44729418, 7895027, 135532081]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        
+                    </div>
+                
+            </div>
+            <hr>
+        
+    
+        <div class="text-center">
+            <h2>Ranked by Age</h2>
+        </div>
+        
+            <div class="text-center">
+                <h4>13-17</h4>
+            </div>
+            <div class="row">
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="number-of-ads-13-17-chart"
+                                    data-data='[45, 33, 3, 2099, 99, 445, 198, 86, 175, 48, 11, 2879, 61, 34, 288, 28, 755]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Number of ads"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="spending-13-17-chart"
+                                    data-data='[0.32, 4.55, 0.0, 133.37, 20.48, 240.07, 1.64, 10.63, 123.6, 1.21, 0.0, 612.9, 46.38, 89.77, 7.27, 0.08, 194.86]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Spending"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="impressions-13-17-chart"
+                                    data-data='[87, 146, 0, 6271, 1090, 14434, 219, 700, 6295, 198, 0, 60851, 1737, 12193, 731, 5, 11025]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="potential-reach-13-17-chart"
+                                    data-data='[360, 60074, 0, 1421734, 101486, 428838, 4769, 209651, 1898581, 560, 0, 3573383, 417339, 1688982, 138739, 269, 1324753]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        
+                    </div>
+                
+            </div>
+            <hr>
+        
+            <div class="text-center">
+                <h4>18-24</h4>
+            </div>
+            <div class="row">
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="number-of-ads-18-24-chart"
+                                    data-data='[45, 33, 3, 2099, 99, 445, 198, 86, 175, 48, 11, 2879, 61, 34, 288, 28, 755]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Number of ads"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="spending-18-24-chart"
+                                    data-data='[3524.24, 880.22, 6.11, 28867.46, 2480.83, 13331.04, 2643.17, 2943.76, 10529.88, 7881.7, 32.95, 21072.55, 2477.48, 784.72, 6807.99, 518.03, 9498.8]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Spending"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="impressions-18-24-chart"
+                                    data-data='[837317, 111803, 591, 3821823, 210030, 1085642, 228047, 802479, 1401923, 1591578, 2740, 1850791, 353879, 108584, 841761, 56196, 1171446]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="potential-reach-18-24-chart"
+                                    data-data='[5262584, 6275169, 5438, 51691980, 6724009, 35897494, 7948179, 6263033, 18027542, 8057809, 305830, 49647276, 5973331, 4026053, 13145149, 4864701, 35756272]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        
+                    </div>
+                
+            </div>
+            <hr>
+        
+            <div class="text-center">
+                <h4>25-34</h4>
+            </div>
+            <div class="row">
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="number-of-ads-25-34-chart"
+                                    data-data='[45, 33, 3, 2099, 99, 445, 198, 86, 175, 48, 11, 2879, 61, 34, 288, 28, 755]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Number of ads"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="spending-25-34-chart"
+                                    data-data='[4664.43, 1510.67, 35.36, 40000.61, 3693.35, 11094.81, 3918.24, 7054.12, 13752.22, 7599.54, 69.35, 21152.0, 4343.58, 834.27, 11132.81, 479.55, 13198.47]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Spending"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="impressions-25-34-chart"
+                                    data-data='[1139377, 158773, 3463, 4751701, 344405, 952149, 359077, 2010148, 1857584, 1644898, 5431, 2488309, 577864, 90398, 1560031, 59526, 1597095]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="potential-reach-25-34-chart"
+                                    data-data='[6235130, 8431033, 30470, 66041048, 5754625, 29465670, 9013548, 11537333, 17830112, 7668547, 562701, 50721979, 5812117, 3751034, 13455281, 3842712, 41709328]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        
+                    </div>
+                
+            </div>
+            <hr>
+        
+            <div class="text-center">
+                <h4>35-44</h4>
+            </div>
+            <div class="row">
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="number-of-ads-35-44-chart"
+                                    data-data='[45, 33, 3, 2099, 99, 445, 198, 86, 175, 48, 11, 2879, 61, 34, 288, 28, 755]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Number of ads"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="spending-35-44-chart"
+                                    data-data='[3381.02, 1118.29, 52.93, 21226.41, 3214.03, 4961.06, 2604.71, 4019.07, 6242.83, 4405.32, 69.85, 14776.96, 2535.25, 508.34, 8506.34, 330.51, 9768.22]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Spending"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="impressions-35-44-chart"
+                                    data-data='[819023, 112611, 5486, 2808496, 315767, 455648, 271500, 1141433, 883269, 1045335, 4822, 1961730, 335356, 45406, 1286901, 27154, 1158071]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="potential-reach-35-44-chart"
+                                    data-data='[4317284, 4751662, 46323, 38279413, 3285782, 12755110, 6493196, 8113725, 8344041, 4145552, 682212, 35621598, 3442795, 2331188, 9790289, 2412451, 30293613]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        
+                    </div>
+                
+            </div>
+            <hr>
+        
+            <div class="text-center">
+                <h4>45-54</h4>
+            </div>
+            <div class="row">
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="number-of-ads-45-54-chart"
+                                    data-data='[45, 33, 3, 2099, 99, 445, 198, 86, 175, 48, 11, 2879, 61, 34, 288, 28, 755]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Number of ads"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="spending-45-54-chart"
+                                    data-data='[3381.14, 983.12, 70.61, 18202.94, 3269.82, 5335.09, 1894.36, 4340.45, 6799.38, 4806.6, 106.81, 17284.95, 2067.52, 457.69, 11132.34, 304.46, 10681.06]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Spending"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="impressions-45-54-chart"
+                                    data-data='[782409, 94784, 7873, 2445466, 322995, 491352, 210270, 1191956, 1088473, 1138043, 7267, 2267446, 252152, 43489, 1621914, 9176, 1207798]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="potential-reach-45-54-chart"
+                                    data-data='[4340005, 3555445, 64098, 37129854, 3175805, 13115023, 5190890, 9636680, 10552732, 4839077, 1133387, 43240039, 3584656, 2097231, 14302204, 2875210, 34082679]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        
+                    </div>
+                
+            </div>
+            <hr>
+        
+            <div class="text-center">
+                <h4>55-64</h4>
+            </div>
+            <div class="row">
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="number-of-ads-55-64-chart"
+                                    data-data='[45, 33, 3, 2099, 99, 445, 198, 86, 175, 48, 11, 2879, 61, 34, 288, 28, 755]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Number of ads"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="spending-55-64-chart"
+                                    data-data='[2715.23, 839.83, 56.06, 25307.87, 3046.31, 5880.33, 1066.91, 3830.21, 5170.78, 4679.09, 125.82, 21036.84, 1586.09, 360.1, 12803.99, 43.43, 8943.59]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Spending"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="impressions-55-64-chart"
+                                    data-data='[598829, 78630, 6607, 2998794, 305674, 521149, 125671, 1009589, 794977, 1092857, 8538, 2709207, 183373, 36402, 1843273, 1070, 1009820]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="potential-reach-55-64-chart"
+                                    data-data='[3659191, 2725500, 52190, 47036772, 3107006, 12010646, 3502385, 9808563, 8610933, 5283382, 1431743, 55763832, 3939537, 1879054, 18909434, 350891, 36358960]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        
+                    </div>
+                
+            </div>
+            <hr>
+        
+            <div class="text-center">
+                <h4>65+</h4>
+            </div>
+            <div class="row">
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="number-of-ads-65+-chart"
+                                    data-data='[45, 33, 3, 2099, 99, 445, 198, 86, 175, 48, 11, 2879, 61, 34, 288, 28, 755]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Number of ads"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="spending-65+-chart"
+                                    data-data='[1759.22, 647.3, 27.43, 46583.17, 3379.35, 6805.43, 623.22, 3013.18, 3037.56, 4195.68, 125.73, 23586.75, 963.61, 348.1, 11770.09, 10.5, 8804.55]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Spending"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="impressions-65+-chart"
+                                    data-data='[374462, 57195, 3479, 4378394, 343976, 577692, 76582, 758134, 400808, 948899, 8697, 2789655, 110465, 36507, 1656712, 318, 941033]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="potential-reach-65+-chart"
+                                    data-data='[3208161, 2625377, 26484, 76839146, 3481209, 12062618, 2208822, 8336010, 6036017, 5211736, 1334138, 61108843, 4338305, 2019382, 21348044, 6366, 49073892]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        
+                    </div>
+                
+            </div>
+            <hr>
+        
+    
+        <div class="text-center">
+            <h2>Ranked by Region</h2>
+        </div>
+        
+            <div class="text-center">
+                <h4>Drenthe</h4>
+            </div>
+            <div class="row">
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="number-of-ads-Drenthe-chart"
+                                    data-data='[45, 33, 3, 2099, 99, 445, 198, 86, 175, 48, 11, 2879, 61, 34, 288, 28, 755]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Number of ads"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="spending-Drenthe-chart"
+                                    data-data='[1077.25, 136.11, 11.24, 5694.53, 713.18, 1251.49, 138.25, 1168.42, 809.64, 1098.38, 5.24, 4163.35, 317.49, 67.81, 2135.4, 9.37, 2319.88]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Spending"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="impressions-Drenthe-chart"
+                                    data-data='[278967, 14735, 1272, 659966, 71950, 92905, 20007, 302738, 135773, 259766, 233, 572669, 38476, 10468, 337606, 630, 342451]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="potential-reach-Drenthe-chart"
+                                    data-data='[1421839, 357121, 10153, 10161392, 1019125, 3476390, 681110, 3046755, 1445719, 1144211, 108343, 12324790, 428001, 495543, 2499385, 77044, 11143490]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        
+                    </div>
+                
+            </div>
+            <hr>
+        
+            <div class="text-center">
+                <h4>Flevoland</h4>
+            </div>
+            <div class="row">
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="number-of-ads-Flevoland-chart"
+                                    data-data='[45, 33, 3, 2099, 99, 445, 198, 86, 175, 48, 11, 2879, 61, 34, 288, 28, 755]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Number of ads"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="spending-Flevoland-chart"
+                                    data-data='[402.95, 210.01, 6.32, 5751.51, 761.67, 875.77, 559.23, 573.13, 929.25, 719.71, 3.0, 3562.8, 744.69, 164.02, 1584.1, 26.5, 1198.21]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Spending"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="impressions-Flevoland-chart"
+                                    data-data='[92908, 20318, 645, 603959, 72321, 82218, 38066, 158634, 140953, 160716, 127, 334641, 42480, 11533, 238854, 2193, 128871]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="potential-reach-Flevoland-chart"
+                                    data-data='[560544, 1072036, 5593, 9087463, 1348481, 2802581, 794519, 1125017, 1296204, 731326, 58440, 8099768, 1647003, 925442, 1856134, 263082, 4272968]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        
+                    </div>
+                
+            </div>
+            <hr>
+        
+            <div class="text-center">
+                <h4>Friesland</h4>
+            </div>
+            <div class="row">
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="number-of-ads-Friesland-chart"
+                                    data-data='[45, 33, 3, 2099, 99, 445, 198, 86, 175, 48, 11, 2879, 61, 34, 288, 28, 755]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Number of ads"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="spending-Friesland-chart"
+                                    data-data='[1444.35, 181.54, 18.77, 7923.94, 1159.76, 1386.31, 181.9, 1281.75, 1266.23, 1355.77, 6.83, 5895.84, 428.12, 346.07, 2340.67, 22.72, 1885.31]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Spending"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="impressions-Friesland-chart"
+                                    data-data='[358937, 19462, 2047, 1227025, 113021, 117361, 25493, 362331, 203191, 307853, 321, 853725, 54637, 41896, 354498, 1839, 237891]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="potential-reach-Friesland-chart"
+                                    data-data='[2043679, 588922, 16720, 10848614, 1042021, 4518477, 864998, 2768960, 2004797, 1470290, 143873, 16208498, 492629, 950096, 2739021, 202901, 7684927]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        
+                    </div>
+                
+            </div>
+            <hr>
+        
+            <div class="text-center">
+                <h4>Gelderland</h4>
+            </div>
+            <div class="row">
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="number-of-ads-Gelderland-chart"
+                                    data-data='[45, 33, 3, 2099, 99, 445, 198, 86, 175, 48, 11, 2879, 61, 34, 288, 28, 755]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Number of ads"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="spending-Gelderland-chart"
+                                    data-data='[3385.33, 550.87, 30.74, 20314.5, 3515.91, 4178.25, 1970.81, 2912.3, 4423.13, 3979.43, 30.38, 9788.37, 1188.37, 484.54, 8175.19, 163.91, 5971.42]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Spending"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="impressions-Gelderland-chart"
+                                    data-data='[806189, 57152, 3457, 2435862, 336889, 393342, 167303, 818457, 656147, 903343, 2444, 1146775, 150706, 57437, 1150221, 15268, 754725]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="potential-reach-Gelderland-chart"
+                                    data-data='[5157711, 2509379, 28496, 36438510, 5081136, 10788606, 3380607, 5671029, 6024616, 3985511, 333575, 31067652, 1476319, 3191544, 10188128, 1460981, 24434457]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        
+                    </div>
+                
+            </div>
+            <hr>
+        
+            <div class="text-center">
+                <h4>Groningen</h4>
+            </div>
+            <div class="row">
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="number-of-ads-Groningen-chart"
+                                    data-data='[45, 33, 3, 2099, 99, 445, 198, 86, 175, 48, 11, 2879, 61, 34, 288, 28, 755]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Number of ads"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="spending-Groningen-chart"
+                                    data-data='[684.06, 183.29, 9.85, 5961.27, 896.69, 2751.98, 185.13, 1002.43, 1829.78, 1137.71, 6.04, 8890.59, 525.82, 62.21, 3587.95, 88.56, 1734.13]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Spending"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="impressions-Groningen-chart"
+                                    data-data='[160171, 20917, 1068, 866488, 82485, 219721, 25925, 289397, 250707, 259282, 265, 869122, 54784, 10234, 552464, 8647, 232113]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="potential-reach-Groningen-chart"
+                                    data-data='[933841, 827349, 8960, 9605698, 909923, 6273713, 898672, 2123741, 2083323, 1274177, 125144, 19729817, 1093507, 487864, 3420124, 772592, 7186704]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        
+                    </div>
+                
+            </div>
+            <hr>
+        
+            <div class="text-center">
+                <h4>Limburg</h4>
+            </div>
+            <div class="row">
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="number-of-ads-Limburg-chart"
+                                    data-data='[45, 33, 3, 2099, 99, 445, 198, 86, 175, 48, 11, 2879, 61, 34, 288, 28, 755]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Number of ads"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="spending-Limburg-chart"
+                                    data-data='[1032.91, 317.52, 21.87, 16509.24, 397.96, 3244.64, 640.84, 1947.69, 2228.52, 2313.77, 9.84, 7990.8, 605.91, 62.49, 4783.29, 44.02, 5353.8]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Spending"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="impressions-Limburg-chart"
+                                    data-data='[238431, 33107, 2403, 1933417, 39333, 213778, 72306, 553738, 370132, 535097, 433, 1299253, 71613, 11006, 697114, 3919, 482474]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="potential-reach-Limburg-chart"
+                                    data-data='[1365708, 1062592, 19489, 17385468, 657035, 7086421, 2270354, 3892451, 2992159, 2453256, 201328, 19781127, 1433323, 524027, 6168395, 390386, 17849009]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        
+                    </div>
+                
+            </div>
+            <hr>
+        
+            <div class="text-center">
+                <h4>Noord-brabant</h4>
+            </div>
+            <div class="row">
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="number-of-ads-Noord-Brabant-chart"
+                                    data-data='[45, 33, 3, 2099, 99, 445, 198, 86, 175, 48, 11, 2879, 61, 34, 288, 28, 755]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Number of ads"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="spending-Noord-Brabant-chart"
+                                    data-data='[2588.07, 639.11, 33.06, 24271.27, 932.45, 7680.09, 1918.99, 3366.95, 5549.46, 4869.48, 148.3, 18329.49, 1385.05, 143.62, 9164.41, 226.65, 10688.56]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Spending"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="impressions-Noord-Brabant-chart"
+                                    data-data='[614642, 64428, 3701, 2898906, 90399, 639954, 167116, 927538, 796704, 1100365, 16406, 2174906, 176636, 22221, 1232266, 20319, 1267762]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="potential-reach-Noord-Brabant-chart"
+                                    data-data='[3315851, 2172588, 30024, 41009650, 1519416, 15742072, 4426471, 7872939, 7713484, 4858402, 500417, 41154666, 1227866, 1203550, 20053424, 2029223, 31867629]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        
+                    </div>
+                
+            </div>
+            <hr>
+        
+            <div class="text-center">
+                <h4>Noord-holland</h4>
+            </div>
+            <div class="row">
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="number-of-ads-Noord-Holland-chart"
+                                    data-data='[45, 33, 3, 2099, 99, 445, 198, 86, 175, 48, 11, 2879, 61, 34, 288, 28, 755]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Number of ads"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="spending-Noord-Holland-chart"
+                                    data-data='[1848.3, 1316.63, 34.21, 20331.69, 1529.84, 7232.35, 2070.75, 3475.3, 8554.12, 4561.12, 22.09, 17296.79, 3758.93, 144.31, 8272.73, 341.69, 9640.1]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Spending"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="impressions-Noord-Holland-chart"
+                                    data-data='[385737, 135636, 3856, 2254084, 150393, 627080, 228409, 908517, 1230713, 1013007, 1296, 1921407, 387466, 18021, 1141930, 32079, 1094560]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="potential-reach-Noord-Holland-chart"
+                                    data-data='[3519381, 7738164, 31090, 57225847, 2723545, 17828812, 6491563, 8017652, 11271117, 4646639, 404845, 42245066, 3595626, 1237248, 13053431, 3146826, 34256390]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        
+                    </div>
+                
+            </div>
+            <hr>
+        
+            <div class="text-center">
+                <h4>Overijssel</h4>
+            </div>
+            <div class="row">
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="number-of-ads-Overijssel-chart"
+                                    data-data='[45, 33, 3, 2099, 99, 445, 198, 86, 175, 48, 11, 2879, 61, 34, 288, 28, 755]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Number of ads"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="spending-Overijssel-chart"
+                                    data-data='[2889.57, 295.63, 17.84, 18857.22, 2856.24, 4525.89, 887.94, 2686.61, 2538.64, 2622.02, 9.96, 8875.49, 627.28, 872.99, 4309.57, 110.08, 4780.79]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Spending"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="impressions-Overijssel-chart"
+                                    data-data='[714638, 30672, 2013, 2755050, 290671, 240243, 77277, 767711, 391198, 601728, 436, 1052164, 80507, 93650, 659539, 6930, 553104]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="potential-reach-Overijssel-chart"
+                                    data-data='[3767544, 976412, 16353, 25122134, 3933045, 7772462, 2127399, 5072683, 3788825, 2621183, 206681, 23761664, 731460, 2787285, 4482856, 592174, 18792634]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        
+                    </div>
+                
+            </div>
+            <hr>
+        
+            <div class="text-center">
+                <h4>Utrecht</h4>
+            </div>
+            <div class="row">
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="number-of-ads-Utrecht-chart"
+                                    data-data='[45, 33, 3, 2099, 99, 445, 198, 86, 175, 48, 11, 2879, 61, 34, 288, 28, 755]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Number of ads"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="spending-Utrecht-chart"
+                                    data-data='[1216.35, 531.79, 12.7, 14556.55, 2063.02, 3527.26, 902.49, 1186.16, 5121.53, 1967.39, 264.2, 6299.35, 920.71, 201.62, 4284.9, 176.48, 4389.49]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Spending"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="impressions-Utrecht-chart"
+                                    data-data='[282369, 53267, 1411, 1232779, 168352, 317909, 89633, 323499, 654608, 423015, 14443, 691745, 110013, 19847, 458510, 17174, 460592]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="potential-reach-Utrecht-chart"
+                                    data-data='[1419626, 2911185, 11383, 13522588, 3560355, 8819067, 2137911, 2254334, 5406609, 1996430, 2884407, 19489062, 1978522, 1194525, 4805257, 1578186, 12897681]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        
+                    </div>
+                
+            </div>
+            <hr>
+        
+            <div class="text-center">
+                <h4>Zeeland</h4>
+            </div>
+            <div class="row">
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="number-of-ads-Zeeland-chart"
+                                    data-data='[45, 33, 3, 2099, 99, 445, 198, 86, 175, 48, 11, 2879, 61, 34, 288, 28, 755]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Number of ads"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="spending-Zeeland-chart"
+                                    data-data='[1415.23, 101.77, 6.8, 6702.92, 568.8, 887.52, 129.51, 845.0, 656.43, 908.36, 3.64, 5046.46, 231.74, 270.89, 1153.41, 19.4, 882.36]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Spending"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="impressions-Zeeland-chart"
+                                    data-data='[253249, 10776, 750, 660283, 57606, 111813, 16828, 193192, 105197, 183656, 153, 549073, 29650, 18861, 174364, 1692, 127246]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="potential-reach-Zeeland-chart"
+                                    data-data='[1333560, 322313, 6391, 7833232, 374700, 2448951, 584163, 2664659, 1234851, 1538322, 72634, 8080671, 237873, 1051538, 1260285, 164431, 4397052]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        
+                    </div>
+                
+            </div>
+            <hr>
+        
+            <div class="text-center">
+                <h4>Zuid-holland</h4>
+            </div>
+            <div class="row">
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="number-of-ads-Zuid-Holland-chart"
+                                    data-data='[45, 33, 3, 2099, 99, 445, 198, 86, 175, 48, 11, 2879, 61, 34, 288, 28, 755]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Number of ads"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="spending-Zuid-Holland-chart"
+                                    data-data='[1437.82, 1519.72, 45.12, 33435.22, 3708.58, 10099.93, 3166.19, 4765.62, 11756.83, 8041.63, 20.97, 23361.49, 3279.04, 562.42, 12362.24, 457.62, 12231.48]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Spending"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="impressions-Zuid-Holland-chart"
+                                    data-data='[364493, 153514, 4875, 3682319, 370508, 1041543, 343021, 1308693, 1498983, 1714904, 937, 2659204, 617007, 57806, 1813331, 42798, 1413613]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Impressions"
+                            ></canvas>
+                        
+                    </div>
+                
+                    <div class="col-3 mx-auto">
+                        
+                            <canvas
+                                    id="potential-reach-Zuid-Holland-chart"
+                                    data-data='[2180588, 7886977, 40348, 80168798, 3461208, 28137934, 9704924, 9393667, 26044543, 8489210, 410130, 57687707, 13165562, 3744157, 20534723, 3682197, 53752796]'
+                                    data-labels='["BBB", "BIJ1", "BVNL", "CDA", "CU", "D66", "DENK", "FvD", "GL", "JA21", "PVV", "PvdA", "PvdD", "SGP", "SP", "VOLT", "VVD"]'
+                                    data-title="Potential reach"
+                            ></canvas>
+                        
+                    </div>
+                
+            </div>
+            <hr>
+        
+    
+
+</div>
+</body>
+</html>
