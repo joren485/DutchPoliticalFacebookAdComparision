@@ -30,7 +30,7 @@ verkeersregels
 snelheden
 bewegwijzering
 fietsvoorzieningen
-ongelukken.
+ongelukken
 
 Vliegvelden
 vliegverkeer
@@ -59,7 +59,7 @@ Treinstakingen
 Motorvoertuigen
 motorvoertuigbelasting
 rijbewijs
-auto’s
+auto
 bromfietsen
 scooters
 APK

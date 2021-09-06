@@ -18,14 +18,14 @@ exportbeleid
 voorwaarden
 fiscale
 exportbeperkingen
-embargo’s
+embargo
 Handelsconflicten
 
 Buitenlandse
 investeringen
 buitenland
 investeringsklimaat
-Kapitaalvlucht.
+Kapitaalvlucht
 
 Concurrentiekracht
 handelsbalans
@@ -51,7 +51,7 @@ gulden
 euro
 valuta
 handelsbalans
-negatief saldo
+saldo
 schulden
 
 Prijsontwikkelingen

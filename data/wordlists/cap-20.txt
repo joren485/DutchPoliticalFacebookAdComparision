@@ -18,24 +18,35 @@ burger
 overheid
 Samenleving
 
-2001: Interbestuurlijke betrekkingen (rijk-provincies-gemeenten-regio’s)
-Alle algemene punten rond bestuurlijke verhoudingen en betrekkingen
-algemene punten rond begrotingen verschillende bestuursniveaus
-spanningen tussen bestuurslagen. Hieronder ook algemene punten rond bevoegdheden en financiën
-zoals gemeentefonds en doeluitkeringen. Huis van Thorbecke. Decentralisatie/centralisatie
-gemeentelijke herindeling
-gemeentewet,
+Interbestuurlijke
+rijk
+provincies
+gemeenten
+regio
+bestuurlijke
+bestuursniveaus
+bestuurslagen
+gemeentefonds
+doeluitkeringen
+Thorbecke
+Decentralisatie
+centralisatie
+gemeentelijke
+gemeentewet
 
-2002: Overheidsefficiëntie en toezicht op bureaucratie
-Punten rond efficiëntie overheidsbestuur
-Gericht op terugdringen bureaucratie
+Overheidsefficiëntie
+bureaucratie
+overheidsbestuur
+bureaucratie
 bezuinigingen
-verminderen aantal ambtenaren.
-verkleinen overheid
-gebruik internet t.b.v. efficiency. Toezicht op ZBO’s
+ambtenaren
+overheid
+ZBO
 ombudsman
-corruptie in bureaucratie
-ESF fraude
+corruptie
+bureaucratie
+ESF
+fraude
 
 Postdiensten
 PostNL
@@ -98,7 +109,7 @@ donaties
 overheidssubsidies
 kandidaatstelling
 Referenda
-verkiezingsprogramma’s.
+verkiezingsprogramma
 
 Volkstelling
 

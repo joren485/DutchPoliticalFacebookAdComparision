@@ -1,7 +1,7 @@
 Arbeid
 
 Arbeidsmarkt
-overheidsprogramma’s
+overheidsprogramma
 arbeidsmarktbeleid
 werkgelegenheid
 werkloosheid
@@ -33,9 +33,9 @@ loopbaanbegeleiding
 volwassenenonderwijs
 loopbaan
 CWI
-trainingsprogramma’s
+trainingsprogramma
 ondernemingen
-werkprogramma’s
+werkprogramma
 inkomen
 omscholing
 arbeidsmarktbeleid
@@ -73,7 +73,7 @@ Bonus
 topinkomens
 tabaksblad
 
-Cao’s
+Cao
 vakbonden
 sociale
 pensioenen

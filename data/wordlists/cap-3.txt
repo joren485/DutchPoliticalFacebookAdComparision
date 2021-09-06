@@ -128,7 +128,7 @@ epidemieën
 
 Jeugdgezondheidszorg
 kinderen
-baby’s
+baby
 gezondheidspunten
 geboorten
 kindersterfte
@@ -191,7 +191,7 @@ drugs
 Verslaving
 drug
 methadon
-afkickprogramma’s
+afkickprogramma
 zorgverlening
 
 gezondheidszorg

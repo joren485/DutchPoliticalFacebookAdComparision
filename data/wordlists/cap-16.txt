@@ -20,7 +20,7 @@ troepenmacht
 EUFOR
 Duitsland
 België
-Groot Brittannië
+Groot-Brittannië
 Corps
 
 VN
@@ -46,7 +46,7 @@ paraatheid
 militaire
 alertheid
 materieel
-trainingsprogramma’s
+trainingsprogramma
 
 Wapenbeheersing
 ontwapening

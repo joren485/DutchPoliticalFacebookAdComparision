@@ -69,7 +69,6 @@ Euro
 EMU
 
 Afrika
-Punten rond betrekkingen met landen in Afrika
 droogte
 burgeroorlog
 
@@ -90,7 +89,10 @@ kanaalzones
 Panamakanaal
 Suezkanaal
 
-Verenigde Staten
+Verenigde
+Staten
+Verenigd
+Koninkrijk
 Canada
 Noord-Amerika
 VS
@@ -103,7 +105,7 @@ Afghanistan
 
 Midden-Oosten
 Irak
-Iran.
+Iran
 Israëlisch-Palestijnse
 Turkse
 Zelfmoordaanslagen
@@ -126,7 +128,7 @@ mensenrechten
 VN
 Unesco
 AzG
-Rode Kruis
+Kruis
 Veiligheidsraad
 strafhoven
 

@@ -28,7 +28,7 @@ landbouwproducten
 
 Overheidssubsidies
 subsidies
-herstructureringsprogramma’s
+herstructureringsprogramma
 steunfondsen
 landgebruik
 erfpacht
@@ -112,7 +112,7 @@ veevoeder
 hondsdolheid
 bestrijding
 ziekten
-vaccinatieprogramma’s
+vaccinatieprogramma
 
 Dierziektebestrijding
 veterinaire
