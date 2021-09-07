@@ -72,3 +72,9 @@ waterstaat
 weg
 wegeninfrastructuur
 zee
+
+vliegtuig
+airport
+luchthaven
+lelystadairport
+media

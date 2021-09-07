@@ -6,7 +6,6 @@ buitenlands
 concurrentiekracht
 conflict
 embargo
-euro
 export
 exportbeleid
 exportbeperking
@@ -26,7 +25,6 @@ internationaal
 investering
 investeringsklimaat
 kapitaalvlucht
-land
 markt
 munt
 prijsontwikkeling
@@ -35,9 +33,7 @@ saldo
 sanctie
 schuld
 staal
-tarief
 valuta
-vergunning
 voorwaarde
 vrijhandelsakkoorden
 wisselkoers

@@ -1,5 +1,3 @@
-(
-)
 aandeel
 aandeelbeurzen
 aandeelhouder
@@ -52,7 +50,6 @@ euro
 faillissement
 fraude
 fusie
-goed
 gokken
 gokverslaving
 gor
@@ -141,3 +138,16 @@ wir
 woekerpoliss
 zomertijd
 zondagssluiting
+
+ondernemer
+onderneemster
+ondernemersprijs
+ondernemersspreekuur
+startup
+onderneming
+ondernemersprij
+ondernemersprijs
+ondernemend
+klant
+klantenkring
+bedrijfsleven

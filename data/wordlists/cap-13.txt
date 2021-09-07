@@ -69,3 +69,6 @@ ziektewet
 zorg
 zorgverlof
 zwangerschapsverlof
+loonkloof
+middenklasse
+middeninkomen
