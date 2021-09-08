@@ -172,3 +172,8 @@ lockdown
 zorgmedewerker
 abortuskliniek
 coronaviru
+avondklokprotest
+avondklokrell
+ambulancestandplaats
+ambulancepost
+ambulancezorg

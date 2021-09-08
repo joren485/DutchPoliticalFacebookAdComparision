@@ -162,3 +162,5 @@ diefstal
 gevangenisstraf
 onveilig
 gebiedsverbod
+wapenstok
+bodycam

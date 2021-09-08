@@ -50,3 +50,5 @@ wetenschapper
 npo
 radio
 datacenter
+media
+internet

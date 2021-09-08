@@ -151,3 +151,4 @@ ondernemend
 klant
 klantenkring
 bedrijfsleven
+winkel

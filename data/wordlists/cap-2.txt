@@ -114,6 +114,4 @@ regenboogvlag
 asielsysteem
 menswaardig
 burger
-ambulancestandplaats
-ambulancepost
-ambulancezorg
+mensenrechten

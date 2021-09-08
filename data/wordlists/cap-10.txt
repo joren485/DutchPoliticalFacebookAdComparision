@@ -77,4 +77,8 @@ vliegtuig
 airport
 luchthaven
 lelystadairport
-media
+voertuig
+verkeersveiligheidsoogpunt
+foutparkerend
+verkeerschaos
+verkeersveiligheid
