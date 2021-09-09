@@ -13,7 +13,6 @@ spacy = "^3.1.2"
 Unidecode = "^1.2.0"
 jupyter = "^1.0.0"
 gensim = "^4.1.0"
-gsdmm = {git = "git@github.com:rwalk/gsdmm.git"}
 
 [tool.poetry.dev-dependencies]
 pydocstyle = {extras = ["toml"], version = "^6.1.1"}
