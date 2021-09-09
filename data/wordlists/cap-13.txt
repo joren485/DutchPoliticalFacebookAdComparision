@@ -1,6 +1,7 @@
 aow
 arbeidsongeschiktheid
 armoedebestrijding
+basisinkomen
 beschuldiging
 bijstand
 cohesie
@@ -46,4 +47,3 @@ ziekenhuis
 ziekte
 zorg
 zwangerschapsverlof
-basisinkomen

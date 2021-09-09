@@ -1,6 +1,7 @@
 accijns
 asielzoekerscentrum
 baan
+basisinkomen
 bedrijf
 begroting
 belasting
@@ -52,4 +53,3 @@ werkloosheid
 werkloosheidsuitkering
 werknemer
 woningmarkt
-basisinkomen

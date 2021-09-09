@@ -12,11 +12,13 @@ foutparkerend
 fusie
 haven
 infrastructureel
+infrastructuur
 jachthaven
 klm
 lelystadairport
 lijn
 luchthaven
+luchtvaart
 ongeluk
 openbaar
 parkeerbeleid
@@ -46,6 +48,4 @@ vrachtwagen
 waterstaat
 weg
 zee
-
-luchtvaart
-infrastructuur
+fiets

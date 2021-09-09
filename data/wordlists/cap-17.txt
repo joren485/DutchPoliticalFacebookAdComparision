@@ -12,6 +12,8 @@ media
 mobiel
 npo
 onderzoek
+ontwikkeling
+pers
 radio
 ruimtevaart
 technologie
@@ -21,7 +23,3 @@ tno
 universiteit
 wetenschappelijk
 wetenschapper
-
-ontwikkeling
-pers
-innovatie

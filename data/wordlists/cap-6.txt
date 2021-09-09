@@ -15,6 +15,7 @@ cultureel
 cultuur
 cultuuraanbod
 cultuurbeleid
+cultuurhistorisch
 cultuursector
 cursus
 docent
@@ -57,6 +58,7 @@ museum
 nederlands
 ondersteuning
 onderwijs
+onderwijshuisvesting
 onderzoek
 openbaar
 opleiding
@@ -84,6 +86,3 @@ vmbo
 voetbal
 vwo
 wetenschappelijk
-onderwijshuisvesting
-onderzoek
-cultuurhistorisch
