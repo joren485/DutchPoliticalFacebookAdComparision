@@ -1,7 +1,6 @@
 agressor
 alliantie
 basis
-belgie
 biologisch
 bondgenoot
 chemisch
@@ -9,9 +8,7 @@ conflict
 corps
 defensie
 defensieplek
-defensieroadtrip
 dreiging
-duitsland
 gebouw
 geheimhouding
 genocide
@@ -27,7 +24,6 @@ leger
 materieel
 militair
 missie
-navo
 navo-bondgenoot
 ongeluk
 ontwapening
@@ -44,7 +40,6 @@ veilig
 veiligheid
 vervuiling
 vliegtuig
-vn
 vrijheid
 wapen
 wapenwedloop

@@ -1,12 +1,11 @@
-airport
 apk
 auto
-binnenvaart
 brug
 bus
 busdienst
 dienstregeling
 dienstverlening
+fiets
 file
 foutparkerend
 fusie
@@ -14,8 +13,6 @@ haven
 infrastructureel
 infrastructuur
 jachthaven
-klm
-lelystadairport
 lijn
 luchthaven
 luchtvaart
@@ -25,7 +22,6 @@ parkeerbeleid
 ramp
 sanering
 scheepvaart
-schiphol
 scooter
 snelheid
 snelweg
@@ -48,4 +44,3 @@ vrachtwagen
 waterstaat
 weg
 zee
-fiets

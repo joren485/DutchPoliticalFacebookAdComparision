@@ -1,6 +1,5 @@
 afkomst
 antisemitisme
-arbeidsmarkt
 asiel
 asielbeleid
 asielsysteem
@@ -15,10 +14,8 @@ cultureel
 discriminatie
 diversiteit
 dna
-eerlijk
 emancipatie
 etnisch
-eu
 extremisme
 geaardheid
 geestelijk
@@ -49,8 +46,8 @@ openbaar
 openbaarheid
 privacy
 racisme
+recht
 regenboogvlag
-regenboogweek
 registratie
 religie
 religieus
@@ -63,11 +60,15 @@ sollicitatie
 stemrecht
 strafblad
 taal
-unequal
 vervoer
 vreemdelingenzaak
 vrijheid
+vrouw
 vrouwenemancipatie
 werkvloer
 zelfbeschikkingsrecht
-recht
+democratie
+rechtvaardig
+immigrant
+eerlijk
+

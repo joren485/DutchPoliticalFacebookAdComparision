@@ -1,6 +1,4 @@
 ambtenaar
-ambulance
-az
 begrafenis
 bestuur
 bestuurder
@@ -11,8 +9,6 @@ brandweer
 bureaucratie
 burgemeester
 burger
-campagne
-campagnetijd
 coalitie
 coalitieonderhandeling
 commissaris
@@ -34,8 +30,6 @@ grondwettelijk
 herindelingsverkiezing
 kamer
 kamerkandidat
-kamerleden
-kamerverkiezingen
 kandidaat-kamerled
 kandidaat-kamerlid
 kandidaatstelling
@@ -55,9 +49,6 @@ minister-president
 overheid
 overheidsdienst
 parlement
-politica
-politie
-postnl
 prinsjesdag
 provincie
 publiek
@@ -79,8 +70,7 @@ stembus
 tk
 transparantie
 tweede
-tweedekamerverkiezing
 verkenner
-verkiezingscampagne
 verkiezingstijd
 verkiezingsuitslag
+burgemeester

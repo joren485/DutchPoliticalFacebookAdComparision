@@ -3,11 +3,11 @@ abortus
 abortuskliniek
 accijns
 alcohol
+ambulance
 ambulancepost
 ambulancestandplaats
 ambulancezorg
 arbeidsvoorwaarde
-avondklokprotest
 avondklokrell
 behandeling
 besmetting
@@ -30,11 +30,11 @@ experiment
 familielid
 geboorte
 gehandicapt
+gezond
 gezondheid
 gezondheidszorg
 ggd
 huisarts
-ic
 ic-capaciteit
 intensive
 kind
@@ -46,7 +46,6 @@ medicijn
 medisch
 misstand
 mondkap
-obesitas
 onderzoek
 operatie
 oud
@@ -60,6 +59,7 @@ psychiatrisch
 psychisch
 reikwijdte
 revalidatie
+rivm
 samenwerking
 schadevergoeding
 seksueel
@@ -69,6 +69,7 @@ tandarts
 test
 thuiszorg
 vaccinatie
+vaccinatieprogramma
 vergoeding
 vergunning
 verpleeghuis
@@ -92,6 +93,4 @@ zorgmedewerker
 zorgtoeslag
 zorgverlener
 zorgverzekeraar
-rivm
-vaccinatieprogramma
-gezond
+who

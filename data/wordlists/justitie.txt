@@ -1,5 +1,4 @@
 agent
-aivd
 awb
 bedreiging
 bevoegdheid
@@ -16,7 +15,6 @@ diefstal
 draagmoederschap
 dreiging
 drug
-drugsaanpak
 drugsafval
 drugscriminaliteit
 drugsgeld
@@ -62,7 +60,6 @@ rechtsstaat
 rechtszaak
 rechtvaardig
 rechtvaardigheid
-security
 speed
 steekpartij
 straat
@@ -73,8 +70,6 @@ terrorisme
 uitbuiting
 veelpleger
 veilig
-veilige
-veiliger
 veiligheid
 vernieling
 vrijheid
