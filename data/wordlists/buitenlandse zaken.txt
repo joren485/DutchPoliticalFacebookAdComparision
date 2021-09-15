@@ -1,3 +1,18 @@
+buitenland
+buitenlands
+conflict
+fiscaal
+handel
+handelsakkoord
+import
+internationaal
+investering
+markt
+munt
+sanctie
+schuld
+staal
+voorwaarde
 afghanistan
 afrika
 akkoord
@@ -35,7 +50,6 @@ koninkrijk
 koninkrijksrelaties
 kruis
 land
-landbouw
 mensenrechten
 midden-oosten
 ontbossing

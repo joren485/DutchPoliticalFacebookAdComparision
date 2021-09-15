@@ -15,10 +15,6 @@ boerenpartij
 boerin
 bos
 dierenwelzijn
-dorp
-economie
-gezond
-gift
 groen
 grondwater
 halal
@@ -32,7 +28,7 @@ keurmerk
 kip
 koe
 koeienboer
-label
+
 landbouw
 landbouwbeleid
 landbouwgrond
@@ -50,16 +46,10 @@ platteland
 plattelandsbeleid
 plattelandspartij
 product
-promotie
-regel
-ritueel
-rivm
 slachterij
 stal
 stankoverlast
-subsidie
 transport
-vaccinatieprogramma
 varken
 vee
 veehouderij
@@ -73,10 +63,7 @@ voedsel
 voedselkwaliteit
 voedselproducent
 voedselproductie
-volksgezondheid
 wageningen
 weer
 wei
-welzijn
 winkel
-ziekte

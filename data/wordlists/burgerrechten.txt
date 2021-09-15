@@ -12,7 +12,6 @@ burger
 cameratoezicht
 commercieel
 cultureel
-decolonialization
 discriminatie
 diversiteit
 dna
@@ -31,7 +30,6 @@ grondrecht
 immigrant
 immigratie
 inburgering
-informatie
 integratie
 intimidatie
 journalist

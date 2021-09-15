@@ -92,3 +92,6 @@ zorgmedewerker
 zorgtoeslag
 zorgverlener
 zorgverzekeraar
+rivm
+vaccinatieprogramma
+gezond
