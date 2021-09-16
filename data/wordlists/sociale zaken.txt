@@ -6,6 +6,7 @@ arbeidsmarkt
 arbeidsmigratie
 arbeidsongeschiktheid
 arbeidsvoorwaarde
+armoede
 armoedebestrijding
 basisinkomen
 bedrijf
@@ -18,6 +19,7 @@ cao
 cohesie
 compensatie
 financiel
+flexcontract
 gehandicapt
 handicap
 huishouding
@@ -93,4 +95,3 @@ ziektekosten
 zomerkamp
 zorg
 zwangerschapsverlof
-arbeidsmarkt

@@ -54,6 +54,7 @@ klaslokaal
 krant
 kunst
 kunstenaar
+leenstelsel
 leerkracht
 leerling
 lerarentekort
@@ -90,6 +91,7 @@ sportbeleid
 sportvereniging
 student
 studie
+studieschuld
 subsidieregeling
 taal
 techniek

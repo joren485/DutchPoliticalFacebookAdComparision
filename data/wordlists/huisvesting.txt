@@ -6,6 +6,8 @@ bewoner
 binnenstad
 binnenstedelijk
 bouw
+dakloos
+dakloosheid
 dakloze
 dorp
 eiland
@@ -81,4 +83,5 @@ woningtekort
 woningvoorraad
 wooncorporatie
 wooncrisi
+woonlast
 woonplaats

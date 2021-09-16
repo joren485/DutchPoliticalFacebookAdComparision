@@ -84,13 +84,14 @@ voorziening
 vrijheid
 wachtlijst
 welzijn
+who
 ziekenhuis
 ziekte
 zorg
 zorginstelling
 zorgkosten
 zorgmedewerker
+zorgpremie
 zorgtoeslag
 zorgverlener
 zorgverzekeraar
-who

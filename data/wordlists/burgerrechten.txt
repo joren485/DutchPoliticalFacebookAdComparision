@@ -4,6 +4,7 @@ asiel
 asielbeleid
 asielsysteem
 asielzoeker
+asielzoekerscentrum
 behandeling
 blind
 buitenland
@@ -14,13 +15,14 @@ cultureel
 discriminatie
 diversiteit
 dna
+eerlijk
 emancipatie
 etnisch
 extremisme
 geaardheid
 geestelijk
-gegeven
 gehandicapt
+gelijk
 gelijkwaardigheid
 godsdienst
 grondrecht
@@ -30,6 +32,7 @@ inburgering
 integratie
 intimidatie
 journalist
+kans
 kansengelijkheid
 kiesrecht
 leeftijd
@@ -47,6 +50,7 @@ openbaarheid
 privacy
 racisme
 recht
+rechtvaardig
 regenboogvlag
 registratie
 religie
@@ -67,8 +71,3 @@ vrouw
 vrouwenemancipatie
 werkvloer
 zelfbeschikkingsrecht
-democratie
-rechtvaardig
-immigrant
-eerlijk
-

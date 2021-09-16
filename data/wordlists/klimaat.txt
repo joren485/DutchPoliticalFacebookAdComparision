@@ -17,6 +17,7 @@ co2
 controle
 dier
 diersoort
+droogte
 duurzaam
 duurzaamheid
 duurzaamheidsagenda
@@ -28,15 +29,13 @@ energiebesparing
 energiebron
 energiemix
 energieopwekking
+energietransitie
 energievoorziening
 experiment
 fijnstof
 gas
 gaswinning
 gebied
-gebouw
-geluidsoverlast
-gevaarlijk
 glas
 groen
 groenstrook
@@ -85,6 +84,8 @@ natuurgebied
 nucleair
 olie
 omgeving
+onbewoonbaar
+ontbossing
 ordening
 otter
 overstroming
@@ -98,6 +99,7 @@ recycling
 regen
 rivm
 ruimtelijk
+schoon
 stikstof
 stikstofdiscussie
 stikstofregel
@@ -117,6 +119,7 @@ vervuiling
 water
 waterschap
 watervoorziening
+wereld
 windenergie
 windmolenpark
 windpark
@@ -125,5 +128,3 @@ zonne-energie
 zonnepaneel
 zonnepark
 zoutkoepel
-ontbossing
-wereld
