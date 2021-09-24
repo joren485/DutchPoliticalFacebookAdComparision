@@ -33,9 +33,11 @@ def _parse_content(data: dict, key: str):
         return ""
 
     return " ".join(
-        filter(
-            lambda s: not s.startswith("{{product") and not s.startswith("{{ngMeta"),
-            data[key],
+        set(
+            filter(
+                lambda s: not s.startswith("{{product") and not s.startswith("{{ngMeta"),
+                data[key],
+            )
         )
     )
 
