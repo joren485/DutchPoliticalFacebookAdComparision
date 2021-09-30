@@ -18,7 +18,6 @@ from constants import (
     GENDERS,
     LOCAL_AD_ARCHIVE_PATH,
     REGIONS,
-    THEMES,
 )
 
 PATTERN_NON_WORD_CHARS = re.compile(r"[^a-zA-Z0-9-' #]")
@@ -37,6 +36,8 @@ class Ad(Model):
     ad_id = CharField(unique=True)
     page_id = CharField()
     party = CharField()
+
+    themes = IntegerField()
 
     creation_date = DateField()
     start_date = DateField()
@@ -121,15 +122,6 @@ class Ad(Model):
 
         raise ValueError(f"Unknown type: {demographic}")
 
-    @cached_property
-    def text(self) -> str:
-        """Return words used in texts of this ad."""
-        return (
-            f"{self.creative_bodies}"
-            f" {self.creative_link_descriptions}"
-            f" {self.creative_link_titles}"
-        )
-
     def rank_to_data(self, data_type: str, demographic: str, per_day: bool = False):
         """Return the amount of data type per demographic for this ad."""
         if data_type == "number-of-ads":
@@ -157,18 +149,6 @@ class Ad(Model):
             return amount
 
         return amount * getattr(self, Ad.demographic_to_field_name(demographic))
-
-    def is_about_theme(self, theme: str) -> bool:
-        """
-        Check whether this ad contains words of a theme.
-
-        :param theme: The theme to check for.
-        :return: True if a theme word is found in the ad text.
-        """
-        for theme_word in THEMES[theme]:
-            if theme_word.lower() in self.text.lower():
-                return True
-        return False
 
 
 for dt in GENDERS + REGIONS + AGE_RANGES:
