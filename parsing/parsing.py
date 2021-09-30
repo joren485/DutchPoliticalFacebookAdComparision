@@ -3,6 +3,10 @@ from datetime import datetime
 from decimal import Decimal
 from typing import Optional, Tuple
 
+import spacy
+
+from unidecode import unidecode
+
 from constants import (
     AGE_RANGES,
     CURRENCY_EXCHANGE_RATE_MAP,
@@ -13,6 +17,9 @@ from constants import (
     REGIONS,
 )
 from models import Ad
+from themes import Theme
+
+NLP = spacy.load("nl_core_news_lg")
 
 
 def _parse_date(data: dict, key: str) -> Optional[datetime]:
@@ -40,6 +47,28 @@ def _parse_content(data: dict, key: str):
             )
         )
     )
+
+
+def _parse_themes(ad_content: str) -> int:
+
+    doc = NLP(unidecode(ad_content))
+    words = [t.lemma_ for t in doc if t.pos_ in ("NOUN", "ADJ", "PROPN")]
+
+    theme_intersections = Theme.intersections(words)
+
+    if not theme_intersections:
+        return Theme.NONE.value
+
+    max_intersection = theme_intersections[
+        max(theme_intersections, key=lambda k: theme_intersections[k])
+    ]
+
+    flag = Theme.NONE
+    for t, f in theme_intersections.items():
+        if f > 1 and (f == max_intersection or f > 5):
+            flag |= t
+
+    return flag.value
 
 
 def json_to_ad_dict(ad_json_data: dict, party: str) -> dict:
@@ -120,5 +149,9 @@ def json_to_ad_dict(ad_json_data: dict, party: str) -> dict:
                             f"Unknown gender/age group: "
                             f"{demographic} ({ad_dict['ad_id']})"
                         )
+
+    ad_dict["themes"] = _parse_themes(
+        " ".join([ad_dict["creative_bodies"], ad_dict["creative_link_descriptions"]])
+    )
 
     return ad_dict
