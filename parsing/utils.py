@@ -8,7 +8,6 @@ from constants import (
     DEMOGRAPHIC_TYPE_TO_LIST_MAP,
     DEMOGRAPHIC_TYPES,
     PARTIES,
-    THEMES,
 )
 
 JINJA_ENVIRONMENT = Environment(
@@ -46,7 +45,6 @@ def render_template(template: str, destination: str, **kwargs) -> None:
     rendered_content = JINJA_ENVIRONMENT.get_template(template).render(
         last_updated=datetime.now().strftime("%H:%M %d-%m-%Y"),
         PARTIES=PARTIES,
-        THEMES=THEMES,
         DATA_TYPES=DATA_TYPES,
         DEMOGRAPHIC_TYPES=DEMOGRAPHIC_TYPES,
         DEMOGRAPHIC_TYPE_TO_LIST_MAP=DEMOGRAPHIC_TYPE_TO_LIST_MAP,
