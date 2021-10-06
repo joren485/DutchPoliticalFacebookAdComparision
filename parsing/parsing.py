@@ -151,7 +151,13 @@ def json_to_ad_dict(ad_json_data: dict, party: str) -> dict:
                         )
 
     ad_dict["themes"] = _parse_themes(
-        " ".join([ad_dict["creative_bodies"], ad_dict["creative_link_descriptions"]])
+        " ".join(
+            [
+                ad_dict["creative_bodies"],
+                ad_dict["creative_link_descriptions"],
+                ad_dict["creative_link_titles"],
+            ]
+        )
     )
 
     return ad_dict
