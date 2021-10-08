@@ -17,12 +17,11 @@ class Theme(Flag):
     JUSTITIE = auto()
     KLIMAAT = auto()
     LANDBOUW = auto()
+    MIGRATIE = auto()
     ONDERWIJS_CULTUUR = auto()
     OVERHEID = auto()
     SOCIALE_ZAKEN = auto()
     TRANSPORT = auto()
-
-    MIGRATIE = auto()
 
     @cached_property
     def wordlist(self):
