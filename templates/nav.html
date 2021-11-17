@@ -27,15 +27,6 @@
                     </ul>
                 </li>
 
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="theme-nav-dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Theme Statistics</a>
-                    <ul class="dropdown-menu" aria-labelledby="theme-nav-dropdown">
-                        {% for theme in THEMES %}
-                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/website/{{ theme | safe }}.html">{{ theme | safe | capitalize }}</a></li>
-                        {% endfor %}
-                    </ul>
-                </li>
-
                 <li class="nav-item">
                     <a class="nav-link" href="/DutchPoliticalFacebookAdComparision/website/about.html">About</a>
                 </li>
