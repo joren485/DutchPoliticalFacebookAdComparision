@@ -183,6 +183,7 @@ function generateBarChart(canvas) {
 }
 
 $(document).ready(function () {
+
     $("canvas").each(function (index, canvas) {
             if (canvas.id.includes("daily")) {
                 new Chart(canvas, generateLineGraphConfig(canvas));
@@ -191,4 +192,16 @@ $(document).ready(function () {
             }
         }
     );
+
+    $(".update-charts").on("click", function (){
+        let ids = $(this).data("ids");
+        let data = $(this).data("data");
+
+        ids.forEach(function (canvas_id, index){
+            let chart = Chart.getChart(canvas_id)
+
+            chart.config.data.datasets[0].data = data[index];
+            chart.update();
+        });
+    });
 });

@@ -8,7 +8,7 @@
         <h1>Theme Graphs</h1>
 
         <p class="lead">
-            {{ lipsum(n=1, html=True, min=20, max=50) }}
+            This page is a <strong>work in progress</strong>.
         </p>
     </div>
 
@@ -19,40 +19,35 @@
 
         <div class="btn-group flex-wrap" role="group">
             {% for party in PARTIES %}
-                <input type="radio" class="btn-check" name="btnradio-parties" id="btnradio-{{ party }}"
-                        {{ "checked" if loop.index0 == 0 }}
-                       data-bs-toggle="collapse" data-bs-target="#collapse-{{ party }}"
-                       aria-expanded="false" aria-controls="collapse-{{ party }}">
-                <label class="btn btn-outline-primary" for="btnradio-{{ party }}">{{ party }}</label>
+                <input type="radio" class="btn-check update-charts" name="btn-radio-party-graphs" id="btn-{{ party }}"
+                       data-ids='{{ ["number-of-ads-party-chart", "impressions-party-chart"] | tojson }}'
+                       data-data='{{ [
+                        theme_data["number-of-ads-theme-party"][party],
+                        theme_data["impressions-theme-party"][party],
+                       ] | tojson }}'
+                       {{ "checked" if loop.index0 == 0 }}
+                >
+                <label class="btn btn-outline-primary" for="btn-{{ party }}">{{ party }}</label>
             {% endfor %}
         </div>
 
-        <div id="party-graphs" class="mt-1">
-            {% for party in PARTIES %}
-                <div id="collapse-{{ party }}" class="collapse {{ "show" if party == "D66" }}"
-                     data-bs-parent="#party-graphs" style="transition: none;">
-                    <div class="card card-body">
-                        <div class="row">
-                            <div class="col-4 mx-auto">
-                                <canvas
-                                        id="themes-{{ party }}-chart"
-                                        data-data='{{ theme_data["number-of-ads-theme-party"][party] | tojson }}'
-                                        data-labels='{{ THEMES | tojson }}'
-                                        data-title="{{ "Number of Ads per Theme (" + party + ")" }}"
-                                ></canvas>
-                            </div>
-                            <div class="col-4 mx-auto">
-                                <canvas
-                                        id="themes-{{ party }}-chart"
-                                        data-data='{{ theme_data["impressions-demographics-theme-party"][party].values() | map(attribute="total") | map("first") | list | tojson }}'
-                                        data-labels='{{ THEMES | tojson }}'
-                                        data-title="{{ "Impressions per Theme (" + party + ")" }}"
-                                ></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
+        <div id="party-graphs" class="row mt-1">
+            <div class="col-4 mx-auto">
+                <canvas
+                        id="number-of-ads-party-chart"
+                        data-data='{{ theme_data["number-of-ads-theme-party"][PARTIES | first] | tojson }}'
+                        data-labels='{{ THEMES | tojson }}'
+                        data-title="{{ "Number of Ads per Theme" }}"
+                ></canvas>
+            </div>
+            <div class="col-4 mx-auto">
+                <canvas
+                        id="impressions-party-chart"
+                        data-data='{{ theme_data["impressions-theme-party"][PARTIES | first] | tojson }}'
+                        data-labels='{{ THEMES | tojson }}'
+                        data-title="{{ "Impressions per Theme" }}"
+                ></canvas>
+            </div>
         </div>
     </div>
 
@@ -63,36 +58,37 @@
 
         <div class="btn-group flex-wrap" role="group">
             {% for theme in THEMES %}
-                <input type="radio" class="btn-check" name="btnradio-themes" id="btnradio-{{ theme }}"
+                <input type="radio" class="btn-check update-charts" name="btn-radio-theme-graphs" id="btn-{{ theme }}"
+                       data-ids='{{ [
+                           "impressions-gender-theme-chart",
+                           "impressions-age-theme-chart",
+                           "impressions-region-theme-chart"
+                       ] | tojson }}'
+                       data-data='{{ [
+                            theme_data["impressions-demographics-theme"][theme]["gender"],
+                            theme_data["impressions-demographics-theme"][theme]["age"],
+                            theme_data["impressions-demographics-theme"][theme]["region"],
+                        ] | tojson }}'
                         {{ "checked" if loop.index0 == 0 }}
-                       data-bs-toggle="collapse" data-bs-target="#collapse-{{ theme }}"
-                       aria-expanded="false" aria-controls="collapse-{{ theme }}">
-                <label class="btn btn-outline-primary" for="btnradio-{{ theme }}">{{ theme }}</label>
+                >
+                <label class="btn btn-outline-primary" for="btn-{{ theme }}">{{ theme | capitalize }}</label>
             {% endfor %}
         </div>
 
         <div id="theme-graphs" class="mt-1">
-            {% for theme in THEMES %}
-                <div id="collapse-{{ theme }}" class="collapse {{ "show" if loop.index0 == 0 }}"
-                     data-bs-parent="#theme-graphs" style="transition: none;">
-                    <div class="card card-body">
-                        <div class="row">
-                            {% for dt in DEMOGRAPHIC_TYPES if dt not in ("total",) %}
-                                <div class="col-4 mx-auto">
-                                    <canvas
-                                            id="demographics-{{ theme }}-chart"
-                                            data-data='{{ theme_data["impressions-demographics-theme"][theme][dt] | tojson }}'
-                                            data-labels='{{ DEMOGRAPHIC_TYPE_TO_LIST_MAP[dt] | tojson }}'
-                                            data-title="{{ "Impressions per " + dt + " (" + theme + ")" }}"
-                                    ></canvas>
-                                </div>
-                            {% endfor %}
-                        </div>
+            <div class="row">
+                {% for dt in DEMOGRAPHIC_TYPES if dt not in ("total",) %}
+                    <div class="col-4 mx-auto">
+                        <canvas
+                                id="impressions-{{ dt }}-theme-chart"
+                                data-data='{{ theme_data["impressions-demographics-theme"][THEMES | first][dt] | tojson }}'
+                                data-labels='{{ DEMOGRAPHIC_TYPE_TO_LIST_MAP[dt] | tojson }}'
+                                data-title="{{ "Impressions per " + dt }}"
+                        ></canvas>
                     </div>
-                </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
-
     </div>
 
     <hr>
@@ -104,18 +100,23 @@
             {% for party in PARTIES %}
                 <div class="btn-group" role="group">
                     <button id="btn-dropdown-{{ party }}" type="button" class="btn btn-primary dropdown-toggle"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                        {{ party }}
-                    </button>
+                            data-bs-toggle="dropdown" aria-expanded="false">{{ party }}</button>
 
                     <ul class="dropdown-menu" aria-labelledby="btn-dropdown-{{ party }}">
                         {% for theme in THEMES %}
                             <li>
-                                <button class="dropdown-item btn btn-primary" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#collapse-{{ theme }}-{{ party }}"
-                                        aria-expanded="false" aria-controls="collapse-{{ theme }}-{{ party }}">
-                                    {{ theme }}
-                                </button>
+                                <button class="dropdown-item btn btn-primary update-charts" type="button"
+                                        data-ids='{{ [
+                                            "impressions-gender-theme-party-chart",
+                                            "impressions-age-theme-party-chart",
+                                            "impressions-region-theme-party-chart",
+                                        ] | tojson }}'
+                                        data-data='{{ [
+                                            theme_data["impressions-demographics-theme-party"][party][theme]["gender"],
+                                            theme_data["impressions-demographics-theme-party"][party][theme]["age"],
+                                            theme_data["impressions-demographics-theme-party"][party][theme]["region"],
+                                        ] | tojson }}'
+                                >{{ theme }}</button>
                             </li>
                         {% endfor %}
                     </ul>
@@ -124,30 +125,18 @@
         </div>
 
         <div id="theme-party-graphs" class="mt-1">
-            {% for party in PARTIES %}
-                {% set outer_loop = loop %}
-                {% for theme in THEMES %}
-                    <div id="collapse-{{ theme }}-{{ party }}"
-                         class="collapse {{ "show" if outer_loop.index0 == 0 and loop.index0 == 8 }}"
-                         data-bs-parent="#theme-party-graphs" style="transition: none;">
-                        <div class="card card-body">
-                            <h5>{{ party }} | {{ theme }}</h5>
-                            <div class="row">
-                                {% for dt in DEMOGRAPHIC_TYPES if dt not in ("total",) %}
-                                    <div class="col-4 mx-auto">
-                                        <canvas
-                                                id="{{ theme }}-{{ party }}-chart"
-                                                data-data='{{ theme_data["impressions-demographics-theme-party"][party][theme][dt] | tojson }}'
-                                                data-labels='{{ DEMOGRAPHIC_TYPE_TO_LIST_MAP[dt] | tojson }}'
-                                                data-title="{{ party + " | " + theme + " | " + dt }}"
-                                        ></canvas>
-                                    </div>
-                                {% endfor %}
-                            </div>
-                        </div>
+            <div class="row">
+                {% for dt in DEMOGRAPHIC_TYPES if dt not in ("total",) %}
+                    <div class="col-4 mx-auto">
+                        <canvas
+                                id="impressions-{{ dt }}-theme-party-chart"
+                                data-data='{{ theme_data["impressions-demographics-theme-party"][PARTIES | first ][THEMES | first][dt] | tojson }}'
+                                data-labels='{{ DEMOGRAPHIC_TYPE_TO_LIST_MAP[dt] | tojson }}'
+                                data-title="{{ dt }}"
+                        ></canvas>
                     </div>
                 {% endfor %}
-            {% endfor %}
+            </div>
         </div>
     </div>
 

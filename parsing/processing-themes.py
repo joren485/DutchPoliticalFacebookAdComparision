@@ -28,6 +28,10 @@ if __name__ == "__main__":
             } for p in PARTIES
         },
 
+        "impressions-theme-party": {
+            p: [] for p in PARTIES
+        },
+
         "number-of-ads-theme-party": {
             p: [] for p in PARTIES
         },
@@ -46,6 +50,7 @@ if __name__ == "__main__":
             ads = Ad.select().where(Ad.start_date >= FIRST_DATE).where(Ad.party == party).where(Ad.themes.bin_and(theme.value) == theme.value)
 
             theme_data["number-of-ads-theme-party"][party].append(ads.count())
+            theme_data["impressions-theme-party"][party].append(sum(a.rank_to_data("impressions", "total") for a in ads))
 
             for demographic_type in DEMOGRAPHIC_TYPES:
                 for demographic in DEMOGRAPHIC_TYPE_TO_LIST_MAP[demographic_type]:
