@@ -35,7 +35,7 @@
             <div class="col-4 mx-auto">
                 <canvas
                         id="number-of-ads-party-chart"
-                        data-data='{{ theme_data["number-of-ads-theme-party"][PARTIES | first] | tojson }}'
+                        data-data='{{ theme_data["number-of-ads-theme-party"][PARTIES[0]] | tojson }}'
                         data-labels='{{ THEMES | tojson }}'
                         data-title="{{ "Number of Ads per Theme" }}"
                 ></canvas>
@@ -43,7 +43,7 @@
             <div class="col-4 mx-auto">
                 <canvas
                         id="impressions-party-chart"
-                        data-data='{{ theme_data["impressions-theme-party"][PARTIES | first] | tojson }}'
+                        data-data='{{ theme_data["impressions-theme-party"][PARTIES[0]] | tojson }}'
                         data-labels='{{ THEMES | tojson }}'
                         data-title="{{ "Impressions per Theme" }}"
                 ></canvas>
@@ -81,7 +81,7 @@
                     <div class="col-4 mx-auto">
                         <canvas
                                 id="impressions-{{ dt }}-theme-chart"
-                                data-data='{{ theme_data["impressions-demographics-theme"][THEMES | first][dt] | tojson }}'
+                                data-data='{{ theme_data["impressions-demographics-theme"][THEMES[0]][dt] | tojson }}'
                                 data-labels='{{ DEMOGRAPHIC_TYPE_TO_LIST_MAP[dt] | tojson }}'
                                 data-title="{{ "Impressions per " + dt }}"
                         ></canvas>
@@ -130,7 +130,7 @@
                     <div class="col-4 mx-auto">
                         <canvas
                                 id="impressions-{{ dt }}-theme-party-chart"
-                                data-data='{{ theme_data["impressions-demographics-theme-party"][PARTIES | first ][THEMES | first][dt] | tojson }}'
+                                data-data='{{ theme_data["impressions-demographics-theme-party"][PARTIES[0]][THEMES[8]][dt] | tojson }}'
                                 data-labels='{{ DEMOGRAPHIC_TYPE_TO_LIST_MAP[dt] | tojson }}'
                                 data-title="{{ dt }}"
                         ></canvas>
