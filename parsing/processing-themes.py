@@ -24,8 +24,8 @@ if __name__ == "__main__":
             p: {t: {dt: [] for dt in DEMOGRAPHIC_TYPES} for t in THEME_NAMES}
             for p in PARTIES
         },
-        "impressions-theme-party": {p: [0] * len(THEMES) for p in PARTIES},
-        "number-of-ads-theme-party": {p: [0] * len(THEMES) for p in PARTIES},
+        "impressions-theme-party": {p: [] for p in PARTIES},
+        "number-of-ads-theme-party": {p: [] for p in PARTIES},
     }
 
     for theme in THEMES:
