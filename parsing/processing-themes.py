@@ -16,25 +16,22 @@ logging.basicConfig(
     datefmt="%Y-%m-%d %H:%M:%S",
 )
 
-THEMES = [t for t in Theme if t != Theme.NONE]
-THEME_NAMES = [t.name for t in Theme if t != Theme.NONE]
-
 if __name__ == "__main__":
 
     theme_data = {
         "impressions-demographics-theme": {
-            t: {dt: [] for dt in DEMOGRAPHIC_TYPES} for t in THEME_NAMES
+            t: {dt: [] for dt in DEMOGRAPHIC_TYPES} for t in Theme.slugs()
         },
         "impressions-demographics-theme-party": {
-            p: {t: {dt: [] for dt in DEMOGRAPHIC_TYPES} for t in THEME_NAMES}
+            p: {t: {dt: [] for dt in DEMOGRAPHIC_TYPES} for t in Theme.slugs()}
             for p in PARTIES
         },
         "impressions-theme-party": {p: [] for p in PARTIES},
         "number-of-ads-theme-party": {p: [] for p in PARTIES},
     }
 
-    for theme in THEMES:
-        logging.info(f"Processing {theme}.")
+    for theme in Theme.all():
+        logging.info(f"Processing {theme.slug}.")
 
         ads = (
             Ad.select()
@@ -43,7 +40,7 @@ if __name__ == "__main__":
         )
         for demographic_type in DEMOGRAPHIC_TYPES:
             for demographic in DEMOGRAPHIC_TYPE_TO_LIST_MAP[demographic_type]:
-                theme_data["impressions-demographics-theme"][theme.name][
+                theme_data["impressions-demographics-theme"][theme.slug][
                     demographic_type
                 ].append(sum(a.rank_to_data("impressions", demographic) for a in ads))
 
@@ -63,7 +60,7 @@ if __name__ == "__main__":
             for demographic_type in DEMOGRAPHIC_TYPES:
                 for demographic in DEMOGRAPHIC_TYPE_TO_LIST_MAP[demographic_type]:
                     theme_data["impressions-demographics-theme-party"][party][
-                        theme.name
+                        theme.slug
                     ][demographic_type].append(
                         sum(a.rank_to_data("impressions", demographic) for a in ads)
                     )
@@ -71,5 +68,5 @@ if __name__ == "__main__":
     logging.debug("Writing templates")
     recursive_round(theme_data)
     render_template(
-        "themes.html", "themes.html", theme_data=theme_data, THEMES=THEME_NAMES
+        "themes.html", "themes.html", theme_data=theme_data, THEMES=Theme.slugs()
     )

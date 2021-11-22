@@ -23,11 +23,27 @@ class Theme(Flag):
     SOCIALE_ZAKEN = auto()
     TRANSPORT = auto()
 
+    @classmethod
+    def all(cls):
+        return [t for t in cls if t != Theme.NONE]
+
+    @property
+    def slug(self):
+        if self == Theme.ONDERWIJS_CULTUUR:
+            return "Onderwijs & Cultuur"
+
+        slug = self.name.title().replace("_", " ")
+        return slug
+
+    @classmethod
+    def slugs(cls):
+        return [t.slug for t in cls.all()]
+
     @cached_property
     def wordlist(self):
         """Return the (cached) wordlist corresponding to the theme."""
-        slug = self.name.lower().replace("_", " ")
-        path = f"../data/wordlists/{slug}"
+        filename = self.name.lower().replace("_", " ")
+        path = f"../data/wordlists/{filename}"
 
         with open(path) as h_file:
             return [line.strip() for line in h_file if line.strip()]
