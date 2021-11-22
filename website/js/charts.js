@@ -194,14 +194,29 @@ $(document).ready(function () {
     );
 
     $(".update-charts").on("click", function (){
-        let ids = $(this).data("ids");
+        let divId = $(this).data("id");
         let data = $(this).data("data");
 
-        ids.forEach(function (canvas_id, index){
-            let chart = Chart.getChart(canvas_id)
+        let party = $(this).data("party");
+        let theme = $(this).data("theme")
+
+        $("#" + divId + " canvas").each(function (index, canvas){
+            let chart = Chart.getChart(canvas)
+
+            if(party){
+                chart.config.options.plugins.title.text = chart.config.options.plugins.title.text.replace(/ by .+? /, " by " + party + " ");
+            }
+            if(theme){
+                chart.config.options.plugins.title.text = chart.config.options.plugins.title.text.replace(/ about .+? Distributed/, " about " + theme + " Distributed");
+            }
 
             chart.config.data.datasets[0].data = data[index];
             chart.update();
-        });
+        })
     });
+
+    $(".first-button").each(function (){
+        $(this).click();
+    });
+
 });

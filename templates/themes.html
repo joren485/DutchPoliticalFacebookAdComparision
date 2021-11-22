@@ -19,13 +19,13 @@
 
         <div class="btn-group flex-wrap" role="group">
             {% for party in PARTIES %}
-                <input type="radio" class="btn-check update-charts" name="btn-radio-party-graphs" id="btn-{{ party }}"
-                       data-ids='{{ ["number-of-ads-party-chart", "impressions-party-chart"] | tojson }}'
+                <input type="radio" class="btn-check update-charts {{ "first-button" if loop.index0 == 0 }}" name="btn-radio-party-graphs" id="btn-{{ party }}"
+                       data-id="party-graphs"
                        data-data='{{ [
-                        theme_data["number-of-ads-theme-party"][party],
-                        theme_data["impressions-theme-party"][party],
+                            theme_data["number-of-ads-theme-party"][party],
+                            theme_data["impressions-theme-party"][party],
                        ] | tojson }}'
-                       {{ "checked" if loop.index0 == 0 }}
+                       data-party="{{ party }}"
                 >
                 <label class="btn btn-outline-primary" for="btn-{{ party }}">{{ party }}</label>
             {% endfor %}
@@ -35,17 +35,17 @@
             <div class="col-4 mx-auto">
                 <canvas
                         id="number-of-ads-party-chart"
-                        data-data='{{ theme_data["number-of-ads-theme-party"][PARTIES[0]] | tojson }}'
+                        data-data=''
                         data-labels='{{ THEMES | tojson }}'
-                        data-title="{{ "Number of Ads per Theme" }}"
+                        data-title="Number of Ads by PLACCEHOLDER Distributed by Theme"
                 ></canvas>
             </div>
             <div class="col-4 mx-auto">
                 <canvas
                         id="impressions-party-chart"
-                        data-data='{{ theme_data["impressions-theme-party"][PARTIES[0]] | tojson }}'
+                        data-data=''
                         data-labels='{{ THEMES | tojson }}'
-                        data-title="{{ "Impressions per Theme" }}"
+                        data-title="Impressions of Ads by PLACCEHOLDER Distributed by Theme"
                 ></canvas>
             </div>
         </div>
@@ -58,18 +58,14 @@
 
         <div class="btn-group flex-wrap" role="group">
             {% for theme in THEMES %}
-                <input type="radio" class="btn-check update-charts" name="btn-radio-theme-graphs" id="btn-{{ theme }}"
-                       data-ids='{{ [
-                           "impressions-gender-theme-chart",
-                           "impressions-age-theme-chart",
-                           "impressions-region-theme-chart"
-                       ] | tojson }}'
+                <input type="radio" class="btn-check update-charts {{ "first-button" if loop.index0 == 0 }}" name="btn-radio-theme-graphs" id="btn-{{ theme }}"
+                       data-id="theme-graphs"
                        data-data='{{ [
                             theme_data["impressions-demographics-theme"][theme]["gender"],
                             theme_data["impressions-demographics-theme"][theme]["age"],
                             theme_data["impressions-demographics-theme"][theme]["region"],
                         ] | tojson }}'
-                        {{ "checked" if loop.index0 == 0 }}
+                       data-theme="{{ theme }}"
                 >
                 <label class="btn btn-outline-primary" for="btn-{{ theme }}">{{ theme | capitalize }}</label>
             {% endfor %}
@@ -81,9 +77,9 @@
                     <div class="col-4 mx-auto">
                         <canvas
                                 id="impressions-{{ dt }}-theme-chart"
-                                data-data='{{ theme_data["impressions-demographics-theme"][THEMES[0]][dt] | tojson }}'
+                                data-data=""
                                 data-labels='{{ DEMOGRAPHIC_TYPE_TO_LIST_MAP[dt] | tojson }}'
-                                data-title="{{ "Impressions per " + dt }}"
+                                data-title='{{ "Impressions of Ads about PLACEHOLDER Distributed by " + dt | capitalize }}'
                         ></canvas>
                     </div>
                 {% endfor %}
@@ -106,17 +102,15 @@
                         {% for theme in THEMES %}
                             {% if theme_data["impressions-demographics-theme-party"][party][theme]["region"] | sum > 0 %}
                                 <li>
-                                    <button class="dropdown-item btn btn-primary update-charts" type="button"
-                                            data-ids='{{ [
-                                                "impressions-gender-theme-party-chart",
-                                                "impressions-age-theme-party-chart",
-                                                "impressions-region-theme-party-chart",
-                                            ] | tojson }}'
+                                    <button class="dropdown-item btn btn-primary update-charts {{ "first-button" if party == PARTIES[0] and theme == THEMES[8] }}" type="button"
+                                            data-id="theme-party-graphs"
                                             data-data='{{ [
                                                 theme_data["impressions-demographics-theme-party"][party][theme]["gender"],
                                                 theme_data["impressions-demographics-theme-party"][party][theme]["age"],
                                                 theme_data["impressions-demographics-theme-party"][party][theme]["region"],
                                             ] | tojson }}'
+                                            data-party="{{ party }}"
+                                            data-theme="{{ theme }}"
                                     >{{ theme }}</button>
                                 </li>
                             {% endif %}
@@ -132,9 +126,9 @@
                     <div class="col-4 mx-auto">
                         <canvas
                                 id="impressions-{{ dt }}-theme-party-chart"
-                                data-data='{{ theme_data["impressions-demographics-theme-party"][PARTIES[0]][THEMES[8]][dt] | tojson }}'
+                                data-data=""
                                 data-labels='{{ DEMOGRAPHIC_TYPE_TO_LIST_MAP[dt] | tojson }}'
-                                data-title="{{ dt }}"
+                                data-title='{{ "Impressions of Ads by PLACEHOLDER about PLACEHOLDER Distributed by " + dt | capitalize }}'
                         ></canvas>
                     </div>
                 {% endfor %}
