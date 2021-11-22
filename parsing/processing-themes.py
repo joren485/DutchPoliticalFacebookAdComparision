@@ -20,10 +20,10 @@ if __name__ == "__main__":
 
     theme_data = {
         "impressions-demographics-theme": {
-            t: {dt: [] for dt in DEMOGRAPHIC_TYPES} for t in Theme.slugs()
+            t: {dt: [] for dt in DEMOGRAPHIC_TYPES} for t in Theme.titles()
         },
         "impressions-demographics-theme-party": {
-            p: {t: {dt: [] for dt in DEMOGRAPHIC_TYPES} for t in Theme.slugs()}
+            p: {t: {dt: [] for dt in DEMOGRAPHIC_TYPES} for t in Theme.titles()}
             for p in PARTIES
         },
         "impressions-theme-party": {p: [] for p in PARTIES},
@@ -31,7 +31,7 @@ if __name__ == "__main__":
     }
 
     for theme in Theme.all():
-        logging.info(f"Processing {theme.slug}.")
+        logging.info(f"Processing {theme.title}.")
 
         ads = (
             Ad.select()
@@ -40,7 +40,7 @@ if __name__ == "__main__":
         )
         for demographic_type in DEMOGRAPHIC_TYPES:
             for demographic in DEMOGRAPHIC_TYPE_TO_LIST_MAP[demographic_type]:
-                theme_data["impressions-demographics-theme"][theme.slug][
+                theme_data["impressions-demographics-theme"][theme.title][
                     demographic_type
                 ].append(sum(a.rank_to_data("impressions", demographic) for a in ads))
 
@@ -60,7 +60,7 @@ if __name__ == "__main__":
             for demographic_type in DEMOGRAPHIC_TYPES:
                 for demographic in DEMOGRAPHIC_TYPE_TO_LIST_MAP[demographic_type]:
                     theme_data["impressions-demographics-theme-party"][party][
-                        theme.slug
+                        theme.title
                     ][demographic_type].append(
                         sum(a.rank_to_data("impressions", demographic) for a in ads)
                     )
@@ -68,5 +68,5 @@ if __name__ == "__main__":
     logging.debug("Writing templates")
     recursive_round(theme_data)
     render_template(
-        "themes.html", "themes.html", theme_data=theme_data, THEMES=Theme.slugs()
+        "themes.html", "themes.html", theme_data=theme_data, THEMES=Theme.titles()
     )

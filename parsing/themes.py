@@ -25,10 +25,12 @@ class Theme(Flag):
 
     @classmethod
     def all(cls):
+        """Return a list of themes."""
         return [t for t in cls if t != Theme.NONE]
 
     @property
-    def slug(self):
+    def title(self):
+        """Return the name of a theme in a format that can be used in a title."""
         if self == Theme.ONDERWIJS_CULTUUR:
             return "Onderwijs & Cultuur"
 
@@ -36,8 +38,9 @@ class Theme(Flag):
         return slug
 
     @classmethod
-    def slugs(cls):
-        return [t.slug for t in cls.all()]
+    def titles(cls):
+        """Return list of title properties."""
+        return [t.title for t in cls.all()]
 
     @cached_property
     def wordlist(self):
