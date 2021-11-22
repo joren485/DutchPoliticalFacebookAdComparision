@@ -104,20 +104,22 @@
 
                     <ul class="dropdown-menu" aria-labelledby="btn-dropdown-{{ party }}">
                         {% for theme in THEMES %}
-                            <li>
-                                <button class="dropdown-item btn btn-primary update-charts" type="button"
-                                        data-ids='{{ [
-                                            "impressions-gender-theme-party-chart",
-                                            "impressions-age-theme-party-chart",
-                                            "impressions-region-theme-party-chart",
-                                        ] | tojson }}'
-                                        data-data='{{ [
-                                            theme_data["impressions-demographics-theme-party"][party][theme]["gender"],
-                                            theme_data["impressions-demographics-theme-party"][party][theme]["age"],
-                                            theme_data["impressions-demographics-theme-party"][party][theme]["region"],
-                                        ] | tojson }}'
-                                >{{ theme }}</button>
-                            </li>
+                            {% if theme_data["impressions-demographics-theme-party"][party][theme]["region"] | sum > 0 %}
+                                <li>
+                                    <button class="dropdown-item btn btn-primary update-charts" type="button"
+                                            data-ids='{{ [
+                                                "impressions-gender-theme-party-chart",
+                                                "impressions-age-theme-party-chart",
+                                                "impressions-region-theme-party-chart",
+                                            ] | tojson }}'
+                                            data-data='{{ [
+                                                theme_data["impressions-demographics-theme-party"][party][theme]["gender"],
+                                                theme_data["impressions-demographics-theme-party"][party][theme]["age"],
+                                                theme_data["impressions-demographics-theme-party"][party][theme]["region"],
+                                            ] | tojson }}'
+                                    >{{ theme }}</button>
+                                </li>
+                            {% endif %}
                         {% endfor %}
                     </ul>
                 </div>
