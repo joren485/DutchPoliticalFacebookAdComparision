@@ -1,15 +1,20 @@
+import logging
+
 from constants import (
+    DEMOGRAPHIC_TYPE_TO_LIST_MAP,
+    DEMOGRAPHIC_TYPES,
     FIRST_DATE,
     PARTIES,
-    DEMOGRAPHIC_TYPES,
-    DEMOGRAPHIC_TYPE_TO_LIST_MAP,
 )
-
-from themes import Theme
-
 from models import Ad
+from themes import Theme
+from utils import recursive_round, render_template
 
-from utils import render_template, recursive_round
+logging.basicConfig(
+    format="[%(asctime)s] %(levelname)s: %(message)s",
+    level=logging.INFO,
+    datefmt="%Y-%m-%d %H:%M:%S",
+)
 
 THEMES = [t for t in Theme if t != Theme.NONE]
 THEME_NAMES = [t.name for t in Theme if t != Theme.NONE]

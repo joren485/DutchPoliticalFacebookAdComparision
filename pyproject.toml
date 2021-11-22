@@ -23,7 +23,7 @@ isort = "^5.9.3"
 [tool.isort]
 profile = "black"
 multi_line_output = 3
-known_first_party = "constants, models, parsing, utils"
+known_first_party = "constants, models, parsing, themes, utils"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
