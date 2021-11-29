@@ -4,8 +4,8 @@
 
 {% block content %}
 
-    <div class="text-center">
-        <h1>Theme Graphs</h1>
+    <div>
+        <h1 class="text-center">Theme Graphs</h1>
 
         <div class="col-6 mx-auto">
             <p class="lead">
@@ -19,31 +19,33 @@
 
     <hr>
 
-    <div class="text-center">
-        <h4>Theme Distribution per Party</h4>
+    <div>
+        <h4 class="text-center">Theme Distribution per Party</h4>
 
         <div class="col-6 mx-auto">
             <p>
                 These graphs show you how much each party advertises about each theme.
                 The left graph shows how many ads a party ran about each theme.
                 The right graph shows how many people were shown the ads (called impressions) about each theme.
-                For example, this shows you that D66 advertised the most about education & culture, but that their ads about
-                climate were shown the most.
+                For example, this shows you that D66 advertised the most about education & culture, but that their ads
+                about climate were shown the most.
             </p>
         </div>
-
-        <div class="btn-group flex-wrap" role="group">
-            {% for party in PARTIES %}
-                <input type="radio" class="btn-check update-charts {{ "first-button" if loop.index0 == 0 }}" name="btn-radio-party-graphs" id="btn-{{ party }}"
-                       data-id="party-graphs"
-                       data-data='{{ [
+        <div class="text-center">
+            <div class="btn-group flex-wrap" role="group">
+                {% for party in PARTIES %}
+                    <input type="radio" class="btn-check update-charts {{ "first-button" if loop.index0 == 0 }}"
+                           name="btn-radio-party-graphs" id="btn-{{ party }}"
+                           data-id="party-graphs"
+                           data-data='{{ [
                             theme_data["number-of-ads-theme-party"][party],
                             theme_data["impressions-theme-party"][party],
                        ] | tojson }}'
-                       data-party="{{ party }}"
-                >
-                <label class="btn btn-outline-primary" for="btn-{{ party }}">{{ party }}</label>
-            {% endfor %}
+                           data-party="{{ party }}"
+                    >
+                    <label class="btn btn-outline-primary" for="btn-{{ party }}">{{ party }}</label>
+                {% endfor %}
+            </div>
         </div>
 
         <div id="party-graphs" class="row mt-1">
@@ -52,7 +54,7 @@
                         id="number-of-ads-party-chart"
                         data-data=''
                         data-labels='{{ THEMES | tojson }}'
-                        data-title="Number of Ads by PLACCEHOLDER Distributed by Theme"
+                        data-title="Number of Ads by PLACEHOLDER Distributed by Theme"
                 ></canvas>
             </div>
             <div class="col-4 mx-auto">
@@ -60,7 +62,7 @@
                         id="impressions-party-chart"
                         data-data=''
                         data-labels='{{ THEMES | tojson }}'
-                        data-title="Impressions of Ads by PLACCEHOLDER Distributed by Theme"
+                        data-title="Impressions of Ads by PLACEHOLDER Distributed by Theme"
                 ></canvas>
             </div>
         </div>
@@ -68,8 +70,8 @@
 
     <hr>
 
-    <div class="text-center">
-        <h4>Demographic Impressions Distribution per Theme</h4>
+    <div>
+        <h4 class="text-center">Demographic Impressions Distribution per Theme</h4>
 
         <div class="col-6 mx-auto">
             <p>
@@ -78,20 +80,22 @@
                 For example, this shows you how many people were shown ads about housing.
             </p>
         </div>
-
-        <div class="btn-group flex-wrap" role="group">
-            {% for theme in THEMES %}
-                <input type="radio" class="btn-check update-charts {{ "first-button" if loop.index0 == 0 }}" name="btn-radio-theme-graphs" id="btn-{{ theme }}"
-                       data-id="theme-graphs"
-                       data-data='{{ [
+        <div class="text-center">
+            <div class="btn-group flex-wrap" role="group">
+                {% for theme in THEMES %}
+                    <input type="radio" class="btn-check update-charts {{ "first-button" if loop.index0 == 0 }}"
+                           name="btn-radio-theme-graphs" id="btn-{{ theme }}"
+                           data-id="theme-graphs"
+                           data-data='{{ [
                             theme_data["impressions-demographics-theme"][theme]["gender"],
                             theme_data["impressions-demographics-theme"][theme]["age"],
                             theme_data["impressions-demographics-theme"][theme]["region"],
                         ] | tojson }}'
-                       data-theme="{{ theme }}"
-                >
-                <label class="btn btn-outline-primary" for="btn-{{ theme }}">{{ theme | capitalize }}</label>
-            {% endfor %}
+                           data-theme="{{ theme }}"
+                    >
+                    <label class="btn btn-outline-primary" for="btn-{{ theme }}">{{ theme | capitalize }}</label>
+                {% endfor %}
+            </div>
         </div>
 
         <div id="theme-graphs" class="mt-1">
@@ -112,43 +116,46 @@
 
     <hr>
 
-    <div class="text-center">
-        <h4>Demographic Impressions Distribution per Theme per Party</h4>
+    <div>
+        <h4 class="text-center">Demographic Impressions Distribution per Theme per Party</h4>
 
         <div class="col-6 mx-auto">
             <p>
                 These graphs look more deeply into who has been shown ads.
-                These graphs do not only look at who was shown ads about each theme, they also take the parties into account.
+                These graphs do not only look at who was shown ads about each theme, they also take the parties into
+                account.
                 For example, this shows you how many people were shown ads by D66 about housing.
             </p>
         </div>
+        <div class="text-center">
+            <div class="btn-group flex-wrap" role="group">
+                {% for party in PARTIES %}
+                    <div class="btn-group" role="group">
+                        <button id="btn-dropdown-{{ party }}" type="button" class="btn btn-primary dropdown-toggle"
+                                data-bs-toggle="dropdown" aria-expanded="false">{{ party }}</button>
 
-        <div class="btn-group flex-wrap p-2" role="group">
-            {% for party in PARTIES %}
-                <div class="btn-group" role="group">
-                    <button id="btn-dropdown-{{ party }}" type="button" class="btn btn-primary dropdown-toggle"
-                            data-bs-toggle="dropdown" aria-expanded="false">{{ party }}</button>
-
-                    <ul class="dropdown-menu" aria-labelledby="btn-dropdown-{{ party }}">
-                        {% for theme in THEMES %}
-                            {% if theme_data["impressions-demographics-theme-party"][party][theme]["region"] | sum > 0 %}
-                                <li>
-                                    <button class="dropdown-item btn btn-primary update-charts {{ "first-button" if party == PARTIES[0] and theme == THEMES[8] }}" type="button"
-                                            data-id="theme-party-graphs"
-                                            data-data='{{ [
+                        <ul class="dropdown-menu" aria-labelledby="btn-dropdown-{{ party }}">
+                            {% for theme in THEMES %}
+                                {% if theme_data["impressions-demographics-theme-party"][party][theme]["region"] | sum > 0 %}
+                                    <li>
+                                        <button class="dropdown-item btn btn-primary update-charts {{ "first-button" if party == PARTIES[0] and theme == THEMES[8] }}"
+                                                type="button"
+                                                data-id="theme-party-graphs"
+                                                data-data='{{ [
                                                 theme_data["impressions-demographics-theme-party"][party][theme]["gender"],
                                                 theme_data["impressions-demographics-theme-party"][party][theme]["age"],
                                                 theme_data["impressions-demographics-theme-party"][party][theme]["region"],
                                             ] | tojson }}'
-                                            data-party="{{ party }}"
-                                            data-theme="{{ theme }}"
-                                    >{{ theme }}</button>
-                                </li>
-                            {% endif %}
-                        {% endfor %}
-                    </ul>
-                </div>
-            {% endfor %}
+                                                data-party="{{ party }}"
+                                                data-theme="{{ theme }}"
+                                        >{{ theme }}</button>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
 
         <div id="theme-party-graphs" class="mt-1">
@@ -163,6 +170,58 @@
                         ></canvas>
                     </div>
                 {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div>
+        <h4 class="text-center">Matched vs Non-Matched</h4>
+
+        <div class="col-4 mx-auto">
+            <p>
+                All the graphs on this page are about ads that were matched to a theme.
+                However, many parties also run ads that are not about a specific theme.
+                These graphs shows how many ads by a party are matched to a theme and how many are not.
+            </p>
+            <p>Some reasons why an ad may not be matched to a theme:</p>
+            <ul>
+                <li>Parties run ads about organisational matters. For example, becoming a member or a conference they
+                    are organising.
+                </li>
+                <li>Parties run ads about broad messages (e.g. "We need new leadership") or specific candidates.</li>
+                <li>Parties run small ads consisting of only a few words. These are hard to match to a specific theme.
+                </li>
+            </ul>
+
+            <p>For example, these graphs will tell you if a party is focussing on themes or on other factors (e.g. their
+                party leader) in their messaging.</p>
+        </div>
+        <div class="text-center">
+            <div class="btn-group flex-wrap" role="group">
+                {% for party in PARTIES %}
+                    <input type="radio" class="btn-check update-charts {{ "first-button" if loop.index0 == 0 }}"
+                           name="btn-radio-matched-graphs" id="btn-matched-{{ party }}"
+                           data-id="matched-graphs"
+                           data-data='{{ [
+                            theme_data["matched"][party],
+                       ] | tojson }}'
+                           data-party="{{ party }}"
+                    >
+                    <label class="btn btn-outline-primary" for="btn-matched-{{ party }}">{{ party }}</label>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div id="matched-graphs" class="row mt-1">
+            <div class="col-4 mx-auto">
+                <canvas
+                        id="matched-party-chart"
+                        data-data=''
+                        data-labels='["Matched", "Not Matched"]'
+                        data-title="Matched vs Not Matched Ads by PLACEHOLDER"
+                ></canvas>
             </div>
         </div>
     </div>

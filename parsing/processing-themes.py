@@ -28,6 +28,13 @@ if __name__ == "__main__":
         },
         "impressions-theme-party": {p: [] for p in PARTIES},
         "number-of-ads-theme-party": {p: [] for p in PARTIES},
+        "matched": {
+            p: [
+                Ad.select().where(Ad.start_date >= FIRST_DATE).where(Ad.themes != 0).where(Ad.party == p).count(),
+                Ad.select().where(Ad.start_date >= FIRST_DATE).where(Ad.themes == 0).where(Ad.party == p).count(),
+            ]
+            for p in PARTIES
+        }
     }
 
     for theme in Theme.all():

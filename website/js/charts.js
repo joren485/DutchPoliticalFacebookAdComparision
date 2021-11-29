@@ -204,10 +204,10 @@ $(document).ready(function () {
             let chart = Chart.getChart(canvas)
 
             if(party){
-                chart.config.options.plugins.title.text = chart.config.options.plugins.title.text.replace(/ by .+? /, " by " + party + " ");
+                chart.config.options.plugins.title.text = chart.config.options.plugins.title.text.replace(/ by \w+/, " by " + party);
             }
             if(theme){
-                chart.config.options.plugins.title.text = chart.config.options.plugins.title.text.replace(/ about .+? Distributed/, " about " + theme + " Distributed");
+                chart.config.options.plugins.title.text = chart.config.options.plugins.title.text.replace(/ about [\w &]+? Distributed/, " about " + theme + " Distributed");
             }
 
             chart.config.data.datasets[0].data = data[index];
