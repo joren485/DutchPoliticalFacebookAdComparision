@@ -22,7 +22,7 @@ const COLORS = [
     "#ffed6f",
 ];
 
-const FIRST_DATE = new Date((new Date()).getFullYear() - 1, (new Date()).getMonth(), (new Date()).getDate());
+const FIRST_DATE = new Date(2020, 8, 1);
 
 function getDaysArray() {
     let dates = [];

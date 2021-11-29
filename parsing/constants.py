@@ -41,7 +41,7 @@ FACEBOOK_API_URL = (
 
 DATETIME_FORMAT = "%Y-%m-%d"
 FIRST_DATE = date(
-    year=date.today().year - 1, month=date.today().month, day=date.today().day
+    year=2020, month=9, day=1
 )
 NUMBER_OF_DATES = (date.today() - FIRST_DATE).days + 1
 
