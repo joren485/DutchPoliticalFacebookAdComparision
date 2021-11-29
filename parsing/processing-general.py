@@ -53,11 +53,11 @@ if __name__ == "__main__":
                         date_i
                     ] += ad.rank_to_data(data_type, "total", per_day=True)
 
-    logging.info("Writing templates")
+    logging.info("Writing templates.")
 
-    logging.debug("Writing index.html")
+    logging.debug("Writing index.html.")
     recursive_round(general_data)
     render_template("index.html", "index.html", general_data=general_data)
 
-    logging.debug("Writing about.html")
+    logging.debug("Writing about.html.")
     render_template("about.html", "about.html")

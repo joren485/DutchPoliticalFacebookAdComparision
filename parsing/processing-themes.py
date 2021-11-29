@@ -65,7 +65,7 @@ if __name__ == "__main__":
                         sum(a.rank_to_data("impressions", demographic) for a in ads)
                     )
 
-    logging.debug("Writing templates")
+    logging.debug("Writing templates.")
     recursive_round(theme_data)
     render_template(
         "themes.html", "themes.html", theme_data=theme_data, THEMES=Theme.titles()

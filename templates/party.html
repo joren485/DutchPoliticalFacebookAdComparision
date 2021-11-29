@@ -21,7 +21,7 @@
             </div>
             {% for demographic_type in DEMOGRAPHIC_TYPES if demographic_type not in ("total",) %}
                 <div class="text-center">
-                    <h4>(Estimated) {{ data_type | capitalize }} per {{ demographic_type | replace("-", " ") | capitalize }}</h4>
+                    <h4>{{ data_type | capitalize }} per {{ demographic_type | replace("-", " ") | capitalize }}</h4>
                 </div>
 
                 <div class="row">

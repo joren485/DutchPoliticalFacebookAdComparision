@@ -63,7 +63,7 @@ if __name__ == "__main__":
                                 data_type, demographic, per_day=True
                             )
 
-        logging.debug(f"Writing template for { party }")
+        logging.debug(f"Writing template for { party }.")
         recursive_round(party_data)
         render_template(
             "party.html",

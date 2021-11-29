@@ -7,15 +7,30 @@
     <div class="text-center">
         <h1>Theme Graphs</h1>
 
-        <p class="lead">
-            This page is a <strong>work in progress</strong>.
-        </p>
+        <div class="col-6 mx-auto">
+            <p class="lead">
+                This page shows you statistics about the themes in political ads.
+                These are the results of a research project about matching themes to political Facebook Ads.
+                For more information please read the <a href="#">paper</a> <em>(not yet available)</em>.
+            </p>
+        </div>
+
     </div>
 
     <hr>
 
     <div class="text-center">
-        <h2>Theme Distribution per Party</h2>
+        <h4>Theme Distribution per Party</h4>
+
+        <div class="col-6 mx-auto">
+            <p>
+                These graphs show you how much each party advertises about each theme.
+                The left graph shows how many ads a party ran about each theme.
+                The right graph shows how many people were shown the ads (called impressions) about each theme.
+                For example, this shows you that D66 advertised the most about education & culture, but that their ads about
+                climate were shown the most.
+            </p>
+        </div>
 
         <div class="btn-group flex-wrap" role="group">
             {% for party in PARTIES %}
@@ -54,7 +69,15 @@
     <hr>
 
     <div class="text-center">
-        <h2>Demographic Impressions Distribution per Theme</h2>
+        <h4>Demographic Impressions Distribution per Theme</h4>
+
+        <div class="col-6 mx-auto">
+            <p>
+                These graphs show who the ads about each theme were shown to.
+                Facebook provides three types of demographics: female/male ratio, age groups and regions.
+                For example, this shows you how many people were shown ads about housing.
+            </p>
+        </div>
 
         <div class="btn-group flex-wrap" role="group">
             {% for theme in THEMES %}
@@ -78,7 +101,7 @@
                         <canvas
                                 id="impressions-{{ dt }}-theme-chart"
                                 data-data=""
-                                data-labels='{{ DEMOGRAPHIC_TYPE_TO_LIST_MAP[dt] | tojson }}'
+                                data-labels='{{ DEMOGRAPHIC_TYPE_TO_LIST_MAP[dt] | map("capitalize") | list | tojson }}'
                                 data-title='{{ "Impressions of Ads about PLACEHOLDER Distributed by " + dt | capitalize }}'
                         ></canvas>
                     </div>
@@ -90,9 +113,17 @@
     <hr>
 
     <div class="text-center">
-        <h2>Demographic Impressions Distribution per Theme per Party</h2>
+        <h4>Demographic Impressions Distribution per Theme per Party</h4>
 
-        <div class="btn-group flex-wrap" role="group">
+        <div class="col-6 mx-auto">
+            <p>
+                These graphs look more deeply into who has been shown ads.
+                These graphs do not only look at who was shown ads about each theme, they also take the parties into account.
+                For example, this shows you how many people were shown ads by D66 about housing.
+            </p>
+        </div>
+
+        <div class="btn-group flex-wrap p-2" role="group">
             {% for party in PARTIES %}
                 <div class="btn-group" role="group">
                     <button id="btn-dropdown-{{ party }}" type="button" class="btn btn-primary dropdown-toggle"
@@ -127,7 +158,7 @@
                         <canvas
                                 id="impressions-{{ dt }}-theme-party-chart"
                                 data-data=""
-                                data-labels='{{ DEMOGRAPHIC_TYPE_TO_LIST_MAP[dt] | tojson }}'
+                                data-labels='{{ DEMOGRAPHIC_TYPE_TO_LIST_MAP[dt] | map("capitalize") | list | tojson }}'
                                 data-title='{{ "Impressions of Ads by PLACEHOLDER about PLACEHOLDER Distributed by " + dt | capitalize }}'
                         ></canvas>
                     </div>
