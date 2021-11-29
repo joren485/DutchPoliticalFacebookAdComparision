@@ -54,8 +54,8 @@ class Ad(Model):
     impressions_lower = IntegerField()
     impressions_upper = IntegerField()
 
-    potential_reach_lower = IntegerField()
-    potential_reach_upper = IntegerField()
+    audience_size_lower = IntegerField()
+    audience_size_upper = IntegerField()
 
     @cached_property
     def days_active(self) -> int:
@@ -64,9 +64,9 @@ class Ad(Model):
         return 1 + (end_date - self.start_date).days
 
     @cached_property
-    def has_potential_reach(self) -> bool:
-        """Return whether potential reach data is available for this ad."""
-        return self.potential_reach_lower > 0
+    def has_audience_size(self) -> bool:
+        """Return whether estimated audience size data is available for this ad."""
+        return self.audience_size_lower > 0
 
     @cached_property
     def average_spending(self) -> float:
@@ -79,9 +79,9 @@ class Ad(Model):
         return (self.impressions_lower + self.impressions_upper) / 2
 
     @cached_property
-    def average_potential_reach(self) -> float:
-        """Return the average of the potential reach range given for this ad."""
-        return (self.potential_reach_lower + self.potential_reach_upper) / 2
+    def average_audience_size(self) -> float:
+        """Return the average of the estimated audience size range given for this ad."""
+        return (self.audience_size_lower + self.audience_size_upper) / 2
 
     @cached_property
     def average_spending_per_day(self) -> float:
@@ -94,9 +94,9 @@ class Ad(Model):
         return self.average_impressions / self.days_active
 
     @cached_property
-    def average_potential_reach_per_day(self) -> float:
-        """Return the average potential reach for every day this ad is/was active."""
-        return self.average_potential_reach / self.days_active
+    def average_audience_size_per_day(self) -> float:
+        """Return the average estimated audience size for every day this ad is/was active."""
+        return self.average_audience_size / self.days_active
 
     def active_date_indices(self) -> int:
         """Yield dates and indexes that this ad is/was active."""
@@ -137,10 +137,10 @@ class Ad(Model):
         elif data_type == "impressions" and not per_day:
             amount = self.average_impressions
 
-        elif data_type == "potential-reach" and per_day:
-            amount = self.average_potential_reach_per_day
-        elif data_type == "potential-reach" and not per_day:
-            amount = self.average_potential_reach
+        elif data_type == "estimated-audience-size" and per_day:
+            amount = self.average_audience_size_per_day
+        elif data_type == "estimated-audience-size" and not per_day:
+            amount = self.average_audience_size
 
         else:
             raise ValueError(f"Unknown data type: {data_type}")

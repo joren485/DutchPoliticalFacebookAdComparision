@@ -40,7 +40,7 @@ if __name__ == "__main__":
         "number-of-ads-party-daily": [[0] * NUMBER_OF_DATES for _ in PARTIES],
         "spending-party-daily": [[0] * NUMBER_OF_DATES for _ in PARTIES],
         "impressions-party-daily": [[0] * NUMBER_OF_DATES for _ in PARTIES],
-        "potential-reach-party-daily": [[0] * NUMBER_OF_DATES for _ in PARTIES],
+        "estimated-audience-size-party-daily": [[0] * NUMBER_OF_DATES for _ in PARTIES],
     }
 
     logging.info("Creating party specific data.")

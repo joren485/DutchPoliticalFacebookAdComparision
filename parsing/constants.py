@@ -23,7 +23,7 @@ FACEBOOK_API_FIELDS = [
     "impressions",
     "languages",
     "page_id",
-    "potential_reach",
+    "estimated_audience_size",
     "spend",
 ]
 
@@ -124,4 +124,4 @@ DEMOGRAPHIC_TYPE_TO_LIST_MAP = {
     "region": REGIONS,
 }
 
-DATA_TYPES = ["number-of-ads", "spending", "impressions", "potential-reach"]
+DATA_TYPES = ["number-of-ads", "spending", "impressions", "estimated-audience-size"]

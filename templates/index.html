@@ -15,7 +15,7 @@
         {% for data_type in DATA_TYPES %}
             <div id="{{ data_type }}-charts">
                 <div class="text-center">
-                    <h3>{{ data_type | replace("-", " ") | capitalize }}</h3>
+                    <h3>{{ data_type | replace("-", " ") | title | replace ("Of", "of") }}</h3>
                     <p>
                         {% if data_type == "number-of-ads" %}
                             All parties combined ran <strong>{{ general_data["number-of-ads-total"] }}</strong> ads in the past year.
@@ -26,8 +26,8 @@
                             ran for <strong>{{ general_data["most-expensive-ad"]["days"] }}</strong> day(s) and is from <strong>{{ general_data["most-expensive-ad"]["party"] }}</strong>.
                         {% elif data_type == "impressions" %}
                             These graphs show data about the <a href="https://www.facebook.com/business/help/675615482516035">impressions</a> (i.e. how many times an ad was shown to a user).
-                        {% elif data_type == "potential-reach" %}
-                            This graph shows the <a href="https://www.facebook.com/business/help/1665333080167380?id=176276233019487">potential reach</a> (i.e. the maximum amount of people that could have seen an ad) over time.
+                        {% elif data_type == "estimated-audience-size" %}
+                            This graph shows the <a href="https://www.facebook.com/business/help/1665333080167380?id=176276233019487">estimated audience size</a> (i.e. the maximum amount of people that could have seen an ad) over time.
                         {% endif %}
                     </p>
                 </div>
@@ -39,7 +39,7 @@
                                     id="{{ data_type }}-party-daily-chart"
                                     data-data={{ general_data[data_type + "-party-daily"] | string | replace(" ", "") | tojson }}
                                     data-labels='{{ PARTIES | tojson }}'
-                                    data-title="{{ data_type | replace("-", " ") | title }} per Date"
+                                    data-title="{{ data_type | replace("-", " ") | title | replace ("Of", "of") }} per Date"
                             ></canvas>
                         </div>
                     {% endif %}

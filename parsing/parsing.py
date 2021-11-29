@@ -86,8 +86,8 @@ def json_to_ad_dict(ad_json_data: dict, party: str) -> dict:
     impressions_lower, impressions_upper = _parse_estimated_value(
         ad_json_data, "impressions"
     )
-    potential_reach_lower, potential_reach_upper = _parse_estimated_value(
-        ad_json_data, "potential_reach"
+    audience_size_lower, audience_size_upper = _parse_estimated_value(
+        ad_json_data, "estimated_audience_size"
     )
 
     ad_dict = {
@@ -109,8 +109,8 @@ def json_to_ad_dict(ad_json_data: dict, party: str) -> dict:
         "spending_upper": spending_upper,
         "impressions_lower": impressions_lower,
         "impressions_upper": impressions_upper,
-        "potential_reach_lower": potential_reach_lower,
-        "potential_reach_upper": potential_reach_upper,
+        "audience_size_lower": audience_size_lower,
+        "audience_size_upper": audience_size_upper,
     }
 
     if "languages" in ad_json_data and ad_json_data["languages"] != ["nl"]:
