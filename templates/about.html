@@ -5,62 +5,174 @@
 {% block content%}
 <div class="col-6 mx-auto">
     <p class="lead">
-        As part of an effort by Facebook to be more transparent about the political ads they were showing,
+        As part of an effort by Facebook to be more transparent about the use of their platforms for political campaigning,
         they created <a href="https://www.facebook.com/ads/library/">the Facebook Ad Library</a>,
-        a website where you can view information about all political ads Facebook shows in certain countries
-        (e.g. which organisation is and how much an organisation spend on ads).
+        a publicly available website that shows information about all the political ads that are run on their platforms (i.e. Facebook and Instagram).
 
-        Their website is great for finding information about a single organisation or ad. However it lacks (in my
-        opinion) the ability to compare different organisations.
-        That is why I created this website, to compare statistics about political Facebook ads that are bought and
-        created by Dutch political parties.
+        <br>
+
+        The Facebook Ad Library is a great resource for finding information about a single ad, but it lacks the functionality to compare multiple ads or political parties.
+        To solve this problem, I have created a website that allows you to analyse and compare statistics about the ads by Dutch political parties.
     </p>
 
-    <h4>What specific data did you use?</h4>
-    <p>The data-processing consists of two steps:</p>
+    <hr>
+
+    <h5>What information does the Facebook Ad Library provide?</h5>
+    <p>
+        The Facebook Ad Library provides the content of each ad and metadata about the ad.
+        The content of an ad is the text, images and/or videos that the user sees.
+    </p>
+
+    The Facebook Ad Library provides a lot of metadata on each ad. The most important metadata available is:
+    <ul>
+        <li>Which Facebook page the ad.</li>
+        <li>When the ad started running.</li>
+        <li>When the ad stopped running.</li>
+        <li>How much the ad costs<sup>1</sup>.</li>
+        <li>How many times the ad was shown to users<sup>1</sup>.</li>
+        <li>How many people are eligible to see the ad<sup>1</sup>.</li>
+        <li>The demographic distribution of who the ad was shown to. Three demographics are provided:
+            <ul>
+                <li>Female / male ratio</li>
+                <li>Age groups</li>
+                <li>Regions (e.g. the twelve provinces)</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p>
+        Besides information on specific ads, the Facebook Ad Library also provides some basic general information.
+        For example, the <a href="https://www.facebook.com/ads/library/report/">spending tracker</a> shows you how much each Facebook page has spent in total.
+    </p>
+
+    <p id="footnote-1">
+        <small>
+            1. This data is provided as estimated ranges.
+            For example, the Facebook Ad Library does not provide how much an ad costs,
+            but says that between €2000 and €2999 was spend on the ad.
+        </small>
+    </p>
+
+    <hr>
+
+    <h5>How did you generate these statistics?</h5>
+
+    This website provides three types of statistics:
     <ol>
-        <li>Retrieving the data from Facebook.</li>
-        <li>Analyzing the data into a format that can be used in the charts on this website.</li>
+        <li>General statistics</li>
+        <li>Party specific statistics</li>
+        <li>Theme statistics</li>
     </ol>
 
-    <p>For step 1, I use the <a href="https://www.facebook.com/ads/library/api/">the Facebook Ad Library API</a>,
-        which allows anyone to programmatically request data from the the Facebook Ad Library.
+    The data-processing consists of the following steps:
+    <ol>
+        <li>
+            <p>Identifying the Facebook pages of each political party.</p>
 
-        For each party, I request the data of specific Facebook pages (Facebook ads are always connected to Facebook
-        page). The Facebook pages I used can be found
-        <a href="https://github.com/joren485/DutchPoliticalFacebookAdComparision/blob/main/data/facebook_page_ids.csv">here</a>.
-    </p>
+            <p>
+                Facebook ads are always linked to a Facebook page.
+                The Facebook Ad Library allows you to search ads by Facebook page.
+                To find all ads ran by a political party, we first need to find all the Facebook pages of that party.
+                Political parties often do not use one Facebook page to run all their ads.
+                Many local party branches and individual candidates have their own Facebook page.
+                The spending tracker lists all relevant Facebook pages. We use this to find the Facebook pages of each
+                party.
+            </p>
 
-    <p>In step 2, all ads from before 2020 are removed and the data is added up for each date and in total.
+            <p>
+                You can find <a href="https://github.com/joren485/DutchPoliticalFacebookAdComparision/blob/main/data/facebook_page_ids.csv">
+                a list of all Facebook pages we found on GitHub</a>.
+            </p>
+        </li>
 
-        All data is estimated based on averages, because Facebook does not return exact numbers.
-        For example, Facebook does not say how much is spent on a single ad, instead they provide a range of a lower and
-        an upper bound (e.g. €1000 to €1999). I use the average of the lower and upper bound.
-        This means that single data points are not that interesting (e.g. it is quite a difference if you spend a €1000
-        or €1999 on a single ad and taking the average does not tell you much).
-        However, when compared over time or compared to other parties, it does become interesting because trends present
-        themselves.
+        <li>
+            <p>Downloading the ad data.</p>
 
-        Averaging also removes any potential spikes in the data (e.g. 90% of the views of an ad where on a single day) and spreads it evenly over the runtime of the ad.
-    </p>
+            <p>
+                We use the lists of Facebook pages to download all ads ran by the political parties.
 
+                For this we use the <a href="https://www.facebook.com/ads/library/api/">the Facebook Ad Library API</a>.
+                This API allows everyone to download ad data in an automated manner.
+            </p>
+        </li>
 
-    <h4>Is publishing this legal?</h4>
+        <li>
+            <p>Analyzing the data.</p>
+
+            <p>
+                Finally, we wrote an application to analyze the data. This application generates an updated version of
+                this website. As most data that Facebook provides are estimations, we aggregate the data of one party by
+                computing the averages of their ads.
+            </p>
+
+            <p>
+                Although an individual estimation is not that interesting (e.g. it does not tell us much that an ad was seen by a 1000 to 2000 people),
+                combining the data does reveal patterns and makes the data of a party comparable to that of other parties.
+            </p>
+        </li>
+    </ol>
+
+    <hr>
+
+    <h5>Limitations of the Facebook Ad Library</h5>
+    The Facebook Ad Library does have some limitations:
+    <ul>
+        <li>
+            <p>
+                No exact numbers are given. The numeric data is given in ranges.
+                For example, between €2000 and €3000 was spend on an ad or the ad has between 1000 and 2000 impressions.
+            </p>
+        </li>
+
+        <li>
+            <p>
+                It is not clear when an ad was most active. For example, if an ad gained between 1000 and 2000
+                impressions and was active for 30 days, we do not know whether the ad was mostly shown on one day or
+                evenly over the 30 days.
+            </p>
+        </li>
+
+        <li>
+            <p>
+                There is a nuanced difference in the information that is available through the website and the API. For
+                example, Facebook bundles similar ads on the library website to give a better estimation of the metrics,
+                however this information is not available through the API.
+            </p>
+        </li>
+
+        <li>
+            <p>
+                It is not publicly known how Facebook decides who sees which ad. The Facebook Ad Library only provides
+                basic information about whom an ad was shown to. This means that the Facebook Ad Library provides only
+                half the picture. Because we do not know how this decision is made, we do not know whether it is an
+                explicit decision by a political party to target certain people or whether it is an automated choice by
+                the Facebook algorithm.
+            </p>
+        </li>
+    </ul>
+
+    <hr>
+
+    <h5>Why is party X missing?</h5>
     <p>
-        <a href="https://www.facebook.com/ads/library/api/">Facebook says</a>:
-        "Processed data or data that is analyzed as part of your research can be published and shared publicly."
+        If there is a (new) party with a significant Facebook ad presence that is included, please let me know by
+        <a href="https://github.com/joren485/DutchPoliticalFacebookAdComparision/issues/new">
+            opening an issue on GitHub
+        </a>.
     </p>
 
-    <h4>Why is party X missing?</h4>
-    <p>
-        If there is a (new) party with a significant Facebook ad presence, please let me know by
-        <a href="https://github.com/joren485/DutchPoliticalFacebookAdComparision/issues/new">opening an issue on GitHub</a>
-    </p>
+    <hr>
 
-
-    <h4>I found an issue in the website and/or the data! / I have a great idea of a graph to add!</h4>
+    <h5>I have found an issue or have a suggestion.</h5>
     <p>
         Please open <a href="https://github.com/joren485/DutchPoliticalFacebookAdComparision/issues/new"> an issue on GitHub</a>.
+    </p>
+
+    <hr>
+
+    <h5>How do I contact you?</h5>
+    <p>
+        You can reach me on <a href="mailto:jorenvrancken@gmail.com">jorenvrancken@gmail.com</a>.
     </p>
 </div>
 {% endblock %}
