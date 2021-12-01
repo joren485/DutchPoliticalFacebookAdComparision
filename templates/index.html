@@ -18,7 +18,7 @@
                     <h3>{{ data_type | replace("-", " ") | title | replace ("Of", "of") }}</h3>
                     <p>
                         {% if data_type == "number-of-ads" %}
-                            All parties combined ran <strong>{{ general_data["number-of-ads-total"] }}</strong> ads in the past year.
+                            All parties combined ran <strong>{{ general_data["number-of-ads-total"] }}</strong> ads since 1 September 2020.
                         {% elif data_type == "spending" %}
                             In total between <strong>€{{ general_data["spending-total-lower"] }} - €{{ general_data["spending-total-upper"] }}</strong> has been spent in the past year.
                             <br>
