@@ -8,20 +8,20 @@ class Theme(Flag):
 
     NONE = 0
 
-    BUITENLANDSE_ZAKEN = auto()
-    BURGERRECHTEN = auto()
-    DEFENSIE = auto()
-    ECONOMIE = auto()
-    GEZONDHEIDSZORG = auto()
-    HUISVESTING = auto()
-    JUSTITIE = auto()
-    KLIMAAT = auto()
-    LANDBOUW = auto()
-    MIGRATIE = auto()
-    ONDERWIJS_CULTUUR = auto()
-    OVERHEID = auto()
-    SOCIALE_ZAKEN = auto()
-    TRANSPORT = auto()
+    AGRICULTURE = auto()
+    CIVIL_RIGHTS = auto()
+    CLIMATE = auto()
+    DEFENSE = auto()
+    ECONOMY = auto()
+    EDUCATION_CULTURE = auto()
+    FOREIGN_AFFAIRS = auto()
+    GOVERNMENT = auto()
+    HEALTHCARE = auto()
+    HOUSING = auto()
+    LAW_ORDER = auto()
+    MIGRATION = auto()
+    SOCIAL_WELFARE = auto()
+    TRANSPORTATION = auto()
 
     @classmethod
     def all(cls):
@@ -31,8 +31,11 @@ class Theme(Flag):
     @property
     def title(self):
         """Return the name of a theme in a format that can be used in a title."""
-        if self == Theme.ONDERWIJS_CULTUUR:
-            return "Onderwijs & Cultuur"
+        if self == Theme.EDUCATION_CULTURE:
+            return "Education & Culture"
+
+        elif self == Theme.LAW_ORDER:
+            return "Law & Order"
 
         slug = self.name.title().replace("_", " ")
         return slug
@@ -45,7 +48,7 @@ class Theme(Flag):
     @cached_property
     def wordlist(self):
         """Return the (cached) wordlist corresponding to the theme."""
-        filename = self.name.lower().replace("_", " ")
+        filename = self.name.lower()
         path = f"../data/wordlists/{filename}"
 
         with open(path) as h_file:
