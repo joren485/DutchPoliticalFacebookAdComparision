@@ -41,7 +41,8 @@ FACEBOOK_API_URL = (
 
 DATETIME_FORMAT = "%Y-%m-%d"
 FIRST_DATE = date(year=2020, month=9, day=1)
-NUMBER_OF_DATES = (date.today() - FIRST_DATE).days + 1
+LAST_DATE = date.today()
+NUMBER_OF_DATES = (LAST_DATE - FIRST_DATE).days + 1
 
 CURRENCY_EXCHANGE_RATE_MAP = {
     "EUR": 1,

@@ -23,11 +23,11 @@ const COLORS = [
 ];
 
 const FIRST_DATE = new Date(2020, 8, 1);
+const LAST_DATE = Date.now();
 
 function getDaysArray() {
     let dates = [];
-    let now = Date.now();
-    for (let dt = new Date(FIRST_DATE); dt <= now; dt.setDate(dt.getDate() + 1)) {
+    for (let dt = new Date(FIRST_DATE); dt <= LAST_DATE; dt.setDate(dt.getDate() + 1)) {
         dates.push(new Date(dt));
     }
     return dates;
@@ -59,7 +59,7 @@ function generateLineGraphConfig(canvas) {
                         tooltipFormat: "YYYY-MM-DD",
                     },
                     min: FIRST_DATE,
-                    max: Date.now(),
+                    max: LAST_DATE,
                 },
                 y: {
                     stacked: !is_general_chart,

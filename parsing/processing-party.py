@@ -4,7 +4,6 @@ from constants import (
     DATA_TYPES,
     DEMOGRAPHIC_TYPE_TO_LIST_MAP,
     DEMOGRAPHIC_TYPES,
-    FIRST_DATE,
     NUMBER_OF_DATES,
     PARTIES,
 )
@@ -21,7 +20,7 @@ logging.basicConfig(
 if __name__ == "__main__":
 
     ads_per_party = {
-        p: Ad.select().where(Ad.start_date >= FIRST_DATE).where(Ad.party == p)
+        p: Ad.ads_in_time_range().where(Ad.party == p)
         for p in PARTIES
     }
 

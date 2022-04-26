@@ -1,5 +1,4 @@
 import re
-from datetime import date
 from functools import cached_property
 
 from peewee import (
@@ -18,6 +17,7 @@ from constants import (
     GENDERS,
     LOCAL_AD_ARCHIVE_PATH,
     REGIONS,
+    LAST_DATE,
 )
 
 PATTERN_NON_WORD_CHARS = re.compile(r"[^a-zA-Z0-9-' #]")
@@ -57,10 +57,31 @@ class Ad(Model):
     audience_size_lower = IntegerField()
     audience_size_upper = IntegerField()
 
+    @classmethod
+    def ads_in_time_range(cls):
+        """
+        Return a query that contains all ads within the specified time range (i.e. between FIRST_DATE and LAST_DATE).
+
+        The only requirement is that start date lies within the time range,
+        because the end date will be limited to LAST_DATE in days_active.
+        """
+        return (
+            Ad.select()
+            .where(Ad.start_date >= FIRST_DATE)
+            .where(Ad.start_date <= LAST_DATE)
+        )
+
     @cached_property
     def days_active(self) -> int:
         """Return the amount of days this ad is/was active."""
-        end_date = self.end_date or date.today()
+        if self.end_date is None or self.end_date > LAST_DATE:
+            end_date = LAST_DATE
+        else:
+            end_date = self.end_date
+
+        if 1 + (end_date - self.start_date).days == 0:
+            print(end_date, self.start_date)
+
         return 1 + (end_date - self.start_date).days
 
     @cached_property

@@ -3,7 +3,6 @@ import logging
 from constants import (
     DEMOGRAPHIC_TYPE_TO_LIST_MAP,
     DEMOGRAPHIC_TYPES,
-    FIRST_DATE,
     PARTIES,
 )
 from models import Ad
@@ -30,13 +29,11 @@ if __name__ == "__main__":
         "number-of-ads-theme-party": {p: [] for p in PARTIES},
         "matched": {
             p: [
-                Ad.select()
-                .where(Ad.start_date >= FIRST_DATE)
+                Ad.ads_in_time_range()
                 .where(Ad.themes != 0)
                 .where(Ad.party == p)
                 .count(),
-                Ad.select()
-                .where(Ad.start_date >= FIRST_DATE)
+                Ad.ads_in_time_range()
                 .where(Ad.themes == 0)
                 .where(Ad.party == p)
                 .count(),
@@ -49,8 +46,7 @@ if __name__ == "__main__":
         logging.info(f"Processing {theme.title}.")
 
         ads = (
-            Ad.select()
-            .where(Ad.start_date >= FIRST_DATE)
+            Ad.ads_in_time_range()
             .where(Ad.themes.bin_and(theme.value) == theme.value)
         )
         for demographic_type in DEMOGRAPHIC_TYPES:
@@ -61,8 +57,7 @@ if __name__ == "__main__":
 
         for party in PARTIES:
             ads = (
-                Ad.select()
-                .where(Ad.start_date >= FIRST_DATE)
+                Ad.ads_in_time_range()
                 .where(Ad.party == party)
                 .where(Ad.themes.bin_and(theme.value) == theme.value)
             )

@@ -13,7 +13,7 @@ logging.basicConfig(
 
 if __name__ == "__main__":
 
-    ads = list(Ad.select().where(Ad.start_date >= FIRST_DATE))
+    ads = list(Ad.ads_in_time_range())
     ads_per_party = {p: [ad for ad in ads if ad.party == p] for p in PARTIES}
 
     most_expensive_ad = max(ads, key=lambda e: e.average_spending_per_day)
