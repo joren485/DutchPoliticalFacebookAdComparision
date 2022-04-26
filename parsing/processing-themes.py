@@ -45,9 +45,8 @@ if __name__ == "__main__":
     for theme in Theme.all():
         logging.info(f"Processing {theme.title}.")
 
-        ads = (
-            Ad.ads_in_time_range()
-            .where(Ad.themes.bin_and(theme.value) == theme.value)
+        ads = Ad.ads_in_time_range().where(
+            Ad.themes.bin_and(theme.value) == theme.value
         )
         for demographic_type in DEMOGRAPHIC_TYPES:
             for demographic in DEMOGRAPHIC_TYPE_TO_LIST_MAP[demographic_type]:

@@ -19,10 +19,7 @@ logging.basicConfig(
 
 if __name__ == "__main__":
 
-    ads_per_party = {
-        p: Ad.ads_in_time_range().where(Ad.party == p)
-        for p in PARTIES
-    }
+    ads_per_party = {p: Ad.ads_in_time_range().where(Ad.party == p) for p in PARTIES}
 
     for party in PARTIES:
         logging.info(f"Processing {len(ads_per_party[party])} ads for {party}.")
