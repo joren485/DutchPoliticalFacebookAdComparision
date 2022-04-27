@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.3.0/dist/chart.min.js" integrity="sha256-KP9rTEikFk097YZVFmsYwZdAg4cdGdea8O/V7YZJUxw=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment@1.0.0/dist/chartjs-adapter-moment.min.js" integrity="sha256-sFB24K2xU2EOgWAtb3ySAGjhMqcUvUJGmwjDcTQa04k=" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js" integrity="sha256-eVNjHw5UeU0jUqPPpZHAkU1z4U+QFBBY488WvueTm88=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@1.0.0/dist/chartjs-plugin-zoom.min.js" integrity="sha256-oLHPMvaI4/JUap1NBhH+CVK4I9yWBB3dCKfXXAjRYxw=" crossorigin="anonymous"></script>
+
+    <script src="/DutchPoliticalFacebookAdComparision/2021/website/js/charts.js"></script>
+
+    <meta charset="UTF-8">
+    <title>About | Dutch Political Facebook Ad Comparison</title>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/DutchPoliticalFacebookAdComparision/2021/index.html">Dutch Political Facebook Ad Comparison</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="index-nav-dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Overall Statistics</a>
+                    <ul class="dropdown-menu" aria-labelledby="index-nav-dropdown">
+                        <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/2021/index.html#ads-charts">Ads</a></li>
+                        <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/2021/index.html#spending-charts">Spending</a></li>
+                        <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/2021/index.html#impressions-charts">Impressions</a></li>
+                        <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/2021/index.html#estimated-audience-size-charts">Estimated Audience Size</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="party-nav-dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Party Statistics</a>
+                    <ul class="dropdown-menu" aria-labelledby="party-nav-dropdown">
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/2021/website/bbb.html">BBB</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/2021/website/bij1.html">BIJ1</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/2021/website/bvnl.html">BVNL</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/2021/website/cda.html">CDA</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/2021/website/cu.html">CU</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/2021/website/d66.html">D66</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/2021/website/denk.html">DENK</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/2021/website/fvd.html">FvD</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/2021/website/gl.html">GL</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/2021/website/ja21.html">JA21</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/2021/website/pvv.html">PVV</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/2021/website/pvda.html">PvdA</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/2021/website/pvdd.html">PvdD</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/2021/website/sgp.html">SGP</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/2021/website/sp.html">SP</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/2021/website/volt.html">VOLT</a></li>
+                        
+                            <li><a class="dropdown-item" href="/DutchPoliticalFacebookAdComparision/2021/website/vvd.html">VVD</a></li>
+                        
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/DutchPoliticalFacebookAdComparision/2021/website/themes.html">Themes</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/DutchPoliticalFacebookAdComparision/2021/website/about.html">About</a>
+                </li>
+            </ul>
+
+            <span class="navbar-text">Last Updated: 10:22 27-04-2022</span>
+            <a class="nav-link link-dark" href="https://github.com/joren485/DutchPoliticalFacebookAdComparision/"><i class="fab fa-github"></i></a>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid pt-4">
+    
+<div class="col-6 mx-auto">
+    <p class="lead">
+        As part of an effort by Facebook to be more transparent about the use of their platforms for political
+        campaigning, they created <a href="https://www.facebook.com/ads/library/">the Facebook Ad Library</a>,
+        a publicly available website that shows information about all the political ads that are run on their platforms
+        (i.e. Facebook and Instagram).
+        <br>
+        The Facebook Ad Library is a great resource for finding information about a single ad, but it lacks the
+        functionality to compare multiple ads or political parties. To solve this problem, I have created a website
+        that allows you to analyse and compare statistics about the ads by Dutch political parties.
+    </p>
+
+    <hr>
+
+    <h5>What information does the Facebook Ad Library provide?</h5>
+    <p>
+        The Facebook Ad Library provides the content of each ad and metadata about the ad. The content of an ad is the
+        text, images and/or videos that the user sees.
+    </p>
+
+    The Facebook Ad Library provides a lot of metadata on each ad. The most important metadata available is:
+    <ul>
+        <li>Which Facebook page the ad.</li>
+        <li>When the ad started running.</li>
+        <li>When the ad stopped running.</li>
+        <li>How much the ad costs<sup>1</sup>.</li>
+        <li>How many times the ad was shown to users<sup>1</sup>.</li>
+        <li>How many people are eligible to see the ad<sup>1</sup>.</li>
+        <li>The demographic distribution of who the ad was shown to. Three demographics are provided:
+            <ul>
+                <li>Female / male ratio</li>
+                <li>Age groups</li>
+                <li>Regions (e.g. the twelve provinces)</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p>
+        Besides information on specific ads, the Facebook Ad Library also provides some basic general information.
+        For example, the <a href="https://www.facebook.com/ads/library/report/">spending tracker</a> shows you how much
+        each Facebook page has spent in total.
+    </p>
+
+    <p id="footnote-1">
+        <small>
+            1. This data is provided as estimated ranges.
+            For example, the Facebook Ad Library does not provide how much an ad costs,
+            but says that between €2000 and €2999 was spend on the ad.
+        </small>
+    </p>
+
+    <hr>
+
+    <h5>How did you generate these statistics?</h5>
+
+    This website provides three types of statistics:
+    <ol>
+        <li>General statistics</li>
+        <li>Party specific statistics</li>
+        <li>Theme statistics</li>
+    </ol>
+
+    The data-processing consists of the following steps:
+    <ol>
+        <li>
+            <p>Identifying the Facebook pages of each political party.</p>
+
+            <p>
+                Facebook ads are always linked to a Facebook page.
+                The Facebook Ad Library allows you to search ads by Facebook page.
+                To find all ads ran by a political party, we first need to find all the Facebook pages of that party.
+                Political parties often do not use one Facebook page to run all their ads.
+                Many local party branches and individual candidates have their own Facebook page.
+                The spending tracker lists all relevant Facebook pages. We use this to find the Facebook pages of each
+                party.
+            </p>
+
+            <p>
+                You can find <a href="https://github.com/joren485/DutchPoliticalFacebookAdComparision/blob/main/data/facebook_page_ids.csv">
+                a list of all Facebook pages we found on GitHub</a>.
+            </p>
+        </li>
+
+        <li>
+            <p>Downloading the ad data.</p>
+
+            <p>
+                We use the lists of Facebook pages to download all ads ran by the political parties.
+
+                For this we use the <a href="https://www.facebook.com/ads/library/api/">the Facebook Ad Library API</a>.
+                This API allows everyone to download ad data in an automated manner.
+            </p>
+        </li>
+
+        <li>
+            <p>Analyzing the data.</p>
+
+            <p>
+                Finally, we wrote an application to analyze the data. This application generates an updated version of
+                this website. As most data that Facebook provides are estimations, we aggregate the data of one party by
+                computing the averages of their ads.
+            </p>
+
+            <p>
+                Although an individual estimation is not that interesting (e.g. it does not tell us much that an ad was
+                seen by a 1000 to 2000 people), combining the data does reveal patterns and makes the data of a party
+                comparable to that of other parties.
+            </p>
+        </li>
+    </ol>
+
+    <hr>
+
+    <h5>Limitations of the Facebook Ad Library</h5>
+    The Facebook Ad Library does have some limitations:
+    <ul>
+        <li>
+            <p>
+                No exact numbers are given. The numeric data is given in ranges.
+                For example, between €2000 and €3000 was spend on an ad or the ad has between 1000 and 2000 impressions.
+            </p>
+        </li>
+
+        <li>
+            <p>
+                It is not clear when an ad was most active. For example, if an ad gained between 1000 and 2000
+                impressions and was active for 30 days, we do not know whether the ad was mostly shown on one day or
+                evenly over the 30 days.
+            </p>
+        </li>
+
+        <li>
+            <p>
+                There is a nuanced difference in the information that is available through the website and the API. For
+                example, Facebook bundles similar ads on the library website to give a better estimation of the metrics,
+                however this information is not available through the API.
+            </p>
+        </li>
+
+        <li>
+            <p>
+                It is not publicly known how Facebook decides who sees which ad. The Facebook Ad Library only provides
+                basic information about whom an ad was shown to. This means that the Facebook Ad Library provides only
+                half the picture. Because we do not know how this decision is made, we do not know whether it is an
+                explicit decision by a political party to target certain people or whether it is an automated choice by
+                the Facebook algorithm.
+            </p>
+        </li>
+    </ul>
+
+    <hr>
+
+    <h5>Why is party X missing?</h5>
+    <p>
+        If there is a (new) party with a significant Facebook ad presence that is not included, please let me know by <a href="https://github.com/joren485/DutchPoliticalFacebookAdComparision/issues/new">opening an issue on GitHub</a>.
+    </p>
+
+    <hr>
+
+    <h5>I have found an issue or have a suggestion.</h5>
+    <p>
+        Please open <a href="https://github.com/joren485/DutchPoliticalFacebookAdComparision/issues/new">an issue on GitHub</a>.
+    </p>
+
+    <hr>
+
+    <h5>How do I contact you?</h5>
+    <p>
+        You can reach me at <a href="mailto:jorenvrancken@gmail.com">jorenvrancken@gmail.com</a>.
+    </p>
+</div>
+
+</div>
+</body>
+</html>
