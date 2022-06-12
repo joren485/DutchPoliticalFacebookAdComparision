@@ -79,9 +79,6 @@ class Ad(Model):
         else:
             end_date = self.end_date
 
-        if 1 + (end_date - self.start_date).days == 0:
-            print(end_date, self.start_date)
-
         return 1 + (end_date - self.start_date).days
 
     @cached_property
