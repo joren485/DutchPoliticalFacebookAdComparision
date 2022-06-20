@@ -1,6 +1,8 @@
 import re
 from functools import cached_property
 
+from datetime import date
+
 from peewee import (
     CharField,
     DateField,
@@ -60,22 +62,30 @@ class Ad(Model):
     @classmethod
     def ads_in_time_range(cls):
         """
-        Return a query that contains all ads within the specified time range (i.e. between FIRST_DATE and LAST_DATE).
+        Return a query that contains all ads that were active between FIRST_DATE and LAST_DATE.
 
-        The only requirement is that start date lies within the time range,
-        because the end date will be limited to LAST_DATE in days_active.
+        Ads that are considered active between FIRST_DATE and LAST_DATE meet at least one of the following constraints:
+        - The start_date falls between FIRST_DATE and LAST_DATE.
+        - The end_end falls between FIRST_DATE and LAST_DATE.
         """
         return (
             Ad.select()
-            .where(Ad.start_date >= FIRST_DATE)
-            .where(Ad.start_date <= LAST_DATE)
+            .where(
+                (Ad.start_date >= FIRST_DATE) & (Ad.start_date <= LAST_DATE)
+                | (Ad.end_date >= FIRST_DATE) & (Ad.end_date <= LAST_DATE)
+            )
         )
 
     @cached_property
     def days_active(self) -> int:
-        """Return the amount of days this ad is/was active."""
-        if self.end_date is None or self.end_date > LAST_DATE:
-            end_date = LAST_DATE
+        """
+        Return the amount of days this ad is/was active.
+
+        This does not take FIRST_DATE and LAST_DATE into account.
+        """
+
+        if self.end_date is None:
+            end_date = date.today()
         else:
             end_date = self.end_date
 
@@ -117,9 +127,27 @@ class Ad(Model):
         return self.average_audience_size / self.days_active
 
     def active_date_indices(self) -> int:
-        """Yield dates and indexes that this ad is/was active."""
-        start_date_index = (self.start_date - FIRST_DATE).days
-        for date_offset in range(self.days_active):
+        """
+        Yield dates and indexes that this ad is/was active.
+
+        This does take FIRST_DATE and LAST_DATE into account.
+        For example, if start_date falls before FIRST_DATE, the ad is considered to start on FIRST_DATE.
+        """
+
+        if self.start_date < FIRST_DATE:
+            start_date = FIRST_DATE
+        else:
+            start_date = self.start_date
+
+        if self.end_date is None or self.end_date > LAST_DATE:
+            end_date = LAST_DATE
+        else:
+            end_date = self.end_date
+
+        days_active_in_range = 1 + (end_date - start_date).days
+        start_date_index = (start_date - FIRST_DATE).days
+
+        for date_offset in range(days_active_in_range):
             yield start_date_index + date_offset
 
     @staticmethod
