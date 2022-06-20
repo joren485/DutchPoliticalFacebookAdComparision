@@ -60,17 +60,17 @@ class Ad(Model):
     audience_size_upper = IntegerField()
 
     @classmethod
-    def ads_in_time_range(cls):
+    def ads_in_time_range(cls, first_date=FIRST_DATE, last_date=LAST_DATE):
         """
-        Return a query that contains all ads that were active between FIRST_DATE and LAST_DATE.
+        Return a query that contains all ads that were active in a certain time period (i.e. between first_date and last_date).
 
-        Ads that are considered active between FIRST_DATE and LAST_DATE meet at least one of the following constraints:
-        - The start_date falls between FIRST_DATE and LAST_DATE.
-        - The end_end falls between FIRST_DATE and LAST_DATE.
+        Ads that are considered active between first_date and last_date meet at least one of the following constraints:
+        - The start_date falls between first_date and last_date.
+        - The end_end falls between first_date and last_date.
         """
         return Ad.select().where(
-            (Ad.start_date >= FIRST_DATE) & (Ad.start_date <= LAST_DATE)
-            | (Ad.end_date >= FIRST_DATE) & (Ad.end_date <= LAST_DATE)
+            (first_date <= Ad.start_date) & (Ad.start_date <= last_date)
+            | (first_date <= Ad.end_date) & (Ad.end_date <= last_date)
         )
 
     @cached_property
