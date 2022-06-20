@@ -68,12 +68,9 @@ class Ad(Model):
         - The start_date falls between FIRST_DATE and LAST_DATE.
         - The end_end falls between FIRST_DATE and LAST_DATE.
         """
-        return (
-            Ad.select()
-            .where(
-                (Ad.start_date >= FIRST_DATE) & (Ad.start_date <= LAST_DATE)
-                | (Ad.end_date >= FIRST_DATE) & (Ad.end_date <= LAST_DATE)
-            )
+        return Ad.select().where(
+            (Ad.start_date >= FIRST_DATE) & (Ad.start_date <= LAST_DATE)
+            | (Ad.end_date >= FIRST_DATE) & (Ad.end_date <= LAST_DATE)
         )
 
     @cached_property
@@ -83,7 +80,6 @@ class Ad(Model):
 
         This does not take FIRST_DATE and LAST_DATE into account.
         """
-
         if self.end_date is None:
             end_date = date.today()
         else:
@@ -133,7 +129,6 @@ class Ad(Model):
         This does take FIRST_DATE and LAST_DATE into account.
         For example, if start_date falls before FIRST_DATE, the ad is considered to start on FIRST_DATE.
         """
-
         if self.start_date < FIRST_DATE:
             start_date = FIRST_DATE
         else:
