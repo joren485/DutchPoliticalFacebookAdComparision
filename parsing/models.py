@@ -1,7 +1,7 @@
 import re
-from functools import cached_property
-
+import typing
 from datetime import date
+from functools import cached_property
 
 from peewee import (
     CharField,
@@ -17,9 +17,9 @@ from constants import (
     AGE_RANGES,
     FIRST_DATE,
     GENDERS,
+    LAST_DATE,
     LOCAL_AD_ARCHIVE_PATH,
     REGIONS,
-    LAST_DATE,
 )
 
 PATTERN_NON_WORD_CHARS = re.compile(r"[^a-zA-Z0-9-' #]")
@@ -124,7 +124,7 @@ class Ad(Model):
 
     def active_date_indices(
         self, time_range_start_date=FIRST_DATE, time_range_end_date=LAST_DATE
-    ):
+    ) -> typing.Generator[int, None, None]:
         """Yield the indices of dates that this ad was active during a time range."""
         ad_end_date = self.end_date or date.today()
         if (time_range_start_date <= self.start_date <= time_range_end_date) or (
@@ -144,8 +144,6 @@ class Ad(Model):
             for date_offset in range(days_active_in_range):
                 yield start_date_index + date_offset
 
-        return []
-
     @staticmethod
     def demographic_to_field_name(demographic: str) -> str:
         """
@@ -164,7 +162,7 @@ class Ad(Model):
 
         raise ValueError(f"Unknown type: {demographic}")
 
-    def rank_to_data(self, data_type: str, demographic: str, per_day: bool = False):
+    def rank_to_data(self, data_type: str, demographic: str, per_day: bool = False) -> float:
         """Return the amount of data type per demographic for this ad."""
         if data_type == "number-of-ads":
             return 1
