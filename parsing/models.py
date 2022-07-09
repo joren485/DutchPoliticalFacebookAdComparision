@@ -162,7 +162,9 @@ class Ad(Model):
 
         raise ValueError(f"Unknown type: {demographic}")
 
-    def rank_to_data(self, data_type: str, demographic: str, per_day: bool = False) -> float:
+    def rank_to_data(
+        self, data_type: str, demographic: str, per_day: bool = False
+    ) -> float:
         """Return the amount of data type per demographic for this ad."""
         if data_type == "number-of-ads":
             return 1
