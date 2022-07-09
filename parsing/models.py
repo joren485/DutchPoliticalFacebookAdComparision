@@ -122,28 +122,29 @@ class Ad(Model):
         """Return the average estimated audience size for every day this ad is/was active."""
         return self.average_audience_size / self.days_active
 
-    def active_date_indices(self) -> int:
-        """
-        Yield dates and indexes that this ad is/was active.
+    def active_date_indices(
+        self, time_range_start_date=FIRST_DATE, time_range_end_date=LAST_DATE
+    ):
+        """Yield the indices of dates that this ad was active during a time range."""
+        ad_end_date = self.end_date or date.today()
+        if (time_range_start_date <= self.start_date <= time_range_end_date) or (
+            time_range_start_date <= ad_end_date <= time_range_end_date
+        ):
 
-        This does take FIRST_DATE and LAST_DATE into account.
-        For example, if start_date falls before FIRST_DATE, the ad is considered to start on FIRST_DATE.
-        """
-        if self.start_date < FIRST_DATE:
-            start_date = FIRST_DATE
-        else:
-            start_date = self.start_date
+            if self.start_date < time_range_start_date:
+                ad_start_date = time_range_start_date
+            else:
+                ad_start_date = self.start_date
 
-        if self.end_date is None or self.end_date > LAST_DATE:
-            end_date = LAST_DATE
-        else:
-            end_date = self.end_date
+            if ad_end_date > time_range_end_date:
+                ad_end_date = time_range_end_date
 
-        days_active_in_range = 1 + (end_date - start_date).days
-        start_date_index = (start_date - FIRST_DATE).days
+            days_active_in_range = 1 + (ad_end_date - ad_start_date).days
+            start_date_index = (ad_start_date - time_range_start_date).days
+            for date_offset in range(days_active_in_range):
+                yield start_date_index + date_offset
 
-        for date_offset in range(days_active_in_range):
-            yield start_date_index + date_offset
+        return []
 
     @staticmethod
     def demographic_to_field_name(demographic: str) -> str:
