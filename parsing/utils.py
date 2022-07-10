@@ -61,5 +61,5 @@ def render_template(template: str, destination: str, **kwargs) -> None:
 
 
 def time_range_len(start_date: date, end_date: date) -> int:
-    """Returns the number of dates from start_date up to and including end_date."""
+    """Return the number of dates from start_date up to and including end_date."""
     return (end_date - start_date).days + 1
