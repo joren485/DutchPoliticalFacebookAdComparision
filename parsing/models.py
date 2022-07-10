@@ -13,14 +13,7 @@ from peewee import (
     TextField,
 )
 
-from constants import (
-    AGE_RANGES,
-    FIRST_DATE,
-    GENDERS,
-    LAST_DATE,
-    LOCAL_AD_ARCHIVE_PATH,
-    REGIONS,
-)
+from constants import AGE_RANGES, FIRST_DATE, GENDERS, LOCAL_AD_ARCHIVE_PATH, REGIONS
 
 PATTERN_NON_WORD_CHARS = re.compile(r"[^a-zA-Z0-9-' #]")
 
@@ -60,13 +53,13 @@ class Ad(Model):
     audience_size_upper = IntegerField()
 
     @classmethod
-    def ads_in_time_range(cls, first_date=FIRST_DATE, last_date=LAST_DATE):
+    def ads_in_time_range(cls, first_date=FIRST_DATE, last_date=date.today()):
         """
         Return a query that contains all ads that were active in a certain time period (i.e. between first_date and last_date).
 
         Ads that are considered active between first_date and last_date meet at least one of the following constraints:
-        - The start_date falls between first_date and last_date.
-        - The end_end falls between first_date and last_date.
+        - Ad.start_date falls between first_date and last_date.
+        - Ad.end_end falls between first_date and last_date.
         """
         return Ad.select().where(
             (first_date <= Ad.start_date) & (Ad.start_date <= last_date)
@@ -123,24 +116,24 @@ class Ad(Model):
         return self.average_audience_size / self.days_active
 
     def active_date_indices(
-        self, time_range_start_date=FIRST_DATE, time_range_end_date=LAST_DATE
+        self, first_date=FIRST_DATE, last_date=date.today()
     ) -> typing.Generator[int, None, None]:
         """Yield the indices of dates that this ad was active during a time range."""
         ad_end_date = self.end_date or date.today()
-        if (time_range_start_date <= self.start_date <= time_range_end_date) or (
-            time_range_start_date <= ad_end_date <= time_range_end_date
+        if (first_date <= self.start_date <= last_date) or (
+            first_date <= ad_end_date <= last_date
         ):
 
-            if self.start_date < time_range_start_date:
-                ad_start_date = time_range_start_date
+            if self.start_date < first_date:
+                ad_start_date = first_date
             else:
                 ad_start_date = self.start_date
 
-            if ad_end_date > time_range_end_date:
-                ad_end_date = time_range_end_date
+            if ad_end_date > last_date:
+                ad_end_date = last_date
 
             days_active_in_range = 1 + (ad_end_date - ad_start_date).days
-            start_date_index = (ad_start_date - time_range_start_date).days
+            start_date_index = (ad_start_date - first_date).days
             for date_offset in range(days_active_in_range):
                 yield start_date_index + date_offset
 

@@ -11,6 +11,7 @@ from constants import (
     FACEBOOK_API_URL,
     MAX_PAGE_IDS_PER_REQUEST,
     PARTIES,
+    FIRST_DATE,
 )
 from models import Ad
 from parsing import json_to_ad_dict
@@ -106,7 +107,7 @@ if __name__ == "__main__":
                         DATETIME_FORMAT
                     )
                     if not args.all
-                    else "2018-05-07",  # This is the first allowed day.
+                    else FIRST_DATE.strftime(DATETIME_FORMAT),
                 ),
                 party,
             )

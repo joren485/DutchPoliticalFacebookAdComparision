@@ -1,14 +1,14 @@
 import logging
+from datetime import date
 
 from constants import (
     DATA_TYPES,
     DEMOGRAPHIC_TYPE_TO_LIST_MAP,
     DEMOGRAPHIC_TYPES,
-    NUMBER_OF_DATES,
     PARTIES,
 )
 from models import Ad
-from utils import recursive_round, render_template
+from utils import recursive_round, render_template, time_range_len
 
 logging.basicConfig(
     format="[%(asctime)s] %(levelname)s: %(message)s",
@@ -16,10 +16,14 @@ logging.basicConfig(
     datefmt="%Y-%m-%d %H:%M:%S",
 )
 
+SEPT_1 = date(year=2020, month=9, day=1)
+NUMBER_OF_DATES = time_range_len(SEPT_1, date.today())
 
 if __name__ == "__main__":
 
-    ads_per_party = {p: Ad.ads_in_time_range().where(Ad.party == p) for p in PARTIES}
+    ads_per_party = {
+        p: Ad.ads_in_time_range(first_date=SEPT_1).where(Ad.party == p) for p in PARTIES
+    }
 
     for party in PARTIES:
         logging.info(f"Processing {len(ads_per_party[party])} ads for {party}.")
@@ -51,7 +55,7 @@ if __name__ == "__main__":
                 ]
 
                 for ad in ads_per_party[party]:
-                    for date_i in ad.active_date_indices():
+                    for date_i in ad.active_date_indices(first_date=SEPT_1):
                         for demographic_i, demographic in enumerate(demographic_list):
                             party_data[f"{data_type}-{demographic_type}-daily"][
                                 demographic_i

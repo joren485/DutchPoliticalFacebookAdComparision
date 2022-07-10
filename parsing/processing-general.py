@@ -1,8 +1,9 @@
 import logging
+from datetime import date
 
-from constants import DATA_TYPES, FIRST_DATE, NUMBER_OF_DATES, PARTIES
+from constants import DATA_TYPES, PARTIES
 from models import Ad
-from utils import recursive_round, render_template
+from utils import recursive_round, render_template, time_range_len
 
 logging.basicConfig(
     format="[%(asctime)s] %(levelname)s: %(message)s",
@@ -10,10 +11,12 @@ logging.basicConfig(
     datefmt="%Y-%m-%d %H:%M:%S",
 )
 
+SEPT_1 = date(year=2020, month=9, day=1)
+NUMBER_OF_DATES = time_range_len(SEPT_1, date.today())
 
 if __name__ == "__main__":
 
-    ads = list(Ad.ads_in_time_range())
+    ads = list(Ad.ads_in_time_range(first_date=SEPT_1))
     ads_per_party = {p: [ad for ad in ads if ad.party == p] for p in PARTIES}
 
     most_expensive_ad = max(ads, key=lambda e: e.average_spending_per_day)
@@ -47,7 +50,7 @@ if __name__ == "__main__":
 
     for party_i, party in enumerate(PARTIES):
         for ad in ads_per_party[party]:
-            for date_i in ad.active_date_indices():
+            for date_i in ad.active_date_indices(first_date=SEPT_1):
                 for data_type in DATA_TYPES:
                     general_data[f"{data_type}-party-daily"][party_i][
                         date_i

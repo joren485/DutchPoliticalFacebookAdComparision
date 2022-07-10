@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, date
 from typing import Optional, Union
 
 from jinja2 import Environment, FileSystemLoader, select_autoescape
@@ -58,3 +58,8 @@ def render_template(template: str, destination: str, **kwargs) -> None:
 
     with open(destination_path, "w") as h_destination:
         h_destination.write(rendered_content)
+
+
+def time_range_len(start_date: date, end_date: date) -> int:
+    """Returns the number of dates from start_date up to and including end_date."""
+    return (end_date - start_date).days + 1

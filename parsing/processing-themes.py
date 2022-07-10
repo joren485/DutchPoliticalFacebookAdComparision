@@ -1,10 +1,7 @@
 import logging
+from datetime import date
 
-from constants import (
-    DEMOGRAPHIC_TYPE_TO_LIST_MAP,
-    DEMOGRAPHIC_TYPES,
-    PARTIES,
-)
+from constants import DEMOGRAPHIC_TYPE_TO_LIST_MAP, DEMOGRAPHIC_TYPES, PARTIES
 from models import Ad
 from themes import Theme
 from utils import recursive_round, render_template
@@ -14,6 +11,8 @@ logging.basicConfig(
     level=logging.INFO,
     datefmt="%Y-%m-%d %H:%M:%S",
 )
+
+SEPT_1 = date(year=2020, month=9, day=1)
 
 if __name__ == "__main__":
 
@@ -29,11 +28,11 @@ if __name__ == "__main__":
         "number-of-ads-theme-party": {p: [] for p in PARTIES},
         "matched": {
             p: [
-                Ad.ads_in_time_range()
+                Ad.ads_in_time_range(first_date=SEPT_1)
                 .where(Ad.themes != 0)
                 .where(Ad.party == p)
                 .count(),
-                Ad.ads_in_time_range()
+                Ad.ads_in_time_range(first_date=SEPT_1)
                 .where(Ad.themes == 0)
                 .where(Ad.party == p)
                 .count(),
@@ -45,7 +44,7 @@ if __name__ == "__main__":
     for theme in Theme.all():
         logging.info(f"Processing {theme.title}.")
 
-        ads = Ad.ads_in_time_range().where(
+        ads = Ad.ads_in_time_range(first_date=SEPT_1).where(
             Ad.themes.bin_and(theme.value) == theme.value
         )
         for demographic_type in DEMOGRAPHIC_TYPES:
@@ -56,7 +55,7 @@ if __name__ == "__main__":
 
         for party in PARTIES:
             ads = (
-                Ad.ads_in_time_range()
+                Ad.ads_in_time_range(first_date=SEPT_1)
                 .where(Ad.party == party)
                 .where(Ad.themes.bin_and(theme.value) == theme.value)
             )
