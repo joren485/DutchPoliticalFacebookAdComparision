@@ -16,13 +16,15 @@ logging.basicConfig(
     datefmt="%Y-%m-%d %H:%M:%S",
 )
 
-SEPT_1 = date(year=2020, month=9, day=1)
-NUMBER_OF_DATES = time_range_len(SEPT_1, date.today())
+JAN_1 = date(year=2021, month=1, day=1)
+MAR_17 = date(year=2021, month=3, day=17)
+
+NUMBER_OF_DATES = time_range_len(start_date=JAN_1, end_date=MAR_17)
 
 if __name__ == "__main__":
 
     ads_per_party = {
-        p: Ad.ads_in_time_range(first_date=SEPT_1).where(Ad.party == p) for p in PARTIES
+        p: Ad.ads_in_time_range(first_date=JAN_1, last_date=MAR_17).where(Ad.party == p) for p in PARTIES
     }
 
     for party in PARTIES:
@@ -55,7 +57,7 @@ if __name__ == "__main__":
                 ]
 
                 for ad in ads_per_party[party]:
-                    for date_i in ad.active_date_indices(first_date=SEPT_1):
+                    for date_i in ad.active_date_indices(first_date=JAN_1, last_date=MAR_17):
                         for demographic_i, demographic in enumerate(demographic_list):
                             party_data[f"{data_type}-{demographic_type}-daily"][
                                 demographic_i

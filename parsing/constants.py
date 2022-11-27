@@ -49,9 +49,9 @@ CURRENCY_EXCHANGE_RATE_MAP = {
 }
 
 PARTIES = [
+    "50+",
     "BBB",
     "BIJ1",
-    "BVNL",
     "CDA",
     "CU",
     "D66",

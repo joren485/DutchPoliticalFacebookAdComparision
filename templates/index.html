@@ -6,7 +6,7 @@
     <p class="lead text-center">
         This website visualizes statistics about Facebook advertisements by Dutch political parties.
         It is based on data from the <a href="https://www.facebook.com/ads/library/">Facebook Ad Library</a>.
-        For more information visit the <a href="/DutchPoliticalFacebookAdComparision/website/about.html">about page</a>.
+        For more information visit the <a href="/DutchPoliticalFacebookAdComparision/2021/website/about.html">about page</a>.
     </p>
 
     <hr>
@@ -18,7 +18,7 @@
                     <h3>{{ data_type | replace("-", " ") | title | replace ("Of", "of") }}</h3>
                     <p>
                         {% if data_type == "number-of-ads" %}
-                            All parties combined ran <strong>{{ general_data["number-of-ads-total"] }}</strong> ads since 1 September 2020.
+                            All parties combined ran <strong>{{ general_data["number-of-ads-total"] }}</strong> ads.
                         {% elif data_type == "spending" %}
                             In total between <strong>€{{ general_data["spending-total-lower"] }} - €{{ general_data["spending-total-upper"] }}</strong> has been spent in the past year.
                             <br>

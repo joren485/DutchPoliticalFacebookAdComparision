@@ -52,9 +52,9 @@ def render_template(template: str, destination: str, **kwargs) -> None:
     )
 
     if template == "index.html":
-        destination_path = f"../{ destination }"
+        destination_path = f"../2021/{ destination }"
     else:
-        destination_path = f"../website/{ destination }"
+        destination_path = f"../2021/website/{ destination }"
 
     with open(destination_path, "w") as h_destination:
         h_destination.write(rendered_content)

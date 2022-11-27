@@ -12,7 +12,8 @@ logging.basicConfig(
     datefmt="%Y-%m-%d %H:%M:%S",
 )
 
-SEPT_1 = date(year=2020, month=9, day=1)
+JAN_1 = date(year=2021, month=1, day=1)
+MAR_17 = date(year=2021, month=3, day=17)
 
 if __name__ == "__main__":
 
@@ -28,11 +29,11 @@ if __name__ == "__main__":
         "number-of-ads-theme-party": {p: [] for p in PARTIES},
         "matched": {
             p: [
-                Ad.ads_in_time_range(first_date=SEPT_1)
+                Ad.ads_in_time_range(first_date=JAN_1, last_date=MAR_17)
                 .where(Ad.themes != 0)
                 .where(Ad.party == p)
                 .count(),
-                Ad.ads_in_time_range(first_date=SEPT_1)
+                Ad.ads_in_time_range(first_date=JAN_1, last_date=MAR_17)
                 .where(Ad.themes == 0)
                 .where(Ad.party == p)
                 .count(),
@@ -44,7 +45,7 @@ if __name__ == "__main__":
     for theme in Theme.all():
         logging.info(f"Processing {theme.title}.")
 
-        ads = Ad.ads_in_time_range(first_date=SEPT_1).where(
+        ads = Ad.ads_in_time_range(first_date=JAN_1, last_date=MAR_17).where(
             Ad.themes.bin_and(theme.value) == theme.value
         )
         for demographic_type in DEMOGRAPHIC_TYPES:
@@ -55,7 +56,7 @@ if __name__ == "__main__":
 
         for party in PARTIES:
             ads = (
-                Ad.ads_in_time_range(first_date=SEPT_1)
+                Ad.ads_in_time_range(first_date=JAN_1, last_date=MAR_17)
                 .where(Ad.party == party)
                 .where(Ad.themes.bin_and(theme.value) == theme.value)
             )

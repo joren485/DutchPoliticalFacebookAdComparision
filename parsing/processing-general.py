@@ -11,12 +11,14 @@ logging.basicConfig(
     datefmt="%Y-%m-%d %H:%M:%S",
 )
 
-SEPT_1 = date(year=2020, month=9, day=1)
-NUMBER_OF_DATES = time_range_len(SEPT_1, date.today())
+JAN_1 = date(year=2021, month=1, day=1)
+MAR_17 = date(year=2021, month=3, day=17)
+
+NUMBER_OF_DATES = time_range_len(start_date=JAN_1, end_date=MAR_17)
 
 if __name__ == "__main__":
 
-    ads = list(Ad.ads_in_time_range(first_date=SEPT_1))
+    ads = list(Ad.ads_in_time_range(first_date=JAN_1, last_date=MAR_17))
     ads_per_party = {p: [ad for ad in ads if ad.party == p] for p in PARTIES}
 
     most_expensive_ad = max(ads, key=lambda e: e.average_spending_per_day)
@@ -50,7 +52,7 @@ if __name__ == "__main__":
 
     for party_i, party in enumerate(PARTIES):
         for ad in ads_per_party[party]:
-            for date_i in ad.active_date_indices(first_date=SEPT_1):
+            for date_i in ad.active_date_indices(first_date=JAN_1, last_date=MAR_17):
                 for data_type in DATA_TYPES:
                     general_data[f"{data_type}-party-daily"][party_i][
                         date_i
