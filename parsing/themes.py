@@ -57,8 +57,4 @@ class Theme(Flag):
     @classmethod
     def intersections(cls, words):
         """Calculate the amount of common words between a given list and every theme."""
-        return {
-            t: sum(1 for word in words if word in t.wordlist)
-            for t in cls
-            if t != Theme.NONE
-        }
+        return {t: sum(1 for word in words if word in t.wordlist) for t in cls if t != Theme.NONE}

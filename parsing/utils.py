@@ -10,9 +10,7 @@ from constants import (
     PARTIES,
 )
 
-JINJA_ENVIRONMENT = Environment(
-    loader=FileSystemLoader("../templates"), autoescape=select_autoescape()
-)
+JINJA_ENVIRONMENT = Environment(loader=FileSystemLoader("../templates"), autoescape=select_autoescape())
 
 
 def recursive_round(o: Union[dict, list], precision: Optional[int] = None) -> None:

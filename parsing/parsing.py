@@ -50,7 +50,6 @@ def _parse_content(data: dict, key: str):
 
 
 def _parse_themes(ad_content: str) -> int:
-
     doc = NLP(unidecode(ad_content))
     words = [t.lemma_ for t in doc if t.pos_ in ("NOUN", "ADJ", "PROPN")]
 
@@ -59,9 +58,7 @@ def _parse_themes(ad_content: str) -> int:
     if not theme_intersections:
         return Theme.NONE.value
 
-    max_intersection = theme_intersections[
-        max(theme_intersections, key=lambda k: theme_intersections[k])
-    ]
+    max_intersection = theme_intersections[max(theme_intersections, key=lambda k: theme_intersections[k])]
 
     flag = Theme.NONE
     for t, f in theme_intersections.items():
@@ -83,12 +80,8 @@ def json_to_ad_dict(ad_json_data: dict, party: str) -> dict:
     spending_lower *= CURRENCY_EXCHANGE_RATE_MAP[ad_json_data["currency"]]
     spending_upper *= CURRENCY_EXCHANGE_RATE_MAP[ad_json_data["currency"]]
 
-    impressions_lower, impressions_upper = _parse_estimated_value(
-        ad_json_data, "impressions"
-    )
-    audience_size_lower, audience_size_upper = _parse_estimated_value(
-        ad_json_data, "estimated_audience_size"
-    )
+    impressions_lower, impressions_upper = _parse_estimated_value(ad_json_data, "impressions")
+    audience_size_lower, audience_size_upper = _parse_estimated_value(ad_json_data, "estimated_audience_size")
 
     ad_dict = {
         "ad_id": ad_json_data["id"],
@@ -98,12 +91,8 @@ def json_to_ad_dict(ad_json_data: dict, party: str) -> dict:
         "start_date": _parse_date(ad_json_data, "ad_delivery_start_time"),
         "end_date": _parse_date(ad_json_data, "ad_delivery_stop_time"),
         "creative_bodies": _parse_content(ad_json_data, "ad_creative_bodies"),
-        "creative_link_captions": _parse_content(
-            ad_json_data, "ad_creative_link_captions"
-        ),
-        "creative_link_descriptions": _parse_content(
-            ad_json_data, "ad_creative_link_descriptions"
-        ),
+        "creative_link_captions": _parse_content(ad_json_data, "ad_creative_link_captions"),
+        "creative_link_descriptions": _parse_content(ad_json_data, "ad_creative_link_descriptions"),
         "creative_link_titles": _parse_content(ad_json_data, "ad_creative_link_titles"),
         "spending_lower": spending_lower,
         "spending_upper": spending_upper,
@@ -114,10 +103,7 @@ def json_to_ad_dict(ad_json_data: dict, party: str) -> dict:
     }
 
     if "languages" in ad_json_data and ad_json_data["languages"] != ["nl"]:
-        logging.warning(
-            f"Non-dutch language detected "
-            f"({ad_dict['ad_id']}): {','.join(ad_json_data['languages'])}"
-        )
+        logging.warning(f"Non-dutch language detected " f"({ad_dict['ad_id']}): {','.join(ad_json_data['languages'])}")
 
     if "delivery_by_region" in ad_json_data:
         for distribution in ad_json_data["delivery_by_region"]:
@@ -145,10 +131,7 @@ def json_to_ad_dict(ad_json_data: dict, party: str) -> dict:
                         ad_dict[field_name] += percentage
                 else:
                     if demographic not in GENDER_IGNORE_LIST:
-                        logging.warning(
-                            f"Unknown gender/age group: "
-                            f"{demographic} ({ad_dict['ad_id']})"
-                        )
+                        logging.warning(f"Unknown gender/age group: " f"{demographic} ({ad_dict['ad_id']})")
 
     ad_dict["themes"] = _parse_themes(
         " ".join(

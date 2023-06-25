@@ -61,7 +61,6 @@ def parse_facebook_page_ids(parties: List[str]) -> dict[str, List[str]]:
     with open("../data/facebook_page_ids.csv") as h_page_ids:
         reader = csv.DictReader(h_page_ids)
         for row in reader:
-
             if row["Party"] not in parties:
                 if row["Party"] not in PARTIES:
                     logging.warning(f"Unknown party: '{row['Party']}'")
@@ -73,7 +72,6 @@ def parse_facebook_page_ids(parties: List[str]) -> dict[str, List[str]]:
 
 
 if __name__ == "__main__":
-
     parser = argparse.ArgumentParser(description="")
     parser.add_argument("-v", "--verbose", action="store_true")
     parser.add_argument("-a", "--all", action="store_true")
@@ -84,28 +82,20 @@ if __name__ == "__main__":
         logging.getLogger().setLevel(logging.DEBUG)
 
     if args.parties:
-        page_ids_per_party = parse_facebook_page_ids(
-            [p for p in args.parties.split(",") if p in PARTIES]
-        )
+        page_ids_per_party = parse_facebook_page_ids([p for p in args.parties.split(",") if p in PARTIES])
     else:
         page_ids_per_party = parse_facebook_page_ids(PARTIES)
 
     for party, page_ids in page_ids_per_party.items():
-
         for i in range(0, len(page_ids), MAX_PAGE_IDS_PER_REQUEST):
             page_ids_subset = page_ids[i : i + MAX_PAGE_IDS_PER_REQUEST]
 
-            logging.info(
-                f"Downloading ads of {len(page_ids_subset)}"
-                f" pages ({i}/{len(page_ids)}) ({party})"
-            )
+            logging.info(f"Downloading ads of {len(page_ids_subset)}" f" pages ({i}/{len(page_ids)}) ({party})")
 
             download_ads(
                 FACEBOOK_API_URL.format(
                     page_ids=",".join(page_ids_subset),
-                    min_date=(date.today() - timedelta(weeks=1)).strftime(
-                        DATETIME_FORMAT
-                    )
+                    min_date=(date.today() - timedelta(weeks=1)).strftime(DATETIME_FORMAT)
                     if not args.all
                     else FIRST_DATE.strftime(DATETIME_FORMAT),
                 ),

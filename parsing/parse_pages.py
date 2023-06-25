@@ -41,11 +41,7 @@ def get_spending_report(party, cursor=None):
         page_ids[str(advertiser["advertiserPageID"])] = advertiser["advertiserPage"]
 
     if payload["advertiserCursors"]["encryptedForwardCursor"] is not None:
-        page_ids.update(
-            get_spending_report(
-                party, payload["advertiserCursors"]["encryptedForwardCursor"]
-            )
-        )
+        page_ids.update(get_spending_report(party, payload["advertiserCursors"]["encryptedForwardCursor"]))
 
     return page_ids
 
@@ -61,15 +57,11 @@ for p in PARTIES:
 
 
 with open("../data/facebook_page_ids.csv", "w", newline="") as h_file:
-    writer = csv.DictWriter(
-        h_file, ["Party", "Page Name", "Page ID"], quoting=csv.QUOTE_ALL
-    )
+    writer = csv.DictWriter(h_file, ["Party", "Page Name", "Page ID"], quoting=csv.QUOTE_ALL)
 
     writer.writeheader()
     for party in sorted(party_pages.keys()):
-        for page_id, page_name in sorted(
-            party_pages[party].items(), key=lambda e: e[1]
-        ):
+        for page_id, page_name in sorted(party_pages[party].items(), key=lambda e: e[1]):
             writer.writerow(
                 {
                     "Party": party,

@@ -15,27 +15,17 @@ logging.basicConfig(
 SEPT_1 = date(year=2020, month=9, day=1)
 
 if __name__ == "__main__":
-
     theme_data = {
-        "impressions-demographics-theme": {
-            t: {dt: [] for dt in DEMOGRAPHIC_TYPES} for t in Theme.titles()
-        },
+        "impressions-demographics-theme": {t: {dt: [] for dt in DEMOGRAPHIC_TYPES} for t in Theme.titles()},
         "impressions-demographics-theme-party": {
-            p: {t: {dt: [] for dt in DEMOGRAPHIC_TYPES} for t in Theme.titles()}
-            for p in PARTIES
+            p: {t: {dt: [] for dt in DEMOGRAPHIC_TYPES} for t in Theme.titles()} for p in PARTIES
         },
         "impressions-theme-party": {p: [] for p in PARTIES},
         "number-of-ads-theme-party": {p: [] for p in PARTIES},
         "matched": {
             p: [
-                Ad.ads_in_time_range(first_date=SEPT_1)
-                .where(Ad.themes != 0)
-                .where(Ad.party == p)
-                .count(),
-                Ad.ads_in_time_range(first_date=SEPT_1)
-                .where(Ad.themes == 0)
-                .where(Ad.party == p)
-                .count(),
+                Ad.ads_in_time_range(first_date=SEPT_1).where(Ad.themes != 0).where(Ad.party == p).count(),
+                Ad.ads_in_time_range(first_date=SEPT_1).where(Ad.themes == 0).where(Ad.party == p).count(),
             ]
             for p in PARTIES
         },
@@ -44,14 +34,12 @@ if __name__ == "__main__":
     for theme in Theme.all():
         logging.info(f"Processing {theme.title}.")
 
-        ads = Ad.ads_in_time_range(first_date=SEPT_1).where(
-            Ad.themes.bin_and(theme.value) == theme.value
-        )
+        ads = Ad.ads_in_time_range(first_date=SEPT_1).where(Ad.themes.bin_and(theme.value) == theme.value)
         for demographic_type in DEMOGRAPHIC_TYPES:
             for demographic in DEMOGRAPHIC_TYPE_TO_LIST_MAP[demographic_type]:
-                theme_data["impressions-demographics-theme"][theme.title][
-                    demographic_type
-                ].append(sum(a.rank_to_data("impressions", demographic) for a in ads))
+                theme_data["impressions-demographics-theme"][theme.title][demographic_type].append(
+                    sum(a.rank_to_data("impressions", demographic) for a in ads)
+                )
 
         for party in PARTIES:
             ads = (
@@ -67,14 +55,10 @@ if __name__ == "__main__":
 
             for demographic_type in DEMOGRAPHIC_TYPES:
                 for demographic in DEMOGRAPHIC_TYPE_TO_LIST_MAP[demographic_type]:
-                    theme_data["impressions-demographics-theme-party"][party][
-                        theme.title
-                    ][demographic_type].append(
+                    theme_data["impressions-demographics-theme-party"][party][theme.title][demographic_type].append(
                         sum(a.rank_to_data("impressions", demographic) for a in ads)
                     )
 
     logging.debug("Writing templates.")
     recursive_round(theme_data)
-    render_template(
-        "themes.html", "themes.html", theme_data=theme_data, THEMES=Theme.titles()
-    )
+    render_template("themes.html", "themes.html", theme_data=theme_data, THEMES=Theme.titles())

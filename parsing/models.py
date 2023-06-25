@@ -115,15 +115,10 @@ class Ad(Model):
         """Return the average estimated audience size for every day this ad is/was active."""
         return self.average_audience_size / self.days_active
 
-    def active_date_indices(
-        self, first_date=FIRST_DATE, last_date=date.today()
-    ) -> typing.Generator[int, None, None]:
+    def active_date_indices(self, first_date=FIRST_DATE, last_date=date.today()) -> typing.Generator[int, None, None]:
         """Yield the indices of dates that this ad was active during a time range."""
         ad_end_date = self.end_date or date.today()
-        if (first_date <= self.start_date <= last_date) or (
-            first_date <= ad_end_date <= last_date
-        ):
-
+        if (first_date <= self.start_date <= last_date) or (first_date <= ad_end_date <= last_date):
             if self.start_date < first_date:
                 ad_start_date = first_date
             else:
@@ -155,9 +150,7 @@ class Ad(Model):
 
         raise ValueError(f"Unknown type: {demographic}")
 
-    def rank_to_data(
-        self, data_type: str, demographic: str, per_day: bool = False
-    ) -> float:
+    def rank_to_data(self, data_type: str, demographic: str, per_day: bool = False) -> float:
         """Return the amount of data type per demographic for this ad."""
         if data_type == "number-of-ads":
             return 1
