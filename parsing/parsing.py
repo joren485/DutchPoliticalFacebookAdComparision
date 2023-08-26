@@ -77,8 +77,8 @@ def json_to_ad_dict(ad_json_data: dict, party: str) -> dict:
     :return: A dict corresponds with the Ad model.
     """
     spending_lower, spending_upper = _parse_estimated_value(ad_json_data, "spend")
-    spending_lower *= CURRENCY_EXCHANGE_RATE_MAP[ad_json_data["currency"]]
-    spending_upper *= CURRENCY_EXCHANGE_RATE_MAP[ad_json_data["currency"]]
+    spending_lower *= CURRENCY_EXCHANGE_RATE_MAP[ad_json_data.get("currency", "EUR")]
+    spending_upper *= CURRENCY_EXCHANGE_RATE_MAP[ad_json_data.get("currency", "EUR")]
 
     impressions_lower, impressions_upper = _parse_estimated_value(ad_json_data, "impressions")
     audience_size_lower, audience_size_upper = _parse_estimated_value(ad_json_data, "estimated_audience_size")
