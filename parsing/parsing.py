@@ -70,7 +70,7 @@ def _parse_themes(ad_content: str) -> int:
 
 def json_to_ad_dict(ad_json_data: dict, party: str) -> dict:
     """
-    Transform a json object into an dictionary that corresponds with the Ad model.
+    Transform a json object into a dictionary that corresponds with the Ad model.
 
     :param ad_json_data: Json object representing an ad from the Facebook API.
     :param party: Current party to parse.
@@ -80,7 +80,15 @@ def json_to_ad_dict(ad_json_data: dict, party: str) -> dict:
     spending_lower *= CURRENCY_EXCHANGE_RATE_MAP[ad_json_data.get("currency", "EUR")]
     spending_upper *= CURRENCY_EXCHANGE_RATE_MAP[ad_json_data.get("currency", "EUR")]
 
-    impressions_lower, impressions_upper = _parse_estimated_value(ad_json_data, "impressions")
+    if "age_country_gender_reach_breakdown" in ad_json_data:
+        impressions_lower = impressions_upper = sum(
+            age_breakdown.get(g, 0)
+            for country_breakdown in ad_json_data["age_country_gender_reach_breakdown"]
+            for age_breakdown in country_breakdown["age_gender_breakdowns"]
+            for g in GENDERS
+        )
+    else:
+        impressions_lower, impressions_upper = _parse_estimated_value(ad_json_data, "impressions")
     audience_size_lower, audience_size_upper = _parse_estimated_value(ad_json_data, "estimated_audience_size")
 
     ad_dict = {
@@ -119,7 +127,38 @@ def json_to_ad_dict(ad_json_data: dict, party: str) -> dict:
                 if region not in REGION_IGNORE_LIST:
                     logging.warning(f"Unknown region: {region} ({ad_dict['ad_id']})")
 
-    if "demographic_distribution" in ad_json_data:
+    if "age_country_gender_reach_breakdown" in ad_json_data:
+        print(ad_dict['ad_id'])
+        print(ad_json_data["age_country_gender_reach_breakdown"])
+        for distribution in ad_json_data["age_country_gender_reach_breakdown"]:
+
+            country = distribution["country"]
+            if country != "NL":
+                logging.warning(f"Breakdown of non-NL country: {country} ({ad_dict['ad_id']})")
+
+            country_breakdown = distribution["age_gender_breakdowns"]
+
+            for age_breakdown in country_breakdown:
+                age_range = age_breakdown["age_range"]
+
+                if age_range not in AGE_RANGES:
+                    logging.warning(f"Unknown age range: " f"{age_range} ({ad_dict['ad_id']})")
+                    continue
+
+                field_name = Ad.demographic_to_field_name(age_range)
+                age_range_sum = sum(age_breakdown[k] for k in age_breakdown if k != "age_range")
+                # If age_country_gender_reach_breakdown is provided by the API, we set impressions_lower
+                # (and impressions_upper) to the total sum of age_country_gender_reach_breakdown.
+                ad_dict[field_name] = Decimal(age_range_sum / impressions_lower)
+
+            for gender in GENDERS:
+                field_name = Ad.demographic_to_field_name(gender)
+                gender_total = sum(
+                    age_breakdown.get(gender, 0) for age_breakdown in country_breakdown
+                )
+                ad_dict[field_name] = Decimal(gender_total / impressions_lower)
+
+    elif "demographic_distribution" in ad_json_data:
         for distribution in ad_json_data["demographic_distribution"]:
             percentage = Decimal(distribution["percentage"])
             for demographic in (distribution["gender"], distribution["age"]):
