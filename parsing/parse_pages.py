@@ -38,6 +38,10 @@ def get_spending_report(party, cursor=None):
     payload = json.loads(r.text[len("for (;;);") :])["payload"]
 
     for advertiser in payload["advertisers"]:
+
+        if party == "SP" and "SP" not in advertiser["advertiserPage"] and "SP" not in advertiser["disclaimer"]:
+            continue
+
         page_ids[str(advertiser["advertiserPageID"])] = advertiser["advertiserPage"]
 
     if payload["advertiserCursors"]["encryptedForwardCursor"] is not None:
