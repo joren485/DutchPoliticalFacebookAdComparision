@@ -39,6 +39,9 @@ def get_spending_report(party, cursor=None):
 
     for advertiser in payload["advertisers"]:
 
+        if advertiser["advertiserPageID"] == 0:
+            continue
+
         if party == "SP" and "SP" not in advertiser["advertiserPage"] and "SP" not in advertiser["disclaimer"]:
             continue
 

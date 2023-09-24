@@ -128,8 +128,6 @@ def json_to_ad_dict(ad_json_data: dict, party: str) -> dict:
                     logging.warning(f"Unknown region: {region} ({ad_dict['ad_id']})")
 
     if "age_country_gender_reach_breakdown" in ad_json_data:
-        print(ad_dict['ad_id'])
-        print(ad_json_data["age_country_gender_reach_breakdown"])
         for distribution in ad_json_data["age_country_gender_reach_breakdown"]:
 
             country = distribution["country"]
