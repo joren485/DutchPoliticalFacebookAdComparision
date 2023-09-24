@@ -3,10 +3,10 @@ from datetime import date
 
 LOCAL_AD_ARCHIVE_PATH = "../data/local_ad_archive.sqlite"
 
-AD_LIMIT_PER_REQUEST = 1000
+AD_LIMIT_PER_REQUEST = 500
 MAX_PAGE_IDS_PER_REQUEST = 10
 
-FACEBOOK_API_VERSION = "v13.0"
+FACEBOOK_API_VERSION = "v18.0"
 
 FACEBOOK_API_FIELDS = [
     "id",
@@ -17,6 +17,7 @@ FACEBOOK_API_FIELDS = [
     "ad_creative_link_titles",
     "ad_delivery_start_time",
     "ad_delivery_stop_time",
+    "age_country_gender_reach_breakdown",
     "currency",
     "delivery_by_region",
     "demographic_distribution",
@@ -25,6 +26,9 @@ FACEBOOK_API_FIELDS = [
     "page_id",
     "estimated_audience_size",
     "spend",
+    # "target_ages",
+    # "target_gender",
+    # "target_locations",
 ]
 
 FACEBOOK_API_ACCESS_TOKEN = os.getenv("FACEBOOK_ACCESS_TOKEN")
@@ -34,7 +38,7 @@ FACEBOOK_API_URL = (
     f"limit={AD_LIMIT_PER_REQUEST}&"
     f"fields={','.join(FACEBOOK_API_FIELDS)}&"
     f"ad_reached_countries=NL&"
-    f"ad_active_status=all&"
+    f"ad_active_status=ALL&"
     f"ad_delivery_date_min={{min_date}}&"
     f"search_page_ids={{page_ids}}"
 )
@@ -45,7 +49,7 @@ DATETIME_FORMAT = "%Y-%m-%d"
 
 CURRENCY_EXCHANGE_RATE_MAP = {
     "EUR": 1,
-    "USD": 0.85,
+    "USD": 0.94,
 }
 
 PARTIES = [
