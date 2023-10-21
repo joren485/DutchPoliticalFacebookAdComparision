@@ -3,7 +3,7 @@ from datetime import date
 
 LOCAL_AD_ARCHIVE_PATH = "../data/local_ad_archive.sqlite"
 
-AD_LIMIT_PER_REQUEST = 500
+AD_LIMIT_PER_REQUEST = 300
 MAX_PAGE_IDS_PER_REQUEST = 10
 
 FACEBOOK_API_VERSION = "v18.0"
