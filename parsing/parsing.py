@@ -129,7 +129,6 @@ def json_to_ad_dict(ad_json_data: dict, party: str) -> dict:
 
     if "age_country_gender_reach_breakdown" in ad_json_data:
         for distribution in ad_json_data["age_country_gender_reach_breakdown"]:
-
             country = distribution["country"]
             if country != "NL":
                 logging.warning(f"Breakdown of non-NL country: {country} ({ad_dict['ad_id']})")
@@ -151,9 +150,7 @@ def json_to_ad_dict(ad_json_data: dict, party: str) -> dict:
 
             for gender in GENDERS:
                 field_name = Ad.demographic_to_field_name(gender)
-                gender_total = sum(
-                    age_breakdown.get(gender, 0) for age_breakdown in country_breakdown
-                )
+                gender_total = sum(age_breakdown.get(gender, 0) for age_breakdown in country_breakdown)
                 ad_dict[field_name] = Decimal(gender_total / impressions_lower)
 
     elif "demographic_distribution" in ad_json_data:

@@ -38,7 +38,6 @@ def get_spending_report(party, cursor=None):
     payload = json.loads(r.text[len("for (;;);") :])["payload"]
 
     for advertiser in payload["advertisers"]:
-
         if advertiser["advertiserPageID"] == 0:
             continue
 
