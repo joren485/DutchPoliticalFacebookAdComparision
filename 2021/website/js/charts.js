@@ -205,7 +205,7 @@ $(document).ready(function () {
             let chart = Chart.getChart(canvas)
 
             if(party){
-                chart.config.options.plugins.title.text = chart.config.options.plugins.title.text.replace(/ by \w+/, " by " + party);
+                chart.config.options.plugins.title.text = chart.config.options.plugins.title.text.replace(/Ads by [\w+]+ /, "Ads by " + party + " ");
             }
             if(theme){
                 chart.config.options.plugins.title.text = chart.config.options.plugins.title.text.replace(/ about [\w &]+? Distributed/, " about " + theme + " Distributed");
